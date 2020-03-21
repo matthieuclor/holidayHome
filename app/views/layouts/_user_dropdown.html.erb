@@ -1,0 +1,26 @@
+<div class="dropdown">
+  <button class="btn btn-sm btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownUserButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+
+    <%= fa_icon("user", current_user.first_name) %>
+  </button>
+
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
+    <% if controller_name == "public" %>
+      <%= link_to fa_icon("user-circle", "Mon espace"),
+                  user_account_dashboards_path,
+                  class: "dropdown-item" %>
+    <% end %>
+
+    <%= link_to fa_icon("cog", "Paramètre"), "#", class: "dropdown-item" %>
+
+    <%= link_to fa_icon("sign-out", "Déconnexion"),
+                destroy_user_session_path,
+                class: "dropdown-item",
+                method: :delete %>
+  </div>
+</div>

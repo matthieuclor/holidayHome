@@ -6,7 +6,7 @@ Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
   const app = new Vue({
-    el: '#public',
+    el: '#user_account',
     data: { message: "Can you say hello?" },
     components: { App }
   })

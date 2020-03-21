@@ -7,12 +7,10 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'public_vue' %>
-    <%= stylesheet_pack_tag 'public_vue' %>
   </head>
 
   <body class="bg-light">
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top justify-content-between">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
       <%= link_to root_path, class:"navbar-brand" do %>
         <span>Holiday</span>
         <span class="text-success">home</span>
@@ -22,11 +20,23 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <%= link_to new_user_session_path do %>
-        <button class="btn btn-sm btn-primary" type="button">
-          Connection
-        </button>
-      <% end %>
+      <div class="d-flex flex-row ml-auto">
+        <%= link_to "#", remote: true do %>
+          <button class="btn btn-sm btn-info mr-2" type="button">
+            Espace Pro
+          </button>
+        <% end %>
+
+        <% if current_user.present? %>
+          <%= render "layouts/user_dropdown" %>
+        <% else %>
+          <%= link_to new_user_session_path, remote: true do %>
+            <button class="btn btn-sm btn-info" type="button">
+              Espace utilisateur
+            </button>
+          <% end %>
+        <% end %>
+      </div>
     </nav>
 
     <div class="container-fluid">
@@ -34,6 +44,9 @@
       <p class="alert"><%= alert %></p>
 
       <%= yield %>
+    </div>
+
+    <div id="modal-container">
     </div>
   </body>
 </html>
