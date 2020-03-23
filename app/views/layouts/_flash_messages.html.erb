@@ -1,0 +1,32 @@
+<% index = 0 %>
+<% toast_id = Time.now.to_i %>
+
+<% flash.each do |key, value| %>
+  <% toast_error = %w(error alert).include?(key) %>
+
+  <div id="toast_<%= key %>_<%= toast_id %>_<%= index %>"
+      class="toast bg-<%= toast_error ? 'danger' : 'success' %>"
+      role="alert"
+      aria-live="assertive"
+      aria-atomic="true"
+      data-delay="4000">
+
+    <div class="toast-body">
+      <div class="d-flex align-items-center">
+        <div class="fa-toast-type mr-3">
+          <%= fa_icon("#{toast_error ? 'times' : 'check'}-circle") %>
+        </div>
+
+        <div class="text-white font-weight-bold">
+          <%= value.html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    $("#toast_<%= key %>_<%= toast_id %>_<%= index %>").toast("show");
+  </script>
+
+  <% index += 1 %>
+<% end %>

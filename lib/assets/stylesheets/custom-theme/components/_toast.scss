@@ -1,0 +1,24 @@
+#toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: $zindex-modal;
+}
+
+.toast {
+  width: $toast-max-width;
+
+  .fa-toast-type {
+    font-size: 18px;
+    line-height: 20px;
+    color: $white;
+  }
+
+  &:not(:last-child) {
+    margin-bottom: $toast-padding-x;
+  }
+
+  .toast-body {
+    padding: $toast-padding-y $toast-padding-x;
+  }
+}

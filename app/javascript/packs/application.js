@@ -7,6 +7,7 @@ import JQuery from 'jquery'
 window.$ = window.JQuery = JQuery
 import "bootstrap"
 
+require("../custom-theme")
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()

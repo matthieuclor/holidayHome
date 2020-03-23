@@ -28,13 +28,12 @@
     </nav>
 
     <div class="container-fluid">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
-
       <%= yield %>
     </div>
 
-    <div id="modal-container">
+    <div id="modal-container"></div>
+    <div id="toast-container">
+      <%= render "./layouts/flash_messages" %>
     </div>
   </body>
 </html>
