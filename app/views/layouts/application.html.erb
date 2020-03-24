@@ -21,18 +21,18 @@
       </button>
 
       <div class="d-flex flex-row ml-auto">
-        <%= link_to "#", remote: true do %>
-          <button class="btn btn-sm btn-info mr-2" type="button">
-            Espace Pro
-          </button>
-        <% end %>
-
         <% if current_user.present? %>
           <%= render "layouts/user_dropdown" %>
         <% else %>
           <%= link_to new_user_session_path, remote: true do %>
             <button class="btn btn-sm btn-info" type="button">
-              Espace utilisateur
+              Se connecter
+            </button>
+          <% end %>
+
+          <%= link_to new_user_registration_path do %>
+            <button class="btn btn-sm btn-outline-info ml-2" type="button">
+              Créer son compte
             </button>
           <% end %>
         <% end %>

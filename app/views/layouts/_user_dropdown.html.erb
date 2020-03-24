@@ -16,7 +16,9 @@
                   class: "dropdown-item" %>
     <% end %>
 
-    <%= link_to fa_icon("cog", "Paramètre"), "#", class: "dropdown-item" %>
+    <%= link_to fa_icon("cog", "Paramètre"),
+                user_account_settings_path,
+                class: "dropdown-item" %>
 
     <%= link_to fa_icon("sign-out", "Déconnexion"),
                 destroy_user_session_path,
