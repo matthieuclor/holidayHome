@@ -1,0 +1,19 @@
+<div class="row justify-content-center">
+  <div class="col-5">
+    <h1 class="my-4">Espace utilisateur</h1>
+
+     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <%= f.input :email,
+                    autofocus: true,
+                    input_html: { placeholder: "jean.dupont@mail.com" } %>
+
+        <%= f.input :password %>
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+        <%= f.submit "Se connecter", class: "btn btn-block btn-success" %>
+      <% end %>
+
+      <br>
+
+      <%= render "user_account/authentification/shared/links" %>
+  </div>
+</div>

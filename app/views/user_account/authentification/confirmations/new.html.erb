@@ -1,0 +1,21 @@
+<div class="row justify-content-center">
+  <div class="col-5">
+    <h1 class="my-4">Confirmer mon compte</h1>
+
+    <%= simple_form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.full_error :confirmation_token %>
+
+      <%= f.input :email,
+                  autofocus: true,
+                  value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
+                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+
+      <%= f.submit "Envoyer le mail de confirmation", class: "btn btn-block btn-success" %>
+    <% end %>
+
+    <br>
+
+    <%= render "user_account/authentification/shared/links" %>
+  </div>
+</div>
+

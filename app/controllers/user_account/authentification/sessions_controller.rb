@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UserAccount::Authentification::SessionsController < Devise::SessionsController
-  respond_to :js
+  respond_to :html, :js
 
   def new
     super
