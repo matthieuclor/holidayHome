@@ -1,0 +1,11 @@
+if ($("#edit-account").length > 0) {
+  $("#edit-account").html("<%= j render "edit" %>")
+}
+
+if ($("#edit-password").length > 0) {
+  $("#edit-password").html("<%= j render "edit_password" %>")
+}
+
+if ($("#delete-account").length > 0) {
+  $("#delete-account").html("<%= j render "delete_account" %>")
+}

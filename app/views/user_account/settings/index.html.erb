@@ -1,19 +1,44 @@
-<h1 class="my-4">Settings#index</h1>
+<div class="d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <h1 class="my-4">Paramètre du compte</h1>
+    <ul class="nav nav-tabs mb-2" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="edit-account-tab" data-toggle="tab" href="#edit-account" role="tab" aria-controls="edit-account" aria-selected="true">
+          Mon profile
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="edit-password-tab" data-toggle="tab" href="#edit-password" role="tab" aria-controls="edit-password" aria-selected="false">
+          Mon mot de passe
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="delete-account-tab" data-toggle="tab" href="#delete-account" role="tab" aria-controls="delete-account" aria-selected="false">
+          Gestion du compte
+        </a>
+      </li>
+    </ul>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item">
-    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Mon profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-  </li>
-</ul>
-
-<div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">...</div>
-  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
+    <div class="card">
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="tab-pane fade show active" id="edit-account" role="tabpanel" aria-labelledby="edit-account-tab">
+            <%= render "shared/spinner" %>
+          </div>
+          <div class="tab-pane fade" id="edit-password" role="tabpanel" aria-labelledby="edit-password-tab">
+            <%= render "shared/spinner" %>
+          </div>
+          <div class="tab-pane fade" id="delete-account" role="tabpanel" aria-labelledby="delete-account-tab">
+            <%= render "shared/spinner" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    $.ajax({ url: "<%= edit_user_registration_path %>" })
+  })
+</script>

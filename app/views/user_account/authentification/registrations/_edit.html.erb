@@ -1,0 +1,18 @@
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <div class="form-row">
+    <%= f.input :first_name, wrapper_html: { class: "col-6" } %>
+    <%= f.input :last_name, wrapper_html: { class: "col-6" } %>
+  </div>
+
+  <%= f.input :email,
+              hint: "En cas de mise à jour de l'email, un mail vous sera envoyé pour confirmer celui-ci." %>
+
+  <%= f.input :current_password,
+              label: "Mot de passe",
+              input_html: { id: "user_account_password" },
+              hint: "Le mot de passe est obbligatoire pour effectuer les changements.",
+              required: true %>
+
+  <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+<% end %>
+

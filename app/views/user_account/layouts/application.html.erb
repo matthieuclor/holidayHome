@@ -7,8 +7,8 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'user_account_vue', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'user_account_vue', 'data-turbolinks-track': 'reload' %>
+
+    <%= yield :head %>
   </head>
 
   <body class="bg-light">
@@ -22,8 +22,14 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div class="d-flex flex-row ml-auto">
-        <%= render "layouts/user_dropdown" %>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+            <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item d-flex align-items-center ml-lg-5">
+            <%= render "layouts/user_dropdown" %>
+          </li>
       </div>
     </nav>
 
@@ -33,7 +39,7 @@
 
     <div id="modal-container"></div>
     <div id="toast-container">
-      <%= render "./layouts/flash_messages" %>
+      <%= render "./shared/flash_messages" %>
     </div>
   </body>
 </html>

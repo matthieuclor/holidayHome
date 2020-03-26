@@ -1,4 +1,7 @@
-$("#new-user-modal").modal("hide")
+if ($("#new-user-modal").length > 0) {
+  $("#new-user-modal").modal("hide")
+}
+
 $("#modal-container").html("<%= j render "modal_form" %>")
-$("#toast-container").html("<%= j render "layouts/flash_messages" %>")
+$("#toast-container").html("<%= j render "shared/flash_messages" %>")
 $("#new-user-modal").modal("show")
