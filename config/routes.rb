@@ -12,5 +12,14 @@ Rails.application.routes.draw do
   namespace :user_account do
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
+    resources :families, only: [:new, :create]
+  end
+
+  devise_for :admins, controllers: {
+    sessions: 'admin_account/authentification/sessions'
+  }
+
+  namespace :admin_account do
+    resources :dashboards, only: [:index]
   end
 end

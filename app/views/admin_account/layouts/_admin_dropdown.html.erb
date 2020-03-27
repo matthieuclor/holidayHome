@@ -1,0 +1,18 @@
+<div class="dropdown">
+  <button class="btn btn-sm btn-secondary dropdown-toggle"
+          type="button"
+          id="dropdownUserButton"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false">
+
+    <%= fa_icon("user", current_admin.first_name, class: "mr-2") %>
+  </button>
+
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
+    <%= link_to fa_icon("sign-out", "Déconnexion", class: "mr-2"),
+                destroy_admin_session_path,
+                class: "dropdown-item",
+                method: :delete %>
+  </div>
+</div>

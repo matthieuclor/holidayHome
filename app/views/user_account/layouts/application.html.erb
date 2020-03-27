@@ -23,12 +23,27 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
+        <ul class="navbar-nav ml-auto d-flex align-items-center">
+          <li class="nav-item">
+            <% if current_user.families.present? %>
+              <%= current_user.families.first.name %>
+            <% else %>
+              <%= button_to new_user_account_family_path,
+                            class: "btn btn-sm btn-outline-primary",
+                            method: :get,
+                            remote: true do %>
+
+                <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
+              <% end %>
+            <% end %>
+          </li>
+
           <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
             <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
           </li>
-          <li class="nav-item d-flex align-items-center ml-lg-5">
-            <%= render "layouts/user_dropdown" %>
+
+          <li class="nav-item ml-lg-5">
+            <%= render "user_account/layouts/user_dropdown" %>
           </li>
       </div>
     </nav>

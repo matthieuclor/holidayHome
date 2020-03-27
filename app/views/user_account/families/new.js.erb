@@ -1,0 +1,7 @@
+if ($("#new-family-modal").length > 0) {
+  $("#new-family-modal").modal("hide")
+}
+
+$("#modal-container").html("<%= j render "modal_form" %>")
+$("#toast-container").html("<%= j render "shared/flash_messages" %>")
+$("#new-family-modal").modal("show")
