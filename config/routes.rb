@@ -1,3 +1,5 @@
+require "sidekiq/web"
+
 Rails.application.routes.draw do
   root to: 'public#index'
 
@@ -21,5 +23,11 @@ Rails.application.routes.draw do
 
   namespace :admin_account do
     resources :dashboards, only: [:index]
+    resources :users
+    resources :families
+  end
+
+  authenticate :admin do
+    mount Sidekiq::Web => '/sidekiq'
   end
 end

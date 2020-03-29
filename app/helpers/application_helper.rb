@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def fa_icon(icon, text="", options={})
     content_tag(
       :i,

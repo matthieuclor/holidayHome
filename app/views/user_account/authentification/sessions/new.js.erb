@@ -3,5 +3,9 @@ if ($("#new-user-modal").length > 0) {
 }
 
 $("#modal-container").html("<%= j render "modal_form" %>")
-$("#toast-container").html("<%= j render "shared/flash_messages" %>")
+
+<% if flash.present? %>
+  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
+<% end %>
+
 $("#new-user-modal").modal("show")

@@ -35,6 +35,12 @@ gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Ransack enables the creation of both simple and advanced search forms for your Ruby on Rails application
+gem 'ransack'
+
+# Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
+gem 'pagy'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

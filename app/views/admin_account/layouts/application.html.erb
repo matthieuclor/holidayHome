@@ -24,8 +24,16 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+          <li class="nav-item mx-lg-1 <%= 'active' if controller_name == 'dashboards' %>">
             <%= link_to "Tableau de bord", admin_account_dashboards_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item mx-lg-1 <%= 'active' if controller_name == 'users' %>">
+            <%= link_to "Utilisateurs", admin_account_users_path, class: "nav-link" %>
+          </li>
+
+          <li class="nav-item mx-lg-1 <%= 'active' if controller_name == 'families' %>">
+            <%= link_to "Familles", admin_account_families_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item ml-lg-5">
