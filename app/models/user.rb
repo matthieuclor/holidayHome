@@ -9,4 +9,6 @@ class User < ApplicationRecord
 
   has_one_attached :avatar
   has_and_belongs_to_many :families
+
+  enum achievement: %i(account_created family_created venue_created)
 end

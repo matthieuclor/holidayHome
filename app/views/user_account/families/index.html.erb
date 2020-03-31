@@ -1,0 +1,79 @@
+<div class="d-flex justify-content-center mt-4">
+  <div class="col-11">
+    <div class="d-flex align-items-center">
+      <h1>Mes familles</h1>
+      <div class="ml-auto">
+        <% if @families.present? %>
+          <%= button_to new_user_account_family_path,
+                        class: "btn btn btn-outline-primary",
+                        method: :get,
+                        remote: true do %>
+
+            <%= fa_icon("plus", "Créer une nouvelle famille", class: "mr-2") %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <% if @families.present? %>
+          <% @families.each do |family| %>
+            <div class="float-left mx-2">
+              <div class="jumbotron p-3">
+                <div class="d-flex align-items-center">
+                  <h3 class="text-nowrap">
+                    <%= family.name %>
+                  </h3>
+                  <span class="float-left ml-2">
+                    <%= "(#{pluralize(family.users_count, 'utilisateur')})" %>
+                  </span>
+                  <div class="ml-4">
+                    <%= button_to edit_user_account_family_path(family),
+                                  class: "btn btn-primary",
+                                  form_class: "float-left ml-2",
+                                  method: :get,
+                                  remote: true do %>
+
+                      <%= fa_icon("pen", "Editer", class: "mr-2") %>
+                    <% end %>
+
+                    <%= button_to user_account_family_path(family),
+                                  class: "btn btn-danger",
+                                  form_class: "float-left ml-2",
+                                  method: :delete,
+                                  data: { confirm: "Etes-vous sûr ?" },
+                                  remote: true do %>
+
+                      <%= fa_icon("trash") %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% else %>
+            <div class="d-flex align-items-center">
+              <div class="col-7">
+                <div class="alert alert-warning m-0">
+                  <%= fa_icon("exclamation-triangle") %>
+                  Vous devez dans un premier temps créer votre premier groupe familiale !
+                  <br>
+                  Pour ce faire cliquez sur le lien de creation.
+                </div>
+              </div>
+              <div class="col-5 d-flex justify-content-center">
+                <%= button_to new_user_account_family_path,
+                              class: "btn btn-lg btn-outline-primary",
+                              method: :get,
+                              remote: true do %>
+
+                  <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
+                <% end %>
+              </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

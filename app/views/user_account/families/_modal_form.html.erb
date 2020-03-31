@@ -1,8 +1,14 @@
-<div class="modal" id="new-family-modal" data-backdrop="static" tabindex="-1" role="dialog">
+<div class="modal" id="family-modal" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header border-0">
-        <h3 class="modal-title">Créer une famille</h3>
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer une famille
+          <% else %>
+            Editer une famille
+          <% end %>
+        </h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

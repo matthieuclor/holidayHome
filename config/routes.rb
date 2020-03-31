@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   namespace :user_account do
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
-    resources :families, only: [:new, :create]
+    resources :families do
+      resources :venues
+    end
   end
 
   devise_for :admins, controllers: {
@@ -24,7 +26,9 @@ Rails.application.routes.draw do
   namespace :admin_account do
     resources :dashboards, only: [:index]
     resources :users
-    resources :families
+    resources :families do
+      resources :venues
+    end
   end
 
   authenticate :admin do
