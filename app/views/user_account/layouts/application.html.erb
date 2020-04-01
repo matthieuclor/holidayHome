@@ -24,7 +24,22 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+          <li lass="nav-item">
+            <%= simple_form_for :current_family_cookies,
+                                url: user_account_current_family_cookies_path,
+                                method: :patch,
+                                authenticity_token: true,
+                                wrapper: :inline_form,
+                                data: { autosubmit: true } do |f| %>
+
+              <%= f.input :id,
+                          collection: current_user.families.pluck(:name, :id),
+                          selected: cookies.permanent[:current_family_id],
+                          include_blank: false %>
+            <% end %>
+          </li>
+
+          <li class="nav-item ml-lg-5 <%= 'active' if controller_name == 'dashboards' %>">
             <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
           </li>
 

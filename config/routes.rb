@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   namespace :user_account do
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
+    resource :current_family_cookies, only: [:update]
     resources :families do
       resources :venues
     end
