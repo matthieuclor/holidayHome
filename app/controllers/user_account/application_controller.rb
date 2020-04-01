@@ -11,7 +11,7 @@ module UserAccount
       return if current_user.venue_created?
       return if current_user.family_created?
 
-      case current_user.achievement
+      case current_user.step
         when "account_created"
           redirect_to user_account_families_path unless controller_name == "families"
         when "family_created"

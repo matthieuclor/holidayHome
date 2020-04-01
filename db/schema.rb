@@ -52,11 +52,11 @@ ActiveRecord::Schema.define(version: 2020_03_31_170111) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "families_users", id: false, force: :cascade do |t|
-    t.bigint "family_id", null: false
-    t.bigint "user_id", null: false
-    t.index ["family_id"], name: "index_families_users_on_family_id"
-    t.index ["user_id"], name: "index_families_users_on_user_id"
+  create_table "family_links", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "family_id"
+    t.index ["family_id"], name: "index_family_links_on_family_id"
+    t.index ["user_id"], name: "index_family_links_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_03_31_170111) do
     t.datetime "locked_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "achievement", default: 0
+    t.integer "step", default: 0
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

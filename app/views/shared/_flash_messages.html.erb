@@ -2,6 +2,7 @@
 <% toast_id = Time.now.to_i %>
 
 <% flash.each do |key, value| %>
+  <% next if key == "timedout" %>
   <% toast_error = %w(error alert).include?(key) %>
 
   <div id="toast_<%= key %>_<%= toast_id %>_<%= index %>"
@@ -18,7 +19,7 @@
         </div>
 
         <div class="text-white font-weight-bold mr-2">
-          <%= value.html_safe %>
+          <%= value %>
         </div>
 
         <button type="button" class="ml-auto mb-1 close" data-dismiss="toast" aria-label="Close">

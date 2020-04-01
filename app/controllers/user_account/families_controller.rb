@@ -5,8 +5,8 @@ module UserAccount
     def index
       @families = current_user
         .families
-        .joins(:families_users)
-        .select("families.*, COUNT(families_users.user_id) as users_count")
+        .joins(:family_links)
+        .select("families.*, COUNT(family_links.user_id) as users_count")
         .group('families.id')
     end
 
@@ -19,9 +19,10 @@ module UserAccount
 
       check_name_validity
 
-      if @family.save
+      if @family.errors.empty? && @family.save
         current_user.family_created! if current_user.account_created?
         flash[:success] = "La famille a bien été créé"
+        render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de la creation de la famille"
         render :new
@@ -34,6 +35,7 @@ module UserAccount
     def update
       if @family.update(family_params)
         flash[:success] = "La famille a bien été mise à jour"
+        render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de la mise à jour de la famille"
         render :edit
@@ -61,9 +63,9 @@ module UserAccount
     end
 
     def check_name_validity
-      if current_user.families.pluck(:name).include?(family_params[:name])
-        @family.errors.add(:name, :exclusion)
-      end
+      family_names = current_user.families.pluck(:name).map(&:downcase)
+      name = family_params[:name]&.downcase
+      @family.errors.add(:name, :exclusion) if family_names.include?(name)
     end
   end
 end
