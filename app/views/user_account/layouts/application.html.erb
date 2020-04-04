@@ -24,34 +24,52 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li lass="nav-item">
-            <%= simple_form_for :current_family_cookies,
-                                url: user_account_current_family_cookies_path,
-                                method: :patch,
-                                authenticity_token: true,
-                                wrapper: :inline_form,
-                                data: { autosubmit: true } do |f| %>
-
-              <%= f.input :id,
-                          collection: current_user.families.pluck(:name, :id),
-                          selected: cookies.permanent[:current_family_id],
-                          include_blank: false %>
-            <% end %>
-          </li>
-
-          <li class="nav-item ml-lg-5 <%= 'active' if controller_name == 'dashboards' %>">
+          <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
             <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
           </li>
 
           <li class="nav-item <%= 'active' if controller_name == 'families' %>">
-            <%= link_to "Mes familles", user_account_families_path, class: "nav-link" %>
+            <%= link_to "Groups|Familles", user_account_families_path, class: "nav-link" %>
           </li>
 
-          <li class="nav-item ml-lg-5">
+          <li class="nav-item">
+            <%= link_to "Invitations", "#", class: "nav-link" %>
+          </li>
+
+          <li class="nav-item mr-lg-5">
+            <%= link_to "Lieux", "#", class: "nav-link" %>
+          </li>
+
+          <% if current_user.families.present? %>
+            <li lass="nav-item">
+              <%= simple_form_for :current_family_cookies,
+                                  url: user_account_current_family_cookies_path,
+                                  method: :patch,
+                                  authenticity_token: true,
+                                  wrapper: :inline_form,
+                                  html: { class: "mr-lg-4" },
+                                  data: { autosubmit: true } do |f| %>
+
+                <%= f.input :id,
+                            collection: current_user.families.pluck(:name, :id),
+                            selected: cookies.permanent[:current_family_id],
+                            input_html: { class: "form-control-sm mr-2" },
+                            include_blank: false %>
+              <% end %>
+            </li>
+          <% end %>
+
+          <li class="nav-item">
             <%= render "user_account/layouts/user_dropdown" %>
           </li>
       </div>
     </nav>
+    <% unless current_user.confirmed? %>
+      <div class="alert alert-warning text-center">
+        <%= fa_icon("exclamation-triangle") %>
+        Votre compte pourrait être bloqué d'ici quelques jours, pensez a valider votre adresse email !
+      </div>
+    <% end %>
 
     <div class="container-fluid">
       <%= yield %>
