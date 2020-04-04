@@ -18,50 +18,57 @@
         <span class="text-success">home</span>
       <% end %>
 
+
+      <% if current_user.families.present? %>
+        <div class="d-flex justify-content-center ml-lg-5">
+          <div class="col-4">
+            <span class="navbar-text float-right">
+              Famille&nbsp;:
+            </span>
+          </div>
+          <div class="col-8 p-0">
+            <%= simple_form_for :current_family_cookies,
+                                url: user_account_current_family_cookies_path,
+                                method: :patch,
+                                authenticity_token: true,
+                                wrapper: :inline_form,
+                                data: { autosubmit: true } do |f| %>
+
+              <%= f.input :id,
+                          collection: current_user.families.pluck(:name, :id),
+                          selected: cookies.permanent[:current_family_id],
+                          label: false,
+                          required: false,
+                          include_blank: false %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto d-flex align-items-center">
-          <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
-            <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
-          </li>
-
-          <li class="nav-item <%= 'active' if controller_name == 'families' %>">
-            <%= link_to "Groups|Familles", user_account_families_path, class: "nav-link" %>
-          </li>
-
-          <li class="nav-item">
-            <%= link_to "Invitations", "#", class: "nav-link" %>
-          </li>
-
-          <li class="nav-item mr-lg-5">
-            <%= link_to "Lieux", "#", class: "nav-link" %>
-          </li>
-
-          <% if current_user.families.present? %>
-            <li lass="nav-item">
-              <%= simple_form_for :current_family_cookies,
-                                  url: user_account_current_family_cookies_path,
-                                  method: :patch,
-                                  authenticity_token: true,
-                                  wrapper: :inline_form,
-                                  html: { class: "mr-lg-4" },
-                                  data: { autosubmit: true } do |f| %>
-
-                <%= f.input :id,
-                            collection: current_user.families.pluck(:name, :id),
-                            selected: cookies.permanent[:current_family_id],
-                            input_html: { class: "form-control-sm mr-2" },
-                            include_blank: false %>
-              <% end %>
+        <div class="d-flex align-items-center ml-auto">
+          <ul class="navbar-nav">
+            <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+              <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
             </li>
-          <% end %>
 
-          <li class="nav-item">
-            <%= render "user_account/layouts/user_dropdown" %>
-          </li>
+            <li class="nav-item">
+              <%= link_to "Invitations", "#", class: "nav-link" %>
+            </li>
+
+            <li class="nav-item mr-lg-5">
+              <%= link_to "Lieux", "#", class: "nav-link" %>
+            </li>
+
+            <li class="nav-item">
+              <%= render "user_account/layouts/user_dropdown" %>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
     <% unless current_user.confirmed? %>

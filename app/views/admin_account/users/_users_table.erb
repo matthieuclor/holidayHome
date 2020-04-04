@@ -4,18 +4,36 @@
       <th scope="col"></th>
       <th scope="col">Nom</th>
       <th scope="col">Email</th>
-      <th scope="col" colspan="2"></th>
+      <th scope="col" class="text-center">Inscription</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <% @users.each do |user| %>
       <tr>
         <td>
-          <%= image_tag(user.avatar.variant(resize_to_limit: [30, 30]), class: "rounded-circle") %>
+          <%= user_avatar(user) %>
         </td>
         <td><%= user.full_name %></td>
-        <td><%= user.email %></td>
-        <td colspan="2"></td>
+        <td>
+          <%= user.email %>
+          <span class="ml-1">
+            <%= user_confirmed_status(user.confirmed?) %>
+          </span>
+        </td>
+        <td class="text-center"><%= l(user.created_at, format: :medium) %></td>
+        <td class="d-flex flex-row-reverse">
+          <button class="btn-sm btn-primary">
+            Connection
+          </button>
+
+          <% unless user.confirmed? %>
+            <%= button_to "Valider le mail",
+                          admin_account_user_email_confirmation_path(user),
+                          method: :put,
+                          class: "btn-sm btn-outline-primary mr-2" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

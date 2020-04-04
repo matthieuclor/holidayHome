@@ -8,7 +8,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true
 
   has_one_attached :avatar
-  has_many :family_links
+  has_many :family_links, dependent: :destroy
   has_many :families, through: :family_links
 
   enum step: %i(account_created family_created venue_created)

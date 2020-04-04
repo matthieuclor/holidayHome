@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mt-4">
-  <div class="col-11">
+  <div class="col-md-8 col-lg-6">
     <div class="d-flex align-items-center">
       <h1>Mes familles</h1>
       <div class="ml-auto">
@@ -19,34 +19,56 @@
       <div class="card-body">
         <% if @families.present? %>
           <% @families.each do |family| %>
-            <div class="float-left mx-2">
-              <div class="jumbotron p-3">
-                <div class="d-flex align-items-center">
-                  <h3 class="text-nowrap">
-                    <%= family.name %>
-                  </h3>
-                  <span class="float-left ml-2">
-                    <%= "(#{pluralize(family.users_count, 'utilisateur')})" %>
-                  </span>
-                  <div class="ml-4">
-                    <%= button_to edit_user_account_family_path(family),
-                                  class: "btn btn-primary",
-                                  form_class: "float-left ml-2",
-                                  method: :get,
-                                  remote: true do %>
+            <div class="accordion" id="familyAccordion">
+              <div class="card">
+                <div class="card-header" id="heading-<%= family.id %>">
+                  <div class="d-flex align-items-center">
+                    <h3 class="text-nowrap mb-0 mr-2">
+                      <%= family.name %>
+                    </h3>
+                    <a href="#"
+                       class="collapsed badge badge-secondary mt-2"
+                       data-toggle="collapse"
+                       data-target="#collapse-<%= family.id %>"
+                       aria-expanded="true"
+                       aria-controls="collapse-<%= family.id %>">
+                      <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
+                    </a>
 
-                      <%= fa_icon("pen", "Editer", class: "mr-2") %>
-                    <% end %>
+                    <div class="ml-auto">
+                      <%= button_to edit_user_account_family_path(family),
+                                    class: "btn btn-primary",
+                                    form_class: "float-left ml-2",
+                                    method: :get,
+                                    remote: true do %>
 
-                    <%= button_to user_account_family_path(family),
-                                  class: "btn btn-danger",
-                                  form_class: "float-left ml-2",
-                                  method: :delete,
-                                  data: { confirm: "Etes-vous sûr ?" },
-                                  remote: true do %>
+                        <%= fa_icon("pen", "Editer", class: "mr-2") %>
+                      <% end %>
 
-                      <%= fa_icon("trash") %>
-                    <% end %>
+                      <%= button_to user_account_family_path(family),
+                                    class: "btn btn-danger",
+                                    form_class: "float-left ml-2",
+                                    method: :delete,
+                                    data: { confirm: "Etes-vous sûr ?" },
+                                    remote: true do %>
+
+                        <%= fa_icon("trash") %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+
+                <div id="collapse-<%= family.id %>" class="collapse" aria-labelledby="heading-<%= family.id %>" data-parent="#familyAccordion">
+                  <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                      <% @users[family.id].each do |user| %>
+                        <li class="list-group-item p-1">
+                          <%= user_avatar(user, format: [25, 25], avatar_class: "mr-1") %>
+                          <%= "#{user.full_name}, " %>
+                          <span class="text-muted"><%= user.email %></span>
+                        </li>
+                      <% end %>
+                    </ul>
                   </div>
                 </div>
               </div>

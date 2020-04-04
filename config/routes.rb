@@ -26,7 +26,11 @@ Rails.application.routes.draw do
 
   namespace :admin_account do
     resources :dashboards, only: [:index]
-    resources :users
+    resources :users do
+      scope module: :users do
+        resource :email_confirmation, only: [:update]
+      end
+    end
     resources :families do
       resources :venues
     end

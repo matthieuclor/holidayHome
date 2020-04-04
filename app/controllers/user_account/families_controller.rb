@@ -3,11 +3,13 @@ module UserAccount
     before_action :set_family, only: [:edit, :update, :destroy]
 
     def index
-      @families = current_user
-        .families
+      @families = current_user.families
+      @users = UserDecorator.wrap(User
+        .includes(:avatar_attachment)
         .joins(:family_links)
-        .select("families.*, COUNT(family_links.user_id) as users_count")
-        .group('families.id')
+        .where(family_links: { family_id: @families.pluck(:id) })
+        .select("users.*, family_links.family_id as family_id")
+      ).group_by(&:family_id)
     end
 
     def new

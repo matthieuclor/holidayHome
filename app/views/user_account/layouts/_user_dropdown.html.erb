@@ -1,5 +1,5 @@
 <div class="dropdown">
-  <button class="btn btn-sm btn-secondary dropdown-toggle"
+  <button class="btn btn-secondary dropdown-toggle"
           type="button"
           id="dropdownUserButton"
           data-toggle="dropdown"
@@ -15,6 +15,10 @@
                   user_account_dashboards_path,
                   class: "dropdown-item" %>
     <% end %>
+
+    <%= link_to fa_icon("users", "Familles", class: "mr-2"),
+                user_account_families_path,
+                class: "dropdown-item" %>
 
     <%= link_to fa_icon("cog", "Paramètre", class: "mr-2"),
                 user_account_settings_path,
