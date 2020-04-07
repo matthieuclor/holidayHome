@@ -1,0 +1,11 @@
+if ($("#invitation-modal").length > 0) {
+  $("#invitation-modal").modal("hide")
+}
+
+<% if flash.present? %>
+  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
+<% end %>
+
+$("#modal-container").html("<%= j render "modal_form" %>")
+
+$("#invitation-modal").modal("show")

@@ -4,12 +4,15 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :timeoutable, :confirmable, :lockable
 
-  validates :first_name, :last_name, presence: true
-  validates :email, presence: true, uniqueness: true
-
   has_one_attached :avatar
+
   has_many :family_links, dependent: :destroy
   has_many :families, through: :family_links
+  has_many :invitations, foreign_key: :sender_id
+  has_many :invitees, through: :invitations, source: :receiver
 
   enum step: %i(account_created family_created venue_created)
+
+  validates :first_name, :last_name, presence: true
+  validates :email, presence: true, uniqueness: true
 end

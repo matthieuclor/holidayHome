@@ -1,0 +1,15 @@
+fr:
+  activerecord:
+    attributes:
+      invitation/status:
+        pending: En attente
+        awaiting_acceptance: En attente d'acceptation
+        awaiting_creation: En attente de création
+        accepted: Accepté
+        created: Créé
+      invitation/status_description:
+        pending: Le mail va être envoyé.
+        awaiting_acceptance: L'invité doit accepter de faire partie de la famille.
+        awaiting_creation: L'invité doit créer son compte.
+        accepted: L'invité a accepté de se joindre à la famille.
+        created: L'invité a créé son compte et fait partie de la famille.

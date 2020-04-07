@@ -14,9 +14,12 @@ Rails.application.routes.draw do
   namespace :user_account do
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
-    resource :current_family_cookies, only: [:update]
-    resources :families do
-      resources :venues
+    resource :current_families, only: [:update]
+    resources :families
+    resources :invitations, only: [:index, :new, :create] do
+      scope module: :invitations do
+        resource :mails, only: [:update]
+      end
     end
   end
 
@@ -26,14 +29,16 @@ Rails.application.routes.draw do
 
   namespace :admin_account do
     resources :dashboards, only: [:index]
+
     resources :users do
       scope module: :users do
         resource :email_confirmation, only: [:update]
       end
     end
-    resources :families do
-      resources :venues
-    end
+
+    resources :families
+    resources :invitations
+    resources :venues
   end
 
   authenticate :admin do

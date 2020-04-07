@@ -26,8 +26,8 @@
             </span>
           </div>
           <div class="col-8 p-0">
-            <%= simple_form_for :current_family_cookies,
-                                url: user_account_current_family_cookies_path,
+            <%= simple_form_for :current_family,
+                                url: user_account_current_families_path,
                                 method: :patch,
                                 authenticity_token: true,
                                 wrapper: :inline_form,
@@ -35,7 +35,7 @@
 
               <%= f.input :id,
                           collection: current_user.families.pluck(:name, :id),
-                          selected: cookies.permanent[:current_family_id],
+                          selected: current_user.current_family_id,
                           label: false,
                           required: false,
                           include_blank: false %>
@@ -55,9 +55,11 @@
               <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
             </li>
 
-            <li class="nav-item">
-              <%= link_to "Invitations", "#", class: "nav-link" %>
-            </li>
+            <% if current_user.current_family_id.present? %>
+              <li class="nav-item <%= 'active' if controller_name == 'invitations' %>">
+                <%= link_to "Invitations", user_account_invitations_path, class: "nav-link" %>
+              </li>
+            <% end %>
 
             <li class="nav-item mr-lg-5">
               <%= link_to "Lieux", "#", class: "nav-link" %>

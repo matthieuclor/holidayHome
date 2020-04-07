@@ -41,6 +41,9 @@ gem 'ransack'
 # Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 gem 'pagy'
 
+# Interactors (business objects)
+gem 'interactor'
+
 group :staging do
   gem 'rest-client'
 end

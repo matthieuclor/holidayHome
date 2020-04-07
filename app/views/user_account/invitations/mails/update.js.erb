@@ -1,3 +1,5 @@
 <% if flash.present? %>
   $("#toast-container").html("<%= j render "shared/flash_messages" %>")
+<% else %>
+  location.reload()
 <% end %>

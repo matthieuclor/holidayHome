@@ -1,5 +1,5 @@
 module AdminAccount
-  class VenuesController < UserAccount::ApplicationController
+  class VenuesController < AdminAccount::ApplicationController
     def index
     end
   end

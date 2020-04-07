@@ -1,0 +1,20 @@
+<div class="modal" id="invitation-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h3 class="modal-title">
+          Inviter une personne à rejoindre la famille <%= @current_family.name %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:user_account, @invitation], remote: true do |f| %>
+          <%= f.input :email, input_html: { placeholder: "pierre.#{@current_family.name.downcase}@mail.com" } %>
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

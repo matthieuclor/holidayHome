@@ -1,0 +1,38 @@
+<table class="table table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-center">Statut</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @invitations.present? %>
+      <% @invitations.each do |invitation| %>
+        <tr>
+          <td><%= invitation.email %></td>
+          <td class="text-center">
+            <%= invitation_status_badge(invitation.status) %>
+          </td>
+          <td class="float-right">
+            <%= button_to "Renvoyer l'invitation",
+                          user_account_invitation_mails_path(invitation),
+                          class: "btn btn-sm btn-primary #{"disabled" unless invitation.is_resendable?}",
+                          data: { toggle: "#{invitation.is_resendable? ? '' : 'tooltip'}" },
+                          title: "#{invitation.is_resendable? ? '' : "Vous ne pouvez pas renvoyer l'invitation"}",
+                          method: :patch,
+                          remote: true %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="3">Vous n'avez pas d'invitations en cours</td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+</div>

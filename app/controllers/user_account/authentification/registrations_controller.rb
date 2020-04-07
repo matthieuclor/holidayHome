@@ -39,6 +39,6 @@ class UserAccount::Authentification::RegistrationsController < Devise::Registrat
   end
 
   def after_inactive_sign_up_path_for(resource)
-    super(resource)
+    user_account_dashboards_path
   end
 end
