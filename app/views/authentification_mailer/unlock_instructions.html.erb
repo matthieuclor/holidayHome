@@ -1,0 +1,27 @@
+<center>
+  <p>Bonjour <%= @resource.first_name %> !</p>
+
+  <p>Votre compte a été verrouillé en raison d'un nombre excessif de tentatives de connexion infructueuses.</p>
+
+  <p>Cliquez sur le lien ci-dessous pour déverrouiller votre compte :</p>
+</center>
+
+<br>
+
+<table border="0" cellpadding="0" cellspacing="0" align="center" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 5px;background-color: #48CB4B; width: 250px;">
+  <tbody>
+    <tr>
+      <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px;">
+        <%= link_to 'Déverrouiller mon compte',
+                    unlock_url(@resource, unlock_token: @token),
+                    class: "mcnButton",
+                    title: "Déverrouiller mon compte",
+                    target: "_blank",
+                    style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff;" %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<br>
+
