@@ -1,5 +1,4 @@
 class AuthentificationMailerPreview < ActionMailer::Preview
-
   def confirmation_instructions
     AuthentificationMailer.confirmation_instructions(User.first, "faketoken", {})
   end

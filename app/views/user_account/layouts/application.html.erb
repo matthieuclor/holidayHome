@@ -17,8 +17,7 @@
         <span>Hutoki</span>
       <% end %>
 
-
-      <% if current_user.families.present? %>
+      <% if current_user.current_family_id %>
         <div class="d-flex justify-content-center ml-lg-5">
           <div class="col-4">
             <span class="navbar-text float-right">
@@ -51,19 +50,19 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex align-items-center ml-auto">
           <ul class="navbar-nav">
-            <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
-              <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
-            </li>
+            <% if current_user.current_family_id %>
+              <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+                <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
+              </li>
 
-            <% if current_user.current_family_id.present? %>
               <li class="nav-item <%= 'active' if controller_name == 'invitations' %>">
                 <%= link_to "Invitations", user_account_invitations_path, class: "nav-link" %>
               </li>
-            <% end %>
 
-            <li class="nav-item mr-lg-5">
-              <%= link_to "Lieux", "#", class: "nav-link" %>
-            </li>
+              <li class="nav-item mr-lg-5">
+                <%= link_to "Lieux", "#", class: "nav-link" %>
+              </li>
+            <% end %>
 
             <li class="nav-item">
               <%= render "user_account/layouts/user_dropdown" %>

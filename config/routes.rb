@@ -16,9 +16,12 @@ Rails.application.routes.draw do
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
     resources :families
-    resources :invitations, only: [:index, :new, :create] do
+    resources :invitations, only: [:index, :new, :create, :destroy] do
       scope module: :invitations do
         resource :mails, only: [:update]
+        resource :approves, only: [:new]
+        resource :disapproves, only: [:new]
+        resource :registrations, only: [:new, :create]
       end
     end
   end

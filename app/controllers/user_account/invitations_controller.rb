@@ -26,14 +26,22 @@ module UserAccount
       end
     end
 
+    def destroy
+      invitation = Invitation.find(params[:id])
+
+      if invitation.destroy
+        flash[:success] = "L'invitation a bien été supprimée"
+      else
+        flash[:error] = "Un problem est survenu lors de la suppression de l'invitation"
+      end
+
+      redirect_to user_account_invitations_path
+    end
+
     private
 
     def set_current_family
       @current_family = Family.find(current_user.current_family_id)
-    end
-
-    def build_invitation
-      @invitation = current_user.invitations.build
     end
 
     def invitation_params

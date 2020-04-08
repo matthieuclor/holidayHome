@@ -10,18 +10,27 @@
     <% if @invitations.present? %>
       <% @invitations.each do |invitation| %>
         <tr>
-          <td><%= invitation.email %></td>
+          <td class="font-weight-bolder">
+            <%= invitation.email %>
+          </td>
           <td class="text-center">
             <%= invitation_status_badge(invitation.status) %>
           </td>
-          <td class="float-right">
-            <%= button_to "Renvoyer l'invitation",
-                          user_account_invitation_mails_path(invitation),
-                          class: "btn btn-sm btn-primary #{"disabled" unless invitation.is_resendable?}",
-                          data: { toggle: "#{invitation.is_resendable? ? '' : 'tooltip'}" },
-                          title: "#{invitation.is_resendable? ? '' : "Vous ne pouvez pas renvoyer l'invitation"}",
+          <td class="d-flex justify-content-end">
+            <%= button_to user_account_invitation_mails_path(invitation),
+                          class: "btn btn-sm btn-primary mr-2",
                           method: :patch,
-                          remote: true %>
+                          remote: true do %>
+
+              <%= fa_icon("envelope", "Renvoyer", class: "mr-2") %>
+            <% end %>
+            <%= button_to user_account_invitation_path(invitation),
+                          method: :delete,
+                          class: "btn btn-sm btn-danger",
+                          data: { confirm: "Supprimer cette invitation ?" } do %>
+
+              <%= fa_icon("trash", "Supprimer", class: "mr-2") %>
+            <% end %>
           </td>
         </tr>
       <% end %>
@@ -34,5 +43,5 @@
 </table>
 
 <div class="d-flex justify-content-center">
-  <%== pagy_bootstrap_nav(@pagy) if @pagy.pages > 1 %>
+  <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
 </div>

@@ -1,1 +1,31 @@
-<p>unknown</p>
+<center>
+  <p>Bonjour,</p>
+
+  <p><%= "#{@sender.full_name} vous envoie une invitation pour faire partie de la famille #{@family.name}." %></p>
+
+  <p>Ce qui vous permettera de participer au réservations faites sur les résidences de la famille !</p>
+
+  <p>Nous vous invitons a créer votre compte cliquant sur le lien ci-dessous :</p>
+
+  <br>
+
+  <table border="0" cellpadding="0" cellspacing="0" align="center" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 5px;background-color: #48CB4B; width: 200px;">
+    <tbody>
+      <tr>
+        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px;">
+          <%= link_to 'Créer mon compte',
+                      new_user_account_invitation_registrations_url(
+                        invitation_id: @invitation.id,
+                        token: @invitation.token),
+                      class: "mcnButton",
+                      title: "Créer mon compte",
+                      target: "_blank",
+                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff;" %>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <br>
+
+</center>

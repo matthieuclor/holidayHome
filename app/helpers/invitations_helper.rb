@@ -1,20 +1,19 @@
 module InvitationsHelper
 
   def invitation_status_badge(status)
-    badge_class = case status
-      when "pending" then "secondary"
-      when "awaiting_acceptance" then "primary"
-      when "awaiting_creation" then "info"
-      when "accepted" then "success"
-      when "created" then "success"
-    end
+    badge_class, badge_status =
+      if %w(pending awaiting_acceptance awaiting_creation).include?(status)
+        ["secondary", "pending"]
+      elsif %w(accepted created).include?(status)
+        ["success", "accepted"]
+      end
 
     content_tag(
       :span,
-      Invitation.human_attribute_name("status.#{status}"),
+      Invitation.human_attribute_name("status.#{badge_status}"),
       class: ["badge badge-#{badge_class}"],
       data: { toggle: "tooltip" },
-      title: Invitation.human_attribute_name("status_description.#{status}")
+      title: Invitation.human_attribute_name("status_description.#{badge_status}")
     )
   end
 end

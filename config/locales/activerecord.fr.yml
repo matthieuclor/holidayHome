@@ -8,7 +8,7 @@ fr:
         accepted: Accepté
         created: Créé
       invitation/status_description:
-        pending: Le mail va être envoyé.
+        pending: Le mail a été envoyé à l'invité.
         awaiting_acceptance: L'invité doit accepter de faire partie de la famille.
         awaiting_creation: L'invité doit créer son compte.
         accepted: L'invité a accepté de se joindre à la famille.

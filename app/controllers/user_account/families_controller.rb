@@ -22,7 +22,7 @@ module UserAccount
       check_name_validity
 
       if @family.errors.empty? && @family.save
-        current_user.family_created! if current_user.account_created?
+        add_family_to_current_user
         flash[:success] = "La famille a bien été créé"
         render js: "location.reload()"
       else
@@ -46,6 +46,7 @@ module UserAccount
 
     def destroy
       if @family.destroy
+        remove_family_from_current_user
         flash[:success] = "La famille a bien été supprimée"
       else
         flash[:error] = "Un problem est survenu lors de la suppression de la famille"
@@ -68,6 +69,16 @@ module UserAccount
       family_names = current_user.families.pluck(:name).map(&:downcase)
       name = family_params[:name]&.downcase
       @family.errors.add(:name, :exclusion) if family_names.include?(name)
+    end
+
+    def add_family_to_current_user
+      return if current_user.current_family_id
+      current_user.update(current_family_id: @family.id, step: :family_created)
+    end
+
+    def remove_family_from_current_user
+      return if current_user.families.present?
+      current_user.update(current_family_id: nil, step: :account_created)
     end
   end
 end
