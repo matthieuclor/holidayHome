@@ -1,6 +1,6 @@
 module UserAccount
   module Invitations
-    class DisapprouvesController < UserAccount::ApplicationController
+    class DisapprovesController < UserAccount::ApplicationController
       def new
         redirect_to user_account_invitations_path
       end
