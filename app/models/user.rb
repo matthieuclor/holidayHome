@@ -8,7 +8,8 @@ class User < ApplicationRecord
 
   has_many :family_links, dependent: :destroy
   has_many :families, through: :family_links
-  has_many :invitations, foreign_key: :sender_id
+  has_many :sended_invitations, class_name: "Invitation", foreign_key: :sender_id
+  has_many :received_invitations, class_name: "Invitation", foreign_key: :receiver_id
   has_many :invitees, through: :invitations, source: :receiver
 
   enum step: %i(account_created family_created venue_created)

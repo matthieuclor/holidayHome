@@ -10,7 +10,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [:user_account, @invitation], remote: true do |f| %>
+        <%= simple_form_for @invitation, url: user_account_sended_invitations_path, remote: true do |f| %>
           <%= f.input :email, input_html: { placeholder: "pierre.#{@current_family.name.downcase}@mail.com" } %>
           <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
         <% end %>

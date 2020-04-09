@@ -10,7 +10,14 @@ class Invitation < ApplicationRecord
 
   validates :email, presence: true
 
-  enum status: %i(pending awaiting_acceptance awaiting_creation accepted created)
+  enum status: %i(
+    pending
+    awaiting_acceptance
+    awaiting_user_creation
+    accepted
+    refused
+    user_created
+  )
 
   before_create :set_token
   after_create -> { SendInvitationEmail.call(invitation: self) }

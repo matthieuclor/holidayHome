@@ -4,10 +4,11 @@ class SendInvitationEmail
   before do
     @invitation = InvitationDecorator.new(context.invitation)
 
-    context.fail!(error: "L'invitation doit être presente") unless @invitation
+    context.fail!(error: "L'invitation doit être presente") unless @invitation.present?
+
 
     if @invitation.is_out_of_limit_of_send?
-      context.fail!(error: "L'envoie d'invitation a atteint son quota de #{Invitation::LIMIT_OF_SEND}")
+      context.fail!(error: "L'envoi d'invitation a atteint son quota de #{Invitation::LIMIT_OF_SEND}")
     end
 
     if @invitation.is_out_of_limit_of_send_date?
@@ -18,12 +19,12 @@ class SendInvitationEmail
   def call
     known_user = User.find_by(email: @invitation.email)
 
-    if known_user.present?
-      UserMailer.send_to_known_user(@invitation, known_user).deliver_later
+    if known_user
+      UserMailer.send_to_known_user(context.invitation, known_user).deliver_later
       @invitation.awaiting_acceptance!
     else
-      UserMailer.send_to_unknown_user(@invitation).deliver_later
-      @invitation.awaiting_creation!
+      UserMailer.send_to_unknown_user(context.invitation).deliver_later
+      @invitation.awaiting_user_creation!
     end
   end
 

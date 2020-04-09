@@ -1,0 +1,57 @@
+<table class="table table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-center">Statut</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @invitations.present? %>
+      <% @invitations.each do |invitation| %>
+        <tr>
+          <td class="font-weight-bolder">
+            <%= invitation.email %>
+          </td>
+          <td class="text-center">
+            <%= invitation_status_badge(invitation) %>
+          </td>
+          <td class="d-flex justify-content-end">
+            <% if invitation.is_available? %>
+              <%= button_to user_account_sended_invitation_resends_path(invitation),
+                            class: "btn btn-sm btn-primary mr-2",
+                            method: :patch,
+                            remote: true do %>
+
+                <%= fa_icon("envelope", "Renvoyer", class: "mr-2") %>
+              <% end %>
+              <%= button_to user_account_sended_invitation_path(invitation),
+                            method: :delete,
+                            class: "btn btn-sm btn-danger",
+                            data: {
+                              confirm: "L'invité ne pourra plus rejoindre votre famille, êtes vous sûr ?"
+                            } do %>
+
+                <%= fa_icon("trash", "Supprimer", class: "mr-2") %>
+              <% end %>
+            <% else %>
+              <span class="text-muted">
+                <%= "Le #{l(invitation.updated_at)}" %>
+              </span>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="3" class="text-center">
+          Vous n'avez pas d'invitations en cours
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="d-flex justify-content-center">
+  <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
+</div>

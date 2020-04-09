@@ -1,7 +1,14 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  root to: 'public#index'
+  scope module: :public do
+    root to: 'pages#main'
+
+    scope module: :invitations do
+      resource :responses, only: [:new]
+      resource :registrations, as: :invitation_registrations, only: [:new, :create]
+    end
+  end
 
   devise_for :users, controllers: {
     sessions: 'user_account/authentification/sessions',
@@ -16,13 +23,9 @@ Rails.application.routes.draw do
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
     resources :families
-    resources :invitations, only: [:index, :new, :create, :destroy] do
-      scope module: :invitations do
-        resource :mails, only: [:update]
-        resource :approves, only: [:new]
-        resource :disapproves, only: [:new]
-        resource :registrations, only: [:new, :create]
-      end
+    resources :received_invitations, only: [:index, :update]
+    resources :sended_invitations, only: [:index, :new, :create, :destroy] do
+      resource :resends, module: :sended_invitations, only: [:update]
     end
   end
 

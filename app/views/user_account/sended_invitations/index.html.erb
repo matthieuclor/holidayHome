@@ -3,7 +3,7 @@
     <div class="d-flex align-items-center">
       <h1>Mes invitations</h1>
       <div class="ml-auto">
-        <%= button_to new_user_account_invitation_path,
+        <%= button_to new_user_account_sended_invitation_path,
                       class: "btn btn btn-outline-primary",
                       method: :get,
                       remote: true do %>
@@ -17,8 +17,10 @@
 
     <div class="card">
       <div class="card-body">
-        <div id="invitations-table-container">
-          <%= render "invitations_table" %>
+        <div class="tab-content">
+          <div id="invitations_container">
+            <%= render "invitations" %>
+          </div>
         </div>
       </div>
     </div>

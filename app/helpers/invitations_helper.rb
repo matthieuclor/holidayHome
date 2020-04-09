@@ -1,12 +1,7 @@
 module InvitationsHelper
-
-  def invitation_status_badge(status)
+  def invitation_status_badge(invitation)
     badge_class, badge_status =
-      if %w(pending awaiting_acceptance awaiting_creation).include?(status)
-        ["secondary", "pending"]
-      elsif %w(accepted created).include?(status)
-        ["success", "accepted"]
-      end
+      invitation.is_available? ? ["secondary", "pending"] : ["success", "accepted"]
 
     content_tag(
       :span,
@@ -14,6 +9,17 @@ module InvitationsHelper
       class: ["badge badge-#{badge_class}"],
       data: { toggle: "tooltip" },
       title: Invitation.human_attribute_name("status_description.#{badge_status}")
+    )
+  end
+
+  def invitation_response_btn(invitation)
+    return unless invitation.is_not_available?
+
+    content_tag(
+      :button,
+      (invitation.response ? 'Oui' : 'Non'),
+      class: ["btn btn-sm btn-#{invitation.response ? 'success' : 'danger'} px-4"],
+      disabled: true
     )
   end
 end

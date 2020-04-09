@@ -1,0 +1,30 @@
+<div class="d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
+    <h1 class="my-4">Je crée mon compte</h1>
+
+    <%= simple_form_for(@invitee, as: :invitee, url: invitation_registrations_path, method: :post) do |f| %>
+      <div class="form-row">
+        <%= f.input :first_name,
+                    wrapper_html: { class: "col-6" },
+                    input_html: { placeholder: "Jean" } %>
+        <%= f.input :last_name,
+                    wrapper_html: { class: "col-6" },
+                    input_html: { placeholder: "Dupont" } %>
+      </div>
+
+      <%= f.input :email, input_html: { readonly: true } %>
+
+      <%= f.association :families, as: :hidden %>
+
+      <%= f.association :received_invitations, as: :hidden %>
+
+      <%= f.input :password,
+                  required: true,
+                  hint: ("#{@minimum_password_length} caractères minimum." if @minimum_password_length) %>
+
+      <%= f.input :password_confirmation, required: true %>
+
+      <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+    <% end %>
+  </div>
+</div>

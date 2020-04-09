@@ -12,9 +12,7 @@
       <tr>
         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #48CB4B; border-radius: 5px;">
           <%= link_to 'Oui',
-                      new_user_account_invitation_approves_url(
-                        invitation_id: @invitation.id,
-                        token: @invitation.token),
+                      new_responses_url(status: true, token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",
@@ -22,9 +20,7 @@
         </td>
         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #dc3545; border-radius: 5px;">
           <%= link_to 'Non',
-                      new_user_account_invitation_disapproves_url(
-                        invitation_id: @invitation.id,
-                        token: @invitation.token),
+                      new_responses_url(status: false, token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",
@@ -43,7 +39,7 @@
       <tr>
         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px;">
           <%= link_to 'Me connecter',
-                      user_account_invitations_url,
+                      user_account_received_invitations_url,
                       class: "mcnButton",
                       title: "Me connecter",
                       target: "_blank",
