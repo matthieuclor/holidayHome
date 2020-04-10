@@ -12,7 +12,7 @@
       <tr>
         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #48CB4B; border-radius: 5px;">
           <%= link_to 'Oui',
-                      new_responses_url(status: true, token: @invitation.token),
+                      new_responses_url(response: 'yes', token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",
@@ -20,7 +20,7 @@
         </td>
         <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #dc3545; border-radius: 5px;">
           <%= link_to 'Non',
-                      new_responses_url(status: false, token: @invitation.token),
+                      new_responses_url(response: 'no', token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",

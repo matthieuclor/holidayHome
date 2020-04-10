@@ -3,10 +3,14 @@ module Public
     class RegistrationsController < ApplicationController
       def new
         @invitation = Invitation.find_by(token: params[:token])
-        check_invitation_validity
-        @invitee = User.new(email: @invitation.email)
-        @invitee.families << Family.find_by(id: @invitation.family_id)
-        @invitee.received_invitations << @invitation
+
+        if is_invitation_valid?
+          @invitee = User.new(email: @invitation.email)
+          @invitee.families << Family.find_by(id: @invitation.family_id)
+          @invitee.received_invitations << @invitation
+        else
+          redirect_to root_path
+        end
       end
 
       def create
@@ -31,16 +35,18 @@ module Public
 
       private
 
-      def check_invitation_validity
+      def is_invitation_valid?
         unless @invitation.present?
           flash[:error] = "Votre invitation a été éffacée entre temps"
-          redirect_to root_path
+          return false
         end
 
         if @invitation.receiver_id.present?
           flash[:error] = "Vous avez déja créé votre compte avec cette invitation"
-          redirect_to root_path
+          return false
         end
+
+        return true
       end
 
       def invitee_params

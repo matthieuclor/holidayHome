@@ -3,7 +3,7 @@ module UserAccount
     layout "user_account/layouts/application"
 
     before_action :authenticate_user!
-    before_action :check_user_achievement
+    # before_action :check_user_achievement
 
     private
 

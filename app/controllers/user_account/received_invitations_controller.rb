@@ -10,7 +10,6 @@ module UserAccount
 
       if params[:response] == 'no'
         @invitation.refused!
-        flash[:success] = "La réponse a bien été prise en compte"
       elsif params[:response] == 'yes'
         @invitation.accepted!
         current_user.families << @invitation.family

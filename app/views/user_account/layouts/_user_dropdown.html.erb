@@ -10,7 +10,7 @@
   </button>
 
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
-    <% if controller_name == "public" %>
+    <% if controller.class.module_parent.to_s == 'Public' %>
       <%= link_to fa_icon("user-circle", "Mon espace", class: "mr-2"),
                   user_account_dashboards_path,
                   class: "dropdown-item" %>

@@ -1,5 +1,7 @@
 module UserAccount
   class SendedInvitationsController < UserAccount::ApplicationController
+    include CurrentFamily
+
     before_action :set_current_family, only: [:index, :new, :create]
 
     def index
@@ -17,9 +19,7 @@ module UserAccount
       @invitation = current_user.sended_invitations.build(invitation_params)
       @invitation.family_id = current_user.current_family_id
 
-      check_email_validity
-
-      if @invitation.errors.empty? && @invitation.save
+      if @invitation.save
         flash[:success] = "L'invitation a bien été envoyé"
         render js: "location.reload()"
       else
@@ -42,23 +42,8 @@ module UserAccount
 
     private
 
-    def set_current_family
-      @current_family = Family.find(current_user.current_family_id)
-    end
-
     def invitation_params
       params.require(:invitation).permit(:email)
-    end
-
-    def check_email_validity
-      invitee = User.find_by(email: @invitation.email)
-      return unless invitee.present?
-
-      if invitee.family_links.pluck(:family_id).include?(@invitation.family_id)
-        @invitation.errors.add(:email, :exclusion)
-      else
-        @invitation.receiver = invitee
-      end
     end
   end
 end

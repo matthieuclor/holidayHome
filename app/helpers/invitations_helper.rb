@@ -1,7 +1,11 @@
 module InvitationsHelper
   def invitation_status_badge(invitation)
-    badge_class, badge_status =
-      invitation.is_available? ? ["secondary", "pending"] : ["success", "accepted"]
+    badge_class, badge_status = case
+      when invitation.is_available?
+        ["secondary", "pending"]
+      when invitation.is_not_available?
+        invitation.response ? ["success", "accepted"] : ["danger", "refused"]
+    end
 
     content_tag(
       :span,
