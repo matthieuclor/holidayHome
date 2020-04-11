@@ -12,20 +12,7 @@ class InvitationDecorator < ApplicationDecorator
     !is_out_of_limit_of_send? && !is_out_of_limit_of_send_date?
   end
 
-  def is_available?
-    pending? || awaiting_acceptance? || awaiting_user_creation?
-  end
-
-  def is_not_available?
-    accepted? || refused? || user_created?
-  end
-
   def sender_full_name
     "#{sender.first_name} #{sender.last_name}"
-  end
-
-  def response
-    return false unless is_not_available?
-    !refused?
   end
 end

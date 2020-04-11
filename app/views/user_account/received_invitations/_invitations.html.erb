@@ -24,7 +24,7 @@
           </td>
 
           <td class="d-flex justify-content-center">
-            <% if invitation.is_available? %>
+            <% if invitation.pending? %>
               <%= button_to "Non",
                             user_account_received_invitation_path(
                               id: invitation.id, response: 'no'),

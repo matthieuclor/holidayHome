@@ -8,27 +8,18 @@ class Invitation < ApplicationRecord
 
   default_scope { order(:created_at) }
 
-  validates :email, presence: true
+  enum status: %i(pending accepted refused)
 
+  validates :email, format: { with: Devise.email_regexp }, presence: true
+  validates :sender, :family, :status, presence: true
+  validates :status, inclusion: { in: statuses.keys }
+  validate :uniqueness_of_receiver_family, on: :create
   validates_uniqueness_of :email, scope: [:family_id], conditions: -> {
-    where.not(status: %w(accepted refused user_created))
+    where(status: 'pending')
   }
 
-  validate :uniqueness_of_receiver_family, on: :create
-
-  enum status: %i(
-    pending
-    awaiting_acceptance
-    awaiting_user_creation
-    accepted
-    refused
-    user_created
-  )
-
   before_validation :set_receiver
-
   before_create :set_token
-
   after_create_commit -> { SendInvitationEmail.call(invitation: self) }
 
   private

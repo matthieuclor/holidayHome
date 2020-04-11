@@ -18,7 +18,6 @@ module Public
         @invitee.skip_confirmation!
         @invitee.assign_attributes({
           confirmed_at: Time.now,
-          step: :family_created,
           current_family_id: @invitee.families.first.id
         })
 

@@ -17,7 +17,7 @@
             <%= invitation_status_badge(invitation) %>
           </td>
           <td class="d-flex justify-content-end">
-            <% if invitation.is_available? %>
+            <% if invitation.pending? %>
               <%= button_to user_account_sended_invitation_resends_path(invitation),
                             class: "btn btn-sm btn-primary mr-2",
                             method: :patch,

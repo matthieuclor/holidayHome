@@ -73,12 +73,12 @@ module UserAccount
 
     def add_family_to_current_user
       return if current_user.current_family_id
-      current_user.update(current_family_id: @family.id, step: :family_created)
+      current_user.update(current_family_id: @family.id)
     end
 
     def remove_family_from_current_user
       return if current_user.families.present?
-      current_user.update(current_family_id: nil, step: :account_created)
+      current_user.update(current_family_id: nil)
     end
   end
 end
