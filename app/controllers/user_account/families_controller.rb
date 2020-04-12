@@ -27,7 +27,7 @@ module UserAccount
         render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de la creation de la famille"
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -40,7 +40,7 @@ module UserAccount
         render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de la mise à jour de la famille"
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 
