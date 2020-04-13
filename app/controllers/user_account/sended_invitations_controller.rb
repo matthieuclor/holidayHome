@@ -24,7 +24,7 @@ module UserAccount
         render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de l'envoi de l'invitation"
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 

@@ -2,3 +2,9 @@ matthieu_invite_olivia:
   sender_id: 1
   email: oliviaclor@gmail.com
   family_id: 1
+
+matthieu_reinvite_user:
+  sender_id: 1
+  email: resend@mail.com
+  family_id: 1
+  last_send_at: <%= DateTime.now %>
