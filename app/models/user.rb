@@ -13,6 +13,9 @@ class User < ApplicationRecord
   has_many :sended_invitations, class_name: "Invitation", foreign_key: :sender_id
   has_many :received_invitations, class_name: "Invitation", foreign_key: :receiver_id
   has_many :invitees, through: :invitations, source: :receiver
+  has_many :venues, through: :families
+  has_many :created_venues, class_name: "Venue", foreign_key: :creator_id
+  has_many :keys, foreign_key: :owner_id
 
   enum step: %i(account_created family_created venue_created)
 

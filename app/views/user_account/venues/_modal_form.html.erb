@@ -1,0 +1,40 @@
+<div class="modal" id="venue-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header border-0">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un lieu
+          <% else %>
+            Editer un lieu
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:user_account, @venue], remote: true do |f| %>
+
+          <%= f.input :name, input_html: { placeholder: "chalet à la montagne" } %>
+          <%= f.input :address, input_html: { placeholder: "12 Rue de Bellecote" } %>
+          <%= f.input :city, as: :hidden %>
+          <%= f.input :postcode, as: :hidden %>
+          <%= f.input :country, as: :hidden %>
+          <%= f.input :country_code, as: :hidden %>
+          <%= f.input :administrative, as: :hidden %>
+          <%= f.input :county, as: :hidden %>
+          <%= f.input :lat, as: :hidden %>
+          <%= f.input :lng, as: :hidden %>
+          <%= f.input :creator_id, as: :hidden %>
+          <%= f.input :family_id, as: :hidden %>
+          <%= f.input :with_internet %>
+          <%= f.input :with_digital_code %>
+          <%= f.input :comment, input_html: { placeholder: "Choses a savoir, bon plan, précision sur le lieu..." } %>
+          <%= f.input :editable_for_others %>
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

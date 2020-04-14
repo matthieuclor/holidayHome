@@ -55,16 +55,16 @@
                 <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
               </li>
 
-              <li class="nav-item <%= 'active' if controller_name == 'invitations' %>">
+              <li class="nav-item <%= 'active' if controller_name == 'sended_invitations' %>">
                 <%= link_to "Invitations", user_account_sended_invitations_path, class: "nav-link" %>
               </li>
 
-              <li class="nav-item mr-lg-5">
-                <%= link_to "Lieux", "#", class: "nav-link" %>
+              <li class="nav-item <%= 'active' if controller_name == 'venues' %>">
+                <%= link_to "Lieux", user_account_venues_path, class: "nav-link" %>
               </li>
             <% end %>
 
-            <li class="nav-item">
+            <li class="nav-item ml-lg-5">
               <%= render "user_account/layouts/user_dropdown" %>
             </li>
           </ul>

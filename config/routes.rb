@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
-    resources :venues, only: [:index]
+    resources :venues
     resources :received_invitations, only: [:index, :update]
     resources :sended_invitations, only: [:index, :new, :create, :destroy] do
       resource :resends, module: :sended_invitations, only: [:update]

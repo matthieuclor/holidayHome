@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_07_211421) do
+ActiveRecord::Schema.define(version: 2020_04_14_190728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,32 @@ ActiveRecord::Schema.define(version: 2020_04_07_211421) do
     t.index ["email"], name: "index_admins_on_email", unique: true
   end
 
+  create_table "bathrooms", force: :cascade do |t|
+    t.string "name"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_bathrooms_on_venue_id"
+  end
+
+  create_table "bedrooms", force: :cascade do |t|
+    t.string "name"
+    t.integer "type", default: 0
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_bedrooms_on_venue_id"
+  end
+
+  create_table "digital_codes", force: :cascade do |t|
+    t.string "name"
+    t.string "password"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_digital_codes_on_venue_id"
+  end
+
   create_table "families", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -57,6 +83,29 @@ ActiveRecord::Schema.define(version: 2020_04_07_211421) do
     t.bigint "family_id"
     t.index ["family_id"], name: "index_family_links_on_family_id"
     t.index ["user_id"], name: "index_family_links_on_user_id"
+  end
+
+  create_table "home_services", force: :cascade do |t|
+    t.string "name"
+    t.string "person_in_charge"
+    t.string "address"
+    t.string "phone"
+    t.string "email"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_home_services_on_venue_id"
+  end
+
+  create_table "internets", force: :cascade do |t|
+    t.string "name"
+    t.integer "type", default: 0
+    t.string "network"
+    t.string "password"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_internets_on_venue_id"
   end
 
   create_table "invitations", force: :cascade do |t|
@@ -73,6 +122,16 @@ ActiveRecord::Schema.define(version: 2020_04_07_211421) do
     t.index ["family_id"], name: "index_invitations_on_family_id"
     t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
     t.index ["sender_id"], name: "index_invitations_on_sender_id"
+  end
+
+  create_table "keys", force: :cascade do |t|
+    t.string "name"
+    t.bigint "owner_id"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["owner_id"], name: "index_keys_on_owner_id"
+    t.index ["venue_id"], name: "index_keys_on_venue_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -98,6 +157,35 @@ ActiveRecord::Schema.define(version: 2020_04_07_211421) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "venues", force: :cascade do |t|
+    t.string "name"
+    t.string "address"
+    t.string "city"
+    t.string "postcode"
+    t.string "country"
+    t.string "country_code"
+    t.string "administrative"
+    t.string "county"
+    t.float "lat"
+    t.float "lng"
+    t.integer "bedrooms_count", default: 0
+    t.integer "bathrooms_count", default: 0
+    t.integer "keys_count", default: 0
+    t.boolean "with_internet", default: false
+    t.integer "internets_count", default: 0
+    t.boolean "with_digital_code", default: false
+    t.integer "digital_codes_count", default: 0
+    t.integer "home_services_count", default: 0
+    t.text "comment"
+    t.boolean "editable_for_others", default: true
+    t.bigint "creator_id"
+    t.bigint "family_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_venues_on_creator_id"
+    t.index ["family_id"], name: "index_venues_on_family_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
