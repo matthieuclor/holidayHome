@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Family < ApplicationRecord
   has_many :family_links, dependent: :destroy
   has_many :users, through: :family_links

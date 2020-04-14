@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class InvitationDecorator < ApplicationDecorator
   def is_out_of_limit_of_send?
     send_count >= Invitation::LIMIT_OF_SEND

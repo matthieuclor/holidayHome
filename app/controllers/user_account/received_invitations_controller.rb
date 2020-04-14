@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserAccount
   class ReceivedInvitationsController < UserAccount::ApplicationController
     def index

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Public
   module Invitations
     class RegistrationsController < ApplicationController
@@ -22,7 +24,7 @@ module Public
         })
 
         if @invitee.save
-          @invitee.received_invitations.last.user_created!
+          @invitee.received_invitations.last.accepted!
           sign_in(@invitee)
           flash[:success] = "Le compte a bien été créé"
           redirect_to user_account_dashboards_path

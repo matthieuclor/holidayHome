@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserAccount
   module SendedInvitations
     class ResendsController < UserAccount::ApplicationController

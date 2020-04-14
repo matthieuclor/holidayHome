@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserAccount
   class CurrentFamiliesController < UserAccount::ApplicationController
     def update

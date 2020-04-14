@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   password = Faker::Internet.password(min_length: 8, max_length: 128)
 

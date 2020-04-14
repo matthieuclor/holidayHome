@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserAccount
   class ApplicationController < ActionController::Base
     layout "user_account/layouts/application"

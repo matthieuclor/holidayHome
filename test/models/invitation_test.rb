@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class InvitationTest < ActiveSupport::TestCase
@@ -69,10 +71,7 @@ class InvitationTest < ActiveSupport::TestCase
     user = create(:user)
     invitation = create(:invitation, email: user.email)
     user_mailer = UserMailer.send_to_known_user(invitation, user)
-
-    assert_emails 1 do
-      user_mailer.deliver_later
-    end
+    assert_emails(1) { user_mailer.deliver_later }
 
     assert_equal ['hello@hutoki.com'], user_mailer.from
     assert_equal [user.email], user_mailer.to
@@ -84,10 +83,7 @@ class InvitationTest < ActiveSupport::TestCase
   test "should send send_to_unknown_user mail and update last_send_at and send_count after create invitation with inexisting receiver email" do
     invitation = create(:invitation)
     user_mailer = UserMailer.send_to_unknown_user(invitation)
-
-    assert_emails 1 do
-      user_mailer.deliver_later
-    end
+    assert_emails(1) { user_mailer.deliver_later }
 
     assert_equal ['hello@hutoki.com'], user_mailer.from
     assert_equal [invitation.email], user_mailer.to

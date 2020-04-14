@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module UserAccount
@@ -14,7 +16,19 @@ module UserAccount
       end
 
       test "should resend invitation" do
-        patch user_account_sended_invitation_resends_url(invitations(:matthieu_invite_olivia)), xhr: true
+        invitation_query = invitations(:matthieu_invite_olivia)
+
+        patch user_account_sended_invitation_resends_url(invitation_query), xhr: true
+        invitation = @controller.view_assigns["invitation"]
+        receiver = @controller.view_assigns["invitation"].receiver
+
+        user_mailer = UserMailer.send_to_known_user(invitation, receiver)
+        assert_emails(1) { user_mailer.deliver_later }
+
+        assert_equal ['hello@hutoki.com'], user_mailer.from
+        assert_equal [receiver.email], user_mailer.to
+        assert_equal "Invitation à rejoindre la famille #{invitation.family.name}", user_mailer.subject
+        assert_equal (invitation_query.send_count + 1), invitation.send_count
         assert_response :success
       end
 

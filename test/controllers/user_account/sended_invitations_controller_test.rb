@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module UserAccount
@@ -19,14 +21,19 @@ module UserAccount
 
     test "should get new" do
       get new_user_account_sended_invitation_url, xhr: true
-      assert_instance_of Invitation, @controller.view_assigns["invitation"]
-      assert @controller.view_assigns["invitation"].new_record?
+      invitation = @controller.view_assigns["invitation"]
+
+      assert_instance_of Invitation, invitation
+      assert invitation.new_record?
       assert_response :success
     end
 
     test "should create invitation" do
-      post user_account_sended_invitations_url, params: { invitation: { email: 'invitee@mail.com' } }, xhr: true
-      assert @controller.view_assigns["invitation"].family_id == @controller.view_assigns["current_user"].current_family_id
+      post user_account_sended_invitations_url, params: { invitation: { email: 'newinvitee@mail.com' } }, xhr: true
+      invitation = @controller.view_assigns["invitation"]
+      current_user = @controller.view_assigns["current_user"]
+
+      assert invitation.family_id == current_user.current_family_id
       assert_response :success
     end
 

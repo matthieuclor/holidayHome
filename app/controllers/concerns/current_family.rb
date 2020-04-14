@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CurrentFamily
   extend ActiveSupport::Concern
 

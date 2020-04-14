@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminAccount
   class FamiliesController < AdminAccount::ApplicationController
     def index

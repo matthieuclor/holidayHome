@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module InvitationsHelper
   def invitation_status_badge(invitation)
     badge_class = case

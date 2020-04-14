@@ -1,5 +1,6 @@
-module UsersHelper
+# frozen_string_literal: true
 
+module UsersHelper
   def user_confirmed_status(confirmed_status)
     fa_icon(
       confirmed_status ? "check" : "clock",

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FamilyLink < ApplicationRecord
   belongs_to :user
   belongs_to :family, inverse_of: :family_links

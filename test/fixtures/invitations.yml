@@ -1,9 +1,19 @@
 matthieu_invite_olivia:
+  id: 1
   sender_id: 1
   email: oliviaclor@gmail.com
   family_id: 1
+  token: ame4gdumQ5ykYKfsYBN2
+
+matthieu_invite_user:
+  id: 2
+  sender_id: 1
+  email: invitee@mail.com
+  family_id: 1
+  token: ame4gdumQ5ykYKfsYBN2
 
 matthieu_reinvite_user:
+  id: 3
   sender_id: 1
   email: resend@mail.com
   family_id: 1

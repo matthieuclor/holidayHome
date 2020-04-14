@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Invitation < ApplicationRecord
   LIMIT_OF_SEND = 3
   LIMIT_OF_SEND_DATE = 24.hours

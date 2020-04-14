@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMailerPreview < ActionMailer::Preview
   def send_to_known_user
     UserMailer.send_to_known_user(Invitation.first, User.first)

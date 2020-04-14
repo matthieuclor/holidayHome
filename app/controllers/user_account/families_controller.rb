@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserAccount
   class FamiliesController < UserAccount::ApplicationController
     before_action :set_family, only: [:edit, :update, :destroy]

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module UserAccount
@@ -19,8 +21,10 @@ module UserAccount
 
     test "should get new" do
       get new_user_account_family_url, xhr: true
-      assert_instance_of Family, @controller.view_assigns["family"]
-      assert @controller.view_assigns["family"].new_record?
+      family = @controller.view_assigns["family"]
+
+      assert_instance_of Family, family
+      assert family.new_record?
       assert_response :success
     end
 

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AdminAccount
   class DashboardsController < AdminAccount::ApplicationController
     def index
