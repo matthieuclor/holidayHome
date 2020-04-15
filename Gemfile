@@ -24,23 +24,22 @@ gem 'redis', '~> 4.0'
 
 # Use Active Storage variant
 gem 'image_processing', '~> 1.2'
+# The official AWS SDK for Ruby
+gem 'aws-sdk-s3', require: false
 
 # Background jobs
 gem 'sidekiq', '~> 6.0.4'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
+
 # Simple Form aims to be as flexible as possible while helping you with powerful components to create your forms.
 gem 'simple_form'
-
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
-
 # Ransack enables the creation of both simple and advanced search forms for your Ruby on Rails application
 gem 'ransack'
-
 # Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
 gem 'pagy'
-
 # Interactors (business objects)
 gem 'interactor'
 
