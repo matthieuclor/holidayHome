@@ -1,0 +1,91 @@
+<div class="d-flex justify-content-center">
+  <div class="col-11">
+    <h4>Services à domicile :</h4>
+
+    <%= content_tag :div,
+                    class: "nested_form",
+                    data: {
+                      nested_objects: form.object.home_services.to_json(
+                        except: [:venue_id, :created_at, :updated_at]
+                      ),
+                      new_nested_object: form.object.home_services.build.to_json(
+                        except: [:venue_id, :created_at, :updated_at]
+                      )
+                    } do %>
+
+      <div v-for="(nestedObject, index) in nestedObjects">
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group string required venue_home_services_name">
+              <label class="string required" :for="`venue_home_services_attributes_${index}_name`">
+                Nom <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input v-model="nestedObject.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[home_services_attributes][${index}][name]`" :id="`venue_home_services_attributes_${index}_name`">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-6">
+            <div class="form-group string required venue_home_services_person_in_charge">
+              <label class="string required" :for="`venue_home_services_attributes_${index}_person_in_charge`">
+                Responsable <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input v-model="nestedObject.person_in_charge" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[home_services_attributes][${index}][person_in_charge]`" :id="`venue_home_services_attributes_${index}_person_in_charge`">
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group string required venue_home_services_address">
+              <label class="string required" :for="`venue_home_services_attributes_${index}_address`">
+                Adresse <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input v-model="nestedObject.address" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[home_services_attributes][${index}][address]`" :id="`venue_home_services_attributes_${index}_address`">
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row d-flex align-items-end">
+          <div class="col-5">
+            <div class="form-group string required venue_home_services_phone">
+              <label class="string required" :for="`venue_home_services_attributes_${index}_phone`">
+                Téléphone <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input v-model="nestedObject.phone" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[home_services_attributes][${index}][phone]`" :id="`venue_home_services_attributes_${index}_phone`">
+            </div>
+          </div>
+
+          <div class="col-6">
+            <div class="form-group string required venue_home_services_email">
+              <label class="string required" :for="`venue_home_services_attributes_${index}_email`">
+                Email <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input v-model="nestedObject.email" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[home_services_attributes][${index}][email]`" :id="`venue_home_services_attributes_${index}_email`">
+            </div>
+          </div>
+
+          <div class="col-1 mb-3">
+            <button v-on:click.prevent="removeNestedForm(index)" class="btn btn-danger">
+              <%= fa_icon("trash") %>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group hidden venue_home_services__destroy m-0">
+          <input v-model="nestedObject._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[home_services_attributes][${index}][_destroy]`" :id="`venue_home_services_attributes_${index}__destroy`">
+        </div>
+
+        <hr>
+      </div>
+
+      <button v-on:click.prevent="addNestedForm" class="btn btn-primary">
+        Ajouter un services à domicile
+      </button>
+    <% end %>
+  </div>
+</div>

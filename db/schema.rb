@@ -56,7 +56,7 @@ ActiveRecord::Schema.define(version: 2020_04_14_190728) do
 
   create_table "bedrooms", force: :cascade do |t|
     t.string "name"
-    t.integer "type", default: 0
+    t.integer "bed_type", default: 0
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -97,17 +97,6 @@ ActiveRecord::Schema.define(version: 2020_04_14_190728) do
     t.index ["venue_id"], name: "index_home_services_on_venue_id"
   end
 
-  create_table "internets", force: :cascade do |t|
-    t.string "name"
-    t.integer "type", default: 0
-    t.string "network"
-    t.string "password"
-    t.bigint "venue_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["venue_id"], name: "index_internets_on_venue_id"
-  end
-
   create_table "invitations", force: :cascade do |t|
     t.bigint "sender_id"
     t.bigint "receiver_id"
@@ -132,6 +121,17 @@ ActiveRecord::Schema.define(version: 2020_04_14_190728) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_keys_on_owner_id"
     t.index ["venue_id"], name: "index_keys_on_venue_id"
+  end
+
+  create_table "networks", force: :cascade do |t|
+    t.string "name"
+    t.integer "connection_type", default: 0
+    t.string "network_name"
+    t.string "password"
+    t.bigint "venue_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["venue_id"], name: "index_networks_on_venue_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -173,8 +173,8 @@ ActiveRecord::Schema.define(version: 2020_04_14_190728) do
     t.integer "bedrooms_count", default: 0
     t.integer "bathrooms_count", default: 0
     t.integer "keys_count", default: 0
-    t.boolean "with_internet", default: false
-    t.integer "internets_count", default: 0
+    t.boolean "with_network", default: false
+    t.integer "networks_count", default: 0
     t.boolean "with_digital_code", default: false
     t.integer "digital_codes_count", default: 0
     t.integer "home_services_count", default: 0

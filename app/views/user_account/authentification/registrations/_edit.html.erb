@@ -1,13 +1,19 @@
-<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <div class="form-row">
-    <% if f.object.avatar.attached? %>
-      <%= image_tag(f.object.avatar.variant(resize_to_limit: [80, 80]), class: "rounded-circle mr-3") %>
+<% if current_user.avatar.attached? %>
+  <div class="d-flex align-items-center mb-4">
+    <%= image_tag(current_user.avatar.variant(resize_to_limit: [80, 80]), class: "rounded-circle") %>
+
+    <%= button_to user_account_avatars_path,
+                  method: :delete,
+                  class: "btn btn-sm btn-danger ml-3",
+                  data: { confirm: "Etes-vous sûr ?" } do %>
+
+      <%= fa_icon('trash', 'Effacer mon avatar', class: "mr-2") %>
     <% end %>
-
-    <%= f.input :avatar %>
   </div>
+<% end %>
 
-  <br>
+<%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= f.input :avatar %>
 
   <div class="form-row">
     <%= f.input :first_name, wrapper_html: { class: "col-6" } %>

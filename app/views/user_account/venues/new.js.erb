@@ -8,4 +8,6 @@ $("#modal-container").html("<%= j render "modal_form" %>")
   $("#toast-container").html("<%= j render "shared/flash_messages" %>")
 <% end %>
 
+Turbolinks.dispatch("turbolinks:load")
+
 $("#venue-modal").modal("show")

@@ -19,6 +19,10 @@ Rails.application.routes.draw do
   }
 
   namespace :user_account do
+    scope module: 'authentification/registrations' do
+      resource :avatars, only: [:destroy]
+    end
+
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
     resource :current_families, only: [:update]

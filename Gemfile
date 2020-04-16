@@ -31,7 +31,6 @@ gem 'aws-sdk-s3', require: false
 gem 'sidekiq', '~> 6.0.4'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
-
 # Simple Form aims to be as flexible as possible while helping you with powerful components to create your forms.
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb

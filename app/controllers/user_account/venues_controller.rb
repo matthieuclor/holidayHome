@@ -9,17 +9,24 @@ module UserAccount
     def index
       @venues = @current_family
         .venues
-        .joins(:bedrooms, :bathrooms, :home_services, :keys, :internets, :digital_codes)
+        .joins(:bedrooms, :bathrooms, :home_services, :keys, :networks, :digital_codes)
     end
 
     def new
       @venue = @current_family.venues.build(creator: current_user)
+      %i(bathrooms keys networks digital_codes home_services).each do |nested|
+        @venue.send(nested).build
+      end
+
+      @venue.bedrooms.build(name: "zfezf")
     end
 
     def create
       @venue = Venue.new(venue_params)
 
+      puts "***********************"
       pp @venue
+      puts "***********************"
 
       # if @venue.save
       #   flash[:success] = "Le lieu a bien été créé"
@@ -59,12 +66,13 @@ module UserAccount
         :editable_for_others,
         :creator_id,
         :family_id,
-        bedroom_ids: [],
-        bathroom_ids: [],
-        key_ids: [],
-        bedroom_ids: [],
-        digital_code_ids: [],
-        home_service_ids: []
+        :photos,
+        bedrooms_attributes: [:id, :_destroy],
+        bathrooms_attributes: [:id, :_destroy],
+        keys_attributes: [:id, :_destroy],
+        internets_attributes: [:id, :_destroy],
+        digital_codes_attributes: [:id, :_destroy],
+        home_services_attributes: [:id, :_destroy]
       )
     end
   end
