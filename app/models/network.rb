@@ -8,4 +8,17 @@ class Network < ApplicationRecord
   validates :name, :connection_type, :venue, presence: true
   validates :connection_type, inclusion: { in: connection_types.keys }
   validates :name, uniqueness: { scope: :venue_id }
+
+  def to_builder
+    Jbuilder.new do |network|
+      network.(
+        self,
+        :id,
+        :name,
+        :connection_type,
+        :network_name,
+        :password,
+        :_destroy)
+    end
+  end
 end

@@ -18,6 +18,7 @@ class CreateVenues < ActiveRecord::Migration[6.0]
       t.integer :networks_count, default: 0
       t.boolean :with_digital_code, default: false
       t.integer :digital_codes_count, default: 0
+      t.boolean :with_home_service, default: false
       t.integer :home_services_count, default: 0
       t.text :comment
       t.boolean :editable_for_others, default: true

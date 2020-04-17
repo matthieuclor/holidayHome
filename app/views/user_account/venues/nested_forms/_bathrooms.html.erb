@@ -1,47 +1,37 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
-    <h4>Salle de bains :</h4>
+    <h4 class="d-flex align-items-center">
+      Salle de bains : <span class="badge badge-secondary ml-2">{{venue.bathrooms.length}}</span>
+    </h4>
 
-    <%= content_tag :div,
-                    class: "nested_form",
-                    data: {
-                      nested_objects: form.object.bathrooms.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      ),
-                      new_nested_object: form.object.bathrooms.build.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      )
-                    } do %>
+    <div v-for="(bathroom, bathroomIndex) in venue.bathrooms" :key="`bathroom-${bathroomIndex}`">
+      <div class="form-row d-flex align-items-end">
+        <div class="col-11">
+          <div class="form-group string required venue_bathrooms_name">
+            <label class="string required" :for="`venue_bathrooms_attributes_${bathroomIndex}_name`">
+              Nom <abbr title="obligatoire">*</abbr>
+            </label>
 
-      <div v-for="(nestedObject, index) in nestedObjects">
-        <div class="form-row d-flex align-items-end">
-          <div class="col-11">
-            <div class="form-group string required venue_bathrooms_name">
-              <label class="string required" :for="`venue_bathrooms_attributes_${index}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
-              </label>
-
-              <input v-model="nestedObject.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[bathrooms_attributes][${index}][name]`" :id="`venue_bathrooms_attributes_${index}_name`">
-            </div>
-          </div>
-
-          <div class="col-1 mb-3">
-            <button v-on:click.prevent="removeNestedForm(index)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
+            <input v-model="bathroom.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[bathrooms_attributes][${bathroomIndex}][name]`" :id="`venue_bathrooms_attributes_${bathroomIndex}_name`" placeholder="Salle de bain d'été">
           </div>
         </div>
 
-        <div class="form-group hidden venue_bathrooms__destroy m-0">
-          <input v-model="nestedObject._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[bathrooms_attributes][${index}][_destroy]`" :id="`venue_bathrooms_attributes_${index}__destroy`">
+        <div class="col-1 mb-3">
+          <button v-on:click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
+            <%= fa_icon("trash") %>
+          </button>
         </div>
-
-        <hr>
       </div>
 
-      <button v-on:click.prevent="addNestedForm" class="btn btn-primary">
-        Ajouter une salle de bain
-      </button>
-    <% end %>
+      <div class="form-group hidden venue_bathrooms__destroy m-0">
+        <input v-model="bathroom._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[bathrooms_attributes][${bathroomIndex}][_destroy]`" :id="`venue_bathrooms_attributes_${bathroomIndex}__destroy`">
+      </div>
+
+      <hr>
+    </div>
+
+    <button v-on:click.prevent="addObject('bathroom')" class="btn btn-primary">
+      Ajouter une salle de bain
+    </button>
   </div>
 </div>

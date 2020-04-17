@@ -1,58 +1,60 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
-    <h4>Digicode :</h4>
+    <div class="d-flex justify-content-between">
+      <h4 class="d-flex align-items-center">
+        Digicode : <span v-show="venue.withDigitalCode" class="badge badge-secondary ml-2">{{venue.digitalCodes.length}}</span>
+      </h4>
 
-    <%= form.input :with_digital_code, wrapper: :custom_boolean_switch, label: "Avec un digicode" %>
+      <fieldset class="form-group boolean required venue_with_digital_code mb-2">
+        <div class="custom-control custom-switch">
+          <input v-model="venue.withDigitalCode" name="venue[with_digital_code]" type="hidden">
+          <input v-model="venue.withDigitalCode" required="required" aria-required="true" type="checkbox" name="venue[with_digital_code]" id="venue_with_digital_code" class="custom-control-input boolean required">
+          <label for="venue_with_digital_code" class="custom-control-label boolean required">
+            Avec un digicode <abbr title="obligatoire">*</abbr>
+          </label>
+        </div>
+      </fieldset>
+    </div>
 
-    <%= content_tag :div,
-                    class: "nested_form",
-                    data: {
-                      nested_objects: form.object.digital_codes.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      ),
-                      new_nested_object: form.object.digital_codes.build.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      )
-                    } do %>
-
-      <div v-for="(nestedObject, index) in nestedObjects">
+    <div v-show="venue.withDigitalCode">
+      <div v-for="(digitalCode, digitalCodeIndex) in venue.digitalCodes" :key="`digitalCode-${digitalCodeIndex}`">
         <div class="form-row d-flex align-items-end">
           <div class="col-6">
             <div class="form-group string required venue_digital_codes_name">
-              <label class="string required" :for="`venue_digital_codes_attributes_${index}_name`">
+              <label class="string required" :for="`venue_digital_codes_attributes_${digitalCodeIndex}_name`">
                 Nom <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="nestedObject.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${index}][name]`" :id="`venue_digital_codes_attributes_${index}_name`">
+              <input v-model="digitalCode.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][name]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}_name`" placeholder="Porte du premier bâtiment">
             </div>
           </div>
           <div class="col-5">
             <div class="form-group string required venue_digital_codes_password">
-              <label class="string required" :for="`venue_digital_codes_attributes_${index}_password`">
+              <label class="string required" :for="`venue_digital_codes_attributes_${digitalCodeIndex}_password`">
                 Mot de passe <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="nestedObject.password" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${index}][password]`" :id="`venue_digital_codes_attributes_${index}_password`">
+              <input v-model="digitalCode.password" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][password]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}_password`" placeholder="Mot de passe">
             </div>
           </div>
 
           <div class="col-1 mb-3">
-            <button v-on:click.prevent="removeNestedForm(index)" class="btn btn-danger">
+            <button v-on:click.prevent="removeObject('digitalCode', digitalCodeIndex)" class="btn btn-danger">
               <%= fa_icon("trash") %>
             </button>
           </div>
         </div>
 
         <div class="form-group hidden venue_digital_codes__destroy m-0">
-          <input v-model="nestedObject._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[digital_codes_attributes][${index}][_destroy]`" :id="`venue_digital_codes_attributes_${index}__destroy`">
+          <input v-model="digitalCode._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][_destroy]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}__destroy`">
         </div>
 
         <hr>
       </div>
 
-      <button v-on:click.prevent="addNestedForm" class="btn btn-primary">
+      <button v-on:click.prevent="addObject('digitalCode')" class="btn btn-primary">
         Ajouter un digicode
       </button>
-    <% end %>
+    </div>
   </div>
 </div>

@@ -5,4 +5,10 @@ class DigitalCode < ApplicationRecord
 
   validates :name, :password, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }
+
+  def to_builder
+    Jbuilder.new do |digital_code|
+      digital_code.(self, :id, :name, :password, :_destroy)
+    end
+  end
 end

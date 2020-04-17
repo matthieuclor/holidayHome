@@ -15,53 +15,65 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [:user_account, @venue], remote: true do |f| %>
-          <div class="d-flex justify-content-center">
-            <div class="col-11">
-              <%= f.input :photos, as: :file, input_html: { multiple: true } %>
-              <%= f.input :name, input_html: { placeholder: "chalet à la montagne" } %>
-              <%= f.input :address, input_html: { placeholder: "12 Rue de Bellecote" } %>
-              <%= f.input :city, as: :hidden %>
-              <%= f.input :postcode, as: :hidden %>
-              <%= f.input :country, as: :hidden %>
-              <%= f.input :country_code, as: :hidden %>
-              <%= f.input :administrative, as: :hidden %>
-              <%= f.input :county, as: :hidden %>
-              <%= f.input :lat, as: :hidden %>
-              <%= f.input :lng, as: :hidden %>
-              <%= f.input :creator_id, as: :hidden %>
-              <%= f.input :family_id, as: :hidden %>
+          <%= content_tag :div,
+                          id: "venue_form",
+                          data: {
+                            venue: @json_venue,
+                            new_bedroom: @json_new_bedroom,
+                            new_bathroom: @json_new_bathroom,
+                            new_key: @json_new_key,
+                            new_network: @json_new_network,
+                            new_digital_code: @json_new_digital_code,
+                            new_home_service: @json_new_home_service
+                          } do %>
+
+            <div class="d-flex justify-content-center">
+              <div class="col-11">
+                <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+                <%= f.input :name, input_html: { placeholder: "chalet à la montagne" } %>
+                <%= f.input :address, input_html: { placeholder: "12 Rue de Bellecote" } %>
+                <%= f.input :city, as: :hidden %>
+                <%= f.input :postcode, as: :hidden %>
+                <%= f.input :country, as: :hidden %>
+                <%= f.input :country_code, as: :hidden %>
+                <%= f.input :administrative, as: :hidden %>
+                <%= f.input :county, as: :hidden %>
+                <%= f.input :lat, as: :hidden %>
+                <%= f.input :lng, as: :hidden %>
+                <%= f.input :creator_id, as: :hidden %>
+                <%= f.input :family_id, as: :hidden %>
+              </div>
             </div>
-          </div>
 
-          <hr>
-          <%= render "user_account/venues/nested_forms/bedrooms", form: f %>
-          <hr>
-          <%= render "user_account/venues/nested_forms/bathrooms", form: f %>
-          <hr>
-          <%= render "user_account/venues/nested_forms/keys", form: f %>
-          <hr>
-          <%= render "user_account/venues/nested_forms/networks", form: f %>
-          <hr>
-          <%= render "user_account/venues/nested_forms/digital_codes", form: f %>
-          <hr>
-          <%= render "user_account/venues/nested_forms/home_services", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/bedrooms", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/bathrooms", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/keys", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/networks", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/digital_codes", form: f %>
+            <hr>
+            <%= render "user_account/venues/nested_forms/home_services", form: f %>
+            <hr>
 
-          <br>
+            <div class="d-flex justify-content-center">
+              <div class="col-11">
+                <%= f.input :comment,
+                            label: "Commentaire",
+                            input_html: {
+                              placeholder: "Choses a savoir, bon plan, précision sur le lieu..."
+                            } %>
 
-          <div class="d-flex justify-content-center">
-            <div class="col-11">
-              <%= f.input :comment,
-                          label: "Commentaire",
-                          input_html: {
-                            placeholder: "Choses a savoir, bon plan, précision sur le lieu..."
-                          } %>
+                <%= f.input :editable_for_others,
+                            wrapper: :custom_boolean_switch,
+                            label: "Editable par les autres membres" %>
 
-              <%= f.input :editable_for_others,
-                          wrapper: :custom_boolean_switch,
-                          label: "Editable par les autres" %>
-
-              <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
-            </div>
+                <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+              </div>
+          <% end %>
         <% end %>
       </div>
     </div>

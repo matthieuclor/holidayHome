@@ -3,9 +3,15 @@
 class Bedroom < ApplicationRecord
   belongs_to :venue, counter_cache: true
 
-  enum bed_type: %i(single double)
+  has_many :beddings
 
-  validates :name, :bed_type, :venue, presence: true
-  validates :bed_type, inclusion: { in: bed_types.keys }
+  validates :name, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }
+
+  def to_builder
+    Jbuilder.new do |bedroom|
+      bedroom.(self, :id, :name, :_destroy)
+      bedroom.beddings beddings.collect { |bedding| bedding.to_builder.attributes! }
+    end
+  end
 end

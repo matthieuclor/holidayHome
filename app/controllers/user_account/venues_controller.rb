@@ -18,7 +18,11 @@ module UserAccount
         @venue.send(nested).build
       end
 
-      @venue.bedrooms.build(name: "zfezf")
+      @venue.bedrooms.build(
+        beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
+      )
+
+      build_json_objects
     end
 
     def create
@@ -60,20 +64,36 @@ module UserAccount
         :county,
         :lat,
         :lng,
-        :with_internet,
+        :with_network,
         :with_digital_code,
         :comment,
         :editable_for_others,
         :creator_id,
         :family_id,
         :photos,
-        bedrooms_attributes: [:id, :_destroy],
         bathrooms_attributes: [:id, :_destroy],
         keys_attributes: [:id, :_destroy],
         internets_attributes: [:id, :_destroy],
         digital_codes_attributes: [:id, :_destroy],
-        home_services_attributes: [:id, :_destroy]
+        home_services_attributes: [:id, :_destroy],
+        bedrooms_attributes: [
+          :id,
+          :_destroy,
+          beddings_attributes: [:id, :_destroy]
+        ],
       )
+    end
+
+    def build_json_objects
+      @json_venue = @venue.to_builder.target!
+      @json_new_bathroom = @venue.bathrooms.build.to_builder.target!
+      @json_new_key = @venue.keys.build.to_builder.target!
+      @json_new_network = @venue.networks.build.to_builder.target!
+      @json_new_digital_code = @venue.digital_codes.build.to_builder.target!
+      @json_new_home_service = @venue.home_services.build.to_builder.target!
+      @json_new_bedroom = @venue.bedrooms.build(
+        beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
+      ).to_builder.target!
     end
   end
 end

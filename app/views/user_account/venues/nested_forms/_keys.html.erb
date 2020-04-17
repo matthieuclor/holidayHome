@@ -1,61 +1,51 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
-    <h4>Clés :</h4>
+    <h4 class="d-flex align-items-center">
+      Clés : <span class="badge badge-secondary ml-2">{{venue.keys.length}}</span>
+    </h4>
 
-    <%= content_tag :div,
-                    class: "nested_form",
-                    data: {
-                      nested_objects: form.object.keys.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      ),
-                      new_nested_object: form.object.keys.build.to_json(
-                        except: [:venue_id, :created_at, :updated_at]
-                      )
-                    } do %>
+    <div v-for="(key, keyIndex) in venue.keys" :key="`key-${keyIndex}`">
+      <div class="form-row d-flex align-items-end">
+        <div class="col-6">
+          <div class="form-group string required venue_keys_name">
+            <label class="string required" :for="`venue_keys_attributes_${keyIndex}_name`">
+              Nom <abbr title="obligatoire">*</abbr>
+            </label>
 
-      <div v-for="(nestedObject, index) in nestedObjects">
-        <div class="form-row d-flex align-items-end">
-          <div class="col-6">
-            <div class="form-group string required venue_keys_name">
-              <label class="string required" :for="`venue_keys_attributes_${index}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
-              </label>
-
-              <input v-model="nestedObject.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[keys_attributes][${index}][name]`" :id="`venue_keys_attributes_${index}_name`">
-            </div>
-          </div>
-
-          <div class="col-5">
-            <div class="form-group select required venue_keys_owner">
-              <label class="select required" :for="`venue_keys_attributes_${index}_owner`">
-                Propriétaire <abbr title="obligatoire">*</abbr>
-              </label>
-
-              <select class="form-control select required" :name="`venue[keys_attributes][${index}][owner]`" :id="`venue_keys_attributes_${index}_owner`">
-                <%= @current_family.users.each do |user| %>
-                  <option value="<%= user.id %>"><%= "#{user.first_name} #{user.last_name}" %></option>
-                <% end %>
-              </select>
-            </div>
-          </div>
-
-          <div class="col-1 mb-3">
-            <button v-on:click.prevent="removeNestedForm(index)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
+            <input v-model="key.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[keys_attributes][${keyIndex}][name]`" :id="`venue_keys_attributes_${keyIndex}_name`" placeholder="Clé principale">
           </div>
         </div>
 
-        <div class="form-group hidden venue_keys__destroy m-0">
-          <input v-model="nestedObject._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[keys_attributes][${index}][_destroy]`" :id="`venue_keys_attributes_${index}__destroy`">
+        <div class="col-5">
+          <div class="form-group select required venue_keys_owner">
+            <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner`">
+              Propriétaire <abbr title="obligatoire">*</abbr>
+            </label>
+
+            <select class="form-control select required" :name="`venue[keys_attributes][${keyIndex}][owner]`" :id="`venue_keys_attributes_${keyIndex}_owner`">
+              <%= @current_family.users.each do |user| %>
+                <option value="<%= user.id %>"><%= "#{user.first_name} #{user.last_name}" %></option>
+              <% end %>
+            </select>
+          </div>
         </div>
 
-        <hr>
+        <div class="col-1 mb-3">
+          <button v-on:click.prevent="removeObject('key', keyIndex)" class="btn btn-danger">
+            <%= fa_icon("trash") %>
+          </button>
+        </div>
       </div>
 
-      <button v-on:click.prevent="addNestedForm" class="btn btn-primary">
-        Ajouter une clé
-      </button>
-    <% end %>
+      <div class="form-group hidden venue_keys__destroy m-0">
+        <input v-model="key._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[keys_attributes][${keyIndex}][_destroy]`" :id="`venue_keys_attributes_${keyIndex}__destroy`">
+      </div>
+
+      <hr>
+    </div>
+
+    <button v-on:click.prevent="addObject('key')" class="btn btn-primary">
+      Ajouter une clé
+    </button>
   </div>
 </div>

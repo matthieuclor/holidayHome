@@ -5,4 +5,10 @@ class Bathroom < ApplicationRecord
 
   validates :name, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }
+
+  def to_builder
+    Jbuilder.new do |bathroom|
+      bathroom.(self, :id, :name, :_destroy)
+    end
+  end
 end
