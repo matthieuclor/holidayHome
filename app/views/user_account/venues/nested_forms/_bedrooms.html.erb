@@ -7,17 +7,20 @@
     <div v-for="(bedroom, bedroomIndex) in venue.bedrooms" :key="`bedroom-${bedroomIndex}`">
       <div class="form-row">
         <div class="col-6">
-          <div class="form-group string required venue_bedrooms_name">
+          <div class="form-group string required venue_bedrooms_name" v-bind:class="formGroupClass(bedroom, 'name')">
             <label class="string required" :for="`venue_bedrooms_attributes_${bedroomIndex}_name`">
               Nom <abbr title="obligatoire">*</abbr>
             </label>
 
-            <input v-model="bedroom.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[bedrooms_attributes][${bedroomIndex}][name]`" :id="`venue_bedrooms_attributes_${bedroomIndex}_name`" placeholder="Chambre bleu">
+            <input v-model="bedroom.name" class="form-control string required" v-bind:class="inputClass(bedroom, 'name')" required="required" :aria-invalid="!attributeIsValid(bedroom, 'name')" aria-required="true" type="text" :name="`venue[bedrooms_attributes][${bedroomIndex}][name]`" :id="`venue_bedrooms_attributes_${bedroomIndex}_name`" placeholder="Chambre bleu">
+            <div v-for="bedroomError in bedroom.errors['name']" class="invalid-feedback">
+              {{bedroomError}}
+            </div>
           </div>
         </div>
       </div>
 
-      <div class="form-row d-flex align-items-end">
+      <div class="form-row d-flex align-items-center">
         <div class="col-5" v-for="(bedding, beddingIndex) in bedroom.beddings" :key="`bedding-${beddingIndex}`">
           <div class="form-group string required venue_bedrooms_beddings_bed_count">
             <label class="string required" :for="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
@@ -27,8 +30,8 @@
           </div>
         </div>
 
-        <div class="col-1 offset-1">
-          <button v-on:click.prevent="removeObject('bedroom', bedroomIndex)" class="btn btn-danger mb-3">
+        <div class="col-1 offset-1 mt-3">
+          <button v-on:click.prevent="removeObject('bedroom', bedroomIndex)" class="btn btn-danger">
             <%= fa_icon("trash") %>
           </button>
         </div>

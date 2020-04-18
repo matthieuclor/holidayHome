@@ -4,12 +4,13 @@ module UserAccount
   class VenuesController < UserAccount::ApplicationController
     include CurrentFamily
 
-    before_action :set_current_family, only: [:index, :new, :create]
+    before_action :set_current_family, only: [:index, :new, :create, :edit, :update]
 
     def index
       @venues = @current_family
         .venues
         .joins(:bedrooms, :bathrooms, :home_services, :keys, :networks, :digital_codes)
+        .distinct
     end
 
     def new
@@ -28,20 +29,22 @@ module UserAccount
     def create
       @venue = Venue.new(venue_params)
 
-      puts "***********************"
-      pp @venue
-      puts "***********************"
-
-      # if @venue.save
-      #   flash[:success] = "Le lieu a bien été créé"
-      #   render js: "location.reload()"
-      # else
-      #   flash[:error] = "Un problem est survenu lors de la creation du lieu"
-      #   render :new, status: :unprocessable_entity
-      # end
+      if @venue.save
+        flash[:success] = "Le lieu a bien été créé"
+        render js: "location.reload()"
+      else
+        build_json_objects
+        flash[:error] = "Un problem est survenu lors de la creation du lieu"
+        render :new, status: :unprocessable_entity
+      end
     end
 
     def edit
+      @venue = Venue
+        .joins(:bedrooms, :bathrooms, :home_services, :keys, :networks, :digital_codes)
+        .find(params[:id])
+
+      build_json_objects
     end
 
     def update
@@ -53,7 +56,7 @@ module UserAccount
     private
 
     def venue_params
-      params.require(:venues).permit(
+      params.require(:venue).permit(
         :name,
         :address,
         :city,
@@ -66,21 +69,58 @@ module UserAccount
         :lng,
         :with_network,
         :with_digital_code,
+        :with_home_service,
         :comment,
         :editable_for_others,
         :creator_id,
         :family_id,
         :photos,
-        bathrooms_attributes: [:id, :_destroy],
-        keys_attributes: [:id, :_destroy],
-        internets_attributes: [:id, :_destroy],
-        digital_codes_attributes: [:id, :_destroy],
-        home_services_attributes: [:id, :_destroy],
+        bathrooms_attributes: [
+          :id,
+          :name,
+          :_destroy
+        ],
+        keys_attributes: [
+          :id,
+          :name,
+          :owner_id,
+          :_destroy
+        ],
+        networks_attributes: [
+          :id,
+          :name,
+          :connection_type,
+          :network_name,
+          :password,
+          :_destroy
+        ],
+        digital_codes_attributes: [
+          :id,
+          :name,
+          :password,
+          :_destroy
+        ],
+        home_services_attributes: [
+          :id,
+          :name,
+          :person_in_charge,
+          :address,
+          :phone,
+          :email,
+          :_destroy
+        ],
         bedrooms_attributes: [
           :id,
+          :name,
           :_destroy,
-          beddings_attributes: [:id, :_destroy]
-        ],
+          beddings_attributes: [
+            :id,
+            :bed_type,
+            :bed_count,
+            :bedroom_id,
+            :_destroy
+          ]
+        ]
       )
     end
 

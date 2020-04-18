@@ -11,6 +11,7 @@ document.addEventListener('turbolinks:load', () => {
       el: element,
       data: () => {
         return {
+          formIsValid: element.dataset.formIsValid,
           venue: JSON.parse(element.dataset.venue),
           newBedroom: JSON.parse(element.dataset.newBedroom),
           newBathroom: JSON.parse(element.dataset.newBathroom),
@@ -22,13 +23,36 @@ document.addEventListener('turbolinks:load', () => {
       },
       methods: {
         addObject: function(object) {
-          this.venue[`${object}s`].push(this[`new${object.charAt(0).toUpperCase() + object.slice(1)}`])
+          this.venue[`${object}s`].push(
+            JSON.parse(
+              JSON.stringify(
+                this[`new${object.charAt(0).toUpperCase() + object.slice(1)}`]
+              )
+            )
+          )
         },
         removeObject: function(object, index) {
           if (this.venue[`${object}s`][index].id == null) {
             this.venue[`${object}s`].splice(index, 1)
           } else {
             this.venue[`${object}s`][index]._destroy = "1"
+          }
+        },
+        attributeIsValid: function(object, attribute) {
+          return !(attribute in object.errors)
+        },
+        inputClass: function(object, attribute) {
+          if (!this.attributeIsValid(object, attribute)) {
+            return 'is-invalid'
+          } else if (!this.formIsValid) {
+            return 'is-valid'
+          }
+        },
+        formGroupClass: function(object, attribute) {
+          if (!this.attributeIsValid(object, attribute)) {
+            return 'form-group-invalid'
+          } else if (!this.formIsValid) {
+            return 'form-group-valid'
           }
         }
       }

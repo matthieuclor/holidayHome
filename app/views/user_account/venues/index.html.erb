@@ -24,6 +24,7 @@
         <% if @venues.present? %>
           <% @venues.each do |venue| %>
             <%= venue.name %>
+            <%= link_to "editer", edit_user_account_venue_path(venue), remote: true %>
           <% end %>
         <% else %>
             <div class="d-flex align-items-center">

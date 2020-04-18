@@ -5,32 +5,38 @@
     </h4>
 
     <div v-for="(key, keyIndex) in venue.keys" :key="`key-${keyIndex}`">
-      <div class="form-row d-flex align-items-end">
+      <div class="form-row d-flex align-items-center">
         <div class="col-6">
-          <div class="form-group string required venue_keys_name">
+          <div class="form-group string required venue_keys_name" v-bind:class="formGroupClass(key, 'name')">
             <label class="string required" :for="`venue_keys_attributes_${keyIndex}_name`">
               Nom <abbr title="obligatoire">*</abbr>
             </label>
 
-            <input v-model="key.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[keys_attributes][${keyIndex}][name]`" :id="`venue_keys_attributes_${keyIndex}_name`" placeholder="Clé principale">
+            <input v-model="key.name" class="form-control string required" v-bind:class="inputClass(key, 'name')" required="required" aria-required="true" type="text" :name="`venue[keys_attributes][${keyIndex}][name]`" :id="`venue_keys_attributes_${keyIndex}_name`" placeholder="Clé principale">
+            <div v-for="keyError in key.errors['name']" class="invalid-feedback">
+              {{keyError}}
+            </div>
           </div>
         </div>
 
         <div class="col-5">
-          <div class="form-group select required venue_keys_owner">
-            <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner`">
+          <div class="form-group select required venue_keys_owner_id" v-bind:class="formGroupClass(key, 'owner')">
+            <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner_id`">
               Propriétaire <abbr title="obligatoire">*</abbr>
             </label>
 
-            <select class="form-control select required" :name="`venue[keys_attributes][${keyIndex}][owner]`" :id="`venue_keys_attributes_${keyIndex}_owner`">
+            <select class="form-control select required" v-bind:class="inputClass(key, 'owner')" :name="`venue[keys_attributes][${keyIndex}][owner_id]`" :id="`venue_keys_attributes_${keyIndex}_owner_id`">
               <%= @current_family.users.each do |user| %>
                 <option value="<%= user.id %>"><%= "#{user.first_name} #{user.last_name}" %></option>
               <% end %>
             </select>
+            <div v-for="keyError in key.errors['owner']" class="invalid-feedback">
+              {{keyError}}
+            </div>
           </div>
         </div>
 
-        <div class="col-1 mb-3">
+        <div class="col-1 mt-3">
           <button v-on:click.prevent="removeObject('key', keyIndex)" class="btn btn-danger">
             <%= fa_icon("trash") %>
           </button>

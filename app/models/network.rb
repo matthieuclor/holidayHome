@@ -19,6 +19,7 @@ class Network < ApplicationRecord
         :network_name,
         :password,
         :_destroy)
+      network.errors self.errors.messages
     end
   end
 end

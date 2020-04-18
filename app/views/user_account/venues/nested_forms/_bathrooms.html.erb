@@ -5,18 +5,21 @@
     </h4>
 
     <div v-for="(bathroom, bathroomIndex) in venue.bathrooms" :key="`bathroom-${bathroomIndex}`">
-      <div class="form-row d-flex align-items-end">
+      <div class="form-row d-flex align-items-center">
         <div class="col-11">
-          <div class="form-group string required venue_bathrooms_name">
+          <div class="form-group string required venue_bathrooms_name" v-bind:class="formGroupClass(bathroom, 'name')">
             <label class="string required" :for="`venue_bathrooms_attributes_${bathroomIndex}_name`">
               Nom <abbr title="obligatoire">*</abbr>
             </label>
 
-            <input v-model="bathroom.name" class="form-control string required" required="required" aria-required="true" type="text" :name="`venue[bathrooms_attributes][${bathroomIndex}][name]`" :id="`venue_bathrooms_attributes_${bathroomIndex}_name`" placeholder="Salle de bain d'été">
+            <input v-model="bathroom.name" class="form-control string required" v-bind:class="inputClass(bathroom, 'name')" required="required" aria-required="true" type="text" :name="`venue[bathrooms_attributes][${bathroomIndex}][name]`" :id="`venue_bathrooms_attributes_${bathroomIndex}_name`" placeholder="Salle de bain d'été">
+            <div v-for="bathroomError in bathroom.errors['name']" class="invalid-feedback">
+              {{bathroomError}}
+            </div>
           </div>
         </div>
 
-        <div class="col-1 mb-3">
+        <div class="col-1 mt-3">
           <button v-on:click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
             <%= fa_icon("trash") %>
           </button>

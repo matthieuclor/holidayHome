@@ -5,7 +5,7 @@ class HomeService < ApplicationRecord
 
   validates :name, :person_in_charge, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }
-  validates :email, format: { with: Devise.email_regexp }
+  validates :email, format: { with: Devise.email_regexp }, allow_blank: true
 
   def to_builder
     Jbuilder.new do |home_service|
@@ -18,6 +18,7 @@ class HomeService < ApplicationRecord
         :phone,
         :email,
         :_destroy)
+      home_service.errors self.errors.messages
     end
   end
 end

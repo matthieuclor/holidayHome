@@ -9,6 +9,7 @@ class Bathroom < ApplicationRecord
   def to_builder
     Jbuilder.new do |bathroom|
       bathroom.(self, :id, :name, :_destroy)
+      bathroom.errors self.errors.messages
     end
   end
 end
