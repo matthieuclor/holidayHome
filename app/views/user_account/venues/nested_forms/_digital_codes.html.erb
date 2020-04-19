@@ -2,13 +2,23 @@
   <div class="col-11">
     <div class="d-flex justify-content-between">
       <h4 class="d-flex align-items-center">
-        Digicode : <span v-show="venue.withDigitalCode" class="badge badge-secondary ml-2">{{venue.digitalCodes.length}}</span>
+        Digicode :
+        <span v-show="venue.withDigitalCode" class="badge badge-secondary ml-2">
+          {{venue.digitalCodes.length}}
+        </span>
       </h4>
 
       <fieldset class="form-group boolean venue_with_digital_code mb-2">
         <div class="custom-control custom-switch">
           <input v-model="venue.withDigitalCode" name="venue[with_digital_code]" type="hidden">
-          <input v-model="venue.withDigitalCode" :checked="venue.withDigitalCode" type="checkbox" name="venue[with_digital_code]" id="venue_with_digital_code" class="custom-control-input boolean">
+
+          <input v-model="venue.withDigitalCode"
+                 class="custom-control-input boolean"
+                 id="venue_with_digital_code"
+                 type="checkbox"
+                 :checked="venue.withDigitalCode"
+                 name="venue[with_digital_code]">
+
           <label for="venue_with_digital_code" class="custom-control-label boolean">
             Avec un digicode
           </label>
@@ -20,24 +30,46 @@
       <div v-for="(digitalCode, digitalCodeIndex) in venue.digitalCodes" :key="`digitalCode-${digitalCodeIndex}`">
         <div class="form-row d-flex align-items-center">
           <div class="col-6">
-            <div class="form-group string required venue_digital_codes_name" v-bind:class="formGroupClass(digitalCode, 'name')">
-              <label class="string required" :for="`venue_digital_codes_attributes_${digitalCodeIndex}_name`">
+            <div class="form-group string required venue_digital_codes_name"
+                 v-bind:class="formGroupClass(digitalCode, 'name')">
+
+              <label class="string required"
+                     :for="`venue_digital_codes_attributes_${digitalCodeIndex}_name`">
                 Nom <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="digitalCode.name" class="form-control string required" v-bind:class="inputClass(digitalCode, 'name')" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][name]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}_name`" placeholder="Porte du premier bâtiment">
+              <input v-model="digitalCode.name"
+                     class="form-control string required"
+                     v-bind:class="inputClass(digitalCode, 'name')"
+                     aria-required="true"
+                     type="text"
+                     :name="`venue[digital_codes_attributes][${digitalCodeIndex}][name]`"
+                     :id="`venue_digital_codes_attributes_${digitalCodeIndex}_name`"
+                     placeholder="Porte du premier bâtiment">
+
               <div v-for="digitalCodeError in digitalCode.errors['name']" class="invalid-feedback">
                 {{digitalCodeError}}
               </div>
             </div>
           </div>
           <div class="col-5">
-            <div class="form-group string required venue_digital_codes_password" v-bind:class="formGroupClass(digitalCode, 'password')">
-              <label class="string required" :for="`venue_digital_codes_attributes_${digitalCodeIndex}_password`">
+            <div class="form-group string required venue_digital_codes_password"
+                 v-bind:class="formGroupClass(digitalCode, 'password')">
+
+              <label class="string required"
+                     :for="`venue_digital_codes_attributes_${digitalCodeIndex}_password`">
                 Mot de passe <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="digitalCode.password" class="form-control string required" v-bind:class="inputClass(digitalCode, 'password')" aria-required="true" type="text" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][password]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}_password`" placeholder="Mot de passe">
+              <input v-model="digitalCode.password"
+                     class="form-control string required"
+                     v-bind:class="inputClass(digitalCode, 'password')"
+                     aria-required="true"
+                     type="text"
+                     :name="`venue[digital_codes_attributes][${digitalCodeIndex}][password]`"
+                     :id="`venue_digital_codes_attributes_${digitalCodeIndex}_password`"
+                     placeholder="Mot de passe">
+
               <div v-for="digitalCodeError in digitalCode.errors['password']" class="invalid-feedback">
                 {{digitalCodeError}}
               </div>
@@ -52,9 +84,13 @@
         </div>
 
         <div class="form-group hidden venue_digital_codes__destroy m-0">
-          <input v-model="digitalCode._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[digital_codes_attributes][${digitalCodeIndex}][_destroy]`" :id="`venue_digital_codes_attributes_${digitalCodeIndex}__destroy`">
+          <input v-model="digitalCode._destroy"
+                 class="form-control hidden"
+                 type="hidden"
+                 value="false"
+                 :name="`venue[digital_codes_attributes][${digitalCodeIndex}][_destroy]`"
+                 :id="`venue_digital_codes_attributes_${digitalCodeIndex}__destroy`">
         </div>
-
         <hr>
       </div>
 

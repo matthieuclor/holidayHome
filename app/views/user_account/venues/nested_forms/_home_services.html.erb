@@ -2,13 +2,23 @@
   <div class="col-11">
     <div class="d-flex justify-content-between">
       <h4 class="d-flex align-items-center">
-        Services à domicile : <span v-show="venue.withHomeService" class="badge badge-secondary ml-2">{{venue.homeServices.length}}</span>
+        Services à domicile :
+        <span v-show="venue.withHomeService" class="badge badge-secondary ml-2">
+          {{venue.homeServices.length}}
+        </span>
       </h4>
 
       <fieldset class="form-group boolean venue_with_home_service mb-2">
         <div class="custom-control custom-switch">
           <input v-model="venue.withHomeService" name="venue[with_home_service]" type="hidden">
-          <input v-model="venue.withHomeService" :checked="venue.withHomeService" type="checkbox" name="venue[with_home_service]" id="venue_with_home_service" class="custom-control-input boolean mb-2">
+
+          <input v-model="venue.withHomeService"
+                 :checked="venue.withHomeService"
+                 type="checkbox"
+                 name="venue[with_home_service]"
+                 id="venue_with_home_service"
+                 class="custom-control-input boolean mb-2">
+
           <label for="venue_with_home_service" class="custom-control-label boolean">
             Avec un service à domicile
           </label>
@@ -20,12 +30,23 @@
       <div v-for="(homeService, homeServiceIndex) in venue.homeServices">
         <div class="form-row">
           <div class="col-12">
-            <div class="form-group string required venue_home_services_name" v-bind:class="formGroupClass(homeService, 'name')">
-              <label class="string required" :for="`venue_home_services_attributes_${homeServiceIndex}_name`">
+            <div class="form-group string required venue_home_services_name"
+                 v-bind:class="formGroupClass(homeService, 'name')">
+
+              <label class="string required"
+                     :for="`venue_home_services_attributes_${homeServiceIndex}_name`">
                 Nom <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="homeService.name" class="form-control string required" v-bind:class="inputClass(homeService, 'name')" aria-required="true" type="text" :name="`venue[home_services_attributes][${homeServiceIndex}][name]`" :id="`venue_home_services_attributes_${homeServiceIndex}_name`" placeholder="Jardinier">
+              <input v-model="homeService.name"
+                     class="form-control string required"
+                     v-bind:class="inputClass(homeService, 'name')"
+                     aria-required="true"
+                     type="text"
+                     :name="`venue[home_services_attributes][${homeServiceIndex}][name]`"
+                     :id="`venue_home_services_attributes_${homeServiceIndex}_name`"
+                     placeholder="Jardinier">
+
               <div v-for="homeServiceError in homeService.errors['name']" class="invalid-feedback">
                 {{homeServiceError}}
               </div>
@@ -35,12 +56,23 @@
 
         <div class="form-row">
           <div class="col-6">
-            <div class="form-group string required venue_home_services_person_in_charge" v-bind:class="formGroupClass(homeService, 'person_in_charge')">
-              <label class="string required" :for="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`">
+            <div class="form-group string required venue_home_services_person_in_charge"
+                 v-bind:class="formGroupClass(homeService, 'person_in_charge')">
+
+              <label class="string required"
+                     :for="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`">
                 Responsable <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input v-model="homeService.person_in_charge" class="form-control string required" v-bind:class="inputClass(homeService, 'person_in_charge')" aria-required="true" type="text" :name="`venue[home_services_attributes][${homeServiceIndex}][person_in_charge]`" :id="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`" placeholder="Jean Dujardin">
+              <input v-model="homeService.person_in_charge"
+                     class="form-control string required"
+                     v-bind:class="inputClass(homeService, 'person_in_charge')"
+                     aria-required="true"
+                     type="text"
+                     :name="`venue[home_services_attributes][${homeServiceIndex}][person_in_charge]`"
+                     :id="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`"
+                     placeholder="Jean Dujardin">
+
               <div v-for="homeServiceError in homeService.errors['person_in_charge']" class="invalid-feedback">
                 {{homeServiceError}}
               </div>
@@ -48,12 +80,21 @@
           </div>
 
           <div class="col-6">
-            <div class="form-group string venue_home_services_address" v-bind:class="formGroupClass(homeService, 'address')">
+            <div class="form-group string venue_home_services_address"
+                 v-bind:class="formGroupClass(homeService, 'address')">
+
               <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_address`">
                 Adresse
               </label>
 
-              <input v-model="homeService.address" class="form-control string" v-bind:class="inputClass(homeService, 'address')" type="text" :name="`venue[home_services_attributes][${homeServiceIndex}][address]`" :id="`venue_home_services_attributes_${homeServiceIndex}_address`" placeholder="23 Rue Des Plantes">
+              <input v-model="homeService.address"
+                     class="form-control string"
+                     v-bind:class="inputClass(homeService, 'address')"
+                     type="text"
+                     :name="`venue[home_services_attributes][${homeServiceIndex}][address]`"
+                     :id="`venue_home_services_attributes_${homeServiceIndex}_address`"
+                     placeholder="23 Rue Des Plantes">
+
               <div v-for="homeServiceError in homeService.errors['address']" class="invalid-feedback">
                 {{homeServiceError}}
               </div>
@@ -63,12 +104,21 @@
 
         <div class="form-row d-flex align-items-center">
           <div class="col-5">
-            <div class="form-group string venue_home_services_phone" v-bind:class="formGroupClass(homeService, 'phone')">
+            <div class="form-group string venue_home_services_phone"
+                 v-bind:class="formGroupClass(homeService, 'phone')">
+
               <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_phone`">
                 Téléphone
               </label>
 
-              <input v-model="homeService.phone" class="form-control string" v-bind:class="inputClass(homeService, 'phone')" type="text" :name="`venue[home_services_attributes][${homeServiceIndex}][phone]`" :id="`venue_home_services_attributes_${homeServiceIndex}_phone`" placeholder="06 66 76 45 45">
+              <input v-model="homeService.phone"
+                     class="form-control string"
+                     v-bind:class="inputClass(homeService, 'phone')"
+                     type="text"
+                     :name="`venue[home_services_attributes][${homeServiceIndex}][phone]`"
+                     :id="`venue_home_services_attributes_${homeServiceIndex}_phone`"
+                     placeholder="06 66 76 45 45">
+
               <div v-for="homeServiceError in homeService.errors['phone']" class="invalid-feedback">
                 {{homeServiceError}}
               </div>
@@ -76,12 +126,21 @@
           </div>
 
           <div class="col-6">
-            <div class="form-group string venue_home_services_email" v-bind:class="formGroupClass(homeService, 'email')">
+            <div class="form-group string venue_home_services_email"
+                 v-bind:class="formGroupClass(homeService, 'email')">
+
               <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_email`">
                 Email
               </label>
 
-              <input v-model="homeService.email" class="form-control string" v-bind:class="inputClass(homeService, 'email')" type="text" :name="`venue[home_services_attributes][${homeServiceIndex}][email]`" :id="`venue_home_services_attributes_${homeServiceIndex}_email`" placeholder="jeandujardin@mail.com">
+              <input v-model="homeService.email"
+                     class="form-control string"
+                     v-bind:class="inputClass(homeService, 'email')"
+                     type="email"
+                     :name="`venue[home_services_attributes][${homeServiceIndex}][email]`"
+                     :id="`venue_home_services_attributes_${homeServiceIndex}_email`"
+                     placeholder="jeandujardin@mail.com">
+
               <div v-for="homeServiceError in homeService.errors['email']" class="invalid-feedback">
                 {{homeServiceError}}
               </div>
@@ -96,9 +155,13 @@
         </div>
 
         <div class="form-group hidden venue_home_services__destroy m-0">
-          <input v-model="homeService._destroy"  class="form-control hidden" type="hidden" value="false" :name="`venue[home_services_attributes][${homeServiceIndex}][_destroy]`" :id="`venue_home_services_attributes_${homeServiceIndex}__destroy`">
+          <input v-model="homeService._destroy"
+                 class="form-control hidden"
+                 type="hidden"
+                 value="false"
+                 :name="`venue[home_services_attributes][${homeServiceIndex}][_destroy]`"
+                 :id="`venue_home_services_attributes_${homeServiceIndex}__destroy`">
         </div>
-
         <hr>
       </div>
 

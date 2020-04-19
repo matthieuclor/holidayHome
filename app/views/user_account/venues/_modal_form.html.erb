@@ -18,7 +18,7 @@
           <%= content_tag :div,
                           id: "venue_form",
                           data: {
-                            form_is_valid: !@venue.errors.present?,
+                            form_is_editing: action_name == "edit",
                             venue: @json_venue,
                             new_bedroom: @json_new_bedroom,
                             new_bathroom: @json_new_bathroom,

@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load', () => {
       el: element,
       data: () => {
         return {
-          formIsValid: element.dataset.formIsValid,
+          formIsEditing: element.dataset.formIsEditing,
           venue: JSON.parse(element.dataset.venue),
           newBedroom: JSON.parse(element.dataset.newBedroom),
           newBathroom: JSON.parse(element.dataset.newBathroom),
@@ -44,14 +44,14 @@ document.addEventListener('turbolinks:load', () => {
         inputClass: function(object, attribute) {
           if (!this.attributeIsValid(object, attribute)) {
             return 'is-invalid'
-          } else if (!this.formIsValid) {
+          } else if (this.formIsEditing == "true" && object[attribute]) {
             return 'is-valid'
           }
         },
         formGroupClass: function(object, attribute) {
           if (!this.attributeIsValid(object, attribute)) {
             return 'form-group-invalid'
-          } else if (!this.formIsValid) {
+          } else if (this.formIsEditing == "true" && object[attribute]) {
             return 'form-group-valid'
           }
         }
