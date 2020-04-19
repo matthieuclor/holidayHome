@@ -5,12 +5,13 @@ module UserAccount
     include CurrentFamily
 
     before_action :set_current_family, only: [:index, :new, :create, :edit, :update]
+    before_action :set_venue, only: [:edit, :update, :destroy]
 
     def index
       @venues = @current_family
         .venues
-        .joins(:bedrooms, :bathrooms, :home_services, :keys, :networks, :digital_codes)
-        .distinct
+        .with_attached_photos
+        .includes(:bathrooms, :home_services, :keys, :networks, :digital_codes, bedrooms: [:beddings])
     end
 
     def new
@@ -40,23 +41,39 @@ module UserAccount
     end
 
     def edit
-      @venue = Venue
-        .joins(:bedrooms, :bathrooms, :home_services, :keys, :networks, :digital_codes)
-        .find(params[:id])
-
       build_json_objects
     end
 
     def update
+      if @venue.update(venue_params)
+        flash[:success] = "Le lieu a bien été mis à jour"
+        render js: "location.reload()"
+      else
+        build_json_objects
+        flash[:error] = "Un problem est survenu lors de la mise à jour du lieu"
+        render :edit, status: :unprocessable_entity
+      end
     end
 
     def destroy
+      if @venue.destroy
+        flash[:success] = "La lieu a bien été supprimée"
+      else
+        flash[:error] = "Un problem est survenu lors de la suppression du lieu"
+      end
+
+      redirect_to user_account_venues_path
     end
 
     private
 
+    def set_venue
+      @venue = Venue.find(params[:id])
+    end
+
     def venue_params
       params.require(:venue).permit(
+        :id,
         :name,
         :address,
         :city,
@@ -74,7 +91,7 @@ module UserAccount
         :editable_for_others,
         :creator_id,
         :family_id,
-        :photos,
+        photos: [],
         bathrooms_attributes: [
           :id,
           :name,
@@ -126,12 +143,12 @@ module UserAccount
 
     def build_json_objects
       @json_venue = @venue.to_builder.target!
-      @json_new_bathroom = @venue.bathrooms.build.to_builder.target!
-      @json_new_key = @venue.keys.build.to_builder.target!
-      @json_new_network = @venue.networks.build.to_builder.target!
-      @json_new_digital_code = @venue.digital_codes.build.to_builder.target!
-      @json_new_home_service = @venue.home_services.build.to_builder.target!
-      @json_new_bedroom = @venue.bedrooms.build(
+      @json_new_bathroom = Bathroom.new.to_builder.target!
+      @json_new_key = Key.new.to_builder.target!
+      @json_new_network = Network.new.to_builder.target!
+      @json_new_digital_code = DigitalCode.new.to_builder.target!
+      @json_new_home_service = HomeService.new.to_builder.target!
+      @json_new_bedroom = Bedroom.new(
         beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
       ).to_builder.target!
     end

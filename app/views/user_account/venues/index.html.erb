@@ -23,8 +23,41 @@
       <div class="card-body">
         <% if @venues.present? %>
           <% @venues.each do |venue| %>
-            <%= venue.name %>
-            <%= link_to "editer", edit_user_account_venue_path(venue), remote: true %>
+            <div class="col-4">
+              <div class="card">
+                <% if venue.photos.attached? %>
+                  <%= image_tag(venue.photos.first.variant(resize_to_limit: [300, 200]),
+                                class: "card-img-top") %>
+                <% end %>
+                <div class="card-body">
+                  <h5 class="card-title">
+                    <%= venue.name %>
+                  </h5>
+
+                  <p class="card-text">
+                    Some quick example text to build on the card title and make up the bulk of the card's content.
+                  </p>
+
+                  <div class="d-flex justify-content-between">
+                    <%= button_to edit_user_account_venue_path(venue),
+                                  remote: true,
+                                  method: :get,
+                                  class: "btn btn-sm btn-primary" do %>
+
+                      <%= fa_icon("pen", "Editer", class: "mr-2")  %>
+                    <% end %>
+
+                    <%= button_to user_account_venue_path(venue),
+                                  method: :delete,
+                                  data: { confirm: "Etes-vous sûr ?" },
+                                  class: "btn btn-sm btn-danger" do %>
+
+                      <%= fa_icon("trash", "Supprimer", class: "mr-2")  %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
         <% else %>
             <div class="d-flex align-items-center">

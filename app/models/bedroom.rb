@@ -3,7 +3,7 @@
 class Bedroom < ApplicationRecord
   belongs_to :venue, counter_cache: true
 
-  has_many :beddings
+  has_many :beddings, dependent: :destroy
 
   validates :name, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }

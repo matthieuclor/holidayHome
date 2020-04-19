@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Venue < ApplicationRecord
-  has_many_attached :photos
+  has_many_attached :photos, dependent: :destroy
 
   has_many :bedrooms, dependent: :destroy
   has_many :bathrooms, dependent: :destroy
@@ -12,6 +12,8 @@ class Venue < ApplicationRecord
 
   belongs_to :creator, class_name: "User"
   belongs_to :family
+
+  default_scope { order(:created_at) }
 
   accepts_nested_attributes_for :bedrooms, :keys, :networks,
                                 reject_if: -> (attr) { attr['name'].blank? },
@@ -68,8 +70,7 @@ class Venue < ApplicationRecord
              :comment,
              :editable_for_others,
              :creator_id,
-             :family_id,
-             :_destroy)
+             :family_id)
 
       venue.bedrooms bedrooms.map { |bedroom| bedroom.to_builder.attributes! }
       venue.bathrooms bathrooms.map { |bathroom| bathroom.to_builder.attributes! }

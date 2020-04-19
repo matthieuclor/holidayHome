@@ -1,78 +1,101 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
-    <h4 class="d-flex align-items-center">
+    <h4 class="d-flex align-items-center mb-3">
       Chambres : <span class="badge badge-secondary ml-2">{{venue.bedrooms.length}}</span>
     </h4>
 
     <div v-for="(bedroom, bedroomIndex) in venue.bedrooms" :key="`bedroom-${bedroomIndex}`">
-      <div v-if="!bedroom.Destroy">
-        <div class="form-row">
-          <div class="col-6">
-            <div class="form-group string required venue_bedrooms_name"
-                v-bind:class="formGroupClass(bedroom, 'name')">
+      <div v-show="!bedroom.Destroy">
+        <div class="shadow p-3 rounded mb-3">
+          <div class="form-group hidden venue_bedrooms_id">
+            <input v-model="bedroom.id"
+                   type="hidden"
+                   :name="`venue[bedrooms_attributes][${bedroomIndex}][id]`"
+                   :id="`venue_bedrooms_attributes_${bedroomIndex}_id`"
+                   class="form-control hidden">
+          </div>
 
-              <label class="string required" :for="`venue_bedrooms_attributes_${bedroomIndex}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
-              </label>
+          <div class="form-row">
+            <div class="col-6">
+              <div class="form-group string required venue_bedrooms_name"
+                  v-bind:class="formGroupClass(bedroom, 'name')">
 
-              <input v-model="bedroom.name"
-                    class="form-control string required"
-                    v-bind:class="inputClass(bedroom, 'name')"
-                    required="required"
-                    :aria-invalid="!attributeIsValid(bedroom, 'name')"
-                    aria-required="true"
-                    type="text"
-                    :name="`venue[bedrooms_attributes][${bedroomIndex}][name]`"
-                    :id="`venue_bedrooms_attributes_${bedroomIndex}_name`"
-                    placeholder="Chambre bleu">
+                <label class="string required" :for="`venue_bedrooms_attributes_${bedroomIndex}_name`">
+                  Nom <abbr title="obligatoire">*</abbr>
+                </label>
 
-              <div v-for="bedroomError in bedroom.errors['name']" class="invalid-feedback">
-                {{bedroomError}}
+                <input v-model="bedroom.name"
+                      class="form-control string required"
+                      v-bind:class="inputClass(bedroom, 'name')"
+                      required="required"
+                      :aria-invalid="!attributeIsValid(bedroom, 'name')"
+                      aria-required="true"
+                      type="text"
+                      :name="`venue[bedrooms_attributes][${bedroomIndex}][name]`"
+                      :id="`venue_bedrooms_attributes_${bedroomIndex}_name`"
+                      placeholder="Chambre bleu">
+
+                <div v-for="bedroomError in bedroom.errors['name']" class="invalid-feedback">
+                  {{bedroomError}}
+                </div>
+              </div>
+            </div>
+            <div class="col-1 offset-5">
+              <button v-on:click.prevent="removeObject('bedroom', bedroomIndex)" class="btn btn-danger">
+                <%= fa_icon("trash") %>
+              </button>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="col" v-for="(bedding, beddingIndex) in bedroom.beddings" :key="`bedding-${beddingIndex}`">
+              <div class="form-group hidden venue_bedrooms_beddings_id">
+                <input v-model="bedding.id"
+                       type="hidden"
+                       :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][id]`"
+                       :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_id`"
+                       class="form-control hidden">
+              </div>
+
+              <div class="form-group hidden venue_bedrooms_beddings_bed_type">
+                <input v-model="bedding.bedType"
+                       type="hidden"
+                       :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_type]`"
+                       :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_type`"
+                       class="form-control hidden">
+              </div>
+
+              <div class="form-group string required venue_bedrooms_beddings_bed_count">
+                <label class="string required"
+                      :for="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
+                  Nombre de lit {{ bedding.bedType }} <abbr title="obligatoire">*</abbr>
+                </label>
+
+                <input v-model="bedding.bedCount"
+                      class="form-control string required"
+                      required="required"
+                      aria-required="true"
+                      type="number"
+                      :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_count]`"
+                      :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="form-row d-flex align-items-center">
-          <div class="col-5" v-for="(bedding, beddingIndex) in bedroom.beddings" :key="`bedding-${beddingIndex}`">
-            <div class="form-group string required venue_bedrooms_beddings_bed_count">
-              <label class="string required"
-                    :for="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
-                Nombre de lit {{ bedding.bedType }} <abbr title="obligatoire">*</abbr>
-              </label>
-
-              <input v-model="bedding.bedCount"
-                    class="form-control string required"
-                    required="required"
-                    aria-required="true"
-                    type="number"
-                    :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_count]`"
-                    :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
-            </div>
-          </div>
-
-          <div class="col-1 offset-1 mt-3">
-            <button v-on:click.prevent="removeObject('bedroom', bedroomIndex)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
+          <div class="form-group hidden venue_bedrooms__destroy m-0">
+            <input v-model="bedroom.Destroy"
+                  class="form-control hidden"
+                  type="hidden"
+                  value="false"
+                  :name="`venue[bedrooms_attributes][${bedroomIndex}][_destroy]`"
+                  :id="`venue_bedrooms_attributes_${bedroomIndex}__destroy`">
           </div>
         </div>
-
-        <div class="form-group hidden venue_bedrooms__destroy m-0">
-          <input v-model="bedroom.Destroy"
-                class="form-control hidden"
-                type="hidden"
-                value="false"
-                :name="`venue[bedrooms_attributes][${bedroomIndex}][_destroy]`"
-                :id="`venue_bedrooms_attributes_${bedroomIndex}__destroy`">
-        </div>
-
-        <hr>
       </div>
     </div>
 
     <button v-on:click.prevent="addObject('bedroom')" class="btn btn-primary">
-      Ajouter une chambre
+      <%= fa_icon("plus", "Ajouter une chambre", class: "mr-2") %>
     </button>
   </div>
 </div>

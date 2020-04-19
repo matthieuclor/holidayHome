@@ -1,57 +1,66 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
-    <h4 class="d-flex align-items-center">
+    <h4 class="d-flex align-items-center mb-3">
       Salle de bains : <span class="badge badge-secondary ml-2">{{venue.bathrooms.length}}</span>
     </h4>
 
     <div v-for="(bathroom, bathroomIndex) in venue.bathrooms" :key="`bathroom-${bathroomIndex}`">
-      <div v-if="!bathroom.Destroy">
-        <div class="form-row d-flex align-items-center">
-          <div class="col-11">
-            <div class="form-group string required venue_bathrooms_name"
-                v-bind:class="formGroupClass(bathroom, 'name')">
+      <div v-show="!bathroom.Destroy">
+        <div class="shadow p-3 rounded mb-3">
+          <div class="form-group hidden venue_bathrooms_id">
+            <input v-model="bathroom.id"
+                   type="hidden"
+                   :name="`venue[bathrooms_attributes][${bathroomIndex}][id]`"
+                   :id="`venue_bathrooms_attributes_${bathroomIndex}_id`"
+                   class="form-control hidden">
+          </div>
 
-              <label class="string required" :for="`venue_bathrooms_attributes_${bathroomIndex}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
-              </label>
+          <div class="form-row">
+            <div class="col-6">
+              <div class="form-group string required venue_bathrooms_name"
+                  v-bind:class="formGroupClass(bathroom, 'name')">
 
-              <input v-model="bathroom.name"
-                    class="form-control string required"
-                    v-bind:class="inputClass(bathroom, 'name')"
-                    required="required"
-                    aria-required="true"
-                    type="text"
-                    :name="`venue[bathrooms_attributes][${bathroomIndex}][name]`"
-                    :id="`venue_bathrooms_attributes_${bathroomIndex}_name`"
-                    placeholder="Salle de bain d'été">
+                <label class="string required" :for="`venue_bathrooms_attributes_${bathroomIndex}_name`">
+                  Nom <abbr title="obligatoire">*</abbr>
+                </label>
 
-              <div v-for="bathroomError in bathroom.errors['name']" class="invalid-feedback">
-                {{bathroomError}}
+                <input v-model="bathroom.name"
+                      class="form-control string required"
+                      v-bind:class="inputClass(bathroom, 'name')"
+                      required="required"
+                      aria-required="true"
+                      type="text"
+                      :name="`venue[bathrooms_attributes][${bathroomIndex}][name]`"
+                      :id="`venue_bathrooms_attributes_${bathroomIndex}_name`"
+                      placeholder="Salle de bain d'été">
+
+                <div v-for="bathroomError in bathroom.errors['name']" class="invalid-feedback">
+                  {{bathroomError}}
+                </div>
               </div>
+            </div>
+
+            <div class="col-1 offset-5">
+              <button v-on:click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
+                <%= fa_icon("trash") %>
+              </button>
             </div>
           </div>
 
-          <div class="col-1 mt-3">
-            <button v-on:click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
+          <div class="form-group hidden venue_bathrooms__destroy m-0">
+            <input v-model="bathroom.Destroy"
+                  class="form-control hidden"
+                  type="hidden"
+                  value="false"
+                  :name="`venue[bathrooms_attributes][${bathroomIndex}][_destroy]`"
+                  :id="`venue_bathrooms_attributes_${bathroomIndex}__destroy`">
           </div>
         </div>
-
-        <div class="form-group hidden venue_bathrooms__destroy m-0">
-          <input v-model="bathroom.Destroy"
-                class="form-control hidden"
-                type="hidden"
-                value="false"
-                :name="`venue[bathrooms_attributes][${bathroomIndex}][_destroy]`"
-                :id="`venue_bathrooms_attributes_${bathroomIndex}__destroy`">
-        </div>
-        <hr>
       </div>
     </div>
 
     <button v-on:click.prevent="addObject('bathroom')" class="btn btn-primary">
-      Ajouter une salle de bain
+      <%= fa_icon("plus", "Ajouter une salle de bain", class: "mr-2") %>
     </button>
   </div>
 </div>

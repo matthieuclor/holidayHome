@@ -7,7 +7,7 @@ module UserAccount
     def index
       @families = current_user.families
       @users = UserDecorator.wrap(User
-        .includes(:avatar_attachment)
+        .with_attached_avatar
         .joins(:family_links)
         .where(family_links: { family_id: @families.pluck(:id) })
         .select("users.*, family_links.family_id as family_id")
