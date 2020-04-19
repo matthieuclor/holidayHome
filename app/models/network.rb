@@ -11,14 +11,14 @@ class Network < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |network|
-      network.(
-        self,
-        :id,
-        :name,
-        :connection_type,
-        :network_name,
-        :password,
-        :_destroy)
+      network.(self,
+               :id,
+               :name,
+               :connection_type,
+               :network_name,
+               :password,
+               :_destroy)
+
       network.errors self.errors.messages
     end
   end

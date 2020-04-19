@@ -35,7 +35,7 @@ document.addEventListener('turbolinks:load', () => {
           if (this.venue[`${object}s`][index].id == null) {
             this.venue[`${object}s`].splice(index, 1)
           } else {
-            this.venue[`${object}s`][index]._destroy = "1"
+            this.venue[`${object}s`][index].Destroy = true
           }
         },
         attributeIsValid: function(object, attribute) {

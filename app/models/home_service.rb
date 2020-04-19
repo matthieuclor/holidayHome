@@ -9,15 +9,15 @@ class HomeService < ApplicationRecord
 
   def to_builder
     Jbuilder.new do |home_service|
-      home_service.(
-        self,
-        :id,
-        :name,
-        :person_in_charge,
-        :address,
-        :phone,
-        :email,
-        :_destroy)
+      home_service.(self,
+                    :id,
+                    :name,
+                    :person_in_charge,
+                    :address,
+                    :phone,
+                    :email,
+                    :_destroy)
+
       home_service.errors self.errors.messages
     end
   end

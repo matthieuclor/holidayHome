@@ -8,73 +8,75 @@
     </h4>
 
     <div v-for="(key, keyIndex) in venue.keys" :key="`key-${keyIndex}`">
-      <div class="form-row d-flex align-items-center">
-        <div class="col-6">
-          <div class="form-group string required venue_keys_name"
-               v-bind:class="formGroupClass(key, 'name')">
+      <div v-if="!key.Destroy">
+        <div class="form-row d-flex align-items-center">
+          <div class="col-6">
+            <div class="form-group string required venue_keys_name"
+                v-bind:class="formGroupClass(key, 'name')">
 
-            <label class="string required" :for="`venue_keys_attributes_${keyIndex}_name`">
-              Nom <abbr title="obligatoire">*</abbr>
-            </label>
+              <label class="string required" :for="`venue_keys_attributes_${keyIndex}_name`">
+                Nom <abbr title="obligatoire">*</abbr>
+              </label>
 
-            <input v-model="key.name"
-                   class="form-control string required"
-                   v-bind:class="inputClass(key, 'name')"
-                   required="required"
-                   aria-required="true"
-                   type="text"
-                   :name="`venue[keys_attributes][${keyIndex}][name]`"
-                   :id="`venue_keys_attributes_${keyIndex}_name`"
-                   placeholder="Clé principale">
+              <input v-model="key.name"
+                    class="form-control string required"
+                    v-bind:class="inputClass(key, 'name')"
+                    required="required"
+                    aria-required="true"
+                    type="text"
+                    :name="`venue[keys_attributes][${keyIndex}][name]`"
+                    :id="`venue_keys_attributes_${keyIndex}_name`"
+                    placeholder="Clé principale">
 
-            <div v-for="keyError in key.errors['name']" class="invalid-feedback">
-              {{keyError}}
+              <div v-for="keyError in key.errors['name']" class="invalid-feedback">
+                {{keyError}}
+              </div>
             </div>
+          </div>
+
+          <div class="col-5">
+            <div class="form-group select required venue_keys_owner_id"
+                v-bind:class="formGroupClass(key, 'owner')">
+
+              <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner_id`">
+                Propriétaire <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <select class="form-control select required"
+                      v-bind:class="inputClass(key, 'owner')"
+                      :name="`venue[keys_attributes][${keyIndex}][owner_id]`"
+                      :id="`venue_keys_attributes_${keyIndex}_owner_id`">
+
+                <%= @current_family.users.each do |user| %>
+                  <option value="<%= user.id %>">
+                    <%= "#{user.first_name} #{user.last_name}" %>
+                  </option>
+                <% end %>
+              </select>
+
+              <div v-for="keyError in key.errors['owner']" class="invalid-feedback">
+                {{keyError}}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-1 mt-3">
+            <button v-on:click.prevent="removeObject('key', keyIndex)" class="btn btn-danger">
+              <%= fa_icon("trash") %>
+            </button>
           </div>
         </div>
 
-        <div class="col-5">
-          <div class="form-group select required venue_keys_owner_id"
-               v-bind:class="formGroupClass(key, 'owner')">
-
-            <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner_id`">
-              Propriétaire <abbr title="obligatoire">*</abbr>
-            </label>
-
-            <select class="form-control select required"
-                    v-bind:class="inputClass(key, 'owner')"
-                    :name="`venue[keys_attributes][${keyIndex}][owner_id]`"
-                    :id="`venue_keys_attributes_${keyIndex}_owner_id`">
-
-              <%= @current_family.users.each do |user| %>
-                <option value="<%= user.id %>">
-                  <%= "#{user.first_name} #{user.last_name}" %>
-                </option>
-              <% end %>
-            </select>
-
-            <div v-for="keyError in key.errors['owner']" class="invalid-feedback">
-              {{keyError}}
-            </div>
-          </div>
+        <div class="form-group hidden venue_keys__destroy m-0">
+          <input v-model="key.Destroy"
+                class="form-control hidden"
+                type="hidden"
+                value="false"
+                :name="`venue[keys_attributes][${keyIndex}][_destroy]`"
+                :id="`venue_keys_attributes_${keyIndex}__destroy`">
         </div>
-
-        <div class="col-1 mt-3">
-          <button v-on:click.prevent="removeObject('key', keyIndex)" class="btn btn-danger">
-            <%= fa_icon("trash") %>
-          </button>
-        </div>
+        <hr>
       </div>
-
-      <div class="form-group hidden venue_keys__destroy m-0">
-        <input v-model="key._destroy"
-               class="form-control hidden"
-               type="hidden"
-               value="false"
-               :name="`venue[keys_attributes][${keyIndex}][_destroy]`"
-               :id="`venue_keys_attributes_${keyIndex}__destroy`">
-      </div>
-      <hr>
     </div>
 
     <button v-on:click.prevent="addObject('key')" class="btn btn-primary">

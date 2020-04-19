@@ -51,25 +51,26 @@ class Venue < ApplicationRecord
   def to_builder
     Jbuilder.new do |venue|
       venue.(self,
-            :id,
-            :name,
-            :address,
-            :city,
-            :postcode,
-            :country,
-            :country_code,
-            :administrative,
-            :county,
-            :lat,
-            :lng,
-            :with_network,
-            :with_digital_code,
-            :with_home_service,
-            :comment,
-            :editable_for_others,
-            :creator_id,
-            :family_id,
-            :_destroy)
+             :id,
+             :name,
+             :address,
+             :city,
+             :postcode,
+             :country,
+             :country_code,
+             :administrative,
+             :county,
+             :lat,
+             :lng,
+             :with_network,
+             :with_digital_code,
+             :with_home_service,
+             :comment,
+             :editable_for_others,
+             :creator_id,
+             :family_id,
+             :_destroy)
+
       venue.bedrooms bedrooms.map { |bedroom| bedroom.to_builder.attributes! }
       venue.bathrooms bathrooms.map { |bathroom| bathroom.to_builder.attributes! }
       venue.keys keys.map { |key| key.to_builder.attributes! }

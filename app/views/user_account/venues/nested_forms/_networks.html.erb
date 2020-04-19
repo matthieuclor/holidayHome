@@ -28,127 +28,129 @@
 
     <div v-show="venue.withNetwork">
       <div v-for="(network, networkIndex) in venue.networks" :key="`network-${networkIndex}`">
-        <div class="form-row d-flex align-items-center">
-          <div class="col-6">
-            <div class="form-group string required venue_networks_name"
-                 v-bind:class="formGroupClass(network, 'name')">
+        <div v-if="!network.Destroy">
+          <div class="form-row d-flex align-items-center">
+            <div class="col-6">
+              <div class="form-group string required venue_networks_name"
+                  v-bind:class="formGroupClass(network, 'name')">
 
-              <label class="string required" :for="`venue_networks_attributes_${networkIndex}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
-              </label>
+                <label class="string required" :for="`venue_networks_attributes_${networkIndex}_name`">
+                  Nom <abbr title="obligatoire">*</abbr>
+                </label>
 
-              <input v-model="network.name"
-                     class="form-control string required"
-                     v-bind:class="inputClass(network, 'name')"
-                     aria-required="true"
-                     type="text"
-                     :name="`venue[networks_attributes][${networkIndex}][name]`"
-                     :id="`venue_networks_attributes_${networkIndex}_name`"
-                     placeholder="Réseau Orange">
+                <input v-model="network.name"
+                      class="form-control string required"
+                      v-bind:class="inputClass(network, 'name')"
+                      aria-required="true"
+                      type="text"
+                      :name="`venue[networks_attributes][${networkIndex}][name]`"
+                      :id="`venue_networks_attributes_${networkIndex}_name`"
+                      placeholder="Réseau Orange">
 
-              <div v-for="networkError in network.errors['name']" class="invalid-feedback">
-                {{networkError}}
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6">
-            <fieldset class="form-group radio_buttons required venue_bedrooms_connection_type"
-                      v-bind:class="formGroupClass(network, 'connectionType')">
-
-              <legend class="col-form-label pt-0">
-                Connection type <abbr title="obligatoire">*</abbr>
-              </legend>
-
-              <input v-model="network.connectionType"
-                     type="hidden"
-                     :name="`venue[bedrooms_attributes][${networkIndex}][connection_type]`">
-
-              <% Network.connection_types.each do |type, id| %>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input is-valid radio_buttons required"
-                         v-bind:class="inputClass(network, 'connectionType')"
-                         aria-required="true"
-                         type="radio"
-                         value="<%= type %>"
-                         :checked="network.connectionType == '<%= type %>'"
-                         :name="`venue[bedrooms_attributes][${networkIndex}][connection_type]`"
-                         :id="`venue_bedrooms_attributes_${networkIndex}_connection_type_<%= type %>`">
-
-                  <label class="form-check-label collection_radio_buttons"
-                         :for="`venue_bedrooms_attributes_${networkIndex}_connection_type_<%= type %>`">
-                    <%= type %>
-                  </label>
-                  <div v-for="networkError in network.errors['connectionType']" class="invalid-feedback">
-                    {{networkError}}
-                  </div>
+                <div v-for="networkError in network.errors['name']" class="invalid-feedback">
+                  {{networkError}}
                 </div>
-              <% end %>
-            </fieldset>
-          </div>
-        </div>
-
-        <div class="form-row d-flex align-items-center">
-          <div class="col-6">
-            <div class="form-group string venue_networks_network_name"
-                 v-bind:class="formGroupClass(network, 'network_name')">
-
-              <label class="string" :for="`venue_networks_attributes_${networkIndex}_network_name`">
-                Nom du réseau
-              </label>
-
-              <input v-model="network.network_name"
-                     class="form-control string"
-                     v-bind:class="inputClass(network, 'network_name')"
-                     type="text"
-                     :name="`venue[networks_attributes][${networkIndex}][network_name]`"
-                     :id="`venue_networks_attributes_${networkIndex}_network_name`"
-                     placeholder="Livebox-09D9">
-
-              <div v-for="networkError in network.errors['network_name']" class="invalid-feedback">
-                {{networkError}}
               </div>
+            </div>
+
+            <div class="col-6">
+              <fieldset class="form-group radio_buttons required venue_bedrooms_connection_type"
+                        v-bind:class="formGroupClass(network, 'connectionType')">
+
+                <legend class="col-form-label pt-0">
+                  Connection type <abbr title="obligatoire">*</abbr>
+                </legend>
+
+                <input v-model="network.connectionType"
+                      type="hidden"
+                      :name="`venue[bedrooms_attributes][${networkIndex}][connection_type]`">
+
+                <% Network.connection_types.each do |type, id| %>
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input is-valid radio_buttons required"
+                          v-bind:class="inputClass(network, 'connectionType')"
+                          aria-required="true"
+                          type="radio"
+                          value="<%= type %>"
+                          :checked="network.connectionType == '<%= type %>'"
+                          :name="`venue[bedrooms_attributes][${networkIndex}][connection_type]`"
+                          :id="`venue_bedrooms_attributes_${networkIndex}_connection_type_<%= type %>`">
+
+                    <label class="form-check-label collection_radio_buttons"
+                          :for="`venue_bedrooms_attributes_${networkIndex}_connection_type_<%= type %>`">
+                      <%= type %>
+                    </label>
+                    <div v-for="networkError in network.errors['connectionType']" class="invalid-feedback">
+                      {{networkError}}
+                    </div>
+                  </div>
+                <% end %>
+              </fieldset>
             </div>
           </div>
 
-          <div class="col-5">
-            <div class="form-group string venue_networks_password"
-                 v-bind:class="formGroupClass(network, 'password')">
+          <div class="form-row d-flex align-items-center">
+            <div class="col-6">
+              <div class="form-group string venue_networks_network_name"
+                  v-bind:class="formGroupClass(network, 'network_name')">
 
-              <label class="string" :for="`venue_networks_attributes_${networkIndex}_password`">
-                Mot de passe du réseau
-              </label>
+                <label class="string" :for="`venue_networks_attributes_${networkIndex}_network_name`">
+                  Nom du réseau
+                </label>
 
-              <input v-model="network.password"
-                     class="form-control string"
-                     v-bind:class="inputClass(network, 'password')"
-                     type="text"
-                     :name="`venue[networks_attributes][${networkIndex}][password]`"
-                     :id="`venue_networks_attributes_${networkIndex}_password`"
-                     placeholder="Mot de passe">
+                <input v-model="network.network_name"
+                      class="form-control string"
+                      v-bind:class="inputClass(network, 'network_name')"
+                      type="text"
+                      :name="`venue[networks_attributes][${networkIndex}][network_name]`"
+                      :id="`venue_networks_attributes_${networkIndex}_network_name`"
+                      placeholder="Livebox-09D9">
 
-              <div v-for="networkError in network.errors['password']" class="invalid-feedback">
-                {{networkError}}
+                <div v-for="networkError in network.errors['network_name']" class="invalid-feedback">
+                  {{networkError}}
+                </div>
               </div>
+            </div>
+
+            <div class="col-5">
+              <div class="form-group string venue_networks_password"
+                  v-bind:class="formGroupClass(network, 'password')">
+
+                <label class="string" :for="`venue_networks_attributes_${networkIndex}_password`">
+                  Mot de passe du réseau
+                </label>
+
+                <input v-model="network.password"
+                      class="form-control string"
+                      v-bind:class="inputClass(network, 'password')"
+                      type="text"
+                      :name="`venue[networks_attributes][${networkIndex}][password]`"
+                      :id="`venue_networks_attributes_${networkIndex}_password`"
+                      placeholder="Mot de passe">
+
+                <div v-for="networkError in network.errors['password']" class="invalid-feedback">
+                  {{networkError}}
+                </div>
+              </div>
+            </div>
+
+            <div class="col-1 mt-3">
+              <button v-on:click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
+                <%= fa_icon("trash") %>
+              </button>
             </div>
           </div>
 
-          <div class="col-1 mt-3">
-            <button v-on:click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
+          <div class="form-group hidden venue_networks__destroy m-0">
+            <input v-model="network.Destroy"
+                  class="form-control hidden"
+                  type="hidden"
+                  value="false"
+                  :name="`venue[networks_attributes][${networkIndex}][_destroy]`"
+                  :id="`venue_networks_attributes_${networkIndex}__destroy`">
           </div>
+          <hr>
         </div>
-
-        <div class="form-group hidden venue_networks__destroy m-0">
-          <input v-model="network._destroy"
-                 class="form-control hidden"
-                 type="hidden"
-                 value="false"
-                 :name="`venue[networks_attributes][${networkIndex}][_destroy]`"
-                 :id="`venue_networks_attributes_${networkIndex}__destroy`">
-        </div>
-        <hr>
       </div>
 
       <button v-on:click.prevent="addObject('network')" class="btn btn-primary">
