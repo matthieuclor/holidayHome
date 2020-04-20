@@ -4,7 +4,7 @@
       <h4 class="d-flex align-items-center">
         Services à domicile :
         <span v-show="venue.withHomeService" class="badge badge-secondary ml-2">
-          {{venue.homeServices.length}}
+          {{countObject(venue.homeServices)}}
         </span>
       </h4>
 
@@ -41,7 +41,7 @@
             <div class="form-row">
               <div class="col-6">
                 <div class="form-group string required venue_home_services_name"
-                    v-bind:class="formGroupClass(homeService, 'name')">
+                    :class="formGroupClass(homeService, 'name')">
 
                   <label class="string required"
                         :for="`venue_home_services_attributes_${homeServiceIndex}_name`">
@@ -50,7 +50,7 @@
 
                   <input v-model="homeService.name"
                         class="form-control string required"
-                        v-bind:class="inputClass(homeService, 'name')"
+                        :class="inputClass(homeService, 'name')"
                         aria-required="true"
                         type="text"
                         :name="`venue[home_services_attributes][${homeServiceIndex}][name]`"
@@ -73,7 +73,7 @@
             <div class="form-row">
               <div class="col-6">
                 <div class="form-group string required venue_home_services_person_in_charge"
-                    v-bind:class="formGroupClass(homeService, 'person_in_charge')">
+                    :class="formGroupClass(homeService, 'personInCharge')">
 
                   <label class="string required"
                         :for="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`">
@@ -82,14 +82,14 @@
 
                   <input v-model="homeService.personInCharge"
                         class="form-control string required"
-                        v-bind:class="inputClass(homeService, 'person_in_charge')"
+                        :class="inputClass(homeService, 'personInCharge')"
                         aria-required="true"
                         type="text"
                         :name="`venue[home_services_attributes][${homeServiceIndex}][person_in_charge]`"
                         :id="`venue_home_services_attributes_${homeServiceIndex}_person_in_charge`"
                         placeholder="Jean Dujardin">
 
-                  <div v-for="homeServiceError in homeService.errors['person_in_charge']" class="invalid-feedback">
+                  <div v-for="homeServiceError in homeService.errors['personInCharge']" class="invalid-feedback">
                     {{homeServiceError}}
                   </div>
                 </div>
@@ -97,7 +97,7 @@
 
               <div class="col-6">
                 <div class="form-group string venue_home_services_address"
-                    v-bind:class="formGroupClass(homeService, 'address')">
+                    :class="formGroupClass(homeService, 'address')">
 
                   <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_address`">
                     Adresse
@@ -105,7 +105,7 @@
 
                   <input v-model="homeService.address"
                         class="form-control string"
-                        v-bind:class="inputClass(homeService, 'address')"
+                        :class="inputClass(homeService, 'address')"
                         type="text"
                         :name="`venue[home_services_attributes][${homeServiceIndex}][address]`"
                         :id="`venue_home_services_attributes_${homeServiceIndex}_address`"
@@ -121,7 +121,7 @@
             <div class="form-row d-flex align-items-center">
               <div class="col-4">
                 <div class="form-group string venue_home_services_phone"
-                    v-bind:class="formGroupClass(homeService, 'phone')">
+                    :class="formGroupClass(homeService, 'phone')">
 
                   <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_phone`">
                     Téléphone
@@ -129,7 +129,7 @@
 
                   <input v-model="homeService.phone"
                         class="form-control string"
-                        v-bind:class="inputClass(homeService, 'phone')"
+                        :class="inputClass(homeService, 'phone')"
                         type="text"
                         :name="`venue[home_services_attributes][${homeServiceIndex}][phone]`"
                         :id="`venue_home_services_attributes_${homeServiceIndex}_phone`"
@@ -143,7 +143,7 @@
 
               <div class="col-8">
                 <div class="form-group string venue_home_services_email"
-                    v-bind:class="formGroupClass(homeService, 'email')">
+                    :class="formGroupClass(homeService, 'email')">
 
                   <label class="string" :for="`venue_home_services_attributes_${homeServiceIndex}_email`">
                     Email
@@ -151,7 +151,7 @@
 
                   <input v-model="homeService.email"
                         class="form-control string"
-                        v-bind:class="inputClass(homeService, 'email')"
+                        :class="inputClass(homeService, 'email')"
                         type="email"
                         :name="`venue[home_services_attributes][${homeServiceIndex}][email]`"
                         :id="`venue_home_services_attributes_${homeServiceIndex}_email`"

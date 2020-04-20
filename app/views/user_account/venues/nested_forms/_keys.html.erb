@@ -3,7 +3,7 @@
     <h4 class="d-flex align-items-center mb-3">
       Clés :
       <span class="badge badge-secondary ml-2">
-        {{venue.keys.length}}
+        {{countObject(venue.keys)}}
       </span>
     </h4>
 
@@ -21,7 +21,7 @@
           <div class="form-row">
             <div class="col-6">
               <div class="form-group string required venue_keys_name"
-                  v-bind:class="formGroupClass(key, 'name')">
+                  :class="formGroupClass(key, 'name')">
 
                 <label class="string required" :for="`venue_keys_attributes_${keyIndex}_name`">
                   Nom <abbr title="obligatoire">*</abbr>
@@ -29,7 +29,7 @@
 
                 <input v-model="key.name"
                       class="form-control string required"
-                      v-bind:class="inputClass(key, 'name')"
+                      :class="inputClass(key, 'name')"
                       required="required"
                       aria-required="true"
                       type="text"
@@ -45,14 +45,14 @@
 
             <div class="col-4">
               <div class="form-group select required venue_keys_owner_id"
-                  v-bind:class="formGroupClass(key, 'owner')">
+                  :class="formGroupClass(key, 'owner')">
 
                 <label class="select required" :for="`venue_keys_attributes_${keyIndex}_owner_id`">
                   Propriétaire <abbr title="obligatoire">*</abbr>
                 </label>
 
                 <select class="form-control select required"
-                        v-bind:class="inputClass(key, 'owner')"
+                        :class="inputClass(key, 'owner')"
                         :name="`venue[keys_attributes][${keyIndex}][owner_id]`"
                         :id="`venue_keys_attributes_${keyIndex}_owner_id`">
 

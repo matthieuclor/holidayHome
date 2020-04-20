@@ -78,7 +78,7 @@ class Venue < ApplicationRecord
       venue.networks networks.map { |network| network.to_builder.attributes! }
       venue.digital_codes digital_codes.map { |digital_code| digital_code.to_builder.attributes! }
       venue.home_services home_services.map { |home_service| home_service.to_builder.attributes! }
-      venue.errors self.errors.messages
+      venue.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
   end
 end

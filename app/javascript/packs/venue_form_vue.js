@@ -38,6 +38,9 @@ document.addEventListener('turbolinks:load', () => {
             this.venue[`${object}s`][index].Destroy = true
           }
         },
+        countObject: function(objects) {
+          return objects.filter(object => object.Destroy != true).length
+        },
         attributeIsValid: function(object, attribute) {
           return !(attribute in object.errors)
         },

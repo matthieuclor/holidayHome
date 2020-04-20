@@ -9,7 +9,7 @@ class Bathroom < ApplicationRecord
   def to_builder
     Jbuilder.new do |bathroom|
       bathroom.(self, :id, :name, :_destroy)
-      bathroom.errors self.errors.messages
+      bathroom.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
   end
 end

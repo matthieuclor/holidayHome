@@ -10,7 +10,7 @@ class Key < ApplicationRecord
   def to_builder
     Jbuilder.new do |key|
       key.(self, :id, :name, :owner, :_destroy)
-      key.errors self.errors.messages
+      key.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
   end
 end

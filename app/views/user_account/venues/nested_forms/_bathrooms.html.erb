@@ -1,7 +1,10 @@
 <div class="d-flex justify-content-center">
   <div class="col-11">
     <h4 class="d-flex align-items-center mb-3">
-      Salle de bains : <span class="badge badge-secondary ml-2">{{venue.bathrooms.length}}</span>
+      Salle de bains :
+      <span class="badge badge-secondary ml-2">
+        {{countObject(venue.bathrooms)}}
+      </span>
     </h4>
 
     <div v-for="(bathroom, bathroomIndex) in venue.bathrooms" :key="`bathroom-${bathroomIndex}`">
@@ -18,7 +21,7 @@
           <div class="form-row">
             <div class="col-6">
               <div class="form-group string required venue_bathrooms_name"
-                  v-bind:class="formGroupClass(bathroom, 'name')">
+                  :class="formGroupClass(bathroom, 'name')">
 
                 <label class="string required" :for="`venue_bathrooms_attributes_${bathroomIndex}_name`">
                   Nom <abbr title="obligatoire">*</abbr>
@@ -26,7 +29,7 @@
 
                 <input v-model="bathroom.name"
                       class="form-control string required"
-                      v-bind:class="inputClass(bathroom, 'name')"
+                      :class="inputClass(bathroom, 'name')"
                       required="required"
                       aria-required="true"
                       type="text"

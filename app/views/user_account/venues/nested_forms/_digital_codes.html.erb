@@ -4,7 +4,7 @@
       <h4 class="d-flex align-items-center">
         Digicode :
         <span v-show="venue.withDigitalCode" class="badge badge-secondary ml-2">
-          {{venue.digitalCodes.length}}
+          {{countObject(venue.digitalCodes)}}
         </span>
       </h4>
 
@@ -41,7 +41,7 @@
             <div class="form-row">
               <div class="col-6">
                 <div class="form-group string required venue_digital_codes_name"
-                    v-bind:class="formGroupClass(digitalCode, 'name')">
+                    :class="formGroupClass(digitalCode, 'name')">
 
                   <label class="string required"
                         :for="`venue_digital_codes_attributes_${digitalCodeIndex}_name`">
@@ -50,7 +50,7 @@
 
                   <input v-model="digitalCode.name"
                         class="form-control string required"
-                        v-bind:class="inputClass(digitalCode, 'name')"
+                        :class="inputClass(digitalCode, 'name')"
                         aria-required="true"
                         type="text"
                         :name="`venue[digital_codes_attributes][${digitalCodeIndex}][name]`"
@@ -65,7 +65,7 @@
 
               <div class="col-4">
                 <div class="form-group string required venue_digital_codes_password"
-                    v-bind:class="formGroupClass(digitalCode, 'password')">
+                    :class="formGroupClass(digitalCode, 'password')">
 
                   <label class="string required"
                         :for="`venue_digital_codes_attributes_${digitalCodeIndex}_password`">
@@ -74,7 +74,7 @@
 
                   <input v-model="digitalCode.password"
                         class="form-control string required"
-                        v-bind:class="inputClass(digitalCode, 'password')"
+                        :class="inputClass(digitalCode, 'password')"
                         aria-required="true"
                         type="text"
                         :name="`venue[digital_codes_attributes][${digitalCodeIndex}][password]`"

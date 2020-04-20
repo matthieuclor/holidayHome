@@ -19,7 +19,7 @@ class Network < ApplicationRecord
                :password,
                :_destroy)
 
-      network.errors self.errors.messages
+      network.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
   end
 end

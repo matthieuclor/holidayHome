@@ -9,7 +9,7 @@ class DigitalCode < ApplicationRecord
   def to_builder
     Jbuilder.new do |digital_code|
       digital_code.(self, :id, :name, :password, :_destroy)
-      digital_code.errors self.errors.messages
+      digital_code.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
   end
 end
