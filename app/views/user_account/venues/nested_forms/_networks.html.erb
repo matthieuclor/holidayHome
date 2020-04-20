@@ -98,7 +98,7 @@
               </div>
 
               <div class="col-1 offset-1">
-                <button v-on:click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
+                <button @click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
                   <%= fa_icon("trash") %>
                 </button>
               </div>
@@ -162,8 +162,8 @@
         </div>
       </div>
 
-      <button v-on:click.prevent="addObject('network')" class="btn btn-primary">
-        Ajouter un reseau
+      <button @click.prevent="addObject('network')" class="btn btn-primary">
+        <%= fa_icon("plus", "Ajouter un reseau", class: "mr-2") %>
       </button>
     </div>
   </div>

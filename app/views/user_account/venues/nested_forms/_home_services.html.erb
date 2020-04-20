@@ -64,7 +64,7 @@
               </div>
 
               <div class="col-1 offset-5">
-                <button v-on:click.prevent="removeObject('homeService', homeServiceIndex)" class="btn btn-danger">
+                <button @click.prevent="removeObject('homeService', homeServiceIndex)" class="btn btn-danger">
                   <%= fa_icon("trash") %>
                 </button>
               </div>
@@ -176,8 +176,8 @@
         </div>
       </div>
 
-      <button v-on:click.prevent="addObject('homeService')" class="btn btn-primary">
-        Ajouter un services à domicile
+      <button @click.prevent="addObject('homeService')" class="btn btn-primary">
+        <%= fa_icon("plus", "Ajouter un services à domicile", class: "mr-2") %>
       </button>
     </div>
   </div>

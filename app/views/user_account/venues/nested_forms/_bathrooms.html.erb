@@ -44,7 +44,7 @@
             </div>
 
             <div class="col-1 offset-5">
-              <button v-on:click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
+              <button @click.prevent="removeObject('bathroom', bathroomIndex)" class="btn btn-danger">
                 <%= fa_icon("trash") %>
               </button>
             </div>
@@ -62,7 +62,7 @@
       </div>
     </div>
 
-    <button v-on:click.prevent="addObject('bathroom')" class="btn btn-primary">
+    <button @click.prevent="addObject('bathroom')" class="btn btn-primary">
       <%= fa_icon("plus", "Ajouter une salle de bain", class: "mr-2") %>
     </button>
   </div>
