@@ -1,10 +1,11 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
+import places from 'places.js'
 
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  let element = document.getElementById('venue_form')
+  const element = document.getElementById('venue_form')
 
   if (element != null) {
     new Vue({
@@ -58,7 +59,31 @@ document.addEventListener('turbolinks:load', () => {
             return 'form-group-valid'
           }
         }
-      }
+      },
+      mounted: function () {
+        this.$nextTick(function () {
+          const options = {
+            appId: 'pl75UUU9N2VV',
+            apiKey: '9a55decbc8fd5c78a1d571f4143fef56',
+            container: this.$refs.inputSearch,
+          }
+
+          const place = places(options).configure({ language: 'fr' })
+
+          place.on('change', event => {
+            this.venue.address = event.suggestion.value
+            this.venue.city = event.suggestion.name
+            this.venue.postcode = event.suggestion.postcode
+            this.venue.country = event.suggestion.country
+            this.venue.countryCode = event.suggestion.countryCode
+            this.venue.administrative = event.suggestion.administrative
+            this.venue.county = event.suggestion.county
+            this.venue.lat = event.suggestion.latlng.lat
+            this.venue.lng = event.suggestion.latlng.lng
+          })
+        })
+      },
+      beforeDestroy: () => place.destroy()
     })
   }
 })

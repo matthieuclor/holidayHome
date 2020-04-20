@@ -1,7 +1,10 @@
 # frozen_string_literal: true
 
+require 'open-uri'
+
 class Venue < ApplicationRecord
   has_many_attached :photos, dependent: :destroy
+  has_one_attached :map, dependent: :destroy
 
   has_many :bedrooms, dependent: :destroy
   has_many :bathrooms, dependent: :destroy
@@ -25,30 +28,25 @@ class Venue < ApplicationRecord
 
   validates :name, :address, :creator, :family, presence: true
 
-    # validates :name,
-    #         :address,
-    #         :city,
-    #         :postcode,
-    #         :country,
-    #         :country_code,
-    #         :administrative,
-    #         :county,
-    #         :lat,
-    #         :lng,
-    #         :with_network,
-    #         :with_digital_code,
-    #         :with_home_service,
-    #         :editable_for_others,
-    #         :creator,
-    #         :family, presence: true
-
-    validates :with_network,
-              :with_digital_code,
-              :editable_for_others,
-              :with_home_service,
-              inclusion: { in: [true, false] }
+  validates :with_network,
+            :with_digital_code,
+            :editable_for_others,
+            :with_home_service,
+            inclusion: { in: [true, false] }
 
   validates :name, uniqueness: { scope: :family_id }
+
+  before_save :attach_map, if: -> (obj) { obj.lat_changed? || obj.lng_changed? }
+
+  def attach_map
+    self.map.attach(
+      io: open(
+        "https://maps.googleapis.com/maps/api/staticmap?center=#{self.lat},#{self.lng}&zoom=11&size=400x400&maptype=hybrid
+  &markers=#{self.lat},#{self.lng}&format=png&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
+      ),
+      filename: "#{self.name.parameterize}.png"
+    )
+  end
 
   def to_builder
     Jbuilder.new do |venue|
