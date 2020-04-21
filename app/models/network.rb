@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Network < ApplicationRecord
-  belongs_to :venue, counter_cache: true
+  belongs_to :venue
 
   enum connection_type: %i(wifi cable)
 

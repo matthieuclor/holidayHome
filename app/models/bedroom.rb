@@ -14,7 +14,7 @@ class Bedroom < ApplicationRecord
     Jbuilder.new do |bedroom|
       bedroom.(self, :id, :name, :_destroy)
       bedroom.beddings beddings.collect { |bedding| bedding.to_builder.attributes! }
-      bedroom.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
+      bedroom.errors self.errors.messages
     end
   end
 end

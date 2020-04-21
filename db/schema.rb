@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_17_150910) do
+ActiveRecord::Schema.define(version: 2020_04_21_155337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -84,6 +84,7 @@ ActiveRecord::Schema.define(version: 2020_04_17_150910) do
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "venues_count", default: 0
   end
 
   create_table "family_links", force: :cascade do |t|
@@ -180,13 +181,9 @@ ActiveRecord::Schema.define(version: 2020_04_17_150910) do
     t.float "lng"
     t.integer "bedrooms_count", default: 0
     t.integer "bathrooms_count", default: 0
-    t.integer "keys_count", default: 0
     t.boolean "with_network", default: false
-    t.integer "networks_count", default: 0
     t.boolean "with_digital_code", default: false
-    t.integer "digital_codes_count", default: 0
     t.boolean "with_home_service", default: false
-    t.integer "home_services_count", default: 0
     t.text "comment"
     t.boolean "editable_for_others", default: true
     t.bigint "creator_id"

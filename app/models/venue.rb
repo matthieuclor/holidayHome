@@ -3,6 +3,12 @@
 require 'open-uri'
 
 class Venue < ApplicationRecord
+  GOOGLE_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap"
+  GOOGLE_MAP_ZOOM = "11"
+  GOOGLE_MAP_SIZE = "400x400"
+  GOOGLE_MAP_TYPE = "hybrid"
+  GOOGLE_MAP_FORMAT = "png"
+
   has_many_attached :photos, dependent: :destroy
   has_one_attached :map, dependent: :destroy
 
@@ -14,7 +20,7 @@ class Venue < ApplicationRecord
   has_many :home_services, dependent: :destroy
 
   belongs_to :creator, class_name: "User"
-  belongs_to :family
+  belongs_to :family, counter_cache: true
 
   default_scope { order(:created_at) }
 
@@ -41,10 +47,16 @@ class Venue < ApplicationRecord
   def attach_map
     self.map.attach(
       io: open(
-        "https://maps.googleapis.com/maps/api/staticmap?center=#{self.lat},#{self.lng}&zoom=11&size=400x400&maptype=hybrid
-  &markers=#{self.lat},#{self.lng}&format=png&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
+        GOOGLE_MAP_URL +
+        "?center=#{self.lat},#{self.lng}" +
+        "&zoom=#{GOOGLE_MAP_ZOOM}" +
+        "&size=#{GOOGLE_MAP_SIZE}" +
+        "&maptype=#{GOOGLE_MAP_TYPE}" +
+        "&markers=#{self.lat},#{self.lng}" +
+        "&format=#{GOOGLE_MAP_FORMAT}" +
+        "&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
       ),
-      filename: "#{self.name.parameterize}.png"
+      filename: "#{self.name.parameterize}.#{GOOGLE_MAP_FORMAT}"
     )
   end
 
