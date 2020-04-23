@@ -1,0 +1,7 @@
+home_service:
+  name: Jardinier
+  person_in_charge: Jean Charle
+  address: 14 Rue de la grande roue
+  phone: 06 76 78 89 65
+  email: jeancharle@mail.com
+  venue_id: 1

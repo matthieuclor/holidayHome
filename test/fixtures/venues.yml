@@ -1,0 +1,13 @@
+la_tania:
+  id: 1
+  name: La Tania
+  address: 12 Rue du test
+  bedrooms_count: 1
+  bathrooms_count: 1
+  with_network: true
+  with_digital_code: true
+  with_home_service: true
+  comment: Ceci est un commentaire, il commente quoi...
+  editable_for_others: true
+  creator_id: 1
+  family_id: 1

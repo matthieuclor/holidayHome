@@ -1,0 +1,14 @@
+single_bedding:
+  bed_type: 0
+  bed_count: 4
+  bedroom_id: 1
+
+double_bedding:
+  bed_type: 1
+  bed_count: 2
+  bedroom_id: 1
+
+baby_bedding:
+  bed_type: 2
+  bed_count: 1
+  bedroom_id: 1
