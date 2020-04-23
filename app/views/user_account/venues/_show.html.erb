@@ -1,0 +1,49 @@
+<div class="d-flex justify-content-end">
+  <h1>
+    <%= button_to edit_user_account_venue_path(@venue),
+                  remote: true,
+                  method: :get,
+                  class: "btn btn-primary" do %>
+
+      <%= fa_icon("pen", "Editer", class: "mr-2")  %>
+    <% end %>
+  </h1>
+</div>
+
+<div id="carouselIndicators" class="carousel slide" data-ride="carousel">
+  <ol class="carousel-indicators">
+    <% @venue.photos.each_with_index do |photo, index| %>
+      <li data-target="#carouselIndicators"
+          data-slide-to="<%= index %>"
+          class="<%= 'active' if index == 0 %>">
+      </li>
+    <% end %>
+  </ol>
+  <div class="carousel-inner">
+    <% @venue.photos.each_with_index do |photo, index| %>
+      <div class="carousel-item <%= 'active' if index == 0 %>">
+        <%= image_tag(photo.variant(resize_to_limit: [550, 300]), class: "d-block rounded w-100") %>
+      </div>
+    <% end %>
+  </div>
+  <a class="carousel-control-prev" href="#carouselIndicators" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselIndicators" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<h3>
+  <%= @venue.name %>
+</h3>
+
+<%= button_to user_account_venue_path(@venue),
+              method: :delete,
+              data: { confirm: "Etes-vous sûr ?" },
+              class: "btn btn-danger" do %>
+
+  <%= fa_icon("trash", "Supprimer", class: "mr-2")  %>
+<% end %>

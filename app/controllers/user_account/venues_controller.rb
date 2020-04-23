@@ -5,13 +5,18 @@ module UserAccount
     include CurrentFamily
 
     before_action :set_current_family, only: [:index, :new, :create, :edit, :update]
-    before_action :set_venue, only: [:edit, :update, :destroy]
+    before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
     def index
       @venues = @current_family
         .venues
         .with_attached_photos
-        .includes(:bathrooms, :home_services, :keys, :networks, :digital_codes, bedrooms: [:beddings])
+        .includes(bedrooms: [:beddings])
+
+      @venues = VenueDecorator.wrap(@venues)
+    end
+
+    def show
     end
 
     def new
@@ -68,7 +73,10 @@ module UserAccount
     private
 
     def set_venue
-      @venue = Venue.find(params[:id])
+      @venue = Venue
+        .with_attached_photos
+        .includes(:bathrooms, :home_services, :keys, :networks, :digital_codes, bedrooms: [:beddings])
+        .find(params[:id])
     end
 
     def venue_params

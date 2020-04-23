@@ -1,0 +1,68 @@
+<div style="margin-bottom: 56px;">
+  <h1>
+    <%= action_name == "edit" ? "Editer" : "Créer" %>
+    un lieu
+  </h1>
+
+  <%= simple_form_for [:user_account, @venue], remote: true do |f| %>
+    <%= content_tag :div,
+                    id: "venue_form",
+                    data: {
+                      form_is_editing: action_name == "edit",
+                      venue: @json_venue,
+                      new_bedroom: @json_new_bedroom,
+                      new_bathroom: @json_new_bathroom,
+                      new_key: @json_new_key,
+                      new_network: @json_new_network,
+                      new_digital_code: @json_new_digital_code,
+                      new_home_service: @json_new_home_service
+                    } do %>
+
+      <%= f.input :photos, as: :file, input_html: { multiple: true } %>
+      <%= f.input :name, input_html: { placeholder: "Chalet à la montagne" } %>
+
+      <%= f.input :address,
+                  input_html: {
+                    placeholder: "12 Rue de Bellecote",
+                    ref: "inputSearch",
+                    "v-model": "venue.address" } %>
+
+      <%= f.input :city, as: :hidden, input_html: { "v-model": "venue.city" } %>
+      <%= f.input :postcode, as: :hidden, input_html: { "v-model": "venue.postcode" } %>
+      <%= f.input :country, as: :hidden, input_html: { "v-model": "venue.country" } %>
+      <%= f.input :country_code, as: :hidden, input_html: { "v-model": "venue.countryCode" } %>
+      <%= f.input :administrative, as: :hidden, input_html: { "v-model": "venue.administrative" } %>
+      <%= f.input :county, as: :hidden, input_html: { "v-model": "venue.county" } %>
+      <%= f.input :lat, as: :hidden, input_html: { "v-model": "venue.lat" } %>
+      <%= f.input :lng, as: :hidden, input_html: { "v-model": "venue.lng" } %>
+      <%= f.input :creator_id, as: :hidden %>
+      <%= f.input :family_id, as: :hidden %>
+
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/bedrooms", form: f %>
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/bathrooms", form: f %>
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/keys", form: f %>
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/networks", form: f %>
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/digital_codes", form: f %>
+      <hr class="my-4">
+      <%= render "user_account/venues/nested_forms/home_services", form: f %>
+      <hr class="my-4">
+
+      <%= f.input :comment,
+                  label: "Commentaire",
+                  input_html: {
+                    placeholder: "Choses a savoir, bon plan, précision sur le lieu..."
+                  } %>
+
+      <%= f.input :editable_for_others,
+                  wrapper: :custom_boolean_switch,
+                  label: "Editable par les autres membres" %>
+
+      <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+    <% end %>
+  <% end %>
+</div>

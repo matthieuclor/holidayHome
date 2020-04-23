@@ -1,13 +1,2 @@
-if ($("#venue-modal").length > 0) {
-  $("#venue-modal").modal("hide")
-}
-
-$("#modal-container").html("<%= j render "modal_form" %>")
-
-<% if flash.present? %>
-  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
-<% end %>
-
+$("#venue-container").html("<%= j render "form" %>")
 Turbolinks.dispatch("turbolinks:load")
-
-$("#venue-modal").modal("show")
