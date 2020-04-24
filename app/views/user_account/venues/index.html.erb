@@ -3,15 +3,17 @@
 <% end %>
 
 <div class="row ml-4">
-  <div class="col-7 pt-4 vh-100 overflow-auto">
+  <div class="col-5 col-lg-7 pt-4 vh-100 overflow-auto">
     <div class="d-flex justify-content-between align-items-center">
       <h1>Mes lieux</h1>
-      <%= button_to new_user_account_venue_path,
-                    class: "btn btn btn-outline-primary",
-                    method: :get,
-                    remote: true do %>
+      <% if @venues.present? %>
+        <%= button_to new_user_account_venue_path,
+                      class: "btn btn btn-outline-primary",
+                      method: :get,
+                      remote: true do %>
 
-        <%= fa_icon("plus", "Créer un nouveau lieu", class: "mr-2") %>
+          <%= fa_icon("plus", "Créer un nouveau lieu", class: "mr-2") %>
+        <% end %>
       <% end %>
     </div>
 
@@ -23,14 +25,14 @@
 
           <div class="card border-0 shadow mb-3">
             <div class="row no-gutters">
-              <div class="col-md-4 p-2">
+              <div class="col-lg-4 p-2">
                 <% if venue.photos.attached? %>
                   <%= image_tag(venue.photos.first.variant(
                                 resize_to_limit: [300, 200]),
                                 class: "card-img-top") %>
                 <% end %>
               </div>
-              <div class="col-md-8 p-2">
+              <div class="col-lg-8 p-2">
                 <div class="card-body p-0">
                   <h4 class="card-title text-dark mb-0">
                     <%= venue.name %>
@@ -42,7 +44,7 @@
 
                   <p class="card-text text-muted">
                     <%= venue.beddings_count %>
-                    <%= "Adulte".pluralize(venue.beddings_count) %>
+                    <%= "Place".pluralize(venue.beddings_count) %>
                     <span>&bull;</span>
                     <%= venue.bedrooms_count %>
                     <%= "Chambre".pluralize(venue.bedrooms_count) %>
@@ -61,17 +63,69 @@
           </div>
         <% end %>
       <% end %>
-    <% end %>
-  </div>
-
-  <div class="col-5 p-0 border-left">
-    <div class="vh-100 overflow-auto py-4 px-3">
-      <div id="venue-container">
-        <div class="alert alert-warning" style="margin-top: 56px;">
+    <% else %>
+      <div class="shadow rounded p-3 d-flex justify-content-between align-items-center">
+        <div class="alert alert-warning m-0">
           <%= fa_icon("exclamation-triangle") %>
           Ici vous allez pouvoir créer vos lieux pour la famille <%= @current_family.name %> !
           <br>
-          Pour ce faire cliquez sur le lien de creation ci-dessus.
+          Pour ce faire cliquez sur le lien de creation.
+        </div>
+
+        <%= button_to new_user_account_venue_path,
+                      class: "btn btn btn-outline-primary",
+                      method: :get,
+                      remote: true do %>
+
+          <%= fa_icon("plus", "Créer un nouveau lieu", class: "mr-2") %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-7 col-lg-5 p-0 border-left">
+    <div class="vh-100 overflow-auto py-4 px-3">
+      <div id="venue-container">
+        <h3 class="text-center mb-5">
+          Pour ajouter un lieu a votre famille,
+          <br>
+          rien de plus simple !
+        </h3>
+
+        <div class="shadow rounded p-3 mx-4 mb-5 d-flex justify-content-between align-items-center">
+          <h4>
+            <%= fa_icon(
+              "users",
+              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum deleniti error distinctio corporis, alias tempore ut vero.",
+              class: "mr-4"
+            ) %>
+          </h4>
+        </div>
+
+         <h3 class="text-center mb-5">
+          Pour ajouter un lieu a votre famille,
+          <br>
+          rien de plus simple !
+        </h3>
+
+        <div class="shadow rounded p-3 mx-4 mb-5 d-flex justify-content-between align-items-center">
+          <h4>
+            <%= fa_icon(
+              "users",
+              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum deleniti error distinctio corporis, alias tempore ut vero.",
+              class: "mr-4"
+            ) %>
+          </h4>
+        </div>
+
+        <div class="text-center">
+          <%= button_to new_user_account_venue_path,
+                        class: "btn btn btn-outline-primary",
+                        method: :get,
+                        remote: true do %>
+
+            <%= fa_icon("plus", "Créer un nouveau lieu pour la famille #{@current_family.name}", class: "mr-2") %>
+          <% end %>
         </div>
       </div>
     </div>
