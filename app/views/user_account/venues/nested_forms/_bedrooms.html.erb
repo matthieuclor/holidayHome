@@ -52,18 +52,18 @@
         <div class="col" v-for="(bedding, beddingIndex) in bedroom.beddings" :key="`bedding-${beddingIndex}`">
           <div class="form-group hidden venue_bedrooms_beddings_id">
             <input v-model="bedding.id"
-                    type="hidden"
-                    :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][id]`"
-                    :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_id`"
-                    class="form-control hidden">
+                   type="hidden"
+                   :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][id]`"
+                   :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_id`"
+                   class="form-control hidden">
           </div>
 
           <div class="form-group hidden venue_bedrooms_beddings_bed_type">
             <input v-model="bedding.bedType"
-                    type="hidden"
-                    :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_type]`"
-                    :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_type`"
-                    class="form-control hidden">
+                   type="hidden"
+                   :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_type]`"
+                   :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_type`"
+                   class="form-control hidden">
           </div>
 
           <div class="form-group string required venue_bedrooms_beddings_bed_count">
@@ -73,23 +73,23 @@
             </label>
 
             <input v-model="bedding.bedCount"
-                  class="form-control string required"
-                  required="required"
-                  aria-required="true"
-                  type="number"
-                  :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_count]`"
-                  :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
+                   class="form-control string required"
+                   required="required"
+                   aria-required="true"
+                   type="number"
+                   :name="`venue[bedrooms_attributes][${bedroomIndex}][beddings_attributes][${beddingIndex}][bed_count]`"
+                   :id="`venue_bedrooms_attributes_${bedroomIndex}_beddings_attributes_${beddingIndex}_bed_count`">
           </div>
         </div>
       </div>
 
       <div class="form-group hidden venue_bedrooms__destroy m-0">
         <input v-model="bedroom.Destroy"
-              class="form-control hidden"
-              type="hidden"
-              value="false"
-              :name="`venue[bedrooms_attributes][${bedroomIndex}][_destroy]`"
-              :id="`venue_bedrooms_attributes_${bedroomIndex}__destroy`">
+               class="form-control hidden"
+               type="hidden"
+               value="false"
+               :name="`venue[bedrooms_attributes][${bedroomIndex}][_destroy]`"
+               :id="`venue_bedrooms_attributes_${bedroomIndex}__destroy`">
       </div>
     </div>
   </div>

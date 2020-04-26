@@ -77,9 +77,7 @@ module UserAccount
         bathrooms_attributes: [name: 'Salle de bain'],
         keys_attributes: [name: 'Clé', owner_id: 1],
         networks_attributes: [
-          name: 'Internet',
-          connection_type: 'wifi',
-          network_name: 'Livebox',
+          name: 'Livebox',
           password: 'UIYGKF6784GHJB'
         ],
         digital_codes_attributes: [name: 'Porte', password: 'E7689B'],

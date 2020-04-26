@@ -9,17 +9,25 @@ module UsersHelper
     )
   end
 
-  def user_avatar(user, format:[30, 30], avatar_class:"")
+  def user_avatar(user, format:[30, 30], avatar_class:"rounded-circle")
     if user.avatar.attached?
       image_tag(
         user.avatar.variant(resize_to_limit: format),
-        class: "rounded-circle #{avatar_class}"
+        class: "#{avatar_class}"
       )
     else
       content_tag(
         :span,
-        "#{user.first_name[0].upcase}.#{user.last_name[0].upcase}",
-        class: ["border border-secondary rounded-circle text-muted px-1 py-2"]
+        content_tag(
+          :span,
+          "#{user.first_name[0].upcase}.#{user.last_name[0].upcase}",
+          class: ["text-muted position-absolute"],
+          style: [
+            "top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: #{format[0]/3}px;"
+          ]
+        ),
+        class: ["border border-secondary #{avatar_class} position-relative"],
+        style: ["width: #{format[0]}px; height: #{format[1]}px;"]
       )
     end
   end

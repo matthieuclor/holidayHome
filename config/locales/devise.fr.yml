@@ -12,6 +12,8 @@ fr:
         first_name: Prénom
         last_name: Nom
         email: Email
+        phone: Téléphone
+        address: Adresse
         encrypted_password: Mot de passe crypté
         failed_attempts: Tentatives échouées
         last_sign_in_at: Date de la dernière connexion

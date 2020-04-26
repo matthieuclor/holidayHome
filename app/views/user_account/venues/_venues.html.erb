@@ -1,0 +1,76 @@
+<% @venues.each do |venue| %>
+  <%= link_to user_account_venue_path(venue),
+      class: "text-decoration-none",
+      remote: true do %>
+
+    <div class="card border-0 shadow mb-3">
+      <div class="row no-gutters">
+        <div class="col-lg-4 p-2">
+          <% if venue.photos.attached? %>
+            <%= image_tag(venue.photos.first.variant(
+                          resize_to_limit: [300, 200]),
+                          class: "card-img-top") %>
+          <% end %>
+        </div>
+        <div class="col-lg-8 p-2">
+          <div class="card-body p-0">
+            <h4 class="card-title text-dark mb-0">
+              <%= venue.name %>
+            </h4>
+
+            <p class="card-text font-weight-lighter text-dark mb-0">
+              <%= venue.address %>
+            </p>
+
+            <div class="d-flex flex-wrap text-muted">
+              <div class="border rounded py-1 px-2 mr-2 mt-2">
+                <%= fa_icon(
+                  "users",
+                  "#{venue.beddings_count} " +
+                  "Place".pluralize(venue.beddings_count),
+                  class: "mr-2") %>
+              </div>
+
+              <div class="border rounded py-1 px-2 mr-2 mt-2">
+                <%= fa_icon(
+                  "bed",
+                  "#{venue.bedrooms_count} " +
+                  "Chambre".pluralize(venue.bedrooms_count),
+                  class: "mr-2") %>
+              </div>
+
+              <div class="border rounded py-1 px-2 mr-2 mt-2">
+                 <%= fa_icon(
+                  "shower",
+                  "#{venue.bathrooms_count} " +
+                  "Salle de bain".pluralize(venue.bathrooms_count),
+                  class: "mr-2") %>
+              </div>
+
+              <% if venue.with_network %>
+                <div class="border rounded py-1 px-2 mr-2 mt-2">
+                  <%= fa_icon("wifi", "Internet", class: "mr-2") %>
+                </div>
+              <% end %>
+
+              <% unless venue.baby_beddings_count.zero? %>
+                <div class="border rounded py-1 px-2 mr-2 mt-2">
+                  <%= fa_icon(
+                      "baby",
+                      "#{venue.baby_beddings_count} " +
+                      "Lit".pluralize(venue.baby_beddings_count) +
+                      " bébé",
+                      class: "mr-2") %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-center">
+    <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
+  </div>
+<% end %>

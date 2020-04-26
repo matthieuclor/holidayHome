@@ -62,9 +62,15 @@
                   <div class="card-body">
                     <ul class="list-group list-group-flush">
                       <% @users[family.id].each do |user| %>
-                        <li class="list-group-item p-1">
-                          <%= user_avatar(user, format: [25, 25], avatar_class: "mr-1") %>
-                          <%= "#{user.full_name}, " %>
+                        <li class="list-group-item p-1 d-flex">
+                          <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+
+                          <%= link_to user_account_user_path(user),
+                                      class: "text-decoration-none",
+                                      remote: true do %>
+
+                            <span class="text-dark mr-2"><%= user.full_name %></span>
+                          <% end %>
                           <span class="text-muted"><%= user.email %></span>
                         </li>
                       <% end %>

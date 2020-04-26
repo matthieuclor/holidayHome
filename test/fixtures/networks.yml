@@ -1,6 +1,4 @@
 network:
   name: Connection principale
-  connection_type: 0
-  network_name: Livebox-34
   password: HJEFZ864645FEZ674FZF768
   venue_id: 1

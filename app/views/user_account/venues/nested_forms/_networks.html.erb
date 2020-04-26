@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-between">
   <h4 class="d-flex align-items-center mb-3">
-    Réseau :
+    Réseaux :
     <span v-show="venue.withNetwork" class="badge badge-secondary ml-2">
       {{countObject(venue.networks)}}
     </span>
@@ -37,12 +37,12 @@
         </div>
 
         <div class="form-row">
-          <div class="col-6">
+          <div class="col-5">
             <div class="form-group string required venue_networks_name"
                 :class="formGroupClass(network, 'name')">
 
               <label class="string required" :for="`venue_networks_attributes_${networkIndex}_name`">
-                Nom <abbr title="obligatoire">*</abbr>
+                Nom du réseau <abbr title="obligatoire">*</abbr>
               </label>
 
               <input v-model="network.name"
@@ -60,74 +60,9 @@
             </div>
           </div>
 
-          <div class="col-4">
-            <fieldset class="form-group radio_buttons required venue_networks_connection_type"
-                      :class="formGroupClass(network, 'connectionType')">
-
-              <legend class="col-form-label pt-0">
-                Connection type <abbr title="obligatoire">*</abbr>
-              </legend>
-
-              <input v-model="network.connectionType"
-                    type="hidden"
-                    :name="`venue[networks_attributes][${networkIndex}][connection_type]`">
-
-              <% Network.connection_types.each do |type, id| %>
-                <div class="form-check form-check-inline">
-                  <input class="form-check-input is-valid radio_buttons required"
-                        :class="inputClass(network, 'connectionType')"
-                        aria-required="true"
-                        type="radio"
-                        value="<%= type %>"
-                        :checked="network.connectionType == '<%= type %>'"
-                        :name="`venue[networks_attributes][${networkIndex}][connection_type]`"
-                        :id="`venue_networks_attributes_${networkIndex}_connection_type_<%= type %>`">
-
-                  <label class="form-check-label collection_radio_buttons"
-                        :for="`venue_networks_attributes_${networkIndex}_connection_type_<%= type %>`">
-                    <%= type %>
-                  </label>
-                  <div v-for="networkError in network.errors['connectionType']" class="invalid-feedback">
-                    {{networkError}}
-                  </div>
-                </div>
-              <% end %>
-            </fieldset>
-          </div>
-
-          <div class="col-2 d-flex justify-content-end align-items-start">
-            <button @click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
-              <%= fa_icon("trash") %>
-            </button>
-          </div>
-        </div>
-
-        <div class="form-row">
-          <div class="col-6">
-            <div class="form-group string venue_networks_network_name"
-                :class="formGroupClass(network, 'networkName')">
-
-              <label class="string" :for="`venue_networks_attributes_${networkIndex}_network_name`">
-                Nom du réseau
-              </label>
-
-              <input v-model="network.networkName"
-                    class="form-control string"
-                    :class="inputClass(network, 'networkName')"
-                    type="text"
-                    :name="`venue[networks_attributes][${networkIndex}][network_name]`"
-                    :id="`venue_networks_attributes_${networkIndex}_network_name`"
-                    placeholder="Livebox-09D9">
-
-              <div v-for="networkError in network.errors['networkName']" class="invalid-feedback">
-                {{networkError}}
-              </div>
-            </div>
-          </div>
-
-          <div class="col-6">
+          <div class="col-5">
             <div class="form-group string venue_networks_password"
-                :class="formGroupClass(network, 'password')">
+                 :class="formGroupClass(network, 'password')">
 
               <label class="string" :for="`venue_networks_attributes_${networkIndex}_password`">
                 Mot de passe du réseau
@@ -145,6 +80,12 @@
                 {{networkError}}
               </div>
             </div>
+          </div>
+
+          <div class="col-2 d-flex justify-content-end align-items-start">
+            <button @click.prevent="removeObject('network', networkIndex)" class="btn btn-danger">
+              <%= fa_icon("trash") %>
+            </button>
           </div>
         </div>
 

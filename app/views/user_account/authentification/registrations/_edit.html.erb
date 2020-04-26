@@ -21,7 +21,13 @@
   </div>
 
   <%= f.input :email,
+              required: true,
               hint: "En cas de mise à jour de l'email, un mail vous sera envoyé pour confirmer celui-ci." %>
+
+  <div class="form-row">
+    <%= f.input :phone, wrapper_html: { class: "col-4" } %>
+    <%= f.input :address, wrapper_html: { class: "col-8" } %>
+  </div>
 
   <%= f.input :current_password,
               label: "Mot de passe",

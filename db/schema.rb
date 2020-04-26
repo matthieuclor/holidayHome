@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_21_155337) do
+ActiveRecord::Schema.define(version: 2020_04_26_182121) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -134,8 +134,6 @@ ActiveRecord::Schema.define(version: 2020_04_21_155337) do
 
   create_table "networks", force: :cascade do |t|
     t.string "name"
-    t.integer "connection_type", default: 0
-    t.string "network_name"
     t.string "password"
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
@@ -162,6 +160,8 @@ ActiveRecord::Schema.define(version: 2020_04_21_155337) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "step", default: 0
     t.bigint "current_family_id"
+    t.string "phone"
+    t.string "address"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

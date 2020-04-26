@@ -59,6 +59,10 @@
                 <%= link_to "Invitations", user_account_sended_invitations_path, class: "nav-link" %>
               </li>
 
+              <li class="nav-item <%= 'active' if controller_name == 'users' %>">
+                <%= link_to "Membres", user_account_users_path, class: "nav-link" %>
+              </li>
+
               <li class="nav-item <%= 'active' if controller_name == 'venues' %>">
                 <%= link_to "Lieux", user_account_venues_path, class: "nav-link" %>
               </li>

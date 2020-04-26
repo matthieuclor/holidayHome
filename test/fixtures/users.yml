@@ -3,6 +3,8 @@ matthieu:
   first_name: Matthieu
   last_name: Clor
   email: matthieuclor@gmail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password01') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
@@ -14,6 +16,8 @@ pierre:
   first_name: Pierre
   last_name: Izard
   email: pierreizard@gmail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password02') %>
   confirmed_at: <%= DateTime.now %>
 
@@ -22,6 +26,8 @@ olivia:
   first_name: Olivia
   last_name: Clor
   email: oliviaclor@gmail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password03') %>
   confirmed_at: <%= DateTime.now %>
 
@@ -30,6 +36,8 @@ user_locked:
   first_name: User
   last_name: Locked
   email: userlocked@mail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password04') %>
   confirmed_at: <%= DateTime.now %>
   locked_at: <%= DateTime.now %>

@@ -18,51 +18,9 @@
     </div>
 
     <% if @venues.present? %>
-      <% @venues.each do |venue| %>
-        <%= link_to user_account_venue_path(venue),
-            class: "text-decoration-none",
-            remote: true do %>
-
-          <div class="card border-0 shadow mb-3">
-            <div class="row no-gutters">
-              <div class="col-lg-4 p-2">
-                <% if venue.photos.attached? %>
-                  <%= image_tag(venue.photos.first.variant(
-                                resize_to_limit: [300, 200]),
-                                class: "card-img-top") %>
-                <% end %>
-              </div>
-              <div class="col-lg-8 p-2">
-                <div class="card-body p-0">
-                  <h4 class="card-title text-dark mb-0">
-                    <%= venue.name %>
-                  </h4>
-
-                  <p class="card-text font-weight-lighter text-dark">
-                    <%= venue.address %>
-                  </p>
-
-                  <p class="card-text text-muted">
-                    <%= venue.beddings_count %>
-                    <%= "Place".pluralize(venue.beddings_count) %>
-                    <span>&bull;</span>
-                    <%= venue.bedrooms_count %>
-                    <%= "Chambre".pluralize(venue.bedrooms_count) %>
-                    <span>&bull;</span>
-                    <%= venue.bathrooms_count %>
-                    <%= "Salle de bain".pluralize(venue.bathrooms_count) %>
-
-                    <% if venue.with_network %>
-                      <span>&bull;</span>
-                      <%= fa_icon("wifi", "Internet", class: "mr-2") %>
-                    <% end %>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
-      <% end %>
+      <div id="venues-container">
+        <%= render "venues" %>
+      </div>
     <% else %>
       <div class="shadow rounded p-3 d-flex justify-content-between align-items-center">
         <div class="alert alert-warning m-0">
@@ -86,47 +44,7 @@
   <div class="col-7 col-lg-5 p-0 border-left">
     <div class="vh-100 overflow-auto py-4 px-3">
       <div id="venue-container">
-        <h3 class="text-center mb-5">
-          Pour ajouter un lieu a votre famille,
-          <br>
-          rien de plus simple !
-        </h3>
-
-        <div class="shadow rounded p-3 mx-4 mb-5 d-flex justify-content-between align-items-center">
-          <h4>
-            <%= fa_icon(
-              "users",
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum deleniti error distinctio corporis, alias tempore ut vero.",
-              class: "mr-4"
-            ) %>
-          </h4>
-        </div>
-
-         <h3 class="text-center mb-5">
-          Pour ajouter un lieu a votre famille,
-          <br>
-          rien de plus simple !
-        </h3>
-
-        <div class="shadow rounded p-3 mx-4 mb-5 d-flex justify-content-between align-items-center">
-          <h4>
-            <%= fa_icon(
-              "users",
-              "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nostrum deleniti error distinctio corporis, alias tempore ut vero.",
-              class: "mr-4"
-            ) %>
-          </h4>
-        </div>
-
-        <div class="text-center">
-          <%= button_to new_user_account_venue_path,
-                        class: "btn btn btn-outline-primary",
-                        method: :get,
-                        remote: true do %>
-
-            <%= fa_icon("plus", "Créer un nouveau lieu pour la famille #{@current_family.name}", class: "mr-2") %>
-          <% end %>
-        </div>
+        <%= render "skeleton" %>
       </div>
     </div>
   </div>

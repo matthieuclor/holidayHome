@@ -1,0 +1,7 @@
+if ($("#user-modal").length > 0) {
+  $("#user-modal").modal("hide")
+}
+
+$("#modal-container").html("<%= j render "user_account/users/user" %>")
+
+$("#user-modal").modal("show")

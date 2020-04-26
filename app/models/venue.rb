@@ -6,7 +6,7 @@ class Venue < ApplicationRecord
   GOOGLE_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap"
   GOOGLE_MAP_ZOOM = "11"
   GOOGLE_MAP_SIZE = "400x400"
-  GOOGLE_MAP_TYPE = "hybrid"
+  GOOGLE_MAP_TYPE = "roadmap"
   GOOGLE_MAP_FORMAT = "png"
 
   has_many_attached :photos, dependent: :destroy
@@ -43,22 +43,7 @@ class Venue < ApplicationRecord
   validates :name, uniqueness: { scope: :family_id }
 
   before_save :attach_map, if: -> (obj) { obj.lat_changed? || obj.lng_changed? }
-
-  def attach_map
-    self.map.attach(
-      io: open(
-        GOOGLE_MAP_URL +
-        "?center=#{self.lat},#{self.lng}" +
-        "&zoom=#{GOOGLE_MAP_ZOOM}" +
-        "&size=#{GOOGLE_MAP_SIZE}" +
-        "&maptype=#{GOOGLE_MAP_TYPE}" +
-        "&markers=#{self.lat},#{self.lng}" +
-        "&format=#{GOOGLE_MAP_FORMAT}" +
-        "&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
-      ),
-      filename: "#{self.name.parameterize}.#{GOOGLE_MAP_FORMAT}"
-    )
-  end
+  before_save :remove_nested_objects
 
   def to_builder
     Jbuilder.new do |venue|
@@ -90,5 +75,31 @@ class Venue < ApplicationRecord
       venue.home_services home_services.map { |home_service| home_service.to_builder.attributes! }
       venue.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
     end
+  end
+
+  private
+
+  def attach_map
+    self.map.attach(
+      io: open(
+        GOOGLE_MAP_URL +
+        "?center=#{self.lat},#{self.lng}" +
+        "&zoom=#{GOOGLE_MAP_ZOOM}" +
+        "&size=#{GOOGLE_MAP_SIZE}" +
+        "&maptype=#{GOOGLE_MAP_TYPE}" +
+        "&markers=#{self.lat},#{self.lng}" +
+        "&format=#{GOOGLE_MAP_FORMAT}" +
+        "&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
+      ),
+      filename: "#{self.name.parameterize}.#{GOOGLE_MAP_FORMAT}"
+    )
+  end
+
+  def remove_nested_objects
+    return if self.with_network && self.with_digital_code && self.with_home_service
+
+    Network.destroy(self.networks.pluck(:id)) unless self.with_network
+    DigitalCode.destroy(self.digital_codes.pluck(:id)) unless self.with_digital_code
+    HomeService.destroy(self.home_services.pluck(:id)) unless self.with_home_service
   end
 end

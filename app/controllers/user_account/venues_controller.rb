@@ -8,15 +8,19 @@ module UserAccount
     before_action :set_venue, only: [:show, :edit, :update, :destroy]
 
     def index
-      @venues = @current_family
-        .venues
-        .with_attached_photos
-        .includes(bedrooms: [:beddings])
+      @pagy, @venues = pagy(
+        @current_family
+          .venues
+          .with_attached_photos
+          .includes(bedrooms: [:beddings]),
+          items: 10
+      )
 
       @venues = VenueDecorator.wrap(@venues)
     end
 
     def show
+      @venue = VenueDecorator.new(@venue)
     end
 
     def new
@@ -75,8 +79,14 @@ module UserAccount
     def set_venue
       @venue = Venue
         .with_attached_photos
-        .includes(:bathrooms, :home_services, :keys, :networks, :digital_codes, bedrooms: [:beddings])
-        .find(params[:id])
+        .includes(
+          :bathrooms,
+          :home_services,
+          :networks,
+          :digital_codes,
+          bedrooms: [:beddings],
+          keys: [:owner]
+        ).find(params[:id])
     end
 
     def venue_params

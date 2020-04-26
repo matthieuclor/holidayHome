@@ -10,7 +10,7 @@ class NetworkTest < ActiveSupport::TestCase
     assert network.save
   end
 
-  %i(name connection_type venue).each do |attibute|
+  %i(name venue).each do |attibute|
     test "should not save network without #{attibute}" do
       network = build(:network, { venue: @venue })
       network.send("#{attibute}=", nil)
@@ -18,12 +18,7 @@ class NetworkTest < ActiveSupport::TestCase
     end
   end
 
-  test "should not save network with wrong connection type" do
-    network = build(:network, { venue: @venue, connection_type: nil })
-    assert_not network.save
-  end
-
-  test "should not save network with the same name of other venue bedroom" do
+  test "should not save network with the same name of other venue network" do
     first_network = create(:network, { venue: @venue })
     second_network = build(:network, {
       venue: first_network.venue,
