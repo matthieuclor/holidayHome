@@ -20,6 +20,7 @@ pierre:
   address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password02') %>
   confirmed_at: <%= DateTime.now %>
+  current_family_id: 2
 
 olivia:
   id: 3
@@ -30,6 +31,7 @@ olivia:
   address: 12 Rue du test
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password03') %>
   confirmed_at: <%= DateTime.now %>
+  current_family_id: 1
 
 user_locked:
   id: 4
