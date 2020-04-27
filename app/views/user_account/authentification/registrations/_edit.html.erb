@@ -7,7 +7,7 @@
                   class: "btn btn-sm btn-danger ml-3",
                   data: { confirm: "Etes-vous sûr ?" } do %>
 
-      <%= fa_icon('trash', 'Effacer mon avatar', class: "mr-2") %>
+      <%= fa_icon('trash', 'Supprimer mon avatar', class: "mr-2") %>
     <% end %>
   </div>
 <% end %>
@@ -16,17 +16,28 @@
   <%= f.input :avatar %>
 
   <div class="form-row">
-    <%= f.input :first_name, wrapper_html: { class: "col-6" } %>
-    <%= f.input :last_name, wrapper_html: { class: "col-6" } %>
+    <%= f.input :first_name,
+                input_html: { placeholder: "Jean" },
+                wrapper_html: { class: "col-6" } %>
+
+    <%= f.input :last_name,
+                input_html: { placeholder: "Dupont" },
+                wrapper_html: { class: "col-6" } %>
   </div>
 
   <%= f.input :email,
               required: true,
+              input_html: { placeholder: "jean.dupont@mail.com" },
               hint: "En cas de mise à jour de l'email, un mail vous sera envoyé pour confirmer celui-ci." %>
 
   <div class="form-row">
-    <%= f.input :phone, wrapper_html: { class: "col-4" } %>
-    <%= f.input :address, wrapper_html: { class: "col-8" } %>
+    <%= f.input :phone,
+                input_html: { placeholder: "06 67 89 76 54" },
+                wrapper_html: { class: "col-4" } %>
+
+    <%= f.input :address,
+                input_html: { placeholder: "23 Rue de rivoli" },
+                wrapper_html: { class: "col-8" } %>
   </div>
 
   <%= f.input :current_password,

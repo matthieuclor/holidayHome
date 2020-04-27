@@ -12,7 +12,9 @@
                     input_html: { placeholder: "Dupont" } %>
       </div>
 
-      <%= f.input :email, input_html: { placeholder: "jean.dupont@mail.com" } %>
+      <%= f.input :email,
+                  required: true,
+                  input_html: { placeholder: "jean.dupont@mail.com" } %>
 
       <%= f.input :password,
                   required: true,

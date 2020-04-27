@@ -21,12 +21,12 @@ module UsersHelper
         content_tag(
           :span,
           "#{user.first_name[0].upcase}.#{user.last_name[0].upcase}",
-          class: ["text-muted position-absolute"],
+          class: ["text-dark position-absolute"],
           style: [
             "top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: #{format[0]/3}px;"
           ]
         ),
-        class: ["border border-secondary #{avatar_class} position-relative"],
+        class: ["d-block bg-light #{avatar_class} position-relative"],
         style: ["width: #{format[0]}px; height: #{format[1]}px;"]
       )
     end

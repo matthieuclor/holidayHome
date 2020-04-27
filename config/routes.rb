@@ -26,6 +26,7 @@ Rails.application.routes.draw do
     resources :dashboards, only: [:index]
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
+    resource :current_venues, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :venues
     resources :users, only: [:index, :show]

@@ -12,14 +12,21 @@ module UserAccount
     end
 
     def show
-      if FamilyLink.where(user_id: params[:id],
-                          family_id: current_user.current_family_id).present?
-
+      if user_is_part_of_family?
         @user = UserDecorator.new(User.with_attached_avatar.find(params[:id]))
       else
         flash[:error] = "Vous n'êtes pas censé voir cet utilisateur"
         render js: "location.reload()", status: :unauthorized
       end
+    end
+
+    private
+
+    def user_is_part_of_family?
+      FamilyLink.where(
+        user_id: params[:id],
+        family_id: current_user.family_links.pluck(:family_id)
+      ).present?
     end
   end
 end

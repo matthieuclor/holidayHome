@@ -160,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_04_26_182121) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "step", default: 0
     t.bigint "current_family_id"
+    t.bigint "current_venue_id"
     t.string "phone"
     t.string "address"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true

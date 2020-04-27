@@ -54,7 +54,7 @@
   <%= "Chambre".pluralize(@venue.bedrooms_count) %>
   <span>&bull;</span>
   <%= @venue.bathrooms_count %>
-  <%= "Salle de bain".pluralize(@venue.bathrooms_count) %>
+  <%= "Salle".pluralize(@venue.bathrooms_count) + " de bain" %>
 
   <% if @venue.with_network %>
     <span>&bull;</span>
