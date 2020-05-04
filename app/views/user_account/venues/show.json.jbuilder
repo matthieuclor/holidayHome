@@ -1,12 +1,13 @@
-json.id @venue.id
-json.name @venue.name
-json.address @venue.address
-json.beddings_count @venue.beddings_count
-json.bedrooms_count @venue.bedrooms_count
-json.bathrooms_count @venue.bathrooms_count
-json.with_network @venue.with_network
-json.baby_beddings_count @venue.baby_beddings_count
-json.comment @venue.comment
+json.(@venue, :id,
+  :name,
+  :address,
+  :beddings_count,
+  :bedrooms_count,
+  :bathrooms_count,
+  :with_network,
+  :baby_beddings_count,
+  :comment
+)
 
 if @venue.photos.attached?
   json.photos @venue.photos do |photo|
@@ -19,45 +20,28 @@ if @venue.map.attached?
 end
 
 json.bedrooms @venue.bedrooms do |bedroom|
-  json.id bedroom.id
-  json.name bedroom.name
+  json.(bedroom, :id, :name)
 
   json.beddings bedroom.beddings do |bedding|
-    json.id bedding.id
+    json.(bedding, :id, :bed_count)
     json.bed_type Bedding.human_attribute_name("bed_type.#{bedding.bed_type}")
-    json.bed_count bedding.bed_count
   end
 end
 
-json.bathrooms @venue.bathrooms do |bathroom|
-  json.id bathroom.id
-  json.name bathroom.name
-end
+json.bathrooms @venue.bathrooms { |bathroom| json.(bathroom, :id, :name) }
 
 json.keys @venue.keys do |key|
-  json.id key.id
-  json.name key.name
+  json.(key, :id, :name)
   json.owner key.owner, :id, :first_name, :last_name
 end
 
-json.networks @venue.networks do |network|
-  json.id network.id
-  json.name network.name
-  json.password network.password
-end
+json.networks @venue.networks { |network| json.(network, :id, :name, :password) }
 
 json.digital_codes @venue.digital_codes do |digital_code|
-  json.id digital_code.id
-  json.name digital_code.name
-  json.password digital_code.password
+  json.(digital_code, :id, :name, :password)
 end
 
 json.home_services @venue.home_services do |home_service|
-  json.id home_service.id
-  json.name home_service.name
-  json.person_in_charge home_service.person_in_charge
-  json.phone home_service.phone
-  json.email home_service.email
-  json.address home_service.address
+  json.(home_service, :id, :name, :person_in_charge, :phone, :email, :address)
 end
 

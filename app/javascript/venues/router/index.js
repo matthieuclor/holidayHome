@@ -2,26 +2,31 @@ import Vue from 'vue/dist/vue.esm'
 import VueRouter from 'vue-router'
 import VenueSkeleton from 'venues/components/venue/venue_skeleton'
 import Venue from 'venues/components/venue/venue'
+import VenueForm from 'venues/components/venue/venue_form'
 
 Vue.use(VueRouter)
 
 export default new VueRouter({
-  mode: 'history',
   routes: [
     {
-      name:'venues',
-      path: '/user_account/venues',
+      name: 'venues',
+      path: '/',
       component: VenueSkeleton
     },
     {
-      name:'venue',
-      path: '/user_account/venues/:id',
+      name: 'venue',
+      path: '/:id',
       component: Venue,
       props: true
     },
     {
-      path: '/user_account/venues/*',
-      redirect: '/user_account/venues'
+      name: 'newVenue',
+      path: '/new',
+      component: VenueForm,
+    },
+    {
+      path: '*',
+      redirect: '/'
     }
   ]
 })

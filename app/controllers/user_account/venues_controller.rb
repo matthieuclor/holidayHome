@@ -16,6 +16,8 @@ module UserAccount
       #     items: 10
       # )
 
+      # @venues = VenueDecorator.wrap(@venues)
+
       respond_to do |format|
         format.html
         format.json do
@@ -40,7 +42,7 @@ module UserAccount
         beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
       )
 
-      build_json_objects
+      # build_json_objects
     end
 
     def create

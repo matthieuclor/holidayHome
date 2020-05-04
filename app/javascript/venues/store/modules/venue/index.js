@@ -4,7 +4,9 @@ import getters from './getters'
 
 const state = {
   venueItems: [],
-  venueItem: null
+  venueItem: null,
+  newVenueItem: null,
+  formIsEditing: false
 }
 
 const venueModule = {
