@@ -1,10 +1,17 @@
 <template>
-  <div>
+  <div v-if="venueFormItem">
     <h1>
-      {{ (formIsEditing ? "Editer" : "Créer") + " un lieu" }}
+      {{ (id ? "Editer" : "Créer") + " un lieu" }}
     </h1>
 
-    <form v-if="newVenueItem" @submit.prevent="sendVenueForm">
+    <form @submit.prevent="submitVenueForm">
+      <div class="form-group hidden venue_id form-group-valid">
+        <input type="hidden"
+               :value="venueFormItem.id"
+               name="venue[id]"
+               id="venue_id"
+               class="form-control is-valid hidden">
+      </div>
 
       <div class="form-group file optional venue_photos">
         <label for="venue_photos" class="file optional">
@@ -25,15 +32,17 @@
               required="required"
               aria-required="true"
               type="text"
-              :value="newVenueItem.name"
+              :value="venueFormItem.name"
               name="venue[name]"
               id="venue_name"
-              class="form-control string required">
+              class="form-control string required"
+              :class="inputClass(venueFormItem, 'name')"
+              :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
       </div>
 
       <div class="form-group hidden venue_creator_id form-group-valid">
         <input type="hidden"
-              :value="newVenueItem.creator_id"
+              :value="venueFormItem.creatorId"
               name="venue[creator_id]"
               id="venue_creator_id"
               class="form-control is-valid hidden">
@@ -41,19 +50,35 @@
 
       <div class="form-group hidden venue_family_id form-group-valid">
         <input type="hidden"
-              :value="newVenueItem.family_id"
+              :value="venueFormItem.familyId"
               name="venue[family_id]"
               id="venue_family_id"
               class="form-control is-valid hidden">
       </div>
 
-      <VenuePlaces v-if="newVenueItem" />
+      <VenuePlaces v-if="venueFormItem" />
 
-      <BedroomListForm :bedrooms="newVenueItem.bedrooms" />
+      <BedroomListForm :bedrooms="venueFormItem.bedrooms" />
 
       <hr class="my-4">
 
-      <BathroomListForm :bathrooms="newVenueItem.bathrooms" />
+      <BathroomListForm :bathrooms="venueFormItem.bathrooms" />
+
+      <hr class="my-4">
+
+      <KeyListForm :keys="venueFormItem.keys" />
+
+      <hr class="my-4">
+
+      <NetworkListForm :networks="venueFormItem.networks" />
+
+      <hr class="my-4">
+
+      <DigitalCodeListForm :digitalCodes="venueFormItem.digitalCodes" />
+
+      <hr class="my-4">
+
+      <HomeServiceListForm :homeServices="venueFormItem.homeServices" />
 
       <hr class="my-4">
 
@@ -62,10 +87,12 @@
           Commentaire
         </label>
         <textarea placeholder="Choses à savoir, bon plan, précision sur le lieu..."
-                  :value="newVenueItem.comment"
+                  :value="venueFormItem.comment"
                   name="venue[comment]"
                   id="venue_comment"
-                  class="form-control text optional">
+                  class="form-control text optional"
+                  :class="inputClass(venueFormItem, 'comment')"
+                  :aria-invalid="!attributeIsValid(venueFormItem, 'comment')">
         </textarea>
       </div>
 
@@ -73,10 +100,10 @@
         <div class="custom-control custom-switch">
           <input name="venue[editable_for_others]"
                  type="hidden"
-                 :value="newVenueItem.editableForOthers">
+                 :value="venueFormItem.editableForOthers">
           <input type="checkbox"
-                 :value="newVenueItem.editableForOthers"
-                 :checked="newVenueItem.editableForOthers"
+                 :value="venueFormItem.editableForOthers"
+                 :checked="venueFormItem.editableForOthers"
                  name="venue[editable_for_others]"
                  id="venue_editable_for_others"
                  class="custom-control-input is-valid boolean optional">
@@ -88,6 +115,7 @@
       </fieldset>
 
       <input type="submit"
+             :disabled="venueFormIsSending"
              name="commit"
              value="Envoyer"
              class="btn btn-block btn-success">
@@ -99,31 +127,48 @@
   import VenuePlaces from 'venues/components/venue/venue_places'
   import BedroomListForm from 'venues/components/bedroom/bedroom_list_form'
   import BathroomListForm from 'venues/components/bathroom/bathroom_list_form'
+  import KeyListForm from 'venues/components/key/key_list_form'
+  import NetworkListForm from 'venues/components/network/network_list_form'
+  import DigitalCodeListForm from 'venues/components/digital_code/digital_code_list_form'
+  import HomeServiceListForm from 'venues/components/home_service/home_service_list_form'
+  import formMixin from 'venues/mixins/form_mixin'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'VenueForm',
+    props: ['id'],
     components: {
       VenuePlaces,
       BedroomListForm,
-      BathroomListForm
+      BathroomListForm,
+      KeyListForm,
+      NetworkListForm,
+      DigitalCodeListForm,
+      HomeServiceListForm
     },
     computed: {
-      ...mapGetters([
-        'newVenueItem',
-        'formIsEditing'
-      ])
+      ...mapGetters(['venueFormItem', 'venueFormIsSending'])
     },
+    mixins: [formMixin],
     methods: {
-      ...mapActions([
-        'getNewVenueItem'
-      ]),
-      sendVenueForm(event) {
-        const formData = new FormData(event.target)
+      ...mapActions(['getFormData', 'sendVenueForm']),
+      submitVenueForm(event) {
+        this.sendVenueForm(new FormData(event.target))
+        .then(response => {
+          this.$router.push({
+            name: 'venue',
+            params: { id: response.data.venue.id }
+          })
+        }).catch(error => {
+          console.log('error', error)
+        })
       }
     },
-    created() {
-      if (!this.newVenueItem) this.getNewVenueItem()
+    watch: {
+      id: {
+        handler() { this.getFormData(this.id) },
+        immediate: true
+      }
     }
   }
 </script>

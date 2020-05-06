@@ -45,38 +45,6 @@ class Venue < ApplicationRecord
   before_save :attach_map, if: -> (obj) { obj.lat_changed? || obj.lng_changed? }
   before_save :remove_nested_objects
 
-  def to_builder
-    Jbuilder.new do |venue|
-      venue.(self,
-             :id,
-             :name,
-             :address,
-             :city,
-             :postcode,
-             :country,
-             :country_code,
-             :administrative,
-             :county,
-             :lat,
-             :lng,
-             :with_network,
-             :with_digital_code,
-             :with_home_service,
-             :comment,
-             :editable_for_others,
-             :creator_id,
-             :family_id)
-
-      venue.bedrooms bedrooms.map { |bedroom| bedroom.to_builder.attributes! }
-      venue.bathrooms bathrooms.map { |bathroom| bathroom.to_builder.attributes! }
-      venue.keys keys.map { |key| key.to_builder.attributes! }
-      venue.networks networks.map { |network| network.to_builder.attributes! }
-      venue.digital_codes digital_codes.map { |digital_code| digital_code.to_builder.attributes! }
-      venue.home_services home_services.map { |home_service| home_service.to_builder.attributes! }
-      venue.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
-    end
-  end
-
   private
 
   def attach_map

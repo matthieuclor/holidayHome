@@ -33,6 +33,7 @@ module UserAccount
     end
 
     def new
+      @owners = @current_family.users.select(:id, :first_name, :last_name)
       @venue = @current_family.venues.build(creator: current_user)
       %i(bathrooms keys networks digital_codes home_services).each do |nested|
         @venue.send(nested).build
@@ -41,46 +42,36 @@ module UserAccount
       @venue.bedrooms.build(
         beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
       )
-
-      # build_json_objects
     end
 
     def create
       @venue = Venue.new(venue_params)
 
       if @venue.save
-        flash[:success] = "Le lieu a bien été créé"
-        render js: "location.reload()"
+        render :create, status: :created
       else
-        build_json_objects
-        flash[:error] = "Un problem est survenu lors de la creation du lieu"
+        pp @venue.errors
         render :new, status: :unprocessable_entity
       end
     end
 
     def edit
-      build_json_objects
     end
 
     def update
       if @venue.update(venue_params)
-        flash[:success] = "Le lieu a bien été mis à jour"
-        render js: "location.reload()"
+        render :update, status: :ok
       else
-        build_json_objects
-        flash[:error] = "Un problem est survenu lors de la mise à jour du lieu"
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @venue.destroy
-        flash[:success] = "La lieu a bien été supprimée"
+        render :edit, status: :unprocessable_entity
       else
-        flash[:error] = "Un problem est survenu lors de la suppression du lieu"
+        render nothing: true, status: :ok
       end
-
-      redirect_to user_account_venues_path
     end
 
     private
@@ -166,18 +157,6 @@ module UserAccount
           ]
         ]
       )
-    end
-
-    def build_json_objects
-      @json_venue = @venue.to_builder.target!
-      @json_new_bathroom = Bathroom.new.to_builder.target!
-      @json_new_key = Key.new.to_builder.target!
-      @json_new_network = Network.new.to_builder.target!
-      @json_new_digital_code = DigitalCode.new.to_builder.target!
-      @json_new_home_service = HomeService.new.to_builder.target!
-      @json_new_bedroom = Bedroom.new(
-        beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
-      ).to_builder.target!
     end
   end
 end

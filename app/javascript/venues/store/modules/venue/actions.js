@@ -11,9 +11,12 @@ export default {
       commit('UPDATE_VENUE_ITEM', response.data)
     })
   },
-  getNewVenueItem({ commit }) {
-    axios.get(`venues/new.json`).then((response) => {
-      commit('UPDATE_NEW_VENUE_ITEM', response.data)
+  getFormData({ commit }, id) {
+    const url = 'venues/' +  (id ? `${id}/edit.json` : 'new.json')
+
+    axios.get(url).then((response) => {
+      commit('UPDATE_FORM_VENUE_ITEM', response.data.venue)
+      commit('UPDATE_FORM_VENUE_OWNER_ITEMS', response.data.owners)
     })
   },
   addBedroom({ commit }) {
@@ -54,17 +57,81 @@ export default {
     commit('REMOVE_BEDROOM', index)
   },
   addBathroom({ commit }) {
+    commit('ADD_BATHROOM', { id: null, name: null, Destroy: false, errors: {} })
+  },
+  removeBathroom({ commit }, index) {
+    commit('REMOVE_BATHROOM', index)
+  },
+  addKey({ commit }) {
+    commit('ADD_KEY', { id: null, name: null, Destroy: null, errors: {} })
+  },
+  removeKey({ commit }, index) {
+    commit('REMOVE_KEY', index)
+  },
+  addNetwork({ commit }) {
     commit(
-      'ADD_BATHROOM',
+      'ADD_NETWORK',
+      { id: null, name: null, password: null, Destroy: null, errors: {} }
+    )
+  },
+  removeNetwork({ commit }, index) {
+    commit('REMOVE_NETWORK', index)
+  },
+  addDigitalCode({ commit }) {
+    commit(
+      'ADD_DIGITAL_CODE',
+      { id: null, name: null, password: null, Destroy: null, errors: {} }
+    )
+  },
+  removeDigitalCode({ commit }, index) {
+    commit('REMOVE_DIGITAL_CODE', index)
+  },
+  addHomeService({ commit }) {
+    commit(
+      'ADD_HOME_SERVICE',
       {
         id: null,
         name: null,
-        Destroy: false,
+        personInCharge: null,
+        address: null,
+        phone: null,
+        email: null,
+        Destroy: null,
         errors: {}
       }
     )
   },
-  removeBathroom({ commit }, index) {
-    commit('REMOVE_BATHROOM', index)
+  removeHomeService({ commit }, index) {
+    commit('REMOVE_HOME_SERVICE', index)
+  },
+  sendVenueForm({ commit, dispatch }, formData) {
+    commit('SET_VENUE_FORM_SENDING', true)
+
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+    const venueId = formData.get('venue[id]')
+    const method = venueId ? 'patch' : 'post'
+    const url = `/user_account/venues${venueId ? `/${venueId}` : '' }.json`
+
+    return new Promise((resolve, reject) => {
+      axios(
+        {
+          method: method,
+          url: url,
+          data: formData,
+          headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(response => {
+          dispatch('getVenueItems')
+          resolve(response)
+      }).catch(error => {
+          commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue)
+          reject(error)
+      })
+
+      commit('SET_VENUE_FORM_SENDING', false)
+    })
   }
 }

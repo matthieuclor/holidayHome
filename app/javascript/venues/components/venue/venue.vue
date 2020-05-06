@@ -3,13 +3,15 @@
     <div class="d-flex justify-content-between align-items-center">
       <h1>{{ venueItem.name }}</h1>
 
-      <button class="btn btn-primary">
-        <i class="fas fa-pen mr-2"></i>
-        Editer
-      </button>
+      <router-link :to="{ name: 'editVenue', params: { id: venueItem.id } }">
+        <button class="btn btn-primary">
+          <i class="fas fa-pen mr-2"></i>
+          Editer
+        </button>
+      </router-link>
     </div>
 
-    <div v-if="venueItem.photos.length > 0"
+    <div v-if="venueItem.photos"
         id="carouselIndicators"
         class="carousel slide"
         data-ride="carousel">

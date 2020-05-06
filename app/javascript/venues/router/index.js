@@ -14,19 +14,21 @@ export default new VueRouter({
       component: VenueSkeleton
     },
     {
+      name: 'newVenue',
+      path: '/new',
+      component: VenueForm
+    },
+    {
       name: 'venue',
       path: '/:id',
       component: Venue,
       props: true
     },
     {
-      name: 'newVenue',
-      path: '/new',
+      name: 'editVenue',
+      path: '/:id/edit',
       component: VenueForm,
-    },
-    {
-      path: '*',
-      redirect: '/'
+      props: true
     }
   ]
 })

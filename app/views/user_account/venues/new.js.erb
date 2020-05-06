@@ -1,7 +1,0 @@
-$("#venue-container").html("<%= j render "form" %>")
-
-<% if flash.present? %>
-  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
-<% end %>
-
-Turbolinks.dispatch("turbolinks:load")

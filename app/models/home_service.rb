@@ -6,19 +6,4 @@ class HomeService < ApplicationRecord
   validates :name, :person_in_charge, :venue, presence: true
   validates :name, uniqueness: { scope: :venue_id }
   validates :email, format: { with: Devise.email_regexp }, allow_blank: true
-
-  def to_builder
-    Jbuilder.new do |home_service|
-      home_service.(self,
-                    :id,
-                    :name,
-                    :person_in_charge,
-                    :address,
-                    :phone,
-                    :email,
-                    :_destroy)
-
-      home_service.errors self.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
-    end
-  end
 end
