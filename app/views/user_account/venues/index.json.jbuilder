@@ -1,4 +1,4 @@
-json.array! @venues do |venue|
+json.venues @venues do |venue|
   json.id venue.id
   json.name venue.name
   json.address venue.address
@@ -13,4 +13,12 @@ json.array! @venues do |venue|
       venue.photos.first.variant(resize_to_limit: [300, 200])
     )
   end
+end
+
+json.pagy do
+  json.prev @pagy.prev
+  json.t_prev pagy_t('pagy.nav.prev')
+  json.next @pagy.next
+  json.t_next pagy_t('pagy.nav.next')
+  json.series @pagy.series { |item| json.item item }
 end

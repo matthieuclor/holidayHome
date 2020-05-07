@@ -7,6 +7,8 @@
       <input ref="inputSearch"
              :value="venueFormItem.address"
              placeholder="12 Rue de Bellecote"
+             required="required"
+             aria-required="true"
              type="text"
              name="venue[address]"
              id="venue_address"
@@ -94,7 +96,7 @@
   import places from 'places.js'
 
   export default {
-    name: 'VenuePlaces',
+    name: 'VenuePlacesForm',
     data() {
       return {
         place: null,

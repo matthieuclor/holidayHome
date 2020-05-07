@@ -1,9 +1,10 @@
 import axios from 'axios'
 
 export default {
-  getVenueItems({ commit }) {
-    axios.get('venues.json').then((response) => {
-      commit('UPDATE_VENUE_ITEMS', response.data)
+  getVenueItems({ commit }, page = 1) {
+    axios.get(`venues.json?page=${page}`).then((response) => {
+      commit('UPDATE_VENUE_ITEMS', response.data.venues)
+      commit('UPDATE_VENUE_PAGY', response.data.pagy)
     })
   },
   getVenueItem({ commit }, id) {

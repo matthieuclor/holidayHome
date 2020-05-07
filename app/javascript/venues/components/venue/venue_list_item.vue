@@ -1,12 +1,17 @@
 <template>
   <router-link :to="{ name: 'venue', params: { id: venueItem.id } }"
                class="text-decoration-none">
-    <div class="card border-0 shadow mb-3">
+    <div class="card border-0 mb-3"
+         @mouseover="mouseover = true"
+         @mouseleave="mouseover = false"
+         :class="shadowType(venueItem.id)">
+
       <div class="row no-gutters">
         <div class="col-lg-4 p-2">
           <img v-if="venueItem.firstPhotoUrl"
                :src="venueItem.firstPhotoUrl"
                class="card-img-top">
+          <VenuePhotoSkeleton :height="100" v-else/>
         </div>
         <div class="col-lg-8 p-2">
           <div class="card-body p-0">
@@ -54,12 +59,22 @@
 </template>
 
 <script>
+  import textMixin from 'venues/mixins/text_mixin'
+  import VenuePhotoSkeleton from 'venues/components/venue/venue_photo_skeleton'
+
   export default {
     name: 'VenueListItem',
+    data() {
+      return { mouseover: false }
+    },
     props: ['venueItem'],
+    mixins: [textMixin],
+    components: {
+      VenuePhotoSkeleton
+    },
     methods: {
-      pluralize(count, string, suffix = 's') {
-        return `${count} ${string}${count > 1 ? suffix : ''}`
+      shadowType(id) {
+        return this.$route.params.id == id || this.mouseover ? 'shadow' : 'shadow-sm'
       }
     }
   }

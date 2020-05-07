@@ -26,13 +26,11 @@
 </template>
 
 <script>
+  import textMixin from 'venues/mixins/text_mixin'
+
   export default {
     name: 'Bedrooms',
     props: ['bedrooms'],
-    methods: {
-      pluralize(count, string, suffix = 's') {
-        return `${count} ${string}${count > 1 ? suffix : ''}`
-      }
-    }
+    mixins: [textMixin]
   }
 </script>

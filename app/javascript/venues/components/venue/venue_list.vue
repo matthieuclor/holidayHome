@@ -13,27 +13,27 @@
     <VenueListItem v-for="venueItem in venueItems"
                    :key="venueItem.id"
                    :venueItem="venueItem" />
+
+    <venuePagy />
   </div>
 </template>
 
 <script>
   import VenueListItem from 'venues/components/venue/venue_list_item'
+  import venuePagy from 'venues/components/venue/pagy'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'VenueList',
     components: {
-      VenueListItem
+      VenueListItem,
+      venuePagy
     },
     computed: {
-      ...mapGetters([
-        'venueItems'
-      ]),
+      ...mapGetters(['venueItems']),
     },
     methods: {
-      ...mapActions([
-        'getVenueItems'
-      ])
+      ...mapActions(['getVenueItems'])
     },
     created() {
       this.getVenueItems()

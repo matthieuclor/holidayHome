@@ -56,7 +56,7 @@
               class="form-control is-valid hidden">
       </div>
 
-      <VenuePlaces v-if="venueFormItem" />
+      <VenuePlacesForm v-if="venueFormItem" />
 
       <BedroomListForm :bedrooms="venueFormItem.bedrooms" />
 
@@ -124,7 +124,7 @@
 </template>
 
 <script>
-  import VenuePlaces from 'venues/components/venue/venue_places'
+  import VenuePlacesForm from 'venues/components/venue/venue_places_form'
   import BedroomListForm from 'venues/components/bedroom/bedroom_list_form'
   import BathroomListForm from 'venues/components/bathroom/bathroom_list_form'
   import KeyListForm from 'venues/components/key/key_list_form'
@@ -138,7 +138,7 @@
     name: 'VenueForm',
     props: ['id'],
     components: {
-      VenuePlaces,
+      VenuePlacesForm,
       BedroomListForm,
       BathroomListForm,
       KeyListForm,
@@ -160,7 +160,7 @@
             params: { id: response.data.venue.id }
           })
         }).catch(error => {
-          console.log('error', error)
+          this.scrollToFirstError()
         })
       }
     },

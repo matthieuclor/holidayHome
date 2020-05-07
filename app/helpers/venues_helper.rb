@@ -13,9 +13,9 @@ module VenuesHelper
         content_tag(
           :span,
           fa_icon("home"),
-          class: ["text-secondary position-absolute"],
+          class: ["text-muted position-absolute"],
           style: [
-            "top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: #{format[0]/3}px;"
+            "top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: #{format[1]/2}px;"
           ]
         ),
         class: ["d-block bg-light #{avatar_class} position-relative"],
