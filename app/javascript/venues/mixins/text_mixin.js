@@ -1,7 +1,8 @@
 export default {
   methods: {
     pluralize(count, string, suffix = 's') {
-      return `${count} ${string}${count > 1 ? suffix : ''}`
+      string = count > 1 ? string.split(' ').join(`${suffix} `) + suffix : string
+      return `${count} ${string}`
     }
   }
 }

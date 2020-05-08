@@ -6,7 +6,7 @@ json.venues @venues do |venue|
   json.bedrooms_count venue.bedrooms_count
   json.bathrooms_count venue.bathrooms_count
   json.with_network venue.with_network
-  json.baby_beddings_count venue.baby_beddings_count
+  json.baby_beds_count venue.baby_beds_count
 
   if venue.photos.attached?
     json.first_photo_url url_for(

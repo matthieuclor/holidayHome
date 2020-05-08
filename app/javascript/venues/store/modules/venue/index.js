@@ -7,8 +7,7 @@ const state = {
   venueItem: null,
   venueFormItem: null,
   venueOwnerFormItems: [],
-  venueFormIsSending: false,
-  venuePagy: {}
+  venuePagy: null
 }
 
 const venueModule = {

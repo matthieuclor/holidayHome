@@ -12,8 +12,6 @@ class Venue < ApplicationRecord
   has_many_attached :photos, dependent: :destroy
   has_one_attached :map, dependent: :destroy
 
-  has_many :bedrooms, dependent: :destroy
-  has_many :bathrooms, dependent: :destroy
   has_many :keys, dependent: :destroy
   has_many :networks, dependent: :destroy
   has_many :digital_codes, dependent: :destroy
@@ -24,15 +22,24 @@ class Venue < ApplicationRecord
 
   default_scope { order(:created_at) }
 
-  accepts_nested_attributes_for :bedrooms, :keys, :networks,
+  accepts_nested_attributes_for :keys, :networks,
                                 reject_if: -> (attr) { attr['name'].blank? },
                                 allow_destroy: true
 
-  accepts_nested_attributes_for :bathrooms, :digital_codes, :home_services,
+  accepts_nested_attributes_for :digital_codes, :home_services,
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates :name, :address, :creator, :family, presence: true
+  validates :name,
+            :address,
+            :creator,
+            :family,
+            :bedrooms_count,
+            :bathrooms_count,
+            :single_beds_count,
+            :double_beds_count,
+            :baby_beds_count,
+            presence: true
 
   validates :with_network,
             :with_digital_code,

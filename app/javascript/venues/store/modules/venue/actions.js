@@ -13,6 +13,7 @@ export default {
     })
   },
   getFormData({ commit }, id) {
+    commit('UPDATE_FORM_VENUE_ITEM', null)
     const url = 'venues/' +  (id ? `${id}/edit.json` : 'new.json')
 
     axios.get(url).then((response) => {
@@ -106,8 +107,6 @@ export default {
     commit('REMOVE_HOME_SERVICE', index)
   },
   sendVenueForm({ commit, dispatch }, formData) {
-    commit('SET_VENUE_FORM_SENDING', true)
-
     const csrfToken = document.querySelector('[name=csrf-token]').content
     const venueId = formData.get('venue[id]')
     const method = venueId ? 'patch' : 'post'
@@ -131,8 +130,20 @@ export default {
           commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue)
           reject(error)
       })
+    })
+  },
+  destroyVenueItem({ commit, dispatch }, id) {
+    const csrfToken = document.querySelector('[name=csrf-token]').content
 
-      commit('SET_VENUE_FORM_SENDING', false)
+    return new Promise((resolve, reject) => {
+      axios.delete(
+        `venues/${id}.json`,
+        { headers: { 'X-CSRF-TOKEN': csrfToken } }
+      ).then(response => {
+        commit('UPDATE_VENUE_ITEM', null)
+        dispatch('getVenueItems')
+        resolve(response)
+      }).catch(error => reject(error))
     })
   }
 }

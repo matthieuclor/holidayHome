@@ -20,7 +20,7 @@
 
 <script>
   import VenueListItem from 'venues/components/venue/venue_list_item'
-  import venuePagy from 'venues/components/venue/pagy'
+  import venuePagy from 'venues/components/venue/venue_pagy'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {

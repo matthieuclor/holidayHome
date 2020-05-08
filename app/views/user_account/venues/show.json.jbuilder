@@ -5,9 +5,13 @@ json.(@venue, :id,
   :bedrooms_count,
   :bathrooms_count,
   :with_network,
-  :baby_beddings_count,
+  :single_beds_count,
+  :double_beds_count,
+  :baby_beds_count,
   :comment
 )
+
+json.is_editable @venue.is_editable?
 
 if @venue.photos.attached?
   json.photos @venue.photos do |photo|
@@ -18,17 +22,6 @@ end
 if @venue.map.attached?
   json.map_url url_for(@venue.map.variant(resize_to_limit: [300, 300]))
 end
-
-json.bedrooms @venue.bedrooms do |bedroom|
-  json.(bedroom, :id, :name)
-
-  json.beddings bedroom.beddings do |bedding|
-    json.(bedding, :id, :bed_count)
-    json.bed_type Bedding.human_attribute_name("bed_type.#{bedding.bed_type}")
-  end
-end
-
-json.bathrooms @venue.bathrooms { |bathroom| json.(bathroom, :id, :name) }
 
 json.keys @venue.keys do |key|
   json.(key, :id, :name)
@@ -44,4 +37,3 @@ end
 json.home_services @venue.home_services do |home_service|
   json.(home_service, :id, :name, :person_in_charge, :phone, :email, :address)
 end
-

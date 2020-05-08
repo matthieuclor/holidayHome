@@ -9,6 +9,11 @@ Vue.use(VueRouter)
 export default new VueRouter({
   routes: [
     {
+      name: 'venues',
+      path: '/',
+      component: VenueSkeleton
+    },
+    {
       name: 'newVenue',
       path: '/new',
       component: VenueForm

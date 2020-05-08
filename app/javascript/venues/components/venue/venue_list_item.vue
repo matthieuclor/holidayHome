@@ -45,10 +45,10 @@
                 Internet
               </div>
 
-              <div v-if="venueItem.babyBeddingsCount > 0"
+              <div v-if="venueItem.babyBedsCount > 0"
                    class="border rounded py-1 px-2 mr-2 mt-2">
                   <i class="fas fa-baby mr-2"></i>
-                  {{ pluralize(venueItem.babyBeddingsCount, 'Lit') + " bébé" }}
+                  {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
               </div>
             </div>
           </div>

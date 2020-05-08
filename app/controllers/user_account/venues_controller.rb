@@ -12,11 +12,8 @@ module UserAccount
         format.html
         format.json do
           @pagy, @venues = pagy(
-            @current_family
-              .venues
-              .with_attached_photos
-              .includes(bedrooms: [:beddings]),
-              items: 5
+            @current_family.venues.with_attached_photos,
+            items: 5
           )
 
           @venues = VenueDecorator.wrap(@venues)
@@ -31,13 +28,10 @@ module UserAccount
     def new
       @owners = @current_family.users.select(:id, :first_name, :last_name)
       @venue = @current_family.venues.build(creator: current_user)
-      %i(bathrooms keys networks digital_codes home_services).each do |nested|
+
+      %i(keys networks digital_codes home_services).each do |nested|
         @venue.send(nested).build
       end
-
-      @venue.bedrooms.build(
-        beddings: Bedding.bed_types.keys.map { |k, v| Bedding.new(bed_type: k) }
-      )
     end
 
     def create
@@ -46,7 +40,6 @@ module UserAccount
       if @venue.save
         render :create, status: :created
       else
-        pp @venue.errors
         render :new, status: :unprocessable_entity
       end
     end
@@ -64,9 +57,9 @@ module UserAccount
 
     def destroy
       if @venue.destroy
-        render :edit, status: :unprocessable_entity
+        head :ok
       else
-        render nothing: true, status: :ok
+        head :unprocessable_entity
       end
     end
 
@@ -76,11 +69,9 @@ module UserAccount
       @venue = Venue
         .with_attached_photos
         .includes(
-          :bathrooms,
           :home_services,
           :networks,
           :digital_codes,
-          bedrooms: [:beddings],
           keys: [:owner]
         ).find(params[:id])
     end
@@ -103,14 +94,14 @@ module UserAccount
         :with_home_service,
         :comment,
         :editable_for_others,
+        :bedrooms_count,
+        :bathrooms_count,
+        :single_beds_count,
+        :double_beds_count,
+        :baby_beds_count,
         :creator_id,
         :family_id,
         photos: [],
-        bathrooms_attributes: [
-          :id,
-          :name,
-          :_destroy
-        ],
         keys_attributes: [
           :id,
           :name,
@@ -139,18 +130,6 @@ module UserAccount
           :phone,
           :email,
           :_destroy
-        ],
-        bedrooms_attributes: [
-          :id,
-          :name,
-          :_destroy,
-          beddings_attributes: [
-            :id,
-            :bed_type,
-            :bed_count,
-            :bedroom_id,
-            :_destroy
-          ]
         ]
       )
     end

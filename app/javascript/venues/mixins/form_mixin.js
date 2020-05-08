@@ -23,7 +23,7 @@ export default {
     scrollToFirstError() {
       const errors = document.getElementsByClassName('is-invalid')
       if (errors.length == 0) return
-      errors[0].scrollIntoView({ behavior: 'smooth', block: 'end' })
+      errors[0].scrollIntoView({ behavior: 'smooth', block: 'center' })
     }
   }
 }

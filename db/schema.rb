@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_26_182121) do
+ActiveRecord::Schema.define(version: 2020_05_08_184810) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,31 +44,6 @@ ActiveRecord::Schema.define(version: 2020_04_26_182121) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
-  end
-
-  create_table "bathrooms", force: :cascade do |t|
-    t.string "name"
-    t.bigint "venue_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["venue_id"], name: "index_bathrooms_on_venue_id"
-  end
-
-  create_table "beddings", force: :cascade do |t|
-    t.integer "bed_type", default: 0
-    t.integer "bed_count", default: 0
-    t.bigint "bedroom_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["bedroom_id"], name: "index_beddings_on_bedroom_id"
-  end
-
-  create_table "bedrooms", force: :cascade do |t|
-    t.string "name"
-    t.bigint "venue_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["venue_id"], name: "index_bedrooms_on_venue_id"
   end
 
   create_table "digital_codes", force: :cascade do |t|
@@ -191,6 +166,9 @@ ActiveRecord::Schema.define(version: 2020_04_26_182121) do
     t.bigint "family_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "single_beds_count", default: 0
+    t.integer "double_beds_count", default: 0
+    t.integer "baby_beds_count", default: 0
     t.index ["creator_id"], name: "index_venues_on_creator_id"
     t.index ["family_id"], name: "index_venues_on_family_id"
   end

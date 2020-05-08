@@ -76,8 +76,5 @@ export default {
     } else {
       state.venueFormItem.homeServices[index].Destroy = true
     }
-  },
-  SET_VENUE_FORM_SENDING(state, payload) {
-    state.venueFormIsSending = payload
   }
 }
