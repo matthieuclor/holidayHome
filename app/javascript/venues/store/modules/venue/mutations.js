@@ -17,26 +17,6 @@ export default {
   ADD_TO_VENUE_ITEMS(state, payload) {
     state.venueItems.push(payload)
   },
-  ADD_BEDROOM(state, payload) {
-    state.venueFormItem.bedrooms.push(payload)
-  },
-  REMOVE_BEDROOM(state, index) {
-    if (state.venueFormItem.bedrooms[index].id == null) {
-      state.venueFormItem.bedrooms.splice(index, 1)
-    } else {
-      state.venueFormItem.bedrooms[index].Destroy = true
-    }
-  },
-  ADD_BATHROOM(state, payload) {
-    state.venueFormItem.bathrooms.push(payload)
-  },
-  REMOVE_BATHROOM(state, index) {
-    if (state.venueFormItem.bathrooms[index].id == null) {
-      state.venueFormItem.bathrooms.splice(index, 1)
-    } else {
-      state.venueFormItem.bathrooms[index].Destroy = true
-    }
-  },
   ADD_KEY(state, payload) {
     state.venueFormItem.keys.push(payload)
   },

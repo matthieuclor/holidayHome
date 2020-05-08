@@ -5,13 +5,13 @@
     </h4>
 
     <div class="form-group row string required venue_bedrooms_count">
-      <label class="string required col-sm-5 col-form-label"
+      <label class="string required col-sm-5 col-form-label text-nowrap"
              for="venue_bedrooms_count">
 
         Nombre de chambres <abbr title="obligatoire">*</abbr>
       </label>
 
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <input :value="venueFormItem.bedroomsCount"
                 class="form-control string required"
                 required="required"
@@ -23,13 +23,13 @@
     </div>
 
     <div class="form-group row string required venue_single_beds_count">
-      <label class="string required col-sm-5 col-form-label"
+      <label class="string required col-sm-5 col-form-label text-nowrap"
              for="venue_single_beds_count">
 
         Nombre de lits simples <abbr title="obligatoire">*</abbr>
       </label>
 
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <input :value="venueFormItem.singleBedsCount"
                 class="form-control string required"
                 required="required"
@@ -41,13 +41,13 @@
     </div>
 
     <div class="form-group row string required venue_double_beds_count">
-      <label class="string required col-sm-5 col-form-label"
+      <label class="string required col-sm-5 col-form-label text-nowrap"
              for="venue_double_beds_count">
 
         Nombre de lits doubles <abbr title="obligatoire">*</abbr>
       </label>
 
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <input :value="venueFormItem.doubleBedsCount"
                 class="form-control string required"
                 required="required"
@@ -59,13 +59,13 @@
     </div>
 
     <div class="form-group row string required venue_baby_beds_count">
-      <label class="string required col-sm-5 col-form-label"
+      <label class="string required col-sm-5 col-form-label text-nowrap"
              for="venue_baby_beds_count">
 
         Nombre de lits bébés <abbr title="obligatoire">*</abbr>
       </label>
 
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <input :value="venueFormItem.babyBedsCount"
                 class="form-control string required"
                 required="required"

@@ -5,7 +5,7 @@
         {{ (id ? "Editer" : "Créer") + " un lieu" }}
       </h1>
 
-      <form @submit.prevent="submitVenueForm">
+      <form @submit.prevent="submitVenueForm" class="mt-4">
         <div class="form-group hidden venue_id form-group-valid">
           <input type="hidden"
                 :value="venueFormItem.id"
@@ -14,31 +14,41 @@
                 class="form-control is-valid hidden">
         </div>
 
-        <div class="form-group file optional venue_photos">
-          <label for="venue_photos" class="file optional">
+        <div class="form-group row file optional venue_photos">
+          <label for="venue_photos"
+                 class="file optional col-sm-2 col-form-label text-nowrap">
+
             Photos
           </label>
-          <input multiple="multiple"
-                type="file"
-                name="venue[photos][]"
-                id="venue_photos"
-                class="form-control-file file optional">
+
+          <div class="col-sm-10 d-flex align-items-center">
+            <input multiple="multiple"
+                  type="file"
+                  name="venue[photos][]"
+                  id="venue_photos"
+                  class="form-control-file file optional">
+          </div>
         </div>
 
-        <div class="form-group string required venue_name">
-          <label for="venue_name" class="string required">
+        <div class="form-group row string required venue_name">
+          <label for="venue_name"
+                 class="string required col-sm-2 col-form-label text-nowrap">
+
             Nom <abbr title="obligatoire">*</abbr>
           </label>
-          <input placeholder="Chalet à la montagne"
-                required="required"
-                aria-required="true"
-                type="text"
-                :value="venueFormItem.name"
-                name="venue[name]"
-                id="venue_name"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'name')"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
+
+          <div class="col-sm-10">
+            <input placeholder="Chalet à la montagne"
+                  required="required"
+                  aria-required="true"
+                  type="text"
+                  :value="venueFormItem.name"
+                  name="venue[name]"
+                  id="venue_name"
+                  class="form-control string required"
+                  :class="inputClass(venueFormItem, 'name')"
+                  :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
+          </div>
         </div>
 
         <div class="form-group hidden venue_creator_id form-group-valid">

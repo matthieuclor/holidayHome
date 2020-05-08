@@ -9,8 +9,6 @@ class VenueTest < ActiveSupport::TestCase
 
   test "should save venue with all dependencies" do
     venue = build(:venue_with_dependencies, {
-      bathrooms: [build(:bathroom)],
-      bedrooms: [build(:bedroom, beddings: [build(:bedding)])],
       keys: [build(:key_with_dependencies)],
       networks: [build(:network)],
       digital_codes: [build(:digital_code)],
@@ -18,11 +16,9 @@ class VenueTest < ActiveSupport::TestCase
     })
 
     assert venue.save
-    assert venue.bathrooms_count == 1
-    assert venue.bedrooms_count == 1
   end
 
-  %i(name address creator family).each do |attibute|
+  %i(name address creator family bathrooms_count single_beds_count double_beds_count baby_beds_count).each do |attibute|
     test "should not save venue without #{attibute}" do
       venue = build(:venue_with_dependencies)
       venue.send("#{attibute}=", nil)
@@ -46,11 +42,5 @@ class VenueTest < ActiveSupport::TestCase
     })
 
     assert_not second_venue.save
-  end
-
-  test "should create json venue with jbuilder" do
-    venue = create(:venue_with_dependencies)
-    json_venue = venue.to_builder.target!
-    assert ActiveSupport::JSON.decode(json_venue)["id"] == venue.id
   end
 end

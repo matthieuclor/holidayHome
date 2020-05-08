@@ -9,5 +9,8 @@ la_tania:
   with_home_service: true
   comment: Ceci est un commentaire, il commente quoi...
   editable_for_others: true
+  single_beds_count: 4
+  double_beds_count: 2
+  baby_beds_count: 1
   creator_id: 1
   family_id: 1

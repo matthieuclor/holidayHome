@@ -21,40 +21,41 @@ module UserAccount
       assert_response :success
     end
 
-    test "should get new" do
-      get new_user_account_venue_url, xhr: true
+    test "should get index as json" do
+      get user_account_venues_url, as: :json
       current_family = @controller.view_assigns["current_family"]
-      venue = @controller.view_assigns["venue"]
-      json_venue = @controller.view_assigns["json_venue"]
-      json_new_bathroom = @controller.view_assigns["json_new_bathroom"]
-      json_new_key = @controller.view_assigns["json_new_key"]
-      json_new_network = @controller.view_assigns["json_new_network"]
-      json_new_digital_code = @controller.view_assigns["json_new_digital_code"]
-      json_new_home_service = @controller.view_assigns["json_new_home_service"]
-      json_new_bedroom = @controller.view_assigns["json_new_bedroom"]
-
-      [
-        "json_venue",
-        "json_new_bathroom",
-        "json_new_key",
-        "json_new_network",
-        "json_new_digital_code",
-        "json_new_home_service",
-        "json_new_bedroom"
-      ].each { |attr| assert_instance_of String, binding.local_variable_get(attr) }
+      pagy = @controller.view_assigns["pagy"]
+      venues = @controller.view_assigns["venues"]
 
       assert_instance_of Family, current_family
+      assert_instance_of VenueDecorator, venues.first
+      assert_instance_of Pagy, pagy
+      assert_response :success
+    end
+
+    test "should get show as json" do
+      get user_account_venue_url(venues(:la_tania)), as: :json
+      venue = @controller.view_assigns["venue"]
+
+      assert_instance_of VenueDecorator, venue
+      assert_response :success
+    end
+
+    test "should get new as json" do
+      get new_user_account_venue_url, as: :json
+      current_family = @controller.view_assigns["current_family"]
+      owners = @controller.view_assigns["owners"]
+      venue = @controller.view_assigns["venue"]
+
+      assert_instance_of Family, current_family
+      assert_instance_of User, owners.first
       assert_instance_of Venue, venue
-      assert_instance_of Bedroom, venue.bedrooms.first
-      assert_instance_of Bathroom, venue.bathrooms.first
       assert_instance_of Key, venue.keys.first
       assert_instance_of Network, venue.networks.first
       assert_instance_of DigitalCode, venue.digital_codes.first
       assert_instance_of HomeService, venue.home_services.first
 
       assert venue.new_record?
-      assert venue.bedrooms.first.new_record?
-      assert venue.bathrooms.first.new_record?
       assert venue.keys.first.new_record?
       assert venue.networks.first.new_record?
       assert venue.digital_codes.first.new_record?
@@ -63,7 +64,7 @@ module UserAccount
       assert_response :success
     end
 
-    test "should create venue" do
+    test "should create venue as json" do
       post user_account_venues_url, params: { venue: {
         name: 'PLG',
         address: '12 rue du test',
@@ -72,9 +73,13 @@ module UserAccount
         with_home_service: true,
         comment: 'voici un commentaire.',
         editable_for_others: true,
+        bedrooms_count: 4,
+        bathrooms_count: 2,
+        single_beds_count: 4,
+        double_beds_count: 2,
+        baby_beds_count: 1,
         creator_id: 1,
         family_id: 1,
-        bathrooms_attributes: [name: 'Salle de bain'],
         keys_attributes: [name: 'Clé', owner_id: 1],
         networks_attributes: [
           name: 'Livebox',
@@ -87,36 +92,33 @@ module UserAccount
           address: '12 Rue du test',
           phone: '06 87 65 34 56',
           email: 'matthieu@mail.com'
-        ],
-        bedrooms_attributes: [
-          name: 'Chambre',
-          beddings_attributes: [
-            { bed_type: 'single', bed_count: 2 },
-            { bed_type: 'double', bed_count: 1 },
-            { bed_type: 'baby', bed_count: 0 }
-          ]
         ]
-      } }, xhr: true
+      } }, as: :json
 
       assert_response :success
     end
 
-    test "should get edit" do
-      get edit_user_account_venue_url(venues(:la_tania)), xhr: true
+    test "should get edit as json" do
+      get edit_user_account_venue_url(venues(:la_tania)), as: :json
+      current_family = @controller.view_assigns["current_family"]
+      venue = @controller.view_assigns["venue"]
+
+      assert_instance_of Family, current_family
+      assert_instance_of Venue, venue
       assert_response :success
     end
 
-    test "should update venue" do
+    test "should update venue as json" do
       patch user_account_venue_url(
         venues(:la_tania)
-      ), params: { venue: { name: 'La Tania updated' } }, xhr: true
+      ), params: { venue: { name: 'La Tania updated' } }, as: :json
 
       assert_response :success
     end
 
-    test "should destroy venue" do
-      delete user_account_venue_url(venues(:la_tania))
-      assert_redirected_to user_account_venues_url
+    test "should destroy venue as json" do
+      delete user_account_venue_url(venues(:la_tania)), as: :json
+      assert_response :success
     end
   end
 end

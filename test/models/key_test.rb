@@ -27,10 +27,4 @@ class KeyTest < ActiveSupport::TestCase
 
     assert_not second_key.save
   end
-
-  test "should create json key with jbuilder" do
-    key = create(:key_with_dependencies, { venue: @venue })
-    json_key = key.to_builder.target!
-    assert ActiveSupport::JSON.decode(json_key)["id"] == key.id
-  end
 end

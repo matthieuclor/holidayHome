@@ -5,13 +5,13 @@
     </h4>
 
     <div class="form-group row string required venue_bathrooms_count">
-      <label class="string required col-sm-5 col-form-label"
+      <label class="string required col-sm-5 col-form-label text-nowrap"
              for="venue_bathrooms_count">
 
         Nombre de salles de bains <abbr title="obligatoire">*</abbr>
       </label>
 
-      <div class="col-sm-2">
+      <div class="col-sm-3">
         <input :value="venueFormItem.bathroomsCount"
                 class="form-control string required"
                 required="required"

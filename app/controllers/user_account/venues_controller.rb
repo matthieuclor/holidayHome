@@ -6,6 +6,7 @@ module UserAccount
 
     before_action :set_current_family, only: [:index, :new, :create, :edit, :update]
     before_action :set_venue, only: [:show, :edit, :update, :destroy]
+    before_action :set_owners, only: [:new, :edit]
 
     def index
       respond_to do |format|
@@ -26,7 +27,6 @@ module UserAccount
     end
 
     def new
-      @owners = @current_family.users.select(:id, :first_name, :last_name)
       @venue = @current_family.venues.build(creator: current_user)
 
       %i(keys networks digital_codes home_services).each do |nested|
@@ -74,6 +74,10 @@ module UserAccount
           :digital_codes,
           keys: [:owner]
         ).find(params[:id])
+    end
+
+    def set_owners
+      @owners = @current_family.users.select(:id, :first_name, :last_name)
     end
 
     def venue_params

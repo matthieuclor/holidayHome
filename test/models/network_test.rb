@@ -27,10 +27,4 @@ class NetworkTest < ActiveSupport::TestCase
 
     assert_not second_network.save
   end
-
-  test "should create json network with jbuilder" do
-    network = create(:network, { venue: @venue })
-    json_network = network.to_builder.target!
-    assert ActiveSupport::JSON.decode(json_network)["id"] == network.id
-  end
 end

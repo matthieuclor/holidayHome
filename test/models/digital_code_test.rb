@@ -27,10 +27,4 @@ class DigitalCodeTest < ActiveSupport::TestCase
 
     assert_not second_digital_code.save
   end
-
-  test "should create json digital code with jbuilder" do
-    digital_code = create(:digital_code, { venue: @venue })
-    json_digital_code = digital_code.to_builder.target!
-    assert ActiveSupport::JSON.decode(json_digital_code)["id"] == digital_code.id
-  end
 end

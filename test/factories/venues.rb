@@ -9,6 +9,11 @@ FactoryBot.define do
     with_home_service { [true, false].sample }
     comment { Faker::Movies::HarryPotter.quote }
     editable_for_others { [true, false].sample }
+    bedrooms_count { Faker::Number.non_zero_digit }
+    bathrooms_count { Faker::Number.non_zero_digit }
+    single_beds_count { Faker::Number.non_zero_digit }
+    double_beds_count { Faker::Number.non_zero_digit }
+    baby_beds_count { Faker::Number.non_zero_digit }
 
     factory :venue_with_dependencies do
       after(:build) do |venue|

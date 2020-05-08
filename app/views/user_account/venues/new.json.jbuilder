@@ -30,7 +30,7 @@ json.venue do
   json.errors @venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
 
   json.keys @venue.keys do |key|
-    json.(key, :id, :name, :_destroy)
+    json.(key, :id, :name, :owner_id, :_destroy)
     json.errors key.errors.messages
   end
 

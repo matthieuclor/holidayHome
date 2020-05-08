@@ -32,10 +32,4 @@ class HomeServiceTest < ActiveSupport::TestCase
     home_service = build(:home_service, { venue: @venue, email: "wrongemail" })
     assert_not home_service.save
   end
-
-  test "should create json home service with jbuilder" do
-    home_service = create(:home_service, { venue: @venue })
-    json_home_service = home_service.to_builder.target!
-    assert ActiveSupport::JSON.decode(json_home_service)["id"] == home_service.id
-  end
 end

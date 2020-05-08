@@ -1,20 +1,23 @@
 <template>
   <div>
-    <div class="form-group string required venue_name">
-      <label for="venue_address" class="string required">
+    <div class="form-group row string required venue_name">
+      <label for="venue_address" class="string required col-sm-2 col-form-label text-nowrap">
         Adresse <abbr title="obligatoire">*</abbr>
       </label>
-      <input ref="inputSearch"
-             :value="venueFormItem.address"
-             placeholder="12 Rue de Bellecote"
-             required="required"
-             aria-required="true"
-             type="text"
-             name="venue[address]"
-             id="venue_address"
-             class="form-control string required"
-             :class="inputClass(venueFormItem, 'address')"
-             :aria-invalid="!attributeIsValid(venueFormItem, 'address')">
+
+      <div class="col-sm-10">
+        <input ref="inputSearch"
+              :value="venueFormItem.address"
+              placeholder="12 Rue de Bellecote"
+              required="required"
+              aria-required="true"
+              type="text"
+              name="venue[address]"
+              id="venue_address"
+              class="form-control string required"
+              :class="inputClass(venueFormItem, 'address')"
+              :aria-invalid="!attributeIsValid(venueFormItem, 'address')">
+      </div>
 
       <div v-for="(venueError, errorIndex) in venueFormItem.errors['address']"
            :key="errorIndex"
