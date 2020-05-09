@@ -82,9 +82,11 @@ export default {
         }
       ).then(response => {
           dispatch('getVenueItems')
+          commit('UPDATE_FLASHES', response.data.flashes)
           resolve(response)
       }).catch(error => {
           commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue)
+          commit('UPDATE_FLASHES', error.response.data.flashes)
           reject(error)
       })
     })
@@ -99,8 +101,19 @@ export default {
       ).then(response => {
         commit('UPDATE_VENUE_ITEM', null)
         dispatch('getVenueItems')
+        commit('UPDATE_FLASHES', response.data.flashes)
+        commit('UPDATE_SIDEBAR', false)
         resolve(response)
-      }).catch(error => reject(error))
+      }).catch(error => {
+        commit('UPDATE_FLASHES', error.response.data.flashes)
+        reject(error)
+      })
     })
+  },
+  clearFlashes({ commit }) {
+    commit('UPDATE_FLASHES', [])
+  },
+  updateSidebar({ commit }, sidebar) {
+    commit('UPDATE_SIDEBAR', sidebar)
   }
 }

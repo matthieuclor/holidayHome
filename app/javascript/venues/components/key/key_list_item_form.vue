@@ -92,9 +92,6 @@
 
   export default {
     name: 'KeyListItemForm',
-    data: {
-      selected: ''
-    },
     props: ['keyItem', 'index'],
     mixins: [formMixin],
     computed: {

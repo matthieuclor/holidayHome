@@ -31,12 +31,12 @@
       </a>
     </div>
 
-    <VenuePhotoSkeleton :height="300" v-else/>
+    <VenuePhotoSkeleton :height="300" v-else />
   </div>
 </template>
 
 <script>
-  import VenuePhotoSkeleton from 'venues/components/venue/venue_photo_skeleton'
+  import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
   import { mapGetters } from 'vuex'
 
   export default {

@@ -12,8 +12,6 @@
 <script>
   export default {
     name: 'VenuePhotoSkeleton',
-    props: [
-      'height'
-    ]
+    props: ['height']
   }
 </script>

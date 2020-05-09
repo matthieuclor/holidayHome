@@ -56,5 +56,11 @@ export default {
     } else {
       state.venueFormItem.homeServices[index].Destroy = true
     }
+  },
+  UPDATE_FLASHES(state, payload) {
+    state.flashes = payload
+  },
+  UPDATE_SIDEBAR(state, payload) {
+    state.sidebar = payload
   }
 }

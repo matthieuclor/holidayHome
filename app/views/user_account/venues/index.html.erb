@@ -2,12 +2,19 @@
   <%= javascript_pack_tag 'venues_vue', 'data-turbolinks-track': 'reload' %>
 <% end %>
 
-<div id="app" class="row ml-4">
-  <div class="col-5 col-lg-7 pt-4 overflow-auto" style="height: calc(100vh - 56px);">
+<div id="app" class="d-flex">
+  <div class="pt-4 px-3 overflow-auto w-100" style="height: calc(100vh - 56px);">
     <venue-list />
   </div>
 
-  <div class="col-7 col-lg-5 p-0 py-4 px-3 overflow-auto border-left" style="height: calc(100vh - 56px);">
+  <div class="sidebar py-4 overflow-auto border-left"
+       :class="{ active: sidebar }"
+       style="height: calc(100vh - 56px);">
+
     <venue-container />
+  </div>
+
+  <div id="v-toast-container">
+    <flash-message v-for="(flash, index) in flashes" :key="index" :flash="flash" />
   </div>
 </div>

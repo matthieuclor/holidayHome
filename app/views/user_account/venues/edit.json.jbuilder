@@ -64,3 +64,12 @@ json.owners @owners do |owner|
   json.id owner.id
   json.full_name "#{owner.first_name} #{owner.last_name}"
 end
+
+if flash.present?
+  json.flashes flash do |key, value|
+    json.key key
+    json.value value
+  end
+
+  flash.clear
+end

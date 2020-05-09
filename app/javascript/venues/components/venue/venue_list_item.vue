@@ -11,7 +11,7 @@
           <img v-if="venueItem.firstPhotoUrl"
                :src="venueItem.firstPhotoUrl"
                class="card-img-top">
-          <VenuePhotoSkeleton :height="100" v-else/>
+          <VenuePhotoSkeleton :height="100" v-else />
         </div>
         <div class="col-lg-8 p-2">
           <div class="card-body p-0">
@@ -60,7 +60,7 @@
 
 <script>
   import textMixin from 'venues/mixins/text_mixin'
-  import VenuePhotoSkeleton from 'venues/components/venue/venue_photo_skeleton'
+  import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
 
   export default {
     name: 'VenueListItem',

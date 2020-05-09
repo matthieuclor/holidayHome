@@ -10,15 +10,19 @@
       </router-link>
     </div>
 
+    <VenueListSkeleton v-if="venueItems.length == 0" />
+
     <VenueListItem v-for="venueItem in venueItems"
                    :key="venueItem.id"
-                   :venueItem="venueItem" />
+                   :venueItem="venueItem"
+                   v-else />
 
     <venuePagy />
   </div>
 </template>
 
 <script>
+  import VenueListSkeleton from 'venues/components/skeleton/venue_list_skeleton'
   import VenueListItem from 'venues/components/venue/venue_list_item'
   import venuePagy from 'venues/components/venue/venue_pagy'
   import { mapGetters, mapActions } from 'vuex'
@@ -26,6 +30,7 @@
   export default {
     name: 'VenueList',
     components: {
+      VenueListSkeleton,
       VenueListItem,
       venuePagy
     },

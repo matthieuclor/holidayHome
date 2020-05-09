@@ -77,7 +77,7 @@
         </button>
       </div>
     </div>
-    <div v-else>
+    <div v-else >
       <VenueSkeleton />
     </div>
   </div>
@@ -85,7 +85,7 @@
 
 <script>
   import VenuePhotos from 'venues/components/venue/venue_photos'
-  import VenueSkeleton from 'venues/components/venue/venue_skeleton'
+  import VenueSkeleton from 'venues/components/skeleton/venue_skeleton'
   import VenueBedroom from 'venues/components/venue/venue_bedroom'
   import VenueBathroom from 'venues/components/venue/venue_bathroom'
   import KeyList from 'venues/components/key/key_list'
@@ -109,13 +109,20 @@
       HomeServiceList
     },
     computed: {
-      ...mapGetters(['venueItem'])
+      ...mapGetters([
+        'venueItem',
+        'sidebar'
+      ])
     },
     mixins: [textMixin],
     methods: {
-      ...mapActions(['getVenueItem', 'destroyVenueItem']),
+      ...mapActions([
+        'getVenueItem',
+        'destroyVenueItem',
+        'updateSidebar'
+      ]),
       destroyVenue() {
-        if (confirm("Êtes-vous sûr de vouloir supprimer ce lieu ?")) {
+        if (confirm(`Êtes-vous sûr de vouloir supprimer ${this.venueItem.name} ?`)) {
           this.destroyVenueItem(this.id)
           .then(result => this.$router.push({ name: 'venues' }))
           .catch(error => null)
@@ -124,7 +131,10 @@
     },
     watch: {
       id: {
-        handler() { this.getVenueItem(this.id) },
+        handler() {
+          this.getVenueItem(this.id)
+          if (!this.sidebar) this.updateSidebar(true)
+        },
         immediate: true
       }
     }

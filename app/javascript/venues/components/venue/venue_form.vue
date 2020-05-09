@@ -137,12 +137,12 @@
       </form>
     </div>
 
-    <VenueFormSkeleton v-else/>
+    <VenueFormSkeleton v-else />
   </div>
 </template>
 
 <script>
-  import VenueFormSkeleton from 'venues/components/venue/venue_form_skeleton'
+  import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton'
   import VenuePlacesForm from 'venues/components/venue/venue_places_form'
   import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form'
   import VenueBathroomForm from 'venues/components/venue/venue_bathroom_form'
@@ -170,11 +170,18 @@
       HomeServiceListForm
     },
     computed: {
-      ...mapGetters(['venueFormItem'])
+      ...mapGetters([
+        'venueFormItem',
+        'sidebar'
+      ])
     },
     mixins: [formMixin],
     methods: {
-      ...mapActions(['getFormData', 'sendVenueForm']),
+      ...mapActions([
+        'getFormData',
+        'sendVenueForm',
+        'updateSidebar'
+      ]),
       submitVenueForm({ target }) {
         this.venueFormIsSending = true
         this.sendVenueForm(new FormData(target))
@@ -192,7 +199,10 @@
     },
     watch: {
       id: {
-        handler() { this.getFormData(this.id) },
+        handler() {
+          this.getFormData(this.id)
+          if (!this.sidebar) this.updateSidebar(true)
+        },
         immediate: true
       }
     }

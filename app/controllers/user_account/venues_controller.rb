@@ -38,8 +38,10 @@ module UserAccount
       @venue = Venue.new(venue_params)
 
       if @venue.save
+        flash[:success] = "Le lieu a bien été créé"
         render :create, status: :created
       else
+        flash[:error] = "Un problem est survenu lors de la création du lieu"
         render :new, status: :unprocessable_entity
       end
     end
@@ -49,17 +51,21 @@ module UserAccount
 
     def update
       if @venue.update(venue_params)
+        flash[:success] = "Le lieu a bien été mise à jour"
         render :update, status: :ok
       else
+        flash[:error] = "Un problem est survenu lors de la mise à jour de du lieu"
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @venue.destroy
-        head :ok
+        flash[:success] = "Le lieu a bien été supprimé"
+        render :destroy, status: :ok
       else
-        head :unprocessable_entity
+        flash[:error] = "Un problem est survenu lors de la suppression du lieu"
+        render :destroy, status: :unprocessable_entity
       end
     end
 

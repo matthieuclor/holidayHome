@@ -7,7 +7,9 @@ const state = {
   venueItem: null,
   venueFormItem: null,
   venueOwnerFormItems: [],
-  venuePagy: null
+  venuePagy: null,
+  flashes: [],
+  sidebar: false
 }
 
 const venueModule = {
