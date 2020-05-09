@@ -53,7 +53,8 @@
 
               <option v-for="(owner, ownerIndex) in venueOwnerFormItems"
                       :key="ownerIndex"
-                      :value="owner.id">
+                      :value="owner.id"
+                      :selected="owner.id == keyItem.ownerId">
                 {{ owner.fullName }}
               </option>
             </select>
@@ -91,6 +92,9 @@
 
   export default {
     name: 'KeyListItemForm',
+    data: {
+      selected: ''
+    },
     props: ['keyItem', 'index'],
     mixins: [formMixin],
     computed: {
