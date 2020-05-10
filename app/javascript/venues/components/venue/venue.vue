@@ -4,12 +4,23 @@
       <div class="d-flex justify-content-between align-items-center">
         <h1>{{ venueItem.name }}</h1>
 
-        <router-link v-if="venueItem.isEditable" :to="{ name: 'editVenue', params: { id: venueItem.id } }">
-          <button class="btn btn-primary">
-            <i class="fas fa-pen mr-2"></i>
-            Editer
+        <div class="d-flex flex-row align-items-center">
+          <router-link v-if="venueItem.isEditable"
+                      :to="{ name: 'editVenue', params: { id: venueItem.id } }">
+
+            <button class="btn btn-primary">
+              <i class="fas fa-pen mr-2"></i>
+              Editer
+            </button>
+          </router-link>
+
+          <button @click="hideSidebar"
+                  type="button"
+                  class="btn btn-link text-muted ml-2">
+
+            <i class="far fa-times fa-2x"></i>
           </button>
-        </router-link>
+        </div>
       </div>
 
       <VenuePhotos />
@@ -109,17 +120,14 @@
       HomeServiceList
     },
     computed: {
-      ...mapGetters([
-        'venueItem',
-        'sidebar'
-      ])
+      ...mapGetters(['venueItem'])
     },
     mixins: [textMixin],
     methods: {
       ...mapActions([
         'getVenueItem',
         'destroyVenueItem',
-        'updateSidebar'
+        'hideSidebar'
       ]),
       destroyVenue() {
         if (confirm(`Êtes-vous sûr de vouloir supprimer ${this.venueItem.name} ?`)) {
@@ -131,10 +139,7 @@
     },
     watch: {
       id: {
-        handler() {
-          this.getVenueItem(this.id)
-          if (!this.sidebar) this.updateSidebar(true)
-        },
+        handler() { this.getVenueItem(this.id) },
         immediate: true
       }
     }

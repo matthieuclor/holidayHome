@@ -113,7 +113,10 @@ export default {
   clearFlashes({ commit }) {
     commit('UPDATE_FLASHES', [])
   },
-  updateSidebar({ commit }, sidebar) {
-    commit('UPDATE_SIDEBAR', sidebar)
+  showSidebar({ commit }) {
+    commit('UPDATE_SIDEBAR', true)
+  },
+  hideSidebar({ commit }) {
+    commit('UPDATE_SIDEBAR', false)
   }
 }

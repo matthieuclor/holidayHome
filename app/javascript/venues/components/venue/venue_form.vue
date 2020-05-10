@@ -1,9 +1,18 @@
 <template>
   <div>
     <div v-if="venueFormItem">
-      <h1>
-        {{ (id ? "Editer" : "Créer") + " un lieu" }}
-      </h1>
+      <div class="d-flex justify-content-between align-items-center">
+        <h1>
+          {{ (id ? "Editer" : "Créer") + " un lieu" }}
+        </h1>
+
+        <button @click="hideSidebar"
+                type="button"
+                class="btn btn-link text-muted ml-2">
+
+          <i class="far fa-times fa-2x"></i>
+        </button>
+      </div>
 
       <form @submit.prevent="submitVenueForm" class="mt-4">
         <div class="form-group hidden venue_id form-group-valid">
@@ -170,17 +179,14 @@
       HomeServiceListForm
     },
     computed: {
-      ...mapGetters([
-        'venueFormItem',
-        'sidebar'
-      ])
+      ...mapGetters(['venueFormItem'])
     },
     mixins: [formMixin],
     methods: {
       ...mapActions([
         'getFormData',
         'sendVenueForm',
-        'updateSidebar'
+        'hideSidebar'
       ]),
       submitVenueForm({ target }) {
         this.venueFormIsSending = true
@@ -199,10 +205,7 @@
     },
     watch: {
       id: {
-        handler() {
-          this.getFormData(this.id)
-          if (!this.sidebar) this.updateSidebar(true)
-        },
+        handler() { this.getFormData(this.id) },
         immediate: true
       }
     }

@@ -2,6 +2,7 @@
   <router-link :to="{ name: 'venue', params: { id: venueItem.id } }"
                class="text-decoration-none">
     <div class="card border-0 mb-3"
+         @click="showSidebar"
          @mouseover="mouseover = true"
          @mouseleave="mouseover = false"
          :class="shadowType(venueItem.id)">
@@ -61,6 +62,7 @@
 <script>
   import textMixin from 'venues/mixins/text_mixin'
   import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
+  import { mapActions } from 'vuex'
 
   export default {
     name: 'VenueListItem',
@@ -73,6 +75,7 @@
       VenuePhotoSkeleton
     },
     methods: {
+      ...mapActions(['showSidebar']),
       shadowType(id) {
         return this.$route.params.id == id || this.mouseover ? 'shadow' : 'shadow-sm'
       }
