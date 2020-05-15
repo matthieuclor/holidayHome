@@ -6,7 +6,7 @@
              :src="venueItem.photoUrl"
              class="rounded">
 
-        <VenuePhotoSkeleton :height="100" v-else />
+        <VenuePhotoSkeleton :size="[200, 100]" v-else />
       </div>
       <div class="p-2">
         <div class="card-body p-0">

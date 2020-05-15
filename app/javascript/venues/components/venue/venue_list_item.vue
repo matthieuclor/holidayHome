@@ -12,7 +12,7 @@
           <img v-if="venueItem.firstPhotoUrl"
                :src="venueItem.firstPhotoUrl"
                class="card-img-top">
-          <VenuePhotoSkeleton :height="100" v-else />
+          <VenuePhotoSkeleton :size="[200, 100]" v-else />
         </div>
         <div class="col-lg-8 p-2">
           <div class="card-body p-0">
