@@ -103,7 +103,7 @@
   import NetworkList from 'venues/components/network/network_list'
   import DigitalCodeList from 'venues/components/digital_code/digital_code_list'
   import HomeServiceList from 'venues/components/home_service/home_service_list'
-  import textMixin from 'venues/mixins/text_mixin'
+  import textMixin from 'shared/mixins/text_mixin'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {

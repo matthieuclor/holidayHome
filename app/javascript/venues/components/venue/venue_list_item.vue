@@ -12,7 +12,7 @@
           <img v-if="venueItem.firstPhotoUrl"
                :src="venueItem.firstPhotoUrl"
                class="card-img-top">
-          <VenuePhotoSkeleton :size="[200, 100]" v-else />
+          <VenuePhotoSkeleton :width="100" v-else />
         </div>
         <div class="col-lg-8 p-2">
           <div class="card-body p-0">
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-  import textMixin from 'venues/mixins/text_mixin'
+  import textMixin from 'shared/mixins/text_mixin'
   import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
   import { mapActions } from 'vuex'
 

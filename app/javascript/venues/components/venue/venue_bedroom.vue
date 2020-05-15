@@ -22,7 +22,7 @@
 </template>
 
 <script>
-  import textMixin from 'venues/mixins/text_mixin'
+  import textMixin from 'shared/mixins/text_mixin'
   import { mapGetters } from 'vuex'
 
   export default {

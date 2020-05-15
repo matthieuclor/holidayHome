@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import DigitalCodeListItemForm from './digital_code_list_item_form'
   import { mapGetters, mapActions } from 'vuex'
 

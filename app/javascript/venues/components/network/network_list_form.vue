@@ -42,7 +42,7 @@
 </template>
 
 <script>
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import NetworkListItemForm from './network_list_item_form'
   import { mapGetters, mapActions } from 'vuex'
 

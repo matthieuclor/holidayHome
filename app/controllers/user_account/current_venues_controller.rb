@@ -3,8 +3,11 @@
 module UserAccount
   class CurrentVenuesController < UserAccount::ApplicationController
     def update
-      current_user.update(current_venue_id: current_venue_params[:id])
-      redirect_back fallback_location: user_account_dashboards_path
+      if current_user.update(current_venue_id: current_venue_params[:id])
+        flash[:success] = "Le lieu a bien été sélectionné"
+      else
+        flash[:error] = "Un problem est survenu lors de la sélection du lieu"
+      end
     end
 
     private

@@ -159,7 +159,7 @@
   import NetworkListForm from 'venues/components/network/network_list_form'
   import DigitalCodeListForm from 'venues/components/digital_code/digital_code_list_form'
   import HomeServiceListForm from 'venues/components/home_service/home_service_list_form'
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {

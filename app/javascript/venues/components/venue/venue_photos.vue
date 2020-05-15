@@ -31,7 +31,7 @@
       </a>
     </div>
 
-    <VenuePhotoSkeleton :size="[300, 200]" v-else />
+    <VenuePhotoSkeleton :width="200" v-else />
   </div>
 </template>
 

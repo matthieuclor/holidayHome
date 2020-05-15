@@ -1,15 +1,15 @@
 <template>
-  <div class="d-flex justify-content-center mt-4">
-    <div class="d-flex flex-wrap px-2">
+  <div>
+    <div class="d-flex overflow-auto mt-2 px-4">
       <VenueListItem v-for="venueItem in venueItems"
-                     :key="venueItem.id"
-                     :venueItem="venueItem"
-                     :active="venueItem.id == currentVenueId" />
-
-      <BookingForm />
-
-      <BookingCalendar />
+                      :key="venueItem.id"
+                      :venueItem="venueItem"
+                      :currentVenueId="currentVenueId" />
     </div>
+
+    <BookingForm />
+
+    <BookingCalendar />
   </div>
 </template>
 

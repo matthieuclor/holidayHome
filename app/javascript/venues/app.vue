@@ -15,7 +15,7 @@
 <script>
   import VenueList from 'venues/components/venue/venue_list'
   import VenueContainer from 'venues/components/venue/venue_container'
-  import FlashMessage from 'venues/components/toast/flash_message'
+  import FlashMessage from 'shared/components/flash/flash_message'
   import { mapGetters } from 'vuex'
 
   export default {

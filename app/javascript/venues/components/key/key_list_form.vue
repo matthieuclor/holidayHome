@@ -20,7 +20,7 @@
 </template>
 
 <script>
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import KeyListItemForm from './key_list_item_form'
   import { mapActions } from 'vuex'
 

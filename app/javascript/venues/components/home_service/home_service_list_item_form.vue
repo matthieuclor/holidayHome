@@ -164,7 +164,7 @@
 </template>
 
 <script>
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import { mapActions } from 'vuex'
 
   export default {

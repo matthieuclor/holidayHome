@@ -44,7 +44,7 @@
 </template>
 
 <script>
-  import formMixin from 'venues/mixins/form_mixin'
+  import formMixin from 'shared/mixins/form_mixin'
   import HomeServiceListItemForm from './home_service_list_item_form'
   import { mapGetters, mapActions } from 'vuex'
 
