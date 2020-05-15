@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="pt-4 px-3 overflow-auto w-100" style="height: calc(100vh - 56px);">
     <div class="d-flex justify-content-between align-items-center">
       <h1>Mes lieux</h1>
       <router-link :to="{ name: 'newVenue' }">

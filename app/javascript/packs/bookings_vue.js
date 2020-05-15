@@ -1,15 +1,15 @@
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue/dist/vue.esm'
-import store from 'venues/store'
-import router from 'venues/router'
-import App from 'venues/app'
+import VCalendar from 'v-calendar'
+import store from 'bookings/store'
+import App from 'bookings/app'
 
 Vue.use(TurbolinksAdapter)
+Vue.use(VCalendar)
 
 document.addEventListener('turbolinks:load', () => {
   new Vue({
     store,
-    router,
     render: h => h(App)
   }).$mount('#app')
 })
