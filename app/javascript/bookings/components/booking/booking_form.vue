@@ -3,7 +3,7 @@
     <form class="form-inline">
       <div class="form-group">
         <label class="mr-2">
-          Faire une nouvelle demande de date pour&nbsp;
+          Faire une nouvelle demande de séjour pour&nbsp;
           <span class="font-weight-bold">{{ currentVenue.name }}</span>
         </label>
         <v-date-picker mode="range" v-model="booking.dateRange" />
