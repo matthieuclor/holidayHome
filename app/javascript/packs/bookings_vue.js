@@ -8,8 +8,9 @@ Vue.use(TurbolinksAdapter)
 Vue.use(VCalendar)
 
 document.addEventListener('turbolinks:load', () => {
-  new Vue({
+  const element = document.getElementById('bookings-vue')
+  if (element) new Vue({
     store,
     render: h => h(App)
-  }).$mount('#app')
+  }).$mount(element)
 })

@@ -30,13 +30,10 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-
   export default {
     name: 'FlashMessage',
     props: ['flash'],
     computed: {
-      ...mapActions(['clearFlashes']),
       bgClass() {
         return `bg-${this.flash.key == 'error' ? 'danger' : 'success' }`
       },
@@ -46,7 +43,9 @@
     },
     mounted() {
       $(this.$refs.toast).toast("show")
-      $(this.$refs.toast).on('hidden.bs.toast', () => this.clearFlashes)
+      $(this.$refs.toast).on('hidden.bs.toast', () => {
+        this.$store.dispatch('removeLastFlash')
+      })
     }
   }
 </script>

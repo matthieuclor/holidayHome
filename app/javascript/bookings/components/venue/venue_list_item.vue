@@ -2,7 +2,7 @@
   <div class="m-2 rounded"
        :class="shadowType(venueItem.id)"
        style="cursor: pointer;"
-       @click="callSetCurrentVenueId"
+       @click="callSetCurrentVenue"
        @mouseover="mouseover = true"
        @mouseleave="mouseover = false">
 
@@ -26,7 +26,7 @@
 
   export default {
     name: 'VenueListItem',
-    props: ['venueItem', 'currentVenueId'],
+    props: ['venueItem', 'currentVenue'],
     data() {
       return { mouseover: false }
     },
@@ -34,19 +34,12 @@
       VenuePhotoSkeleton
     },
     methods: {
-      ...mapActions([
-        'setCurrentVenueId'
-      ]),
+      ...mapActions(['setCurrentVenue']),
       shadowType(id) {
-        return this.currentVenueId == id || this.mouseover ? 'shadow' : 'shadow-sm'
+        return this.currentVenue.id == id || this.mouseover ? 'shadow' : 'shadow-sm'
       },
-      callSetCurrentVenueId() {
-        this.setCurrentVenueId(this.venueItem.id)
-        .then(response => {
-          console.log('success', response)
-        }).catch(error => {
-          console.log('error', error)
-        })
+      callSetCurrentVenue() {
+        this.setCurrentVenue(this.venueItem.id)
       }
     }
   }

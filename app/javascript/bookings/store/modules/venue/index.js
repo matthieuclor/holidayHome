@@ -3,9 +3,8 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  venueItems: [],
-  currentVenueId: null,
-  flashes: []
+  venueItems: null,
+  currentVenue: null
 }
 
 const venueModule = {

@@ -1,5 +1,5 @@
 export default {
-  clearFlashes({ commit }) {
-    commit('UPDATE_FLASHES', [])
+  removeLastFlash({ commit }) {
+    commit('REMOVE_LAST_FLASH')
   }
 }

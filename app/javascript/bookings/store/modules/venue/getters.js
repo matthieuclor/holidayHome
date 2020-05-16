@@ -1,4 +1,4 @@
 export default {
   venueItems: state => state.venueItems,
-  currentVenueId: state => state.currentVenueId
+  currentVenue: state => state.currentVenue
 }

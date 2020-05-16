@@ -7,9 +7,10 @@ import App from 'venues/app'
 Vue.use(TurbolinksAdapter)
 
 document.addEventListener('turbolinks:load', () => {
-  new Vue({
+  const element = document.getElementById('venues-vue')
+  if (element) new Vue({
     store,
     router,
     render: h => h(App)
-  }).$mount('#app')
+  }).$mount(element)
 })

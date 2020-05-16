@@ -2,8 +2,11 @@
 
 module UserAccount
   class CurrentVenuesController < UserAccount::ApplicationController
+    include CurrentVenue
+
     def update
       if current_user.update(current_venue_id: current_venue_params[:id])
+        set_current_venue
         flash[:success] = "Le lieu a bien été sélectionné"
       else
         flash[:error] = "Un problem est survenu lors de la sélection du lieu"

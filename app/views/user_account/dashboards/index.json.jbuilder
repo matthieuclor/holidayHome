@@ -1,6 +1,5 @@
 json.venues @venues do |venue|
-  json.id venue.id
-  json.name venue.name
+  json.(venue, :id, :name)
 
   if venue.photos.attached?
     json.photo_url url_for(
@@ -9,4 +8,4 @@ json.venues @venues do |venue|
   end
 end
 
-json.current_venue_id @current_venue.id
+json.current_venue(@current_venue, :id, :name)

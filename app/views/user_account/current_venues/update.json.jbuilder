@@ -1,4 +1,4 @@
-json.current_venue_id current_user.current_venue_id
+json.current_venue(@current_venue, :id, :name)
 
 if flash.present?
   json.flashes flash do |key, value|
