@@ -1,5 +1,5 @@
 import axios from 'axios'
-import qs from 'qs';
+import qs from 'qs'
 
 export default {
   getVenueItems({ commit }) {
@@ -20,7 +20,6 @@ export default {
       }
     ).then(response => {
       commit('UPDATE_CURRENT_VENUE', response.data.currentVenue)
-      commit('UPDATE_FLASHES', response.data.flashes)
     }).catch(error => {
       commit('UPDATE_FLASHES', error.response.data.flashes)
     })

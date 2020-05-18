@@ -30,6 +30,8 @@
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
+
   export default {
     name: 'FlashMessage',
     props: ['flash'],
@@ -41,10 +43,13 @@
         return `${this.flash.key == 'error' ? 'times' : 'check' }-circle`
       }
     },
+    methods: {
+      ...mapActions(['removeLastFlash'])
+    },
     mounted() {
       $(this.$refs.toast).toast("show")
       $(this.$refs.toast).on('hidden.bs.toast', () => {
-        this.$store.dispatch('removeLastFlash')
+        this.removeLastFlash()
       })
     }
   }

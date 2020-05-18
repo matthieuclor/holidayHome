@@ -10,3 +10,7 @@ fr:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Erreur, veuillez vérifier vos réponses:"
+    labels:
+      family:
+        name: Nom
+        days_for_approval: Jours laissés pour une demande de réservation

@@ -12,13 +12,14 @@ class Venue < ApplicationRecord
   has_many_attached :photos, dependent: :destroy
   has_one_attached :map, dependent: :destroy
 
+  belongs_to :creator, class_name: "User"
+  belongs_to :family, counter_cache: true
+
   has_many :keys, dependent: :destroy
   has_many :networks, dependent: :destroy
   has_many :digital_codes, dependent: :destroy
   has_many :home_services, dependent: :destroy
-
-  belongs_to :creator, class_name: "User"
-  belongs_to :family, counter_cache: true
+  has_many :bookings
 
   default_scope { order(:created_at) }
 

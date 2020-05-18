@@ -60,7 +60,7 @@ module UserAccount
     private
 
     def family_params
-      params.require(:family).permit(:name)
+      params.require(:family).permit(:name, :days_for_approval)
     end
 
     def set_family

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     resource :current_venues, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :venues
+    resources :bookings, only: [:index, :show, :create, :edit, :update, :destroy]
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
     resources :sended_invitations, only: [:index, :new, :create, :destroy] do
