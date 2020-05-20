@@ -7,9 +7,10 @@ module UserAccount
     def update
       if current_user.update(current_venue_id: current_venue_params[:id])
         set_current_venue
-        flash[:success] = "Le lieu a bien été sélectionné"
+        render :update, status: :ok
       else
         flash[:error] = "Un problem est survenu lors de la sélection du lieu"
+        render :update, status: :unprocessable_entity
       end
     end
 

@@ -26,8 +26,11 @@ export default {
       })
     })
   },
-  getBookingItems({ commit }) {
-    axios.get('bookings.json').then((response) => {
+  getBookingItems({ commit }, { month, year, monthCount }) {
+    axios.get(
+      'bookings.json',
+      { params: { month: month, year: year, count: monthCount } }
+    ).then((response) => {
       commit('UPDATE_BOOKING_ITEMS', response.data.bookings)
     })
   }

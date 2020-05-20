@@ -7,7 +7,16 @@ module UserAccount
     before_action :set_current_venue, only: [:index]
 
     def index
-      @bookings = @current_venue.bookings
+      from = Date.new(params['year'].to_i, params['month'].to_i)
+      to = from + params['count'].to_i.month
+
+      @bookings = BookingDecorator.wrap(
+        @current_venue
+          .bookings
+          .where(status: %i(pending accepted))
+          .where('DATE(bookings.from) >= ?', from)
+          .where('DATE(bookings.to) <= ?', to)
+      )
     end
 
     def show

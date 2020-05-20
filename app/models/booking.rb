@@ -23,9 +23,13 @@ class Booking < ApplicationRecord
   end
 
   def set_booking_approvals
-    self.family.users.each do |user|
-      next if self.user_id == user.id
-      BookingApproval.create(booking: self, user: user)
+    if self.family.days_for_approval.zero?
+      self.accepted!
+    else
+      self.family.users.each do |user|
+        next if self.user_id == user.id
+        BookingApproval.create(booking: self, user: user)
+      end
     end
   end
 end

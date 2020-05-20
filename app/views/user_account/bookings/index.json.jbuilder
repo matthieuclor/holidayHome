@@ -1,1 +1,1 @@
-json.bookings(@bookings, :id, :from, :to, :status, :deadline)
+json.bookings(@bookings, :id, :from, :to, :status, :deadline, :label)
