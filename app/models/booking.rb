@@ -6,6 +6,7 @@ class Booking < ApplicationRecord
 
   has_one :family, through: :venue
   has_many :booking_approvals, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   enum status: %i(pending accepted refused)
 
