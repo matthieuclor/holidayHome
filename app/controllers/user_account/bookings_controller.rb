@@ -7,15 +7,15 @@ module UserAccount
     before_action :set_current_venue, only: [:index]
 
     def index
-      from = Date.new(params['year'].to_i, params['month'].to_i)
-      to = from + params['count'].to_i.month
+      from = Date.parse(params["minDate"])
+      to = Date.parse(params["maxDate"])
 
       @bookings = BookingDecorator.wrap(
         @current_venue
           .bookings
           .where(status: %i(pending accepted))
-          .where('DATE(bookings.from) >= ?', from)
-          .where('DATE(bookings.to) <= ?', to)
+          .where(from: from..to)
+          .or(@current_venue.bookings.where(to: from..to))
       )
     end
 
@@ -32,8 +32,10 @@ module UserAccount
 
       if new_booking.save
         flash[:success] = "La demande a bien été créé"
+        render :create, status: :created
       else
         flash[:error] = "Un problem est survenu lors de la creation de la demande"
+        render :create, status: :unprocessable_entity
       end
     end
 

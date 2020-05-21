@@ -17,7 +17,11 @@
   export default {
     name: 'BookingCalendar',
     computed: {
-      ...mapGetters(['bookingItems', 'currentVenue']),
+      ...mapGetters([
+        'bookingItems',
+        'currentVenue',
+        'calendar'
+      ]),
       attributes() {
         return this.bookingItems.map(
           item => {
@@ -37,29 +41,37 @@
       },
     },
     methods: {
-      ...mapActions(['getBookingItems']),
+      ...mapActions([
+        'getBookingItems',
+        'updateCalendar'
+      ]),
       updatePage(event) {
         const calendar = this.$refs.calendar
+        if (!calendar) return
 
-        if (calendar) {
-          this.getBookingItems({
-            month: event.month,
-            year: event.year,
-            monthCount: calendar.count
-          })
-        }
+        this.updateCalendar({
+          month: event.month,
+          year: event.year,
+          monthCount: calendar.count
+        })
+
+        this.getBookingItems(this.calendar)
       }
     },
     watch: {
       currentVenue: {
         handler() {
-          const currentDate = new Date()
+          if (!this.calendar) {
+            const currentDate = new Date()
 
-          this.getBookingItems({
-            month: currentDate.getMonth() + 1,
-            year: currentDate.getFullYear(),
-            monthCount: 12
-          })
+            this.updateCalendar({
+              month: currentDate.getMonth() + 1,
+              year: currentDate.getFullYear(),
+              monthCount: 12
+            })
+          }
+
+          this.getBookingItems(this.calendar)
         },
         immediate: true
       }

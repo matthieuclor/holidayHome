@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'BookingForm',
@@ -23,10 +23,13 @@
     data() {
       return { dateRange: null }
     },
+    computed: {
+      ...mapGetters(['calendar'])
+    },
     methods: {
       ...mapActions(['createBooking']),
       submitBookingForm() {
-        this.createBooking(this.dateRange)
+        this.createBooking({ ...this.dateRange, ...this.calendar})
         .then(() => this.dateRange = null)
       }
     }
