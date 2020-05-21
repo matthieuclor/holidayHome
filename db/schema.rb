@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_18_161030) do
+ActiveRecord::Schema.define(version: 2020_05_21_193938) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,6 +129,18 @@ ActiveRecord::Schema.define(version: 2020_05_18_161030) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["owner_id"], name: "index_keys_on_owner_id"
     t.index ["venue_id"], name: "index_keys_on_venue_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "booking_approval_id"
+    t.bigint "booking_id"
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["booking_approval_id"], name: "index_messages_on_booking_approval_id"
+    t.index ["booking_id"], name: "index_messages_on_booking_id"
+    t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
   create_table "networks", force: :cascade do |t|
