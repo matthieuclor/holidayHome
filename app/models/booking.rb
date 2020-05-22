@@ -15,6 +15,7 @@ class Booking < ApplicationRecord
   validates :status, inclusion: { in: statuses.keys }
 
   before_validation :set_deadline, on: :create
+
   after_create :set_booking_approvals
 
   private
