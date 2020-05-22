@@ -2,21 +2,33 @@
 
 module UserAccount
   class BookingsController < UserAccount::ApplicationController
-    include CurrentVenue
+    include CurrentVenue, CurrentFamily
 
-    before_action :set_current_venue, only: [:index]
+    before_action :set_booking, only: [:show, :edit, :update, :destroy]
 
     def index
-      from = Date.parse(params["minDate"])
-      to = Date.parse(params["maxDate"])
+      respond_to do |format|
+        format.html {
+          set_current_family
+          @pagy, @bookings = pagy(
+            @current_family.bookings.joins(:user, :venue, :family)
+          )
+          @bookings = BookingDecorator.wrap(@bookings)
+        }
+        format.json {
+          set_current_venue
+          from = Date.parse(params["minDate"])
+          to = Date.parse(params["maxDate"])
 
-      @bookings = BookingDecorator.wrap(
-        @current_venue
-          .bookings
-          .where(status: %i(pending accepted))
-          .where(from: from..to)
-          .or(@current_venue.bookings.where(to: from..to))
-      )
+          @bookings = BookingDecorator.wrap(
+            @current_venue
+              .bookings
+              .where(status: %i(pending accepted))
+              .where(from: from..to)
+              .or(@current_venue.bookings.where(to: from..to))
+          )
+        }
+      end
     end
 
     def show
@@ -31,10 +43,10 @@ module UserAccount
       )
 
       if new_booking.save
-        flash[:success] = "La demande a bien été créé"
+        flash[:success] = "La réservation a bien été créé"
         render :create, status: :created
       else
-        flash[:error] = "Un problem est survenu lors de la creation de la demande"
+        flash[:error] = "Un problem est survenu lors de la creation de la réservation"
         render :create, status: :unprocessable_entity
       end
     end
@@ -46,12 +58,23 @@ module UserAccount
     end
 
     def destroy
+      if @booking.destroy
+        flash[:success] = "La réservation a bien été supprimée"
+      else
+        flash[:error] = "Un problem est survenu lors de la suppression de la réservation"
+      end
+
+      redirect_to user_account_bookings_path
     end
 
     private
 
     def booking_params
       params.require(:booking).permit(:from, :to)
+    end
+
+    def set_booking
+      @booking = Booking.find(params[:id])
     end
   end
 end

@@ -5,6 +5,7 @@ class Booking < ApplicationRecord
   belongs_to :venue
 
   has_one :family, through: :venue
+
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 

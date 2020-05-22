@@ -133,12 +133,11 @@ ActiveRecord::Schema.define(version: 2020_05_21_193938) do
 
   create_table "messages", force: :cascade do |t|
     t.bigint "user_id"
-    t.bigint "booking_approval_id"
     t.bigint "booking_id"
     t.text "content"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["booking_approval_id"], name: "index_messages_on_booking_approval_id"
     t.index ["booking_id"], name: "index_messages_on_booking_id"
     t.index ["user_id"], name: "index_messages_on_user_id"
   end

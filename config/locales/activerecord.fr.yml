@@ -9,6 +9,10 @@ fr:
         pending: Le mail a été envoyé à l'invité.
         accepted: L'invité a accepté de se joindre à la famille.
         refused: L'invité a refusé de se joindre à la famille.
+      booking/status:
+        pending: En attente
+        accepted: Accepté
+        refused: Refusé
       bedding/bed_type:
         single: simple
         double: double

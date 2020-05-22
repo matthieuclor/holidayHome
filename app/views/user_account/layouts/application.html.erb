@@ -66,6 +66,10 @@
               <li class="nav-item <%= 'active' if controller_name == 'venues' %>">
                 <%= link_to "Lieux", user_account_venues_path, class: "nav-link" %>
               </li>
+
+              <li class="nav-item <%= 'active' if controller_name == 'bookings' %>">
+                <%= link_to "Réservations", user_account_bookings_path, class: "nav-link" %>
+              </li>
             <% end %>
 
             <li class="nav-item ml-lg-5">

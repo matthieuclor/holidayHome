@@ -16,8 +16,9 @@ class User < ApplicationRecord
   has_many :venues, through: :families
   has_many :created_venues, class_name: "Venue", foreign_key: :creator_id
   has_many :keys, foreign_key: :owner_id
-  has_many :bookings
-  has_many :booking_approvals
+  has_many :bookings, dependent: :destroy
+  has_many :booking_approvals, dependent: :destroy
+  has_many :messages, dependent: :destroy
 
   enum step: %i(account_created family_created venue_created)
 

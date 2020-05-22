@@ -2,8 +2,10 @@
 
 class Message < ApplicationRecord
   belongs_to :user
-  belongs_to :booking_approval
   belongs_to :booking
 
+  enum status: %i(unread read)
+
   validates :user, :booking_approval, :booking, :content, presence: true
+  validates :status, inclusion: { in: statuses.keys }
 end
