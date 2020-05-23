@@ -38,7 +38,7 @@ module UserAccount
       new_booking = Booking.new(
         booking_params.merge(
           user_id: current_user.id,
-          venue_id: current_user.current_venue_id
+          venue_id: current_user.current_venue_id[current_user.current_family_id.to_s]
         )
       )
 

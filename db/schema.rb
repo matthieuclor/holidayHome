@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_21_193938) do
+ActiveRecord::Schema.define(version: 2020_05_23_175559) do
 
   # These are extensions that must be enabled in order to support this database
+  enable_extension "hstore"
   enable_extension "plpgsql"
 
   create_table "active_storage_attachments", force: :cascade do |t|
@@ -170,10 +171,11 @@ ActiveRecord::Schema.define(version: 2020_05_21_193938) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "step", default: 0
     t.bigint "current_family_id"
-    t.bigint "current_venue_id"
     t.string "phone"
     t.string "address"
+    t.hstore "current_venue_id", default: {}
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
+    t.index ["current_venue_id"], name: "index_users_on_current_venue_id", using: :gin
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true

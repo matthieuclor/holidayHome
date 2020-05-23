@@ -125,6 +125,7 @@
     mixins: [textMixin],
     methods: {
       ...mapActions([
+        'showSidebar',
         'getVenueItem',
         'destroyVenueItem',
         'hideSidebar'
@@ -139,7 +140,10 @@
     },
     watch: {
       id: {
-        handler() { this.getVenueItem(this.id) },
+        handler() {
+          this.getVenueItem(this.id)
+          this.showSidebar()
+        },
         immediate: true
       }
     }

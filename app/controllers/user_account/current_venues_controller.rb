@@ -5,7 +5,9 @@ module UserAccount
     include CurrentVenue
 
     def update
-      if current_user.update(current_venue_id: current_venue_params[:id])
+      current_user.current_venue_id[current_user.current_family_id.to_s] = current_venue_params[:id]
+
+      if current_user.save
         set_current_venue
         render :update, status: :ok
       else
