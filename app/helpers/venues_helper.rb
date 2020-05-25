@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module VenuesHelper
-  def venue_photos(venue, format:[200, 100], avatar_class:"rounded")
+  def venue_photos(venue, format:[200, 100], avatar_class:"rounded img-fluid")
     if venue.photos.attached?
       image_tag(
         venue.photos.first.variant(resize_to_limit: format),

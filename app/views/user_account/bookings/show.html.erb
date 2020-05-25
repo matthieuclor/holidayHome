@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center mt-4">
+  <div class="col-md-8 col-lg-6">
+    <h1 class="modal-title">
+      Demande de réservation pour
+      <%= @booking.venue.name %>
+    </h1>
+
+    <div class="card border-0 shadow">
+      <div class="card-body">
+        <div class="tab-content">
+          <div class="row">
+            <div class="col-6">
+              <%= venue_photos(@booking.venue, format: [400, 200]) %>
+            </div>
+            <div class="col-6">
+               <p class="mb-2">
+                <%= fa_icon("user") %>
+                 <%= link_to user_account_user_path(@booking.user),
+                              class: "text-decoration-none",
+                              remote: true do %>
+                  <span class="text-muted ml-2">
+                    <%= @booking.user_full_name %>
+                  </span>
+                <% end %>
+              </p>
+
+              <p>
+                <%= fa_icon("calendar-alt") %>
+                <span class="text-muted ml-2">
+                  <%= booking_date_range(@booking) %>
+                </span>
+              </p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="d-flex justify-content-end">
+            <%= button_to user_account_booking_path(@booking),
+                          method: :put,
+                          params: { booking: { status: "canceled" } },
+                          class: "btn btn-sm btn-danger",
+                          data: {
+                            confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
+                          } do %>
+
+              <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

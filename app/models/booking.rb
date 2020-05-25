@@ -9,7 +9,7 @@ class Booking < ApplicationRecord
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  enum status: %i(pending accepted refused)
+  enum status: %i(pending accepted refused canceled)
 
   validates :from, :to, :user, :venue, :deadline, presence: true
   validates :status, inclusion: { in: statuses.keys }

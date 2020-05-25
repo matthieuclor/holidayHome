@@ -11,8 +11,9 @@ fr:
         refused: L'invité a refusé de se joindre à la famille.
       booking/status:
         pending: En attente
-        accepted: Accepté
-        refused: Refusé
+        accepted: Acceptée
+        refused: Refusée
+        canceled: Annulée
       bedding/bed_type:
         single: simple
         double: double

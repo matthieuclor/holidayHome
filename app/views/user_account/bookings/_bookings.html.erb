@@ -1,23 +1,25 @@
 <table class="table table-hover">
   <thead class="table-info">
     <tr>
+      <th scope="col"></th>
       <th scope="col">Membre</th>
       <th scope="col">Lieu</th>
       <th scope="col" class="text-center">Date</th>
       <th scope="col" class="text-center">Statut</th>
-      <th scope="col" class="text-center">Votes</th>
       <th scope="col" class="text-center">Deadline</th>
-      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
     <% if @bookings.present? %>
       <% @bookings.each do |booking| %>
-        <tr>
-          <td class="font-weight-bolder">
-            <%= booking.user.first_name %>
+        <tr data-table-link="<%= user_account_booking_path(booking) %>">
+          <td>
+            <%= user_avatar(booking.user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
           </td>
           <td>
+            <%= booking.user_full_name %>
+          </td>
+          <td class="font-weight-bolder">
             <%= booking.venue.name %>
           </td>
           <td class="text-center">
@@ -26,29 +28,8 @@
           <td class="text-center">
             <%= booking_status_badge(booking.status) %>
           </td>
-          <td class="text-center">
-          </td>
           <td class="text-center align-middle">
-            <%= booking_progress_deadline(booking) %>
-          </td>
-          <td class="d-flex justify-content-end">
-            <% if booking.pending? %>
-              <%= button_to edit_user_account_booking_path(booking),
-                            class: "btn btn-sm btn-primary mr-2",
-                            remote: true do %>
-
-                <%= fa_icon("pen", "Editer", class: "mr-2") %>
-              <% end %>
-              <%= button_to user_account_booking_path(booking),
-                            method: :delete,
-                            class: "btn btn-sm btn-danger",
-                            data: {
-                              confirm: "La réservation sera supprimé définitivement, êtes vous sûr ?"
-                            } do %>
-
-                <%= fa_icon("trash", "Supprimer", class: "mr-2") %>
-              <% end %>
-            <% end %>
+            <%= booking_progress_deadline(booking) unless booking.canceled? %>
           </td>
         </tr>
       <% end %>

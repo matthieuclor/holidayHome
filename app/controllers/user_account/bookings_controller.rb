@@ -32,6 +32,7 @@ module UserAccount
     end
 
     def show
+      @booking = BookingDecorator.new(@booking)
     end
 
     def create
@@ -51,15 +52,9 @@ module UserAccount
       end
     end
 
-    def edit
-    end
-
     def update
-    end
-
-    def destroy
-      if @booking.destroy
-        flash[:success] = "La réservation a bien été supprimée"
+      if @booking.update(booking_params)
+        flash[:success] = "La réservation a bien été mise à jour"
       else
         flash[:error] = "Un problem est survenu lors de la suppression de la réservation"
       end
@@ -70,7 +65,7 @@ module UserAccount
     private
 
     def booking_params
-      params.require(:booking).permit(:from, :to)
+      params.require(:booking).permit(:from, :to, :status)
     end
 
     def set_booking
