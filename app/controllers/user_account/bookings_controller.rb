@@ -4,15 +4,12 @@ module UserAccount
   class BookingsController < UserAccount::ApplicationController
     include CurrentVenue, CurrentFamily
 
-    before_action :set_booking, only: [:show, :edit, :update, :destroy]
-
     def index
       respond_to do |format|
-        format.html {
+        format.any(:html, :js) {
           set_current_family
-          @pagy, @bookings = pagy(
-            @current_family.bookings.joins(:user, :venue, :family)
-          )
+          @query = @current_family.bookings.ransack(bookings_ransack_params)
+          @pagy, @bookings = pagy(@query.result.joins(:user, :venue))
           @bookings = BookingDecorator.wrap(@bookings)
         }
         format.json {
@@ -32,7 +29,9 @@ module UserAccount
     end
 
     def show
-      @booking = BookingDecorator.new(@booking)
+      @booking = BookingDecorator.new(
+        Booking.includes(:user, venue: [:photos_attachments]).find(params[:id])
+      )
     end
 
     def create
@@ -53,6 +52,8 @@ module UserAccount
     end
 
     def update
+      @booking = Booking.find(params[:id])
+
       if @booking.update(booking_params)
         flash[:success] = "La réservation a bien été mise à jour"
       else
@@ -68,8 +69,14 @@ module UserAccount
       params.require(:booking).permit(:from, :to, :status)
     end
 
-    def set_booking
-      @booking = Booking.find(params[:id])
+    def bookings_ransack_params
+      @bookings_ransack_params ||= params[:q]&.permit(
+        :user_id_eq,
+        :venue_id_eq,
+        :status_eq,
+        :from_gteq,
+        :to_lteq
+      )
     end
   end
 end

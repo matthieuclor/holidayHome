@@ -8,7 +8,11 @@ window.$ = window.JQuery = JQuery
 import "bootstrap"
 
 require("../custom-theme")
-require("@rails/ujs").start()
+
+import Rails from "@rails/ujs"
+window.Rails = Rails
+Rails.start()
+
 require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")

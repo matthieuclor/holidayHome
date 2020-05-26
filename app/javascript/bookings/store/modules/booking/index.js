@@ -3,7 +3,8 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  bookingItems: null
+  bookingItems: null,
+  bookingFormItems: null
 }
 
 const bookingModule = {

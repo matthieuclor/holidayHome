@@ -3,7 +3,8 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  calendar: null
+  calendar: null,
+  formCalendar: null
 }
 
 const calendarModule = {

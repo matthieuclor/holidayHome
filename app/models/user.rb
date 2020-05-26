@@ -23,4 +23,7 @@ class User < ApplicationRecord
   enum step: %i(account_created family_created venue_created)
 
   validates :first_name, :last_name, presence: true
+
+  before_save -> { first_name.capitalize! }, if: :first_name_changed?
+  before_save -> { last_name.capitalize! }, if: :last_name_changed?
 end

@@ -1,3 +1,4 @@
 export default {
-  bookingItems: state => state.bookingItems
+  bookingItems: state => state.bookingItems,
+  bookingFormItems: state => state.bookingFormItems
 }

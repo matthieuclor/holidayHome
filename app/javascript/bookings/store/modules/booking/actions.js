@@ -7,6 +7,10 @@ export default {
     axios.get('bookings.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_ITEMS', response.data.bookings))
   },
+  getBookingFormItems({ commit }, calendar) {
+    axios.get('bookings.json', { params: { ...calendar } })
+    .then((response) => commit('UPDATE_BOOKING_FORM_ITEMS', response.data.bookings))
+  },
   createBooking({ commit, dispatch }, { start, end, minDate, maxDate }) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
     const from = moment(start).format('YYYY-MM-DD HH:mm:ss')

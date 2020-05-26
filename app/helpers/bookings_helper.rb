@@ -6,7 +6,7 @@ module BookingsHelper
       when 'pending' then 'secondary'
       when 'accepted' then 'success'
       when 'refused' then 'danger'
-      when 'canceled' then 'dark'
+      when 'canceled' then 'warning'
     end
 
     content_tag(
@@ -30,6 +30,7 @@ module BookingsHelper
 
   def booking_progress_deadline(booking)
     days_left = (booking.deadline.to_date - Date.current).to_i
+    days_left = days_left < 0 ? 0 : days_left
     percentage = 100.0 - (days_left.to_f/booking.family.days_for_approval.to_f * 100.0)
     title = "#{days_left} #{'jour'.pluralize(days_left)} #{'restant'.pluralize(days_left)}"
 
@@ -38,7 +39,7 @@ module BookingsHelper
       content_tag(
         :div,
         nil,
-        class: "progress-bar",
+        class: ["progress-bar", "#{'bg-success' if percentage >= 100}"],
         role: "progressbar",
         style: "width: #{percentage}%;",
         'aria-valuenow': "#{percentage}",
