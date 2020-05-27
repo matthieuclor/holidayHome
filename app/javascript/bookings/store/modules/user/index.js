@@ -3,17 +3,14 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  bookingItems: null,
-  bookingFormItems: null,
-  bookingDateRange: null,
-  bookingModalForm: false
+  currentUser: null
 }
 
-const bookingModule = {
+const userModule = {
   state,
   mutations,
   actions,
   getters
 }
 
-export default bookingModule
+export default userModule

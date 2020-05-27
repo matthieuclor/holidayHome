@@ -14,6 +14,11 @@ fr:
         accepted: Acceptée
         refused: Refusée
         canceled: Annulée
+      booking_approval/status:
+        pending: En attente
+        accepted: Accordée
+        refused: Rejetée
+        out_of_time: Hors delai
       bedding/bed_type:
         single: simple
         double: double

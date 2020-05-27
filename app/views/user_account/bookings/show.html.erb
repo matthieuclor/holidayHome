@@ -7,48 +7,62 @@
 
     <div class="card border-0 shadow">
       <div class="card-body">
-        <div class="tab-content">
-          <div class="row">
-            <div class="col-6">
-              <%= venue_photos(@booking.venue, format: [400, 200]) %>
-            </div>
-            <div class="col-6">
-               <p class="mb-2">
-                <%= fa_icon("user") %>
-                 <%= link_to user_account_user_path(@booking.user),
-                              class: "text-decoration-none",
-                              remote: true do %>
-                  <span class="text-muted ml-2">
-                    <%= @booking.user_full_name %>
-                  </span>
-                <% end %>
-              </p>
-
-              <p>
-                <%= fa_icon("calendar-alt") %>
+        <div class="row">
+          <div class="col-6">
+            <%= venue_photos(@booking.venue, format: [400, 200]) %>
+          </div>
+          <div class="col-6">
+            <p class="mb-2">
+              <%= fa_icon("user") %>
+                <%= link_to user_account_user_path(@booking.user),
+                            class: "text-decoration-none",
+                            remote: true do %>
                 <span class="text-muted ml-2">
-                  <%= booking_date_range(@booking) %>
+                  <%= @booking.user_full_name %>
                 </span>
-              </p>
+              <% end %>
+            </p>
+
+            <p class="mb-2">
+              <%= fa_icon("calendar-alt") %>
+              <span class="text-muted ml-2">
+                <%= booking_date_range(@booking) %>
+              </span>
+            </p>
+
+            <div>
+              <%= fa_icon("hourglass-half") %>
+              <span class="text-muted ml-2">
+                Deadline
+              </span>
+              <div class="mt-2">
+                <%= booking_progress_deadline(@booking) %>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="row mt-2 d-flex align-items-end">
+          <div class="col-6">
+            <%= render "booking_approvals" %>
+          </div>
+          <div class="col-6">
+            <div class="d-flex justify-content-end">
+              <%= button_to user_account_booking_path(@booking),
+                            method: :put,
+                            params: { booking: { status: "canceled" } },
+                            class: "btn btn-sm btn-danger",
+                            data: {
+                              confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
+                            } do %>
 
-          <hr>
-
-          <div class="d-flex justify-content-end">
-            <%= button_to user_account_booking_path(@booking),
-                          method: :put,
-                          params: { booking: { status: "canceled" } },
-                          class: "btn btn-sm btn-danger",
-                          data: {
-                            confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
-                          } do %>
-
-              <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
-            <% end %>
+                <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <%= render "messages" %>
   </div>
 </div>

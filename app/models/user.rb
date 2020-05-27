@@ -20,8 +20,6 @@ class User < ApplicationRecord
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  enum step: %i(account_created family_created venue_created)
-
   validates :first_name, :last_name, presence: true
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?

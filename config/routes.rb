@@ -29,9 +29,19 @@ Rails.application.routes.draw do
     resource :current_venues, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :venues
-    resources :bookings, only: [:index, :show, :create, :update]
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
+    resources :messages, only: [:create]
+
+    resources :bookings, only: [:index, :show, :create, :update] do
+      collection do
+        scope module: :bookings do
+          resources :yearly, only: [:index]
+          resources :monthly, only: [:index]
+        end
+      end
+    end
+
     resources :sended_invitations, only: [:index, :new, :create, :destroy] do
       resource :resends, module: :sended_invitations, only: [:update]
     end

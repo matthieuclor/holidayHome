@@ -6,6 +6,6 @@ class Message < ApplicationRecord
 
   enum status: %i(unread read)
 
-  validates :user, :booking_approval, :booking, :content, presence: true
+  validates :user, :booking, :content, presence: true
   validates :status, inclusion: { in: statuses.keys }
 end

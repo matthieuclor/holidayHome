@@ -3,35 +3,25 @@
 module UserAccount
   class BookingsController < UserAccount::ApplicationController
     include CurrentVenue, CurrentFamily
+    before_action :set_current_family, only: [:index]
 
     def index
-      respond_to do |format|
-        format.any(:html, :js) {
-          set_current_family
-          @query = @current_family.bookings.ransack(bookings_ransack_params)
-          @pagy, @bookings = pagy(@query.result.joins(:user, :venue))
-          @bookings = BookingDecorator.wrap(@bookings)
-        }
-        format.json {
-          set_current_venue
-          from = Date.parse(params["minDate"])
-          to = Date.parse(params["maxDate"])
-
-          @bookings = BookingDecorator.wrap(
-            @current_venue
-              .bookings
-              .where(status: %i(pending accepted))
-              .where(from: from..to)
-              .or(@current_venue.bookings.where(to: from..to))
-          )
-        }
-      end
+      @query = @current_family.bookings.ransack(bookings_ransack_params)
+      @pagy, @bookings = pagy(@query.result.joins(:user, :venue))
+      @bookings = BookingDecorator.wrap(@bookings)
     end
 
     def show
       @booking = BookingDecorator.new(
-        Booking.includes(:user, venue: [:photos_attachments]).find(params[:id])
+        Booking.includes(
+          :user,
+          booking_approvals: [:user],
+          messages: [user: [:avatar_attachment]],
+          venue: [:photos_attachments]
+        ).find(params[:id])
       )
+
+      @message = Message.new(booking_id: @booking.id, user: current_user)
     end
 
     def create
@@ -41,6 +31,8 @@ module UserAccount
           venue_id: current_user.current_venue_id[current_user.current_family_id.to_s]
         )
       )
+
+      new_booking.messages.first.user = current_user
 
       if new_booking.save
         flash[:success] = "La réservation a bien été créé"
@@ -66,7 +58,12 @@ module UserAccount
     private
 
     def booking_params
-      params.require(:booking).permit(:from, :to, :status)
+      params.require(:booking).permit(
+        :from,
+        :to,
+        :status,
+        messages_attributes: [:content]
+      )
     end
 
     def bookings_ransack_params

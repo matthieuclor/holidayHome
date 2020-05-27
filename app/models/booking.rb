@@ -9,6 +9,8 @@ class Booking < ApplicationRecord
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  accepts_nested_attributes_for :messages
+
   enum status: %i(pending accepted refused canceled)
 
   validates :from, :to, :user, :venue, :deadline, presence: true

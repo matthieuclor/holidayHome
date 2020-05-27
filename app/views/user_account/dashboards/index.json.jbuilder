@@ -9,3 +9,5 @@ json.venues @venues do |venue|
 end
 
 json.current_venue(@current_venue, :id, :name)
+
+json.current_user(current_user, :id)

@@ -4,14 +4,20 @@ import qs from 'qs'
 
 export default {
   getBookingItems({ commit }, calendar) {
-    axios.get('bookings.json', { params: { ...calendar } })
+    axios.get('bookings/yearly.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_ITEMS', response.data.bookings))
   },
   getBookingFormItems({ commit }, calendar) {
-    axios.get('bookings.json', { params: { ...calendar } })
+    axios.get('bookings/monthly.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_FORM_ITEMS', response.data.bookings))
   },
-  createBooking({ commit, dispatch }, { start, end, minDate, maxDate }) {
+  updateBookingDateRange({ commit }, dateRange) {
+    commit('UPDATE_BOOKING_DATE_RANGE', dateRange)
+  },
+  updateBookingModalForm({ commit }, value) {
+    commit('UPDATE_BOOKING_MODAL_FORM', value)
+  },
+  createBooking({ commit, dispatch }, { start, end, minDate, maxDate, message }) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
     const from = moment(start).format('YYYY-MM-DD HH:mm:ss')
     const to = moment(end).format('YYYY-MM-DD HH:mm:ss')
@@ -21,15 +27,23 @@ export default {
         {
           method: 'post',
           url: 'bookings.json',
-          data: qs.stringify({ booking: { from: from, to: to } }),
+          data: qs.stringify({
+            booking: {
+              from: from,
+              to: to,
+              messages_attributes: [{ content: message }]
+            }
+          }),
           headers: { 'X-CSRF-TOKEN': csrfToken }
         }
       ).then(response => {
         commit('UPDATE_FLASHES', response.data.flashes)
         dispatch('getBookingItems', { minDate, maxDate })
+        commit('UPDATE_BOOKING_MODAL_FORM', false)
         resolve(response)
       }).catch(error => {
         commit('UPDATE_FLASHES', error.response.data.flashes)
+        commit('UPDATE_BOOKING_MODAL_FORM', false)
         reject(error)
       })
     })
