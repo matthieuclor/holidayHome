@@ -31,9 +31,10 @@ Rails.application.routes.draw do
     resources :venues
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
-    resources :messages, only: [:create]
 
     resources :bookings, only: [:index, :show, :create, :update] do
+      resources :messages, module: :bookings, only: [:index, :create]
+
       collection do
         scope module: :bookings do
           resources :yearly, only: [:index]

@@ -1,10 +1,12 @@
-<div class="d-flex justify-content-center mt-4">
-  <div class="col-md-8 col-lg-6">
-    <h1 class="modal-title">
-      Demande de réservation pour
-      <%= @booking.venue.name %>
-    </h1>
+<div class="d-flex justify-content-center align-items-center mt-4">
+  <h1>
+    Demande de réservation pour
+    <%= @booking.venue.name %>
+  </h1>
+</div>
 
+<div class="d-flex justify-content-center">
+  <div class="col-md-8 col-lg-6">
     <div class="card border-0 shadow">
       <div class="card-body">
         <div class="row">
@@ -30,6 +32,11 @@
               </span>
             </p>
 
+            <div class="mb-2 d-flex align-items-center">
+              <%= fa_icon("info-circle", nil, class: "mr-2") %>
+              <%= booking_status_badge(@booking.status) %>
+            </div>
+
             <div>
               <%= fa_icon("hourglass-half") %>
               <span class="text-muted ml-2">
@@ -47,15 +54,17 @@
           </div>
           <div class="col-6">
             <div class="d-flex justify-content-end">
-              <%= button_to user_account_booking_path(@booking),
-                            method: :put,
-                            params: { booking: { status: "canceled" } },
-                            class: "btn btn-sm btn-danger",
-                            data: {
-                              confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
-                            } do %>
+              <% if @booking.user == current_user %>
+                <%= button_to user_account_booking_path(@booking),
+                              method: :put,
+                              params: { booking: { status: "canceled" } },
+                              class: "btn btn-sm btn-danger",
+                              data: {
+                                confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
+                              } do %>
 
-                <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
+                  <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
+                <% end %>
               <% end %>
             </div>
           </div>
@@ -63,6 +72,15 @@
       </div>
     </div>
 
-    <%= render "messages" %>
+    <div id="messages-container">
+      <%= render "shared/spinner" %>
+    </div>
   </div>
 </div>
+
+<script>
+  Rails.ajax({
+    url: "<%= user_account_booking_messages_path(@booking) %>",
+    type: "get"
+  })
+</script>

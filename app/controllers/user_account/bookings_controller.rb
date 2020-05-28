@@ -7,7 +7,9 @@ module UserAccount
 
     def index
       @query = @current_family.bookings.ransack(bookings_ransack_params)
-      @pagy, @bookings = pagy(@query.result.joins(:user, :venue))
+      @pagy, @bookings = pagy(
+        @query.result.includes(:venue, user: [:avatar_attachment])
+      )
       @bookings = BookingDecorator.wrap(@bookings)
     end
 
@@ -15,13 +17,10 @@ module UserAccount
       @booking = BookingDecorator.new(
         Booking.includes(
           :user,
-          booking_approvals: [:user],
-          messages: [user: [:avatar_attachment]],
-          venue: [:photos_attachments]
+          venue: [:photos_attachments],
+          booking_approvals: [:user]
         ).find(params[:id])
       )
-
-      @message = Message.new(booking_id: @booking.id, user: current_user)
     end
 
     def create

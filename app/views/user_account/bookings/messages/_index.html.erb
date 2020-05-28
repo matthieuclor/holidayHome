@@ -1,0 +1,13 @@
+<div id="message-form-container">
+  <%= render 'form' %>
+</div>
+
+<div class="card border-0 shadow mt-2">
+  <div class="card-body">
+    <div id="messages" data-booking-id="<%= @booking.id %>">
+      <% @messages.each do |message| %>
+        <%= render 'message', message: message %>
+      <% end %>
+    </div>
+  </div>
+</div>

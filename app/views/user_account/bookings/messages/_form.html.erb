@@ -1,0 +1,13 @@
+<div class="card border-0 shadow mt-2">
+  <div class="card-body">
+    <%= simple_form_for [:user_account, @booking, @message], remote: true do |f| %>
+      <%= f.input :content,
+                  label: false,
+                  input_html: {
+                    placeholder: "Ecrivez un message au sujet de cette réservation"
+                  } %>
+
+      <%= f.submit "Envoyer", class: "btn btn-sm btn-block btn-success" %>
+    <% end %>
+  </div>
+</div>
