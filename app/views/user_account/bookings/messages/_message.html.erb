@@ -1,9 +1,9 @@
-<div class="w-75 rounded py-2 px-3 mb-3 <%= message_class(message.user) %>">
+<div class="bg-light rounded py-2 px-3 mb-3">
   <div class="d-flex flex-row align-items-center">
     <%= link_to user_account_user_path(message.user),
                 class: "text-decoration-none",
                 remote: true do %>
-      <span class="font-weight-light <%= message_text_class(message.user) %>">
+      <span class="font-weight-light text-dark">
         <%= message.user.first_name %>
         <%= message.user.last_name %>
       </span>
