@@ -23,3 +23,5 @@ fr:
         single: simple
         double: double
         baby: bébé
+      message:
+        content: Le contenu

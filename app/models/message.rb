@@ -1,16 +1,15 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
+  CONTENT_MAX = 500
+
   belongs_to :user
   belongs_to :booking
 
   default_scope { order(:created_at).reverse_order }
 
-  enum status: %i(unread read)
-
   validates :user, :booking, :content, presence: true
-  validates :status, inclusion: { in: statuses.keys }
-  validates :content, length: { minimum: 2, maximum: 1000 }
+  validates :content, length: { minimum: 2, maximum: CONTENT_MAX }
 
   after_create { NewBookingMessageJob.perform_later(self) }
 end

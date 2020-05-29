@@ -3,11 +3,12 @@
 module UserAccount
   module Bookings
     class MessagesController < UserAccount::ApplicationController
+      respond_to :js
       before_action :set_booking
 
       def index
         @messages = @booking.messages.includes(user: [:avatar_attachment])
-        @message = @booking.messages.build(user: current_user)
+        @message = @booking.messages.build
       end
 
       def create
@@ -16,10 +17,12 @@ module UserAccount
         )
 
         if @message.save
-          @message = @booking.messages.build(user: current_user)
+          head :created
         else
-          @messages = @booking.messages.includes(user: [:avatar_attachment])
-          render :index
+          render(
+            json: { error: @message.errors.full_messages.first },
+            status: :unprocessable_entity
+          )
         end
       end
 
