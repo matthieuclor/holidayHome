@@ -1,4 +1,4 @@
-class NewBookingMessageJob < ApplicationJob
+class NewMessageJob < ApplicationJob
   queue_as :default
 
   def perform(message)
@@ -11,7 +11,7 @@ class NewBookingMessageJob < ApplicationJob
   private
 
   def render_message(message)
-    UserAccount::Bookings::MessagesController.render(
+    UserAccount::MessagesController.render(
       partial: 'message',
       locals: { message: message }
     )

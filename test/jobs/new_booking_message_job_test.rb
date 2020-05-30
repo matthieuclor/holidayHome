@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NewBookingMessageJobTest < ActiveJob::TestCase
+class NewMessageJobTest < ActiveJob::TestCase
   # test "the truth" do
   #   assert true
   # end

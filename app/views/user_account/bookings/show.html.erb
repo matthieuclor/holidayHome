@@ -65,6 +65,18 @@
 
                   <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
                 <% end %>
+              <% else %>
+                <%= button_to edit_user_account_booking_booking_approval_path(@booking),
+                              method: :get,
+                              params: { status: "accepted" },
+                              class: "btn btn-sm btn-success",
+                              data: {
+                                confirm: "Vous êtes sur le point d'approuver cette réservation, êtes vous sûr ?"
+                              },
+                              remote: true do %>
+
+                  <%= fa_icon("thumbs-up", "Approuver la réservation", class: "mr-2") %>
+                <% end %>
               <% end %>
             </div>
           </div>

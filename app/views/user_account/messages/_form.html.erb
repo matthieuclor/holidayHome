@@ -1,0 +1,26 @@
+<div class="card border-0 shadow mt-2">
+  <div class="card-body">
+    <%= simple_form_for [:user_account, @booking, @message],
+                        html: { "@submit.prevent": "submitForm" } do |f| %>
+
+      <%= f.input :content,
+                  label: false,
+                  required: false,
+                  wrapper_html: { class: 'mb-0' },
+                  input_html: {
+                    "v-model": "message",
+                    "v-bind:class": "{ 'is-invalid': showMessageFormError }",
+                    placeholder: "Ecrivez un message au sujet de cette réservation"
+                  },
+                  hint: "{{charCount}}/{{contentMax}} caractères." %>
+
+      <small v-if="showMessageFormError" class="text-danger">
+        {{messageFormError}}
+      </small>
+
+      <%= f.submit "Envoyer",
+                   class: "btn btn-sm btn-success float-right mt-n3",
+                   data: { disable_with: false } %>
+    <% end %>
+  </div>
+</div>

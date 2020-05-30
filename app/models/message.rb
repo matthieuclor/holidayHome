@@ -11,5 +11,5 @@ class Message < ApplicationRecord
   validates :user, :booking, :content, presence: true
   validates :content, length: { minimum: 2, maximum: CONTENT_MAX }
 
-  after_create { NewBookingMessageJob.perform_later(self) }
+  after_create { NewMessageJob.perform_later(self) }
 end

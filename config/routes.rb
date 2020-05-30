@@ -33,7 +33,8 @@ Rails.application.routes.draw do
     resources :received_invitations, only: [:index, :update]
 
     resources :bookings, only: [:index, :show, :create, :update] do
-      resources :messages, module: :bookings, only: [:index, :create]
+      resources :messages, only: [:index, :create]
+      resources :booking_approvals, only: [:edit, :update]
 
       collection do
         scope module: :bookings do
