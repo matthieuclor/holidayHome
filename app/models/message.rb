@@ -6,6 +6,8 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :booking
 
+  has_one :booking_approval
+
   default_scope { order(:created_at).reverse_order }
 
   validates :user, :booking, :content, presence: true

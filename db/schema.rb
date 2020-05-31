@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_29_134156) do
+ActiveRecord::Schema.define(version: 2020_05_31_120208) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -53,7 +53,9 @@ ActiveRecord::Schema.define(version: 2020_05_29_134156) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "message_id"
     t.index ["booking_id"], name: "index_booking_approvals_on_booking_id"
+    t.index ["message_id"], name: "index_booking_approvals_on_message_id"
     t.index ["user_id"], name: "index_booking_approvals_on_user_id"
   end
 

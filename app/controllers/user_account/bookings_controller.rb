@@ -48,7 +48,7 @@ module UserAccount
       if @booking.update(booking_params)
         flash[:success] = "La réservation a bien été mise à jour"
       else
-        flash[:error] = "Un problem est survenu lors de la suppression de la réservation"
+        flash[:error] = "Un problem est survenu lors de la mise à jour de la réservation"
       end
 
       redirect_to user_account_bookings_path
