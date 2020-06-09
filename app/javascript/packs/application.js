@@ -4,6 +4,9 @@
 // that code so it'll be compiled.
 
 import "bootstrap"
+import JQuery from 'jquery'
+window.$ = window.JQuery = JQuery
+
 require("../custom-theme")
 
 import Rails from "@rails/ujs"
