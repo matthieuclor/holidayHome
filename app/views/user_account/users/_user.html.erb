@@ -3,11 +3,9 @@
     <div class="modal-content">
       <div class="modal-header border-0">
         <div class="media">
-          <% if @user.avatar.attached? %>
-            <%= image_tag(@user.avatar.variant(
-                          resize_to_limit: [80, 80]),
-                          class: "align-self-center rounded mr-3") %>
-          <% end %>
+          <%= user_avatar(@user,
+                          format: [80, 80],
+                          avatar_class:"align-self-center rounded mr-3") %>
 
           <div class="media-body">
             <h5 class="mt-0 text-dark">
