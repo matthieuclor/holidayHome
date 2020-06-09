@@ -3550,9 +3550,9 @@ iferr@^0.1.5:
   integrity sha1-xg7taebY/bazEEofy8ocGS3FtQE=
 
 immediate@^3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.2.3.tgz#d140fa8f614659bd6541233097ddaac25cdd991c"
-  integrity sha1-0UD6j2FGWb1lQSMwl92qwlzdmRw=
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/immediate/-/immediate-3.3.0.tgz#1aef225517836bcdf7f2a2de2600c79ff0269266"
+  integrity sha512-HR7EVodfFUdQCTIeySw+WDRFJlPcLOJbXfwwZ7Oom6tjsvZ3bOkCDJHehQC3nxJrv7+f9XecwazynjU8e4Vw3Q==
 
 import-cwd@^2.0.0:
   version "2.1.0"
@@ -4567,9 +4567,9 @@ mixin-deep@^1.2.0:
     minimist "^1.2.5"
 
 moment@^2.25.3:
-  version "2.25.3"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.25.3.tgz#252ff41319cf41e47761a1a88cab30edfe9808c0"
-  integrity sha512-PuYv0PHxZvzc15Sp8ybUCoQ+xpyPWvjOuK72a5ovzp2LI32rJXOiIfyoFoYvG3s6EwwrdkMyWuRiEHSZRLJNdg==
+  version "2.26.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.26.0.tgz#5e1f82c6bafca6e83e808b30c8705eed0dcbd39a"
+  integrity sha512-oIixUO+OamkUkwjhAVE18rAMfRJNsNe/Stid/gwHSOfHrOtw9EhAY2AHvdKZ/k/MggcYELFCJz/Sn2pL8b8JMw==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -5251,9 +5251,9 @@ pkg-up@^2.0.0:
     find-up "^2.1.0"
 
 places.js@^1.18.1:
-  version "1.18.2"
-  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.18.2.tgz#e9974f67c401da4849b27fda2f7bb2528f4718c1"
-  integrity sha512-/9XG+bo53mnld8b7UO0d/IsapnI/+EqQcsBO60GjpTvNjA+mz2jMazgbagmnXt8mIOuhO+j/VbABsxtW6/fQ7Q==
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/places.js/-/places.js-1.19.0.tgz#6361c240713e20713f9f4124181752a257059f92"
+  integrity sha512-OtX8kMT1K2uhwoHZoyMuHWZ3CrkNfjxRDsG2hBHye4S1dsTLU4MlwEmUrlKYYefYXiV6JCvd7bULU3uoJ6NcoA==
   dependencies:
     algoliasearch "^3.35.1"
     autocomplete.js "^0.37.0"
@@ -7451,9 +7451,9 @@ vue-loader@^15.9.0:
     vue-style-loader "^4.1.0"
 
 vue-router@^3.1.6:
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.1.6.tgz#45f5a3a3843e31702c061dd829393554e4328f89"
-  integrity sha512-GYhn2ynaZlysZMkFE5oCHRUTqE8BWs/a9YbKpNLi0i7xD6KG1EzDqpHQmv1F5gXjr8kL5iIVS8EOtRaVUEXTqA==
+  version "3.3.2"
+  resolved "https://registry.yarnpkg.com/vue-router/-/vue-router-3.3.2.tgz#0099de402edb2fe92f9711053ab5a2156f239cad"
+  integrity sha512-5sEbcfb7MW8mY8lbUVbF4kgcipGXsagkM/X+pb6n0MhjP+RorWIUTPAPSqgPaiPOxVCXgAItBl8Vwz8vq78faA==
 
 vue-style-loader@^4.1.0:
   version "4.1.2"

@@ -4,7 +4,7 @@ class BookingDecorator < ApplicationDecorator
   include ActionView::Helpers::DateHelper
 
   def user_full_name
-    "#{user.first_name} #{user.last_name[0]}"
+    "#{user.first_name} #{user.last_name}"
   end
 
   def label

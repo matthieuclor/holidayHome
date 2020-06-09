@@ -1,7 +1,8 @@
 <template>
   <div v-if="bookingItems" class="d-flex justify-content-center mb-4">
-    <div class="col-12">
+    <div class="w-100 px-4">
       <v-calendar @update:from-page="updatePage"
+                  @dayclick="linkToBooking"
                   :columns="4"
                   :rows="3"
                   :is-expanded="true"
@@ -56,6 +57,11 @@
         })
 
         this.getBookingItems(this.calendar)
+      },
+      linkToBooking(day) {
+        if (day.attributes) {
+          location.replace(`/user_account/bookings/${day.attributes[0].key}`)
+        }
       }
     },
     watch: {
