@@ -1,9 +1,9 @@
 <template>
-  <div class="d-flex justify-content-center mt-3 mb-4">
+  <div class="d-flex justify-content-center mb-4">
     <div class="col-md-12 col-lg-10">
       <div v-if="bookingFormItems" class="card border-0 shadow">
         <div class="card-body">
-          <div class="d-flex flex-wrap align-items-center">
+          <div class="d-flex justify-content-center align-items-center ">
             <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
               <div class="form-group">
                 <label class="mr-2">
@@ -22,14 +22,6 @@
                 Créer
               </button>
             </form>
-
-            <a :href="`/user_account/bookings?q%5Buser_id_eq%5D=${currentUser.id}&q%5Bstatus_eq%5D=0#/`"
-               class="ml-auto">
-              <button class="btn btn-primary">
-                <i class="fas fa-tasks mr-2"></i>
-                Gérer mes réservations
-              </button>
-            </a>
           </div>
         </div>
       </div>

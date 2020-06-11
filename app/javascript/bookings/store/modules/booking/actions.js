@@ -3,6 +3,10 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
+  getBookingPendingItems({ commit }) {
+    axios.get('bookings/pending.json')
+    .then((response) => commit('UPDATE_BOOKING_PENDING_ITEMS', response.data.pendingBookings))
+  },
   getBookingItems({ commit }, calendar) {
     axios.get('bookings/yearly.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_ITEMS', response.data.bookings))

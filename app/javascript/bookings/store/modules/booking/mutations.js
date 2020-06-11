@@ -1,4 +1,7 @@
 export default {
+  UPDATE_BOOKING_PENDING_ITEMS(state, payload) {
+    state.bookingPendingItems = payload
+  },
   UPDATE_BOOKING_ITEMS(state, payload) {
     state.bookingItems = payload
   },

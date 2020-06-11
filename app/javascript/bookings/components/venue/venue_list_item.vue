@@ -1,5 +1,5 @@
 <template>
-  <div class="m-2 rounded"
+  <div class="my-2 mr-4 rounded"
        :class="shadowType(venueItem.id)"
        style="cursor: pointer;"
        @click="callSetCurrentVenue"

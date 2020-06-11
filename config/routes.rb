@@ -40,6 +40,7 @@ Rails.application.routes.draw do
         scope module: :bookings do
           resources :yearly, only: [:index]
           resources :monthly, only: [:index]
+          resources :pending, only: [:index]
         end
       end
     end

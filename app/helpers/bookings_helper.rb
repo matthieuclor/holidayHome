@@ -33,7 +33,12 @@ module BookingsHelper
     days_left = days_left < 0 ? 0 : days_left
     days_for_approval = (booking.deadline.to_date - booking.created_at.to_date).to_i
     percentage = 100.0 - (days_left.to_f/days_for_approval.to_f * 100.0)
-    title = "#{days_left} #{'jour'.pluralize(days_left)} #{'restant'.pluralize(days_left)}"
+
+    title = if days_left.zero?
+      "Terminé"
+    else
+      "#{days_left} #{'jour'.pluralize(days_left)} #{'restant'.pluralize(days_left)}"
+    end
 
     content_tag(
       :div,
