@@ -1,23 +1,19 @@
 <template>
-  <div class="my-2 mr-4 rounded"
-       :class="shadowType(venueItem.id)"
-       style="cursor: pointer;"
-       @click="callSetCurrentVenue"
-       @mouseover="mouseover = true"
-       @mouseleave="mouseover = false">
-
-    <div class="d-flex">
-      <div class="p-2">
+  <button @click="callSetCurrentVenue"
+          class="list-group-item list-group-item-action flex-fill"
+          :class="{ active: currentVenue.id == venueItem.id }">
+    <div class="d-flex justify-content-center align-items-center">
+      <div class="mr-3">
         <img v-if="venueItem.photoUrl" :src="venueItem.photoUrl" class="rounded">
-        <VenuePhotoSkeleton :width="100" v-else />
+        <VenuePhotoSkeleton :width="120" v-else />
       </div>
-      <div class="p-2">
-        <h4 class="text-nowrap mb-0 pr-2">
+      <div>
+        <h4 class="text-nowrap mb-0">
           {{ venueItem.name }}
         </h4>
       </div>
     </div>
-  </div>
+  </button>
 </template>
 
 <script>
@@ -35,9 +31,6 @@
     },
     methods: {
       ...mapActions(['setCurrentVenue']),
-      shadowType(id) {
-        return this.currentVenue.id == id || this.mouseover ? 'shadow' : 'shadow-sm'
-      },
       callSetCurrentVenue() {
         this.setCurrentVenue(this.venueItem.id)
       }

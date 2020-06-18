@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center mt-3 mb-4">
+  <div class="d-flex justify-content-center mt-3">
     <div class="col-md-12 col-lg-10">
       <div class="card border-0 shadow">
         <div class="card-body">
@@ -20,6 +20,10 @@
             <BookingListItem v-for="bookingPendingItem in bookingPendingItems"
                             :key="bookingPendingItem.id"
                             :bookingPendingItem="bookingPendingItem" />
+            <p v-if="bookingPendingItems.length == 0"
+               class="list-group-item list-group-item-action text-center m-0">
+              Vous n'avez pas de demande pour le moment.
+            </p>
           </div>
         </div>
       </div>

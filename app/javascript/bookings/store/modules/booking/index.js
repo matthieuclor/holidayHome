@@ -3,7 +3,7 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  bookingPendingItems: null,
+  bookingPendingItems: [],
   bookingItems: null,
   bookingFormItems: null,
   bookingDateRange: null,

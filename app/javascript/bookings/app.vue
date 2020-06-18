@@ -1,10 +1,5 @@
 <template>
   <div v-if="venueItems && currentVenue">
-    <ul class="list-group list-group-horizontal-md">
-      <li class="list-group-item list-group-item-action flex-fill">Cras justo odio</li>
-      <li class="list-group-item list-group-item-action flex-fill">Dapibus ac facilisis in</li>
-    </ul>
-
     <VenueList :venueItems="venueItems" :currentVenue="currentVenue" />
 
     <BookingList :currentVenue="currentVenue" />
@@ -44,9 +39,7 @@
       FlashMessage
     },
     methods: {
-      ...mapActions([
-        'getVenueItems'
-      ])
+      ...mapActions(['getVenueItems'])
     },
     created() {
       this.getVenueItems()

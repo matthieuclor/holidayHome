@@ -22,9 +22,9 @@ class SendInvitationEmail
     known_user = User.find_by(email: @invitation.email)
 
     if known_user
-      UserMailer.send_to_known_user(context.invitation, known_user).deliver_later
+      InvitationMailer.send_to_known_user(context.invitation, known_user).deliver_later
     else
-      UserMailer.send_to_unknown_user(context.invitation).deliver_later
+      InvitationMailer.send_to_unknown_user(context.invitation).deliver_later
     end
   end
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="d-flex justify-content-center mb-4">
+  <div class="d-flex justify-content-center mt-3">
     <div class="col-md-12 col-lg-10">
       <div v-if="bookingFormItems" class="card border-0 shadow">
         <div class="card-body">

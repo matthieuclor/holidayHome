@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bookingItems" class="d-flex justify-content-center mb-4">
+  <div v-if="bookingItems" class="d-flex justify-content-center my-3">
     <div class="w-100 px-4">
       <v-calendar @update:from-page="updatePage"
                   @dayclick="linkToBooking"

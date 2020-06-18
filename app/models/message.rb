@@ -6,7 +6,7 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :booking
 
-  has_one :booking_approval
+  has_one :booking_approval, dependent: :destroy
 
   default_scope { order(:created_at).reverse_order }
 

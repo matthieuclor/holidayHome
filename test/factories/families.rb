@@ -3,5 +3,8 @@
 FactoryBot.define do
   factory :family do
     name { Faker::Name.last_name }
+    days_for_approval {
+      rand(Family::MIN_DAYS_FOR_APPROVAL..Family::MAX_DAYS_FOR_APPROVAL)
+    }
   end
 end

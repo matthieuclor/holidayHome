@@ -70,9 +70,6 @@
                               method: :get,
                               params: { booking_approval: { status: "accepted" } },
                               class: "btn btn-sm btn-block btn-success mb-2",
-                              data: {
-                                confirm: "Vous êtes sur le point d'approuver cette réservation, êtes vous sûr ?"
-                              },
                               remote: true do %>
 
                   <%= fa_icon("thumbs-up", "Approuver la réservation", class: "mr-2") %>
@@ -82,9 +79,6 @@
                               method: :get,
                               params: { booking_approval: { status: "refused" } },
                               class: "btn btn-sm btn-block btn-danger",
-                              data: {
-                                confirm: "Vous êtes sur le point de rejeter cette réservation, êtes vous sûr ?"
-                              },
                               remote: true do %>
 
                   <%= fa_icon("thumbs-down", "Rejeter la réservation", class: "mr-2") %>

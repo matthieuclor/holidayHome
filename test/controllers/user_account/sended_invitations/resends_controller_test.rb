@@ -22,7 +22,7 @@ module UserAccount
         invitation = @controller.view_assigns["invitation"]
         receiver = @controller.view_assigns["invitation"].receiver
 
-        user_mailer = UserMailer.send_to_known_user(invitation, receiver)
+        user_mailer = InvitationMailer.send_to_known_user(invitation, receiver)
         assert_emails(1) { user_mailer.deliver_later }
 
         assert_equal ['hello@hutoki.com'], user_mailer.from

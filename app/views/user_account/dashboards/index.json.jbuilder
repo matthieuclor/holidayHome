@@ -3,7 +3,7 @@ json.venues @venues do |venue|
 
   if venue.photos.attached?
     json.photo_url url_for(
-      venue.photos.first.variant(resize_to_limit: [200, 100])
+      venue.photos.first.variant(resize_to_limit: [120, 60])
     )
   end
 end

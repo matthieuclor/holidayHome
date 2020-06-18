@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class UserMailer < ApplicationMailer
+class InvitationMailer < ApplicationMailer
 
   def send_to_known_user(invitation, user)
     @receiver, @invitation, @family = user, invitation, invitation.family

@@ -1,16 +1,20 @@
 clor:
   id: 1
   name: Clor
+  days_for_approval: 10
 
 delcroix:
   id: 2
   name: Delcroix
+  days_for_approval: 15
 
 bouhours:
   id: 3
   name: Bouhours
+  days_for_approval: 5
 
 legue:
   id: 4
   name: Legue
+  days_for_approval: 2
 
