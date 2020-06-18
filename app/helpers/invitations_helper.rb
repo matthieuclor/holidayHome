@@ -22,7 +22,7 @@ module InvitationsHelper
 
     content_tag(
       :button,
-      (invitation.accepted ? 'Oui' : 'Non'),
+      (invitation.accepted? ? 'Oui' : 'Non'),
       class: ["btn btn-sm btn-#{invitation.accepted? ? 'success' : 'danger'} px-4"],
       disabled: true
     )
