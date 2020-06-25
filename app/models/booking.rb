@@ -20,6 +20,8 @@ class Booking < ApplicationRecord
 
   after_create :set_booking_approvals
 
+  after_update :send_mail, if: :status_changed?
+
   private
 
   def set_deadline
@@ -35,5 +37,9 @@ class Booking < ApplicationRecord
         BookingApproval.create(booking: self, user: user)
       end
     end
+  end
+
+  def send_mail
+    BookingMailer.send_status(self).deliver_later
   end
 end
