@@ -10,6 +10,7 @@ class User < ApplicationRecord
 
   has_many :family_links, dependent: :destroy
   has_many :families, through: :family_links
+  has_many :created_families, class_name: "Family"
   has_many :sended_invitations, class_name: "Invitation", foreign_key: :sender_id
   has_many :received_invitations, class_name: "Invitation", foreign_key: :receiver_id
   has_many :invitees, through: :invitations, source: :receiver

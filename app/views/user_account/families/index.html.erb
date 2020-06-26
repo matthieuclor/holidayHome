@@ -41,23 +41,25 @@
                     </span>
 
                     <div class="ml-auto">
-                      <%= button_to edit_user_account_family_path(family),
-                                    class: "btn btn-primary",
-                                    form_class: "float-left ml-2",
-                                    method: :get,
-                                    remote: true do %>
+                      <% if family.creator == current_user %>
+                        <%= button_to edit_user_account_family_path(family),
+                                      class: "btn btn-primary",
+                                      form_class: "float-left ml-2",
+                                      method: :get,
+                                      remote: true do %>
 
-                        <%= fa_icon("pen", "Editer", class: "mr-2") %>
-                      <% end %>
+                          <%= fa_icon("pen", "Editer", class: "mr-2") %>
+                        <% end %>
 
-                      <%= button_to user_account_family_path(family),
-                                    class: "btn btn-danger",
-                                    form_class: "float-left ml-2",
-                                    method: :delete,
-                                    data: { confirm: "Etes-vous sûr ?" },
-                                    remote: true do %>
+                        <%= button_to user_account_family_path(family),
+                                      class: "btn btn-danger",
+                                      form_class: "float-left ml-2",
+                                      method: :delete,
+                                      data: { confirm: "Etes-vous sûr ?" },
+                                      remote: true do %>
 
-                        <%= fa_icon("trash") %>
+                          <%= fa_icon("trash") %>
+                        <% end %>
                       <% end %>
                     </div>
                   </div>

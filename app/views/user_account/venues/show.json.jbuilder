@@ -11,7 +11,9 @@ json.(@venue, :id,
   :comment
 )
 
-json.is_editable @venue.is_editable?
+json.is_editable (
+  @venue.editable_for_others || @venue.creator_id == current_user.id
+)
 
 if @venue.photos.attached?
   json.photos @venue.photos do |photo|

@@ -39,26 +39,7 @@
           </div>
         </div>
 
-        <div class="form-group row string required venue_name">
-          <label for="venue_name"
-                 class="string required col-sm-2 col-form-label text-nowrap">
-
-            Nom <abbr title="obligatoire">*</abbr>
-          </label>
-
-          <div class="col-sm-10">
-            <input placeholder="Chalet à la montagne"
-                  required="required"
-                  aria-required="true"
-                  type="text"
-                  :value="venueFormItem.name"
-                  name="venue[name]"
-                  id="venue_name"
-                  class="form-control string required"
-                  :class="inputClass(venueFormItem, 'name')"
-                  :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
-          </div>
-        </div>
+        <VenueNameForm />
 
         <div class="form-group hidden venue_creator_id form-group-valid">
           <input type="hidden"
@@ -86,8 +67,6 @@
 
         <VenueBathroomForm />
 
-        <!-- <BathroomListForm :bathrooms="venueFormItem.bathrooms" /> -->
-
         <hr class="my-4">
 
         <KeyListForm :keys="venueFormItem.keys" />
@@ -106,43 +85,15 @@
 
         <hr class="my-4">
 
-        <div class="form-group text optional venue_comment">
-          <label for="venue_comment" class="text optional">
-            Commentaire
-          </label>
-          <textarea placeholder="Choses à savoir, bon plan, précision sur le lieu..."
-                    :value="venueFormItem.comment"
-                    name="venue[comment]"
-                    id="venue_comment"
-                    class="form-control text optional"
-                    :class="inputClass(venueFormItem, 'comment')"
-                    :aria-invalid="!attributeIsValid(venueFormItem, 'comment')">
-          </textarea>
-        </div>
+        <VenueCommentForm />
 
-        <fieldset class="form-group boolean optional venue_editable_for_others form-group-valid">
-          <div class="custom-control custom-switch">
-            <input name="venue[editable_for_others]"
-                  type="hidden"
-                  :value="venueFormItem.editableForOthers">
-            <input type="checkbox"
-                  :value="venueFormItem.editableForOthers"
-                  :checked="venueFormItem.editableForOthers"
-                  name="venue[editable_for_others]"
-                  id="venue_editable_for_others"
-                  class="custom-control-input is-valid boolean optional">
-            <label for="venue_editable_for_others"
-                  class="custom-control-label boolean optional">
-              Editable par les autres membres
-            </label>
-          </div>
-        </fieldset>
+        <VenueEditableForOthersForm />
 
         <input type="submit"
-              :disabled="venueFormIsSending"
-              name="commit"
-              value="Envoyer"
-              class="btn btn-block btn-success">
+               :disabled="venueFormIsSending"
+               name="commit"
+               value="Envoyer"
+               class="btn btn-block btn-success">
       </form>
     </div>
 
@@ -151,6 +102,7 @@
 </template>
 
 <script>
+  import VenueNameForm from 'venues/components/venue/venue_name_form'
   import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton'
   import VenuePlacesForm from 'venues/components/venue/venue_places_form'
   import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form'
@@ -159,7 +111,8 @@
   import NetworkListForm from 'venues/components/network/network_list_form'
   import DigitalCodeListForm from 'venues/components/digital_code/digital_code_list_form'
   import HomeServiceListForm from 'venues/components/home_service/home_service_list_form'
-  import formMixin from 'shared/mixins/form_mixin'
+  import VenueCommentForm from 'venues/components/venue/venue_comment_form'
+  import VenueEditableForOthersForm from 'venues/components/venue/venue_editable_for_others_form'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -169,6 +122,7 @@
     },
     props: ['id'],
     components: {
+      VenueNameForm,
       VenueFormSkeleton,
       VenuePlacesForm,
       VenueBedroomForm,
@@ -176,12 +130,13 @@
       KeyListForm,
       NetworkListForm,
       DigitalCodeListForm,
-      HomeServiceListForm
+      HomeServiceListForm,
+      VenueCommentForm,
+      VenueEditableForOthersForm
     },
     computed: {
       ...mapGetters(['venueFormItem'])
     },
-    mixins: [formMixin],
     methods: {
       ...mapActions([
         'getFormData',

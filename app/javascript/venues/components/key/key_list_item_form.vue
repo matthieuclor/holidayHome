@@ -95,14 +95,10 @@
     props: ['keyItem', 'index'],
     mixins: [formMixin],
     computed: {
-      ...mapGetters([
-        'venueOwnerFormItems'
-      ])
+      ...mapGetters(['venueOwnerFormItems'])
     },
     methods: {
-      ...mapActions([
-        'removeKey'
-      ])
+      ...mapActions(['removeKey'])
     }
   }
 </script>

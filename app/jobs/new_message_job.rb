@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NewMessageJob < ApplicationJob
   queue_as :default
 

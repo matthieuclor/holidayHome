@@ -3,7 +3,7 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  venueItems: null,
+  venueItems: [],
   venueItem: null,
   venueFormItem: null,
   venueOwnerFormItems: null,

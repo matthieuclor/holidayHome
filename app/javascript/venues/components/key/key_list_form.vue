@@ -32,9 +32,7 @@
       KeyListItemForm
     },
     methods: {
-      ...mapActions([
-        'addKey'
-      ])
+      ...mapActions(['addKey'])
     }
   }
 </script>

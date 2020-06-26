@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_31_120208) do
+ActiveRecord::Schema.define(version: 2020_06_26_192512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -87,6 +87,8 @@ ActiveRecord::Schema.define(version: 2020_05_31_120208) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "venues_count", default: 0
     t.integer "days_for_approval"
+    t.bigint "creator_id"
+    t.index ["creator_id"], name: "index_families_on_creator_id"
   end
 
   create_table "family_links", force: :cascade do |t|

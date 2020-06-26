@@ -1,5 +1,12 @@
 <template>
   <div class="pt-4 px-3 overflow-auto w-100" style="height: calc(100vh - 56px);">
+    <div v-if="venueItems.length == 0" class="alert alert-warning">
+      <i class="fas fa-exclamation-triangle"></i>
+      Vous devez dans un premier temps créer votre lieu !
+      <br>
+      Pour ce faire cliquez sur le lien de creation.
+    </div>
+
     <div class="d-flex justify-content-between align-items-center">
       <h1>Mes lieux</h1>
       <router-link :to="{ name: 'newVenue' }">

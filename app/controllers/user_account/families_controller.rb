@@ -2,7 +2,7 @@
 
 module UserAccount
   class FamiliesController < UserAccount::ApplicationController
-    before_action :set_family, only: [:edit, :update, :destroy]
+    before_action :set_family, :check_creator, only: [:edit, :update, :destroy]
 
     def index
       @families = current_user.families
@@ -19,7 +19,9 @@ module UserAccount
     end
 
     def create
-      @family = current_user.families.build(family_params)
+      @family = current_user.families.build(
+        family_params.merge(creator: current_user)
+      )
 
       check_name_validity
 
@@ -65,6 +67,17 @@ module UserAccount
 
     def set_family
       @family = Family.find(params[:id])
+    end
+
+    def check_creator
+      unless @family.creator == current_user
+        flash[:error] = "Vous n'avez pas les droits pour modifier cette famille."
+
+        respond_to do |format|
+          format.html { redirect_to user_account_families_path }
+          format.js { render js: "location.reload()" }
+        end
+      end
     end
 
     def check_name_validity

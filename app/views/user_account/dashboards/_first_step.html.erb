@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center mt-4">
+  <div class="col-md-10 col-lg-8">
+    <div class="card border-0 shadow">
+      <div class="card-body">
+        <div class="alert alert-warning mb-3">
+          <%= fa_icon("exclamation-triangle") %>
+            Vous devez dans un premier temps créer votre premier groupe familial et un lieu !
+            <br>
+            Pour ce faire cliquez sur le lien de creation.
+        </div>
+
+        <ul class="list-group">
+          <li class="list-group-item d-flex flex-row align-items-center">
+            <%= fa_check_icon(current_user.current_family_id,
+                              "Créer votre premier groupe familiale") %>
+
+            <% unless current_user.current_family_id.present? %>
+              <%= button_to new_user_account_family_path,
+                            class: "btn btn-sm btn-outline-primary ml-3 my-1",
+                            method: :get,
+                            remote: true do %>
+
+                <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
+              <% end %>
+            <% end %>
+          </li>
+          <li class="list-group-item d-flex flex-row align-items-center">
+            <%= fa_check_icon(@current_venue, "Créer votre premier lieu") %>
+
+            <% unless @current_venue %>
+              <%= button_to user_account_venues_path,
+                            class: "btn btn-sm btn-outline-primary mx-3 my-1",
+                            method: :get,
+                            disabled: !current_user.current_family_id.present?,
+                            form: {
+                              data: {
+                                toggle: !current_user.current_family_id.present? ? "tooltip" : ""
+                              },
+                              title: "Votre première famille doit être créée"
+                            } do %>
+
+                <%= fa_icon("plus", "Créer mon premier lieu", class: "mr-2") %>
+              <% end %>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
