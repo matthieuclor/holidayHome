@@ -1,20 +1,48 @@
-.sidebar {
-  @include media-breakpoint-only(xl) {
-    max-width: 600px;
-    min-width: 600px;
-    margin-right: -600px;
+.container-with-sidebar {
+  .content {
+    transition-duration: .5s;
   }
 
-  @include media-breakpoint-between(xs, lg) {
-    max-width: 450px;
-    min-width: 450px;
-    margin-right: -450px;
-  }
+  .sidebar {
+    position: fixed;
+    left: 100%;
+    height: calc(100vh - 56px);
+    background-color: white;
 
-  transition-duration: .5s;
+    @include media-breakpoint-only(xl) {
+      max-width: 600px;
+      min-width: 600px;
+    }
+
+    @include media-breakpoint-between(xs, lg) {
+      max-width: 450px;
+      min-width: 450px;
+    }
+
+    transition-duration: .5s;
+  }
 
   &.active {
-    margin-right: 0;
-  transition-duration: .5s;
+    .sidebar {
+      @include media-breakpoint-only(xl) {
+        left: calc(100% - 600px);
+      }
+
+      @include media-breakpoint-between(xs, lg) {
+        left: calc(100% - 450px);
+      }
+    }
+
+    .content {
+      @include media-breakpoint-only(xl) {
+        margin-right: 600px;
+      }
+
+      @include media-breakpoint-between(xs, lg) {
+        margin-right: 450px;
+      }
+
+      transition-duration: .5s;
+    }
   }
 }

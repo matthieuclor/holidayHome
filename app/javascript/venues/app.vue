@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex">
+  <div class="d-flex container-with-sidebar"
+       :class="{ active: sidebar }">
+
     <VenueList />
 
     <VenueContainer />
@@ -21,7 +23,10 @@
   export default {
     name: 'App',
     computed: {
-      ...mapGetters(['flashes'])
+      ...mapGetters([
+        'flashes',
+        'sidebar'
+      ])
     },
     components: {
       VenueList,

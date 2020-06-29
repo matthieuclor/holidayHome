@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-4 px-3 overflow-auto w-100" style="height: calc(100vh - 56px);">
+  <div class="pt-4 px-3 w-100 content">
     <div v-if="venueItems.length == 0" class="alert alert-warning">
       <i class="fas fa-exclamation-triangle"></i>
       Vous devez dans un premier temps créer votre lieu !
