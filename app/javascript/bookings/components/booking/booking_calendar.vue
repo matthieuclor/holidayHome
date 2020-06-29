@@ -3,8 +3,8 @@
     <div class="w-100 px-4">
       <v-calendar @update:from-page="updatePage"
                   @dayclick="linkToBooking"
-                  :columns="4"
-                  :rows="3"
+                  :columns="layout.columns"
+                  :rows="layout.rows"
                   :is-expanded="true"
                   :attributes="attributes"
                   ref="calendar" />
@@ -23,6 +23,16 @@
         'currentVenue',
         'calendar'
       ]),
+      layout() {
+        return this.$screens(
+          {
+            default: { columns: 2, rows: 6 },
+            md: { columns: 3, rows: 4 },
+            lg: { columns: 4, rows: 3 },
+            xl: { columns: 4, rows: 3 }
+          }
+        )
+      },
       attributes() {
         return this.bookingItems.map(
           item => {
