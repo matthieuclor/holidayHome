@@ -19,7 +19,7 @@ class Venue < ApplicationRecord
   has_many :networks, dependent: :destroy
   has_many :digital_codes, dependent: :destroy
   has_many :home_services, dependent: :destroy
-  has_many :bookings
+  has_many :bookings, dependent: :destroy
 
   default_scope { order(:created_at) }
 

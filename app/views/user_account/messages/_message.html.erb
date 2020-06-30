@@ -1,5 +1,5 @@
 <div class="bg-light rounded py-2 px-3 mb-3">
-  <div class="d-flex flex-row align-items-center">
+  <div class="d-flex flex-row align-items-center justify-content-between">
     <%= link_to user_account_user_path(message.user),
                 class: "text-decoration-none",
                 remote: true do %>
@@ -7,6 +7,10 @@
         <%= message.user.first_name %>
         <%= message.user.last_name %>
       </span>
+    <% end %>
+
+    <% if message.booking_approval.present? %>
+      <%= approval_icon(message.booking_approval.status) %>
     <% end %>
   </div>
 

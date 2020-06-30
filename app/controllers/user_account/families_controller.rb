@@ -92,8 +92,13 @@ module UserAccount
     end
 
     def remove_family_from_current_user
-      return if current_user.families.present?
-      current_user.update(current_family_id: nil)
+      return unless current_user.current_family_id == @family.id
+
+      if current_user.families.present?
+        current_user.update(current_family_id: current_user.families.first.id)
+      else
+        current_user.update(current_family_id: nil)
+      end
     end
   end
 end

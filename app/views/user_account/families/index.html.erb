@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mt-4">
-  <div class="col-md-8 col-lg-6">
+  <div class="col-md-12 col-lg-8">
     <div class="d-flex align-items-center">
       <h1>Mes familles</h1>
       <div class="ml-auto">
@@ -55,10 +55,21 @@
                                       class: "btn btn-danger",
                                       form_class: "float-left ml-2",
                                       method: :delete,
-                                      data: { confirm: "Etes-vous sûr ?" },
+                                      data: { confirm: "Cette action effacera tous les lieux et réservations liées à cette famille, êtes-vous sûr ?" },
                                       remote: true do %>
 
                           <%= fa_icon("trash") %>
+                        <% end %>
+                      <% else %>
+                        <%= button_to user_account_family_link_path(
+                                        family.family_links.detect { |l| l.user_id == current_user.id }
+                                      ),
+                                      class: "btn btn-danger",
+                                      form_class: "float-left ml-2",
+                                      method: :delete,
+                                      data: { confirm: "Cette action vous désolidarisera de cette famille, êtes-vous sûr ?" } do %>
+
+                          <%= fa_icon("unlink", "Quitter", class: "mr-2") %>
                         <% end %>
                       <% end %>
                     </div>

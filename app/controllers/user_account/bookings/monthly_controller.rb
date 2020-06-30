@@ -16,7 +16,12 @@ module UserAccount
             .bookings
             .where(status: %i(pending accepted))
             .where(from: from..to)
-            .or(@current_venue.bookings.where(to: from..to))
+            .or(
+              @current_venue
+                .bookings
+                .where(status: %i(pending accepted))
+                .where(to: from..to)
+            )
         )
       end
     end

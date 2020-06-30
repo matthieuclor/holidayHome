@@ -6,7 +6,7 @@ module UserAccount
     before_action :set_booking
 
     def index
-      @messages = @booking.messages.includes(user: [:avatar_attachment])
+      @messages = @booking.messages.includes(:booking_approval, user: [:avatar_attachment])
       @message = @booking.messages.build
     end
 

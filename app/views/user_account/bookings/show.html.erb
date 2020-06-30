@@ -37,15 +37,17 @@
               <%= booking_status_badge(@booking.status) %>
             </div>
 
-            <div>
-              <%= fa_icon("hourglass-half") %>
-              <span class="text-muted ml-2">
-                Deadline
-              </span>
-              <div class="mt-2">
-                <%= booking_progress_deadline(@booking) %>
+            <% unless @booking.canceled? %>
+              <div>
+                <%= fa_icon("hourglass-half") %>
+                <span class="text-muted ml-2">
+                  Deadline
+                </span>
+                <div class="mt-2">
+                  <%= booking_progress_deadline(@booking) %>
+                </div>
               </div>
-            </div>
+            <% end %>
           </div>
         </div>
         <div class="row mt-2 d-flex align-items-center">
@@ -53,37 +55,39 @@
             <%= render "booking_approvals" %>
           </div>
           <div class="col-6">
-            <% if @booking.user == current_user %>
-              <%= button_to user_account_booking_path(@booking),
-                            method: :put,
-                            params: { booking: { status: "canceled" } },
-                            class: "btn btn-sm btn-block btn-danger",
-                            data: {
-                              confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
-                            } do %>
-
-                <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
-              <% end %>
-            <% elsif @booking.booking_approvals.detect { |a| a.user_id == current_user.id }&.pending? %>
-              <div id="approval_actions_container">
-                <%= button_to edit_user_account_booking_booking_approval_path(@booking),
-                              method: :get,
-                              params: { booking_approval: { status: "accepted" } },
-                              class: "btn btn-sm btn-block btn-success mb-2",
-                              remote: true do %>
-
-                  <%= fa_icon("thumbs-up", "Approuver la réservation", class: "mr-2") %>
-                <% end %>
-
-                <%= button_to edit_user_account_booking_booking_approval_path(@booking),
-                              method: :get,
-                              params: { booking_approval: { status: "refused" } },
+            <% if  @booking.pending? %>
+              <% if @booking.user == current_user %>
+                <%= button_to user_account_booking_path(@booking),
+                              method: :put,
+                              params: { booking: { status: "canceled" } },
                               class: "btn btn-sm btn-block btn-danger",
-                              remote: true do %>
+                              data: {
+                                confirm: "La réservation sera annulée définitivement, êtes vous sûr ?"
+                              } do %>
 
-                  <%= fa_icon("thumbs-down", "Rejeter la réservation", class: "mr-2") %>
+                  <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
                 <% end %>
-              </div>
+              <% elsif @booking.booking_approvals.detect { |a| a.user_id == current_user.id }&.pending? %>
+                <div id="approval_actions_container">
+                  <%= button_to edit_user_account_booking_booking_approval_path(@booking),
+                                method: :get,
+                                params: { booking_approval: { status: "accepted" } },
+                                class: "btn btn-sm btn-block btn-success mb-2",
+                                remote: true do %>
+
+                    <%= fa_icon("thumbs-up", "Approuver la réservation", class: "mr-2") %>
+                  <% end %>
+
+                  <%= button_to edit_user_account_booking_booking_approval_path(@booking),
+                                method: :get,
+                                params: { booking_approval: { status: "refused" } },
+                                class: "btn btn-sm btn-block btn-danger",
+                                remote: true do %>
+
+                    <%= fa_icon("thumbs-down", "Rejeter la réservation", class: "mr-2") %>
+                  <% end %>
+                </div>
+              <% end %>
             <% end %>
           </div>
         </div>
