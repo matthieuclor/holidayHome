@@ -1,48 +1,50 @@
-<table class="table table-hover">
-  <thead class="table-info">
-    <tr>
-      <th scope="col"></th>
-      <th scope="col">Membre</th>
-      <th scope="col">Lieu</th>
-      <th scope="col" class="text-center">Date</th>
-      <th scope="col" class="text-center">Statut</th>
-      <th scope="col" class="text-center">Deadline</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% if @bookings.present? %>
-      <% @bookings.each do |booking| %>
-        <tr data-table-link="<%= user_account_booking_path(booking) %>">
-          <td>
-            <%= user_avatar(booking.user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
-          </td>
-          <td>
-            <%= booking.user_full_name %>
-          </td>
-          <td class="font-weight-bolder">
-            <%= booking.venue.name %>
-          </td>
-          <td class="text-center">
-            <%= booking_date_range(booking) %>
-          </td>
-          <td class="text-center">
-            <%= booking_status_badge(booking.status) %>
-          </td>
-          <td class="text-center align-middle">
-            <%= booking_progress_deadline(booking) unless booking.canceled? %>
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-info">
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">Membre</th>
+        <th scope="col">Lieu</th>
+        <th scope="col" class="text-center">Date</th>
+        <th scope="col" class="text-center">Statut</th>
+        <th scope="col" class="text-center">Deadline</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @bookings.present? %>
+        <% @bookings.each do |booking| %>
+          <tr data-table-link="<%= user_account_booking_path(booking) %>">
+            <td>
+              <%= user_avatar(booking.user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+            </td>
+            <td>
+              <%= booking.user_full_name %>
+            </td>
+            <td class="font-weight-bolder">
+              <%= booking.venue.name %>
+            </td>
+            <td class="text-center">
+              <%= booking_date_range(booking) %>
+            </td>
+            <td class="text-center">
+              <%= booking_status_badge(booking.status) %>
+            </td>
+            <td class="text-center align-middle">
+              <%= booking_progress_deadline(booking) unless booking.canceled? %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="7" class="text-center">
+            Vous n'avez pas de réservations en cours
           </td>
         </tr>
       <% end %>
-    <% else %>
-      <tr>
-        <td colspan="7" class="text-center">
-          Vous n'avez pas de réservations en cours
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    </tbody>
+  </table>
 
-<div class="d-flex justify-content-center">
-  <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center">
+    <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
+  </div>
 </div>

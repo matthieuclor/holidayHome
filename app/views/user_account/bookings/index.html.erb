@@ -4,14 +4,14 @@
 
     <div class="card border-0 shadow mb-2">
       <div class="card-body">
-        <div class="row  no-gutters">
-          <div class="col-10">
+        <div class="d-flex flex-column flex-md-row no-gutters">
+          <div class="col-12 col-md-10">
             <%= search_form_for [:user_account, @query],
                                 defaults: { wrapper_html: { class: "mb-0" } },
                                 data: { autosubmit: true },
                                 remote: true do |f| %>
-              <div class="row">
-                <div class="col-3">
+              <div class="d-flex flex-column flex-md-row">
+                <div class="col-12 col-md-3">
                   <%= f.input :user_id_eq,
                               collection: @current_family.users.map { |u|
                                 ["#{u.first_name} #{u.last_name}", u.id]
@@ -19,13 +19,13 @@
                               label: "Membre",
                               required: false %>
                 </div>
-                <div class="col-2">
+                <div class="col-12 col-md-2">
                   <%= f.input :venue_id_eq,
                               collection: @current_family.venues.pluck(:name, :id),
                               label: "Lieu",
                               required: false %>
                 </div>
-                <div class="col-5">
+                <div class="col-12 col-md-5">
                   <div class="row no-gutters">
                     <div class="col-6 pr-3">
                       <%= f.input :from_gteq,
@@ -43,7 +43,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-2">
+                <div class="col-12 col-md-2">
                   <%= f.input :status_eq,
                               collection: Booking.statuses.map { |k, v|
                                 [Booking.human_attribute_name("status.#{k}"), v]
@@ -54,9 +54,9 @@
               </div>
             <% end %>
           </div>
-          <div class="col-2 pl-3 mt-auto">
+          <div class="ml-3 ml-md-0 col-md-2 pl-md-3 mt-2 mt-md-auto">
             <%= button_to user_account_bookings_path,
-                          class: "btn btn-block btn-danger",
+                          class: "btn btn-md-block btn-danger",
                           method: :get do %>
 
               <%= fa_icon("redo", "Réinitialiser", class: "mr-2") %>

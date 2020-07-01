@@ -11,16 +11,12 @@
                   <span class="font-weight-bold">{{ currentVenue.name }}</span>
                 </label>
                 <v-date-picker @update:from-page="updatePage"
+                               @input="submitBookingForm"
                                mode="range"
                                v-model="dateRange"
                                :disabled-dates="disabledDates"
                                ref="formCalendar" />
               </div>
-
-              <button type="submit" class="btn btn-outline-primary mx-2">
-                <i class="fas fa-plus mr-2"></i>
-                Créer
-              </button>
             </form>
           </div>
         </div>

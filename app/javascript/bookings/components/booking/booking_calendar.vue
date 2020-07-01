@@ -26,7 +26,8 @@
       layout() {
         return this.$screens(
           {
-            default: { columns: 2, rows: 6 },
+            default: { columns: 1, rows: 12 },
+            sm: { columns: 1, rows: 12 },
             md: { columns: 3, rows: 4 },
             lg: { columns: 4, rows: 3 },
             xl: { columns: 4, rows: 3 }
