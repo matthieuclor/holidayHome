@@ -1,5 +1,5 @@
 <template>
-  <div class="px-3 sidebar py-4 overflow-auto border-left">
+  <div class="px-3 sidebar py-4 border-left">
 
     <router-view></router-view>
   </div>
