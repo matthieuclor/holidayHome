@@ -6,5 +6,11 @@ FactoryBot.define do
     days_for_approval {
       rand(Family::MIN_DAYS_FOR_APPROVAL..Family::MAX_DAYS_FOR_APPROVAL)
     }
+
+    factory :family_with_dependencies do
+      after(:build) do |family|
+        family.creator = create(:user)
+      end
+    end
   end
 end

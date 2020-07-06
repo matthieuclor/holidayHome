@@ -17,7 +17,7 @@ FactoryBot.define do
       transient { families_count { 2 } }
 
       after(:create) do |user, evaluator|
-        create_list(:family, evaluator.families_count, users: [user])
+        create_list(:family, evaluator.families_count, users: [user], creator: user)
       end
     end
   end
