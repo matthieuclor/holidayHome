@@ -12,13 +12,5 @@ FactoryBot.define do
     password { password }
     password_confirmation { password }
     confirmed_at { Date.today }
-
-    factory :user_with_families do
-      transient { families_count { 2 } }
-
-      after(:create) do |user, evaluator|
-        create_list(:family, evaluator.families_count, users: [user], creator: user)
-      end
-    end
   end
 end

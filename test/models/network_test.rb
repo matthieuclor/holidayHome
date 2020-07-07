@@ -2,29 +2,30 @@ require 'test_helper'
 
 class NetworkTest < ActiveSupport::TestCase
   setup do
-    @venue = create(:venue_with_dependencies)
+    @network = networks(:network)
   end
 
-  test "should save network with all attributes" do
-    network = build(:network, { venue: @venue })
-    assert network.save
+  test "valid network" do
+    assert @network.valid?
   end
 
   %i(name venue).each do |attibute|
-    test "should not save network without #{attibute}" do
-      network = build(:network, { venue: @venue })
-      network.send("#{attibute}=", nil)
-      assert_not network.save
+    test "invalid network without #{attibute}" do
+      @network.send("#{attibute}=", nil)
+      assert_not @network.valid?
+      assert_not_nil @network.errors[attibute]
     end
   end
 
-  test "should not save network with the same name of other venue network" do
-    first_network = create(:network, { venue: @venue })
-    second_network = build(:network, {
-      venue: first_network.venue,
-      name: first_network.name
-    })
+  test "invalid network with duplicate name on venue" do
+    network = build(:network, { venue: @network.venue, name: @network.name })
+    assert_not network.valid?
+    assert_not_nil network.errors[:name]
+  end
 
-    assert_not second_network.save
+  test "destroy networks when venue destroyed" do
+    venue = @network.venue
+    assert venue.destroy
+    assert_empty Network.where(venue_id: venue.id)
   end
 end

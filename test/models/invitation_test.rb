@@ -5,71 +5,86 @@ require 'test_helper'
 class InvitationTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
 
-  test "should save invitation with all attributes" do
-    invitation = build(:invitation)
-
-    assert invitation.save
+  def setup
+    @invitation = invitations(:matthieu_invite_user)
   end
 
-  test "should not save invitation with the wrong email format" do
-    invitation = build(:invitation, { email: 'test.test.com' })
-
-    assert_not invitation.save
+  test "valid invitation" do
+    assert @invitation.valid?
   end
 
   %i(sender family email).each do |attibute|
-    test "should not save invitation without #{attibute}" do
-      invitation = build(:invitation, { attibute => nil })
-
-      assert_not invitation.save
+    test "invalid invitation without #{attibute}" do
+      @invitation.send("#{attibute}=", nil)
+      assert_not @invitation.valid?
+      assert_not_nil @invitation.errors[attibute]
     end
   end
 
-  test "should not save invitation with a wrong status" do
-    assert_raises(ArgumentError) do
-      create(:invitation, { status: 'test' })
-    end
+  test "invalid invitation with the wrong email format" do
+    @invitation.email = "test.test.com"
+    assert_not @invitation.valid?
+    assert_not_nil @invitation.errors[:email]
   end
 
-  test "should not save invitation with the same email, family and pending status" do
-    first_invitation = create(:invitation)
-    invitation = build(
-      :invitation,
-      { family: first_invitation.family, email: first_invitation.email }
-    )
+  test "invalid invitation with duplicate email on family and pending status" do
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: @invitation.email
+    })
 
-    assert_not invitation.save
+    assert_not invitation.valid?
+    assert_not_nil invitation.errors[:email]
   end
 
-  test "should not save invitation with existing receiver on family" do
-    user = create(:user_with_families)
-    invitation = build(:invitation, { family: user.families.last, email: user.email })
+  test "invalid invitation with existing receiver on family" do
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: users(:stephanie).email
+    })
 
-    assert_not invitation.save
+    assert_not invitation.valid?
+    assert_not_nil invitation.errors[:email]
   end
 
-  test "should set token after create invitation" do
-    invitation = create(:invitation)
+  test "set token after create invitation" do
+    invitation = create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family
+    })
 
     assert_not_nil invitation.token
   end
 
-  test "should set receiver after create invitation with existing receiver email" do
-    user = create(:user)
-    invitation = create(:invitation, email: user.email)
+  test "set receiver after create invitation with existing receiver email" do
+    invitation = create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: users(:pierre).email
+    })
 
     assert_not_nil invitation.receiver
   end
 
-  test "should not have receiver after create invitation with inexisting receiver email" do
-    invitation = create(:invitation)
+  test "do not have receiver after create invitation with inexisting receiver email" do
+    invitation = create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family
+    })
 
     assert_nil invitation.receiver
   end
 
-  test "should send send_to_known_user mail and update last_send_at and send_count after create invitation with existing receiver email" do
-    user = create(:user)
-    invitation = create(:invitation, email: user.email)
+  test "send send_to_known_user mail and update last_send_at and send_count after create invitation with existing receiver email" do
+    user = users(:pierre)
+    invitation = create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: user.email
+    })
+
     user_mailer = InvitationMailer.send_to_known_user(invitation, user)
     assert_emails(1) { user_mailer.deliver_later }
 
@@ -80,8 +95,12 @@ class InvitationTest < ActiveSupport::TestCase
     assert_equal 1, invitation.send_count
   end
 
-  test "should send send_to_unknown_user mail and update last_send_at and send_count after create invitation with inexisting receiver email" do
-    invitation = create(:invitation)
+  test "send send_to_unknown_user mail and update last_send_at and send_count after create invitation with inexisting receiver email" do
+    invitation = create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+    })
+
     user_mailer = InvitationMailer.send_to_unknown_user(invitation)
     assert_emails(1) { user_mailer.deliver_later }
 

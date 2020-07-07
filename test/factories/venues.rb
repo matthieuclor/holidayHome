@@ -14,12 +14,5 @@ FactoryBot.define do
     single_beds_count { Faker::Number.non_zero_digit }
     double_beds_count { Faker::Number.non_zero_digit }
     baby_beds_count { Faker::Number.non_zero_digit }
-
-    factory :venue_with_dependencies do
-      after(:build) do |venue|
-        venue.family = create(:family)
-        venue.creator = create(:user)
-      end
-    end
   end
 end

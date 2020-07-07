@@ -2,19 +2,24 @@ clor:
   id: 1
   name: Clor
   days_for_approval: 10
+  creator_id: 1
+  venues_count: 1
 
 delcroix:
   id: 2
   name: Delcroix
   days_for_approval: 15
+  creator_id: 1
 
 bouhours:
   id: 3
   name: Bouhours
   days_for_approval: 5
+  creator_id: 1
 
 legue:
   id: 4
   name: Legue
   days_for_approval: 2
+  creator_id: 1
 

@@ -3,31 +3,49 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-  test "should save user with all attributes" do
-    user = build(:user)
-    assert user.save
+  def setup
+    @user = users(:matthieu)
   end
 
-  %i(first_name last_name email password).each do |attibute|
-    test "should not save user without #{attibute}" do
-      user = build(:user, { attibute => nil })
-      assert_not user.save
+  test "valid user" do
+    assert @user.valid?
+  end
+
+  %i(first_name last_name email).each do |attibute|
+    test "invalid user without #{attibute}" do
+      @user.send("#{attibute}=", nil)
+      assert_not @user.valid?
+      assert_not_nil @user.errors[attibute]
     end
   end
 
-  test "should not save user with the wrong email format" do
-    user = build(:user, { email: 'test.test.com' })
-    assert_not user.save
+  test "invalid user with the wrong email format" do
+    @user.email = 'test.test.com'
+    assert_not @user.valid?
+    assert_not_nil @user.errors[:email]
   end
 
-  test "should not save user with exsting email" do
-    create(:user, { email: 'test@test.com' })
-    user = build(:user, { email: 'test@test.com' })
-    assert_not user.save
+  test "invalid user with exsting email" do
+    user = build(:user, { email: @user.email })
+    assert_not user.valid?
+    assert_not_nil user.errors[:email]
   end
 
-  test "should not save user with the wrong password length" do
-    user = build(:user, { password: '1234567' })
-    assert_not user.save
+  test "invalid user with the wrong password length" do
+    @user.password = '1234567'
+    assert_not @user.valid?
+    assert_not_nil @user.errors[:password]
+  end
+
+  test "capitalize first name before save" do
+    @user.first_name = "test"
+    @user.save
+    assert_equal @user.first_name, "Test"
+  end
+
+  test "capitalize last name before save" do
+    @user.last_name = "test"
+    @user.save
+    assert_equal @user.last_name, "Test"
   end
 end

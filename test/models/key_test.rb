@@ -2,29 +2,30 @@ require 'test_helper'
 
 class KeyTest < ActiveSupport::TestCase
   setup do
-    @venue = create(:venue_with_dependencies)
+    @key = keys(:key)
   end
 
-  test "should save key with all attributes" do
-    key = build(:key_with_dependencies, { venue: @venue })
-    assert key.save
+  test "valid key" do
+    assert @key.valid?
   end
 
   %i(name owner venue).each do |attibute|
-    test "should not save key without #{attibute}" do
-      key = build(:key_with_dependencies, { venue: @venue })
-      key.send("#{attibute}=", nil)
-      assert_not key.save
+    test "invalid key without #{attibute}" do
+      @key.send("#{attibute}=", nil)
+      assert_not @key.valid?
+      assert_not_nil @key.errors[attibute]
     end
   end
 
-  test "should not save key with the same name of other venue key" do
-    first_key = create(:key_with_dependencies, { venue: @venue })
-    second_key = build(:key_with_dependencies, {
-      venue: first_key.venue,
-      name: first_key.name
-    })
+  test "invalid key with duplicate name on venue" do
+    key = build(:key, { venue: @key.venue, name:  @key.name })
+    assert_not key.valid?
+    assert_not_nil key.errors[:name]
+  end
 
-    assert_not second_key.save
+  test "destroy keys when venue destroyed" do
+    venue = @key.venue
+    assert venue.destroy
+    assert_empty Key.where(venue_id: venue.id)
   end
 end

@@ -2,29 +2,34 @@ require 'test_helper'
 
 class DigitalCodeTest < ActiveSupport::TestCase
   setup do
-    @venue = create(:venue_with_dependencies)
+    @digital_code = digital_codes(:digital_code)
   end
 
-  test "should save digital code with all attributes" do
-    digital_code = build(:digital_code, { venue: @venue })
-    assert digital_code.save
+  test "valid digital code" do
+    assert @digital_code.valid?
   end
 
   %i(name password venue).each do |attibute|
     test "should not save digital code without #{attibute}" do
-      digital_code = build(:digital_code, { venue: @venue })
-      digital_code.send("#{attibute}=", nil)
-      assert_not digital_code.save
+      @digital_code.send("#{attibute}=", nil)
+      assert_not @digital_code.valid?
+      assert_not_nil @digital_code.errors[attibute]
     end
   end
 
-  test "should not save digital code with the same name of other venue digital code" do
-    first_digital_code = create(:digital_code, { venue: @venue })
-    second_digital_code = build(:digital_code, {
-      venue: first_digital_code.venue,
-      name: first_digital_code.name
+  test "invalid digital code with duplica te name on venue" do
+    digital_code = build(:digital_code, {
+      venue: @digital_code.venue,
+      name: @digital_code.name
     })
 
-    assert_not second_digital_code.save
+    assert_not digital_code.valid?
+    assert_not_nil digital_code.errors[:name]
+  end
+
+  test "destroy digital codes when venue destroyed" do
+    venue = @digital_code.venue
+    assert venue.destroy
+    assert_empty DigitalCode.where(venue_id: venue.id)
   end
 end

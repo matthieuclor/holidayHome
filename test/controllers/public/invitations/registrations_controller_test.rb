@@ -5,8 +5,12 @@ require 'test_helper'
 module Public
   module Invitations
     class RegistrationsControllerTest < ActionDispatch::IntegrationTest
-      test "shound get new" do
-        get new_invitation_registrations_url(token: invitations(:matthieu_invite_user).token)
+      def setup
+        @invitation = invitations(:matthieu_invite_user)
+      end
+
+      test "should get new" do
+        get new_invitation_registrations_url(token: @invitation.token)
         invitee = @controller.view_assigns["invitee"]
 
         assert_instance_of User, invitee
@@ -19,17 +23,17 @@ module Public
           invitee: {
             first_name: 'Donald',
             last_name: 'Trump',
-            email: invitations(:matthieu_invite_user).email,
+            email: @invitation.email,
             password: '12345678',
             password_confirmation: '12345678',
             family_ids: 1,
-            received_invitation_ids: invitations(:matthieu_invite_user).id
+            received_invitation_ids: @invitation.id
           }
         }
         invitee = @controller.view_assigns["invitee"]
 
         assert_not_nil invitee
-        assert invitee.families.last == invitations(:matthieu_invite_user).family
+        assert invitee.families.last == @invitation.family
         assert invitee.received_invitations.last.accepted?
         assert_redirected_to user_account_dashboards_url
       end

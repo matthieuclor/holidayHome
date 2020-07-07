@@ -45,4 +45,14 @@ user_locked:
   locked_at: <%= DateTime.now %>
   unlock_token: ame4gdumQ5ykYKfsYBN2
 
+stephanie:
+  id: 5
+  first_name: Stephanie
+  last_name: Clor
+  email: stephanieclor@gmail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password03') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id: 1
 
