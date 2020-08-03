@@ -78,18 +78,21 @@
         }
       }
     },
-    created() {
-      const currentDate = new Date()
-
-      this.updateFormCalendar({
-        month: currentDate.getMonth() + 1,
-        year: currentDate.getFullYear(),
-        monthCount: 1
-      })
-
-      this.getBookingFormItems(this.formCalendar)
-    },
     watch: {
+      currentVenue: {
+        handler() {
+          const currentDate = new Date()
+
+          this.updateFormCalendar({
+            month: currentDate.getMonth() + 1,
+            year: currentDate.getFullYear(),
+            monthCount: 1
+          })
+
+          this.getBookingFormItems(this.formCalendar)
+        },
+        immediate: true
+      },
       bookingDateRange() {
         this.dateRange = this.bookingDateRange
       }

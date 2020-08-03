@@ -6,7 +6,7 @@ module UserAccount
     before_action :set_current_family, only: [:index]
 
     def index
-      @query = @current_family.bookings.ransack(bookings_ransack_params)
+      @query = @current_family.bookings.joins(:user).ransack(bookings_ransack_params)
       @pagy, @bookings = pagy(
         @query.result.includes(:venue, user: [:avatar_attachment])
       )

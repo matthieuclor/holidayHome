@@ -14,11 +14,13 @@ module UserAccount
         @bookings = BookingDecorator.wrap(
           @current_venue
             .bookings
+            .joins(:user)
             .where(status: %i(pending accepted))
             .where(from: from..to)
             .or(
               @current_venue
                 .bookings
+                .joins(:user)
                 .where(status: %i(pending accepted))
                 .where(to: from..to)
             )

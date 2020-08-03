@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_26_192512) do
+ActiveRecord::Schema.define(version: 2020_08_03_133020) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -176,6 +176,12 @@ ActiveRecord::Schema.define(version: 2020_06_26_192512) do
     t.string "phone"
     t.string "address"
     t.hstore "current_venue_id", default: {}
+    t.integer "status", default: 0
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["current_venue_id"], name: "index_users_on_current_venue_id", using: :gin
     t.index ["email"], name: "index_users_on_email", unique: true

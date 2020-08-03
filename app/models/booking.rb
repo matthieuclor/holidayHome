@@ -25,11 +25,12 @@ class Booking < ApplicationRecord
   private
 
   def set_deadline
-    self.deadline = DateTime.now + self.family.days_for_approval.days
+    deadline = DateTime.now + self.family.days_for_approval.days
+    self.deadline = self.from < deadline ? self.from : deadline
   end
 
   def set_booking_approvals
-    if self.family.days_for_approval.zero?
+    if self.family.days_for_approval.zero? || self.deadline == Date.current
       self.accepted!
     else
       self.family.users.each do |user|

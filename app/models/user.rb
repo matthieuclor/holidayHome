@@ -2,9 +2,9 @@
 
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :trackable and :omniauthable
+  # :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
-         :validatable, :timeoutable, :confirmable, :lockable
+         :validatable, :timeoutable, :confirmable, :lockable, :trackable
 
   has_one_attached :avatar, dependent: :destroy
 
@@ -21,8 +21,25 @@ class User < ApplicationRecord
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 
+  enum status: %i(activated desactivated blocked)
+
+  default_scope { where(status: :activated) }
+
   validates :first_name, :last_name, presence: true
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
+
+  def active_for_authentication?
+    self.activated! if self.desactivated?
+    super && self.activated?
+  end
+
+  def inactive_message
+    self.activated? ? super : self.status.to_sym
+  end
+
+  def self.find_for_authentication(conditions)
+    unscoped { super(conditions) }
+  end
 end

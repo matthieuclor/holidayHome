@@ -52,7 +52,9 @@
         </div>
         <div class="row mt-2 d-flex align-items-center">
           <div id="booking_approvals_container" class="col-6">
-            <%= render "booking_approvals" %>
+            <% if @booking.booking_approvals.present? %>
+              <%= render "booking_approvals" %>
+            <% end %>
           </div>
           <div class="col-6">
             <% if  @booking.pending? %>
