@@ -23,6 +23,19 @@
                 class="form-control is-valid hidden">
         </div>
 
+        <div class="d-flex flex-wrap mt-3">
+          <div v-for="(photo, index) in venueFormItem.photos" :key="index">
+            <div class="mr-4 mb-3">
+              <img :src="photo.url" class="rounded">
+              <button @click.prevent="destroyVenuePhoto(index, photo.id)"
+                      class="btn btn-sm btn-danger position-absolute mt-n2 ml-n3">
+
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+
         <div class="form-group row file optional venue_photos">
           <label for="venue_photos"
                  class="file optional col-sm-2 col-form-label text-nowrap">
@@ -141,8 +154,14 @@
       ...mapActions([
         'getFormData',
         'sendVenueForm',
-        'hideSidebar'
+        'hideSidebar',
+        'removePhoto'
       ]),
+      destroyVenuePhoto(index, id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+          this.removePhoto({ index, id })
+        }
+      },
       submitVenueForm({ target }) {
         this.venueFormIsSending = true
         this.sendVenueForm(new FormData(target))

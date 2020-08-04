@@ -20,6 +20,9 @@ export default {
   ADD_KEY(state, payload) {
     state.venueFormItem.keys.push(payload)
   },
+  REMOVE_PHOTO(state, index) {
+    state.venueFormItem.photos.splice(index, 1)
+  },
   REMOVE_KEY(state, index) {
     if (state.venueFormItem.keys[index].id == null) {
       state.venueFormItem.keys.splice(index, 1)

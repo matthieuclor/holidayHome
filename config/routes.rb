@@ -29,9 +29,13 @@ Rails.application.routes.draw do
     resource :current_venues, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :family_links, only: [:destroy]
-    resources :venues
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
+    resources :venues
+
+    scope module: :venues do
+      resources :photos, only: [:destroy]
+    end
 
     resources :bookings, only: [:index, :show, :create, :update] do
       resources :messages, only: [:index, :create]

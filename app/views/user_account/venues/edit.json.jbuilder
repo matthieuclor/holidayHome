@@ -27,6 +27,13 @@ json.venue do
     :family_id
   )
 
+  if @venue.photos.attached?
+    json.photos @venue.photos do |photo|
+      json.url url_for(photo.variant(resize_to_limit: [120, 120]))
+      json.id photo.id
+    end
+  end
+
   json.errors @venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
 
   json.keys @venue.keys do |key|

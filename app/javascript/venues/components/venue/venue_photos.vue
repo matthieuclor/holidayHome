@@ -18,6 +18,7 @@
             :key="index"
             class="carousel-item"
             :class="{ active: index == 0 }">
+
           <img :src="photo.url" class="d-block rounded w-100">
         </div>
       </div>

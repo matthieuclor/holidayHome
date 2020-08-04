@@ -21,6 +21,19 @@ export default {
       commit('UPDATE_FORM_VENUE_OWNER_ITEMS', response.data.owners)
     })
   },
+  removePhoto({ commit }, { index, id }) {
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+
+    axios.delete(
+      `photos/${id}.json`,
+      { headers: { 'X-CSRF-TOKEN': csrfToken } }
+    ).then(response => {
+      commit('REMOVE_PHOTO', index)
+      commit('UPDATE_FLASHES', response.data.flashes)
+    }).catch(error => {
+      commit('UPDATE_FLASHES', error.response.data.flashes)
+    })
+  },
   addKey({ commit }) {
     commit('ADD_KEY', { id: null, name: null, Destroy: null, errors: {} })
   },
