@@ -23,13 +23,18 @@
           <% @booking.booking_approvals.each do |approval| %>
             <li class="list-group-item p-1">
               <div class="d-flex justify-content-between">
-                <%= link_to user_account_user_path(approval.user),
-                            class: "text-decoration-none text-muted",
-                            remote: true do %>
+                <% if approval.user.present? %>
+                  <%= link_to user_account_user_path(approval.user),
+                              class: "text-decoration-none text-muted",
+                              remote: true do %>
 
-                  <%= approval.user.first_name %>
-                  <%= approval.user.last_name %>
+                    <%= approval.user.first_name %>
+                    <%= approval.user.last_name %>
+                  <% end %>
+                <% else %>
+                  <%= fa_icon("user-slash", nil, class: "text-muted") %>
                 <% end %>
+
                 <%= approval_icon(approval.status) %>
               </div>
             </li>

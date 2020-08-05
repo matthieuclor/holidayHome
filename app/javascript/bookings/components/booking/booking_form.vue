@@ -10,7 +10,7 @@
                   Créer une nouvelle réservation pour&nbsp;
                   <span class="font-weight-bold">{{ currentVenue.name }}</span>
                 </label>
-                <v-date-picker @update:from-page="updatePage"
+                <v-date-picker @update:frompage="updatePage"
                                @input="submitBookingForm"
                                mode="range"
                                v-model="dateRange"

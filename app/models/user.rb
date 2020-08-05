@@ -21,7 +21,7 @@ class User < ApplicationRecord
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
 
-  enum status: %i(activated desactivated blocked)
+  enum status: %i(activated deactivated blocked)
 
   default_scope { where(status: :activated) }
 
@@ -31,7 +31,7 @@ class User < ApplicationRecord
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
 
   def active_for_authentication?
-    self.activated! if self.desactivated?
+    self.activated! if self.deactivated?
     super && self.activated?
   end
 

@@ -57,7 +57,7 @@
             <% end %>
           </div>
           <div class="col-6">
-            <% if  @booking.pending? %>
+            <% if @booking.pending? %>
               <% if @booking.user == current_user %>
                 <%= button_to user_account_booking_path(@booking),
                               method: :put,
