@@ -8,11 +8,11 @@ export default {
     .then((response) => commit('UPDATE_BOOKING_PENDING_ITEMS', response.data.pendingBookings))
   },
   getBookingItems({ commit }, calendar) {
-    axios.get('bookings/yearly.json', { params: { ...calendar } })
+    axios.get('bookings/range.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_ITEMS', response.data.bookings))
   },
   getBookingFormItems({ commit }, calendar) {
-    axios.get('bookings/monthly.json', { params: { ...calendar } })
+    axios.get('bookings/range.json', { params: { ...calendar } })
     .then((response) => commit('UPDATE_BOOKING_FORM_ITEMS', response.data.bookings))
   },
   updateBookingDateRange({ commit }, dateRange) {

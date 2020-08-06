@@ -72,3 +72,15 @@ deactivated_user:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 1
+
+blocked_user:
+  id: 7
+  first_name: User
+  last_name: Blocked
+  email: blocked_user@mail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password07') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id: 1
+  status: 2

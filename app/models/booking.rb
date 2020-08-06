@@ -20,7 +20,8 @@ class Booking < ApplicationRecord
 
   after_create :set_booking_approvals
 
-  after_save :send_mail, if: :status_previously_changed?
+  after_update :send_mail, if: :status_previously_changed?
+  after_update :update_booking_approvals_status, if: :status_previously_changed?
 
   private
 
@@ -43,5 +44,10 @@ class Booking < ApplicationRecord
   def send_mail
     return if %w(pending canceled).include?(self.status)
     BookingMailer.send_status(self).deliver_later
+  end
+
+  def update_booking_approvals_status
+    return if self.pending?
+    self.booking_approvals.pending.update_all(status: :out_of_time)
   end
 end

@@ -41,29 +41,47 @@ class BookingTest < ActiveSupport::TestCase
   test "send mail if status change to accepted" do
     @booking.accepted!
     assert_enqueued_emails(1)
+
     booking_mailer = BookingMailer.send_status(@booking)
     assert_equal ['hello@hutoki.com'], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal "Réservation Acceptée pour La Tania", booking_mailer.subject
+
+    @booking.booking_approvals.each do |approval|
+      assert_not approval.pending?
+    end
   end
 
   test "send mail if status change to refused" do
     @booking.refused!
     assert_enqueued_emails(1)
+
     booking_mailer = BookingMailer.send_status(@booking)
     assert_equal ['hello@hutoki.com'], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal "Réservation Refusée pour La Tania", booking_mailer.subject
+
+    @booking.booking_approvals.each do |approval|
+      assert_not approval.pending?
+    end
   end
 
   test "not send mail if status change to canceled" do
     @booking.canceled!
     assert_no_enqueued_emails
+
+    @booking.booking_approvals.each do |approval|
+      assert_not approval.pending?
+    end
   end
 
   test "not send mail if status change to pending" do
     @booking.pending!
     assert_no_enqueued_emails
+
+    @booking.booking_approvals.each do |approval|
+      assert_not approval.out_of_time?
+    end
   end
 
   test "destroy bookings when venue destroyed" do

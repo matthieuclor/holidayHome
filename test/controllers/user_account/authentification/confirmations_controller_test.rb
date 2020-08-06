@@ -22,8 +22,6 @@ module UserAccount
           {}
         )
 
-        assert_emails(1) { authentification_mailer.deliver_later }
-
         assert_equal ['hello@hutoki.com'], authentification_mailer.from
         assert_equal [users(:matthieu).email], authentification_mailer.to
         assert_equal "Instructions de confirmation", authentification_mailer.subject

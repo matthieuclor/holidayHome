@@ -9,9 +9,5 @@ namespace :bookings do
     Booking.joins(:booking_approvals).pending
       .where("now() >= deadline")
       .update_all(status: :accepted)
-
-    BookingApproval.joins(:booking).pending
-      .where(bookings: { status: [:accepted, :refused] })
-      .update_all(status: :out_of_time)
   end
 end
