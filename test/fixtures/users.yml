@@ -10,6 +10,7 @@ matthieu:
   current_family_id: 1
   reset_password_token: ame4gdumQ5ykYKfsYBN2
   reset_password_sent_at: <%= DateTime.now %>
+  status: 0
 
 pierre:
   id: 2
@@ -21,6 +22,7 @@ pierre:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password02') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id: 2
+  status: 0
 
 olivia:
   id: 3
@@ -32,8 +34,9 @@ olivia:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password03') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
+  status: 0
 
-user_locked:
+locked_user:
   id: 4
   first_name: User
   last_name: Locked
@@ -44,6 +47,7 @@ user_locked:
   confirmed_at: <%= DateTime.now %>
   locked_at: <%= DateTime.now %>
   unlock_token: ame4gdumQ5ykYKfsYBN2
+  status: 0
 
 stephanie:
   id: 5
@@ -55,4 +59,16 @@ stephanie:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password03') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
+  status: 0
 
+deactivated_user:
+  id: 6
+  first_name: User
+  last_name: Deactivated
+  email: deactivated_user@mail.com
+  phone: 06 67 65 43 89
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password06') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id: 1
+  status: 1

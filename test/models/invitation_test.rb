@@ -85,9 +85,9 @@ class InvitationTest < ActiveSupport::TestCase
       email: user.email
     })
 
-    user_mailer = InvitationMailer.send_to_known_user(invitation, user)
-    assert_emails(1) { user_mailer.deliver_later }
+    assert_enqueued_emails(1)
 
+    user_mailer = InvitationMailer.send_to_known_user(invitation, user)
     assert_equal ['hello@hutoki.com'], user_mailer.from
     assert_equal [user.email], user_mailer.to
     assert_equal "Invitation à rejoindre la famille #{invitation.family.name}", user_mailer.subject
@@ -101,9 +101,9 @@ class InvitationTest < ActiveSupport::TestCase
       family: @invitation.family,
     })
 
-    user_mailer = InvitationMailer.send_to_unknown_user(invitation)
-    assert_emails(1) { user_mailer.deliver_later }
+    assert_enqueued_emails(1)
 
+    user_mailer = InvitationMailer.send_to_unknown_user(invitation)
     assert_equal ['hello@hutoki.com'], user_mailer.from
     assert_equal [invitation.email], user_mailer.to
     assert_equal "Invitation à créer son compte", user_mailer.subject

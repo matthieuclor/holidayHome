@@ -37,9 +37,10 @@ class BookingApprovalTest < ActiveSupport::TestCase
       venue: @booking_approval.booking.venue
     })
 
+    assert_enqueued_emails(booking.booking_approvals.size)
+
     booking.booking_approvals.each do |booking_approval|
       booking_mailer = BookingMailer.send_approval(booking, booking_approval.user)
-      assert_emails(1) { booking_mailer.deliver_later }
       assert_equal ['hello@hutoki.com'], booking_mailer.from
       assert_equal [booking_approval.user.email], booking_mailer.to
       assert_equal "Demande de réservation pour La Tania", booking_mailer.subject

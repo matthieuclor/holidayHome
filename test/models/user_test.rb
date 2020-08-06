@@ -19,6 +19,10 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
+  test "default user status must is activated" do
+    assert @user.activated?
+  end
+
   test "invalid user with the wrong email format" do
     @user.email = 'test.test.com'
     assert_not @user.valid?
