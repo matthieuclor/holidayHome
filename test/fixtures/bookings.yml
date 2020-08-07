@@ -4,4 +4,5 @@ la_tania_booking:
   to: <%= DateTime.now + 7.days %>
   user_id: 1
   venue_id: 1
+  deadline: <%= DateTime.now + 30.days %>
   status: 0

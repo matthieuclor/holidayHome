@@ -8,6 +8,7 @@ matthieu:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password01') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
+  current_venue_id: { "1": "1" }
   reset_password_token: ame4gdumQ5ykYKfsYBN2
   reset_password_sent_at: <%= DateTime.now %>
   status: 0

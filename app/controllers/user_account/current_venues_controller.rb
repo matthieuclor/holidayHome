@@ -2,6 +2,7 @@
 
 module UserAccount
   class CurrentVenuesController < UserAccount::ApplicationController
+    respond_to :json
     include CurrentVenue
 
     def update

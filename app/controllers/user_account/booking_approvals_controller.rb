@@ -31,7 +31,7 @@ module UserAccount
     end
 
     def set_booking_approval
-      @booking_approval = BookingApproval.find_by(booking: @booking, user: current_user)
+      @booking_approval = BookingApproval.find(params[:id])
     end
 
     def booking_approval_params

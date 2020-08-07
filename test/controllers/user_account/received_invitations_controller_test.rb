@@ -16,6 +16,12 @@ module UserAccount
 
     test "should get index" do
       get user_account_received_invitations_url
+
+      invitations = @controller.view_assigns["invitations"]
+      pagy = @controller.view_assigns["pagy"]
+
+      assert_instance_of InvitationDecorator, invitations.first
+      assert_instance_of Pagy, pagy
       assert_response :success
     end
 

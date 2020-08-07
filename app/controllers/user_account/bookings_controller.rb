@@ -21,6 +21,10 @@ module UserAccount
           booking_approvals: [:user]
         ).find(params[:id])
       )
+
+      @booking_approval = @booking.booking_approvals.detect do |approval|
+        approval.user_id == current_user.id
+      end
     end
 
     def create

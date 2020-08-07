@@ -69,9 +69,9 @@
 
                   <%= fa_icon("trash", "Annuler la réservation", class: "mr-2") %>
                 <% end %>
-              <% elsif @booking.booking_approvals.detect { |a| a.user_id == current_user.id }&.pending? %>
+              <% elsif @booking_approval&.pending? %>
                 <div id="approval_actions_container">
-                  <%= button_to edit_user_account_booking_booking_approval_path(@booking),
+                  <%= button_to edit_user_account_booking_booking_approval_path(@booking, @booking_approval),
                                 method: :get,
                                 params: { booking_approval: { status: "accepted" } },
                                 class: "btn btn-sm btn-block btn-success mb-2",
@@ -80,7 +80,7 @@
                     <%= fa_icon("thumbs-up", "Approuver la réservation", class: "mr-2") %>
                   <% end %>
 
-                  <%= button_to edit_user_account_booking_booking_approval_path(@booking),
+                  <%= button_to edit_user_account_booking_booking_approval_path(@booking, @booking_approval),
                                 method: :get,
                                 params: { booking_approval: { status: "refused" } },
                                 class: "btn btn-sm btn-block btn-danger",

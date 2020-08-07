@@ -6,7 +6,7 @@ class BookingApprovalTest < ActiveSupport::TestCase
   include ActionMailer::TestHelper
 
   def setup
-    @booking_approval = booking_approvals(:la_tania_booking_approval)
+    @booking_approval = booking_approvals(:la_tania_booking_approval_from_olivia)
   end
 
   test "valid booking approval" do

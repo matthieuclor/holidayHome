@@ -14,3 +14,20 @@ la_tania:
   baby_beds_count: 1
   creator_id: 1
   family_id: 1
+
+plg:
+  id: 2
+  name: La Galère
+  address: 12 Rue du test
+  bedrooms_count: 3
+  bathrooms_count: 2
+  with_network: false
+  with_digital_code: false
+  with_home_service: false
+  comment: Ceci est un commentaire, il commente quoi...
+  editable_for_others: true
+  single_beds_count: 4
+  double_beds_count: 2
+  baby_beds_count: 0
+  creator_id: 1
+  family_id: 1

@@ -16,11 +16,19 @@ module UserAccount
 
     test "should get index" do
       get user_account_users_url
+
+      users = @controller.view_assigns["users"]
+      pagy = @controller.view_assigns["pagy"]
+
+      assert_instance_of UserDecorator, users.first
+      assert_instance_of Pagy, pagy
       assert_response :success
     end
 
     test "should get show" do
       get user_account_user_url(users(:olivia)), xhr: true
+      user = @controller.view_assigns["user"]
+      assert_instance_of UserDecorator, user
       assert_response :success
     end
 

@@ -5,7 +5,8 @@ require 'test_helper'
 module UserAccount
   class FamiliesControllerTest < ActionDispatch::IntegrationTest
     setup do
-      sign_in users(:matthieu), scope: :user
+      @user = users(:matthieu)
+      sign_in @user, scope: :user
     end
 
     test "redirected if not logged in" do
@@ -16,6 +17,11 @@ module UserAccount
 
     test "should get index" do
       get user_account_families_url
+
+      families = @controller.view_assigns["families"]
+
+      assert_instance_of Family, families.first
+      families.each { |family| assert family.users.include?(@user) }
       assert_response :success
     end
 
