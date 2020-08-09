@@ -2,12 +2,11 @@
 
 module UserAccount
   class MessagesController < UserAccount::ApplicationController
-    respond_to(:js, :json)
+    respond_to(:json)
     before_action :set_booking
 
     def index
-      @messages = @booking.messages.includes(:booking_approval, user: [:avatar_attachment])
-      @message = @booking.messages.build
+      @messages = @booking.messages.includes(:booking_approval, :user)
     end
 
     def create

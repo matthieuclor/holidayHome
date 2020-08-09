@@ -10,21 +10,18 @@ module UserAccount
       sign_in @user, scope: :user
     end
 
-    test "should redirect if not logged in" do
+    test "should unauthorized if not logged in" do
       sign_out @user
-      get user_account_booking_messages_url(@booking), xhr: true
-      assert_response :redirect
+      get user_account_booking_messages_url(@booking), as: :json
+      assert_response :unauthorized
     end
 
-    test "should render messages" do
-      get user_account_booking_messages_url(@booking), xhr: true
+    test "should render messages as json" do
+      get user_account_booking_messages_url(@booking), as: :json
 
       messages = @controller.view_assigns["messages"]
-      message = @controller.view_assigns["message"]
 
       assert_instance_of Message, messages.first
-      assert_instance_of Message, message
-      assert message.new_record?
       assert_response :success
     end
 

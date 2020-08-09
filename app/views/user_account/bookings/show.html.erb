@@ -96,15 +96,11 @@
       </div>
     </div>
 
-    <div id="messages-container">
-      <%= render "shared/spinner" %>
+    <div id="messages-container"
+         data-content-max="<%= Message::CONTENT_MAX %>"
+         data-booking-id="<%= @booking.id %>"
+         data-user-id="<%= current_user.id %>">
+      <div id="messages-vue"></div>
     </div>
   </div>
 </div>
-
-<script>
-  Rails.ajax({
-    url: "<%= user_account_booking_messages_path(@booking) %>",
-    type: "get"
-  })
-</script>
