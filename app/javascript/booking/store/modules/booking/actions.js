@@ -26,5 +26,8 @@ export default {
     }).catch(error => {
       commit('UPDATE_FLASHES', error.response.data.flashes)
     })
+  },
+  updateBookingCurrentUsers({ commit }, value) {
+    commit('UPDATE_BOOKING_CURRENT_USERS', value)
   }
 }

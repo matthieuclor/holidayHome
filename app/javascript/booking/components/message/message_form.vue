@@ -1,5 +1,5 @@
 <template>
-  <div v-if="bookingItem.status == 'pending'"
+  <div v-if="bookingItem && bookingItem.status == 'pending'"
        class="d-flex justify-content-center">
 
     <div class="col-md-8 col-lg-6">

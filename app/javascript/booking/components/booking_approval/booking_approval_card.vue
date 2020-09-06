@@ -28,14 +28,19 @@
             <li v-for="(bookingApproval, index) in bookingApprovals" :key="index"
                 class="list-group-item p-1">
 
-              <div class="d-flex justify-content-between">
-                <a v-if="bookingApproval.userName"
-                   :href="`/user_account/users/${bookingApproval.userId}`"
-                   class="text-decoration-none text-muted"
-                   data-remote="true">
-                  {{ bookingApproval.userName }}
-                </a>
-                <i v-else class="fas fa-user-slash text-muted"></i>
+              <div class="d-flex justify-content-between align-items-center">
+                <div>
+                  <BookingCurrentUserIcon :userId="bookingApproval.userId" />
+
+                  <a v-if="bookingApproval.userName"
+                    :href="`/user_account/users/${bookingApproval.userId}`"
+                    class="text-decoration-none text-muted"
+                    data-remote="true">
+                    {{ bookingApproval.userName }}
+                  </a>
+
+                  <i v-else class="fas fa-user-slash text-muted"></i>
+                </div>
 
                 <BookingApprovalStatusIcon :status="bookingApproval.status"
                                            :statusTitle="bookingApproval.statusTitle"/>
@@ -49,6 +54,7 @@
 </template>
 
 <script>
+  import BookingCurrentUserIcon from '../booking/booking_current_user_icon'
   import BookingApprovalStatusIcon from './booking_approval_status_icon'
 
   export default {
@@ -60,6 +66,7 @@
       }
     },
     components: {
+      BookingCurrentUserIcon,
       BookingApprovalStatusIcon
     }
   }

@@ -32,7 +32,8 @@
     methods: {
       ...mapActions([
         'addMessageItem',
-        'updateApprovalItem'
+        'updateApprovalItem',
+        'updateBookingCurrentUsers'
       ])
     },
     components: {
@@ -44,17 +45,14 @@
     mounted() {
       const addMessageItem = this.addMessageItem
       const updateApprovalItem = this.updateApprovalItem
+      const updateBookingCurrentUsers = this.updateBookingCurrentUsers
 
       this.subscription = consumer.subscriptions.create(
         { channel: "BookingChannel", booking_id: this.bookingId }, {
         received(data) {
-          if (data['message']) {
-            addMessageItem(JSON.parse(data['message']))
-          }
-
-          if (data['bookingApproval']) {
-            updateApprovalItem(JSON.parse(data['bookingApproval']))
-          }
+          if (data['message']) addMessageItem(JSON.parse(data['message']))
+          if (data['bookingApproval']) updateApprovalItem(JSON.parse(data['bookingApproval']))
+          if (data['currentUsers']) updateBookingCurrentUsers(data['currentUsers'])
         }
       })
     },
