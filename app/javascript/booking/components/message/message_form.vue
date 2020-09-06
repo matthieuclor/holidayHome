@@ -1,5 +1,7 @@
 <template>
-  <div class="d-flex justify-content-center">
+  <div v-if="bookingItem.status == 'pending'"
+       class="d-flex justify-content-center">
+
     <div class="col-md-8 col-lg-6">
       <div class="card border-0 shadow mt-2">
         <div class="card-body">
@@ -33,7 +35,7 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'MessageForm',
@@ -45,6 +47,7 @@
       }
     },
     computed: {
+      ...mapGetters(['bookingItem']),
       charCount() {
         return this.message.length
       },

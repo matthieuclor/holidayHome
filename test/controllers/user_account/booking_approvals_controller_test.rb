@@ -15,7 +15,7 @@ module UserAccount
       sign_out @user
 
       put user_account_booking_booking_approval_url(@booking, @booking_approval),
-        xhr: true,
+        as: :json,
         params: {
           booking_approval: {
             status: "accepted",
@@ -23,12 +23,12 @@ module UserAccount
           }
         }
 
-      assert_response :redirect
+      assert_response :unauthorized
     end
 
     test "should accepted approval and create message" do
       put user_account_booking_booking_approval_url(@booking, @booking_approval),
-        xhr: true,
+        as: :json,
         params: {
           booking_approval: {
             status: "accepted",
@@ -46,7 +46,7 @@ module UserAccount
 
     test "should refused approval and create message" do
       put user_account_booking_booking_approval_url(@booking, @booking_approval),
-        xhr: true,
+        as: :json,
         params: {
           booking_approval: {
             status: "refused",
