@@ -21,10 +21,6 @@ module UserAccount
           booking_approvals: [:user]
         ).find(params[:id])
       )
-
-      @booking_approval = @booking.booking_approvals.detect do |approval|
-        approval.user_id == current_user.id
-      end
     end
 
     def create
@@ -46,25 +42,12 @@ module UserAccount
       end
     end
 
-    def update
-      @booking = Booking.find(params[:id])
-
-      if @booking.update(booking_params)
-        flash[:success] = "La réservation a bien été mise à jour"
-      else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de la réservation"
-      end
-
-      redirect_to user_account_bookings_path
-    end
-
     private
 
     def booking_params
       params.require(:booking).permit(
         :from,
         :to,
-        :status,
         messages_attributes: [:content]
       )
     end

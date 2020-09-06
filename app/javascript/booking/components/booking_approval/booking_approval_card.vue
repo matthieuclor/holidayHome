@@ -1,0 +1,66 @@
+<template>
+  <div v-if="bookingApprovals.length > 0" class="accordion" id="accordion">
+    <div class="card">
+      <div class="card-header p-2" id="booking_approvals">
+        <h2 class="mb-0">
+          <button class="btn btn-link btn-block text-decoration-none text-muted"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#collapseOne"
+                  aria-expanded="true"
+                  aria-controls="collapseOne">
+
+            Liste d'approbations :
+            <span class="badge badge-secondary">
+              {{ bookingApprovalsCount }}
+            </span>
+          </button>
+        </h2>
+      </div>
+
+      <div id="collapseOne"
+           class="collapse"
+           aria-labelledby="booking_approvals"
+           data-parent="#accordion">
+
+        <div class="card-body p-2">
+          <ul class="list-group list-group-flush">
+            <li v-for="(bookingApproval, index) in bookingApprovals" :key="index"
+                class="list-group-item p-1">
+
+              <div class="d-flex justify-content-between">
+                <a v-if="bookingApproval.userName"
+                   :href="`/user_account/users/${bookingApproval.userId}`"
+                   class="text-decoration-none text-muted"
+                   data-remote="true">
+                  {{ bookingApproval.userName }}
+                </a>
+                <i v-else class="fas fa-user-slash text-muted"></i>
+
+                <BookingApprovalStatusIcon :status="bookingApproval.status"
+                                           :statusTitle="bookingApproval.statusTitle"/>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<script>
+  import BookingApprovalStatusIcon from './booking_approval_status_icon'
+
+  export default {
+    name: 'BookingApprovalCard',
+    props: ['bookingApprovals'],
+    computed: {
+      bookingApprovalsCount() {
+        return this.bookingApprovals.length
+      }
+    },
+    components: {
+      BookingApprovalStatusIcon
+    }
+  }
+</script>

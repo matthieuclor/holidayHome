@@ -14,41 +14,16 @@ module UserAccount
     test "redirected if not logged in" do
       sign_out @user
 
-      get edit_user_account_booking_booking_approval_url(@booking, @booking_approval),
+      put user_account_booking_booking_approval_url(@booking, @booking_approval),
         xhr: true,
         params: {
-          booking_approval: { status: "accepted" }
+          booking_approval: {
+            status: "accepted",
+            message_attributes: { content: "Ok pour moi !" }
+          }
         }
 
       assert_response :redirect
-    end
-
-    test "should render accepted edit page" do
-      get edit_user_account_booking_booking_approval_url(@booking, @booking_approval),
-        xhr: true,
-        params: {
-          booking_approval: { status: "accepted" }
-        }
-
-      booking_approval = @controller.view_assigns["booking_approval"]
-      assert booking_approval.accepted?
-      assert booking_approval.message.present?
-      assert booking_approval.message.new_record?
-      assert_response :success
-    end
-
-    test "should render refused edit page" do
-      get edit_user_account_booking_booking_approval_url(@booking, @booking_approval),
-        xhr: true,
-        params: {
-          booking_approval: { status: "refused" }
-        }
-
-      booking_approval = @controller.view_assigns["booking_approval"]
-      assert booking_approval.refused?
-      assert booking_approval.message.present?
-      assert booking_approval.message.new_record?
-      assert_response :success
     end
 
     test "should accepted approval and create message" do

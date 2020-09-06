@@ -1,8 +1,0 @@
-$("#booking_approvals_container").html("<%= j render "user_account/bookings/booking_approvals" %>")
-$("#booking-approval-modal").modal("hide")
-$("#approval_actions_container").html("")
-
-<% if flash.present? %>
-  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
-  <% flash.clear %>
-<% end %>

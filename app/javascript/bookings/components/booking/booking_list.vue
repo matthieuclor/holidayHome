@@ -47,10 +47,10 @@
     components: {
       BookingListItem
     },
-     methods: {
+    methods: {
       ...mapActions(['getBookingPendingItems'])
-     },
-     watch: {
+    },
+    watch: {
       currentVenue: {
         handler() {
           this.getBookingPendingItems()

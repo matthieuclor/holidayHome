@@ -2,20 +2,19 @@
 
 module UserAccount
   class BookingApprovalsController < UserAccount::ApplicationController
-    respond_to(:js)
-    before_action :set_booking, :set_booking_approval
-
-    def edit
-      @booking_approval.assign_attributes(booking_approval_params)
-      @booking_approval.build_message
-    end
+    respond_to(:json)
 
     def update
+      @booking = Booking.find(params[:booking_id])
+      @booking_approval = BookingApproval.find(params[:id])
       @booking_approval.assign_attributes(booking_approval_params)
       @booking_approval.message.user = current_user
       @booking_approval.message.booking = @booking
 
       if @booking_approval.save
+        NewMessageJob.perform_later(@booking_approval.message)
+        UpdateBookingApprovalJob.perform_later(@booking_approval)
+
         flash[:success] = "La réservation a bien été mise à jour"
         render :update, status: :ok
       else
@@ -25,14 +24,6 @@ module UserAccount
     end
 
     private
-
-    def set_booking
-      @booking = Booking.find(params[:booking_id])
-    end
-
-    def set_booking_approval
-      @booking_approval = BookingApproval.find(params[:id])
-    end
 
     def booking_approval_params
       params.require(:booking_approval).permit(:status, message_attributes: :content)

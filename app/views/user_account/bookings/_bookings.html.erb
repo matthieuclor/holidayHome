@@ -24,7 +24,9 @@
               <%= booking.venue.name %>
             </td>
             <td class="text-center">
-              <%= booking_date_range(booking) %>
+              <span>
+                <%= booking_date_range(booking) %>
+              </span>
             </td>
             <td class="text-center">
               <%= booking_status_badge(booking.status) %>

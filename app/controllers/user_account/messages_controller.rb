@@ -15,6 +15,7 @@ module UserAccount
       )
 
       if @message.save
+        NewMessageJob.perform_later(@message)
         render :create, status: :created
       else
         render :create, status: :unprocessable_entity

@@ -80,7 +80,7 @@
       }
     },
     mounted() {
-      $("#bookingModal").on('hidden.bs.modal', (e) => {
+      $("#bookingModal").on('hidden.bs.modal', () => {
         this.updateBookingModalForm(false)
       })
     },

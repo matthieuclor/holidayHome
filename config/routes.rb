@@ -38,12 +38,13 @@ Rails.application.routes.draw do
       resources :photos, only: [:destroy]
     end
 
-    resources :bookings, only: [:index, :show, :create, :update] do
+    resources :bookings, only: [:index, :show, :create] do
       resources :messages, only: [:index, :create]
-      resources :booking_approvals, only: [:edit, :update]
+      resources :booking_approvals, only: [:update]
 
       collection do
         scope module: :bookings do
+          resources :status, only: [:update]
           resources :range, only: [:index]
           resources :pending, only: [:index]
         end

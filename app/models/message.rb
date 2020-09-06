@@ -6,12 +6,10 @@ class Message < ApplicationRecord
   belongs_to :user
   belongs_to :booking
 
-  has_one :booking_approval, dependent: :destroy
+  has_one :booking_approval
 
   default_scope { order(:created_at).reverse_order }
 
   validates :user, :booking, :content, presence: true
   validates :content, length: { minimum: 2, maximum: CONTENT_MAX }
-
-  after_create { NewMessageJob.perform_later(self) }
 end

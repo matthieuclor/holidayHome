@@ -2,17 +2,14 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
-  getMessageItems({ commit }) {
-    const bookingId = document.getElementById('messages-container')
-      .getAttribute('data-booking-id')
-
-    axios.get(`${bookingId}/messages.json`)
-      .then((response) => commit('UPDATE_MESSAGE_ITEMS', response.data.messages))
+  getMessageItems({ commit }, bookingId) {
+    axios.get(`/user_account/bookings/${bookingId}/messages.json`)
+    .then((response) => {
+      commit('UPDATE_MESSAGE_ITEMS', response.data.messages)
+    })
   },
-  createMessage({}, message) {
+  createMessage({}, { bookingId, message }) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
-    const bookingId = document.getElementById('messages-container')
-      .getAttribute('data-booking-id')
 
     return new Promise((resolve, reject) => {
       axios(
@@ -25,5 +22,8 @@ export default {
       ).then(response => resolve(response)
       ).catch(error => reject(error))
     })
+  },
+  addMessageItem({ commit }, message) {
+    commit('ADD_MESSAGE_ITEM', message)
   }
 }

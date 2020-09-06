@@ -27,16 +27,13 @@ module UserAccount
       assert_response :success
     end
 
-    test "should render booking and approval" do
+    test "should render booking" do
       get user_account_booking_url(bookings(:la_tania_booking))
 
       booking = @controller.view_assigns["booking"]
-      booking_approval = @controller.view_assigns["booking_approval"]
 
       assert_instance_of BookingDecorator, booking
-      assert_instance_of BookingApproval, booking_approval
       assert_equal booking.user, @user
-      assert_equal booking_approval.user, @user
       assert_response :success
     end
 
@@ -52,16 +49,6 @@ module UserAccount
         }
 
       assert_response :created
-    end
-
-    test "should canceled booking" do
-      put user_account_booking_url(bookings(:la_tania_booking)),
-        params: { booking: { status: :canceled } }
-
-      booking = @controller.view_assigns["booking"]
-      assert_instance_of Booking, booking
-      assert booking.canceled?
-      assert_redirected_to user_account_bookings_url
     end
   end
 end
