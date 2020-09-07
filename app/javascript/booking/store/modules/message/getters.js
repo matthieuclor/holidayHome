@@ -1,3 +1,4 @@
 export default {
-  messageItems: state => state.messageItems
+  messageItems: state => state.messageItems,
+  messagePagy: state => state.messagePagy
 }

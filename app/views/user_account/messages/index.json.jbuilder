@@ -12,3 +12,7 @@ json.messages @messages do |message|
     json.approval_status_title nil
   end
 end
+
+json.message_pagy do
+  json.(@pagy, :next)
+end

@@ -2,10 +2,14 @@ import axios from 'axios'
 import qs from 'qs'
 
 export default {
-  getMessageItems({ commit }, bookingId) {
-    axios.get(`/user_account/bookings/${bookingId}/messages.json`)
-    .then((response) => {
-      commit('UPDATE_MESSAGE_ITEMS', response.data.messages)
+  getMessageItems({ commit }, { bookingId, page }) {
+    return new Promise((resolve, reject) => {
+      axios.get(`/user_account/bookings/${bookingId}/messages.json?page=${page}`)
+      .then((response) => {
+        commit('UPDATE_MESSAGE_ITEMS', response.data.messages)
+        commit('UPDATE_MESSAGE_PAGY', response.data.messagePagy)
+        resolve(response)
+      }).catch(error => reject(error))
     })
   },
   createMessage({}, { bookingId, message }) {

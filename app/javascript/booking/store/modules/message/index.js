@@ -3,7 +3,8 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  messageItems: []
+  messageItems: [],
+  messagePagy: null
 }
 
 const messageModule = {
