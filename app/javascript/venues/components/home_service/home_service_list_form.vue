@@ -56,14 +56,10 @@
       HomeServiceListItemForm
     },
     computed: {
-      ...mapGetters([
-        'venueFormItem'
-      ])
+      ...mapGetters(['venueFormItem'])
     },
     methods: {
-      ...mapActions([
-        'addHomeService'
-      ])
+      ...mapActions(['addHomeService'])
     }
   }
 </script>

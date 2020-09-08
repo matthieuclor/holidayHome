@@ -104,6 +104,31 @@ export default {
       })
     })
   },
+  sendVenuePhotosForm({ commit }, { id, formData }) {
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+
+    return new Promise((resolve, reject) => {
+      axios(
+        {
+          method: 'post',
+          url: `/user_account/venues/${id}/photos.json`,
+          data: formData,
+          headers: {
+            'X-CSRF-TOKEN': csrfToken,
+            'Content-Type': 'multipart/form-data'
+          }
+        }
+      ).then(response => {
+        commit('UPDATE_FORM_VENUE_ITEM', response.data.venue)
+        commit('UPDATE_FLASHES', response.data.flashes)
+        resolve(response)
+      }).catch(error => {
+        commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue)
+        commit('UPDATE_FLASHES', error.response.data.flashes)
+        reject(error)
+      })
+    })
+  },
   destroyVenueItem({ commit, dispatch }, id) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
 

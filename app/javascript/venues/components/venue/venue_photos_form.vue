@@ -4,7 +4,7 @@
       Photos :
     </h4>
 
-    <div class="d-flex flex-wrap mt-3">
+    <div v-if="venueId" class="d-flex flex-wrap mt-3">
       <div v-for="(photo, index) in venueForm.photos" :key="index">
         <div class="mr-4 mb-3">
           <img :src="photo.url" class="rounded">
@@ -21,13 +21,14 @@
          :class="formGroupClass(venueForm, 'photos')">
 
       <div class="col-sm-10 d-flex align-items-center">
-        <input class="form-control-file file optional"
+        <input @change="sendImages"
+               class="form-control-file file optional"
                :class="inputClass(venueForm, 'photos')"
                multiple="multiple"
                type="file"
                accept="image/png|image/jpg|image/jpeg"
-               name="venue[photos][]"
-               id="venue_photos">
+               :name="venueId ? '' : 'venue[photos][]'"
+               :id="venueId ? '' : 'venue_photos'">
 
         <div v-for="(photosError, errorIndex) in venueForm.errors['photos']"
              :key="errorIndex"
@@ -42,11 +43,36 @@
 
 <script>
   import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'VenuePhotosForm',
-    props: ['venueForm'],
-    mixins: [formMixin]
+    props: [
+      'venueForm',
+      'venueId'
+    ],
+    mixins: [formMixin],
+    methods: {
+      ...mapActions([
+        'sendVenuePhotosForm',
+        'removePhoto'
+      ]),
+      sendImages(e) {
+        if (!this.venueId) return
+        let formData = new FormData()
+
+        Array.from(e.target.files).forEach(
+          file => formData.append(`venue[photos][]`, file)
+        )
+
+        this.sendVenuePhotosForm({ id: this.venueId, formData: formData })
+        .then(response => e.target.value = '')
+      },
+      destroyVenuePhoto(index, id) {
+        if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+          this.removePhoto({ index, id })
+        }
+      }
+    }
   }
 </script>

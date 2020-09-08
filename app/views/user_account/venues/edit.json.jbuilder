@@ -29,8 +29,10 @@ json.venue do
 
   if @venue.photos.attached?
     json.photos @venue.photos do |photo|
-      json.url url_for(photo.variant(resize_to_limit: [120, 120]))
-      json.id photo.id
+      if photo.blob.persisted?
+        json.url url_for(photo.variant(resize_to_limit: [120, 120]))
+        json.id photo.id
+      end
     end
   end
 

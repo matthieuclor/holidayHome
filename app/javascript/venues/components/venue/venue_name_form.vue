@@ -8,15 +8,15 @@
 
     <div class="col-sm-10">
       <input placeholder="Chalet à la montagne"
-            required="required"
-            aria-required="true"
-            type="text"
-            :value="venueFormItem.name"
-            name="venue[name]"
-            id="venue_name"
-            class="form-control string required"
-            :class="inputClass(venueFormItem, 'name')"
-            :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
+             required="required"
+             aria-required="true"
+             type="text"
+             :value="venueFormItem.name"
+             name="venue[name]"
+             id="venue_name"
+             class="form-control string required"
+             :class="inputClass(venueFormItem, 'name')"
+             :aria-invalid="!attributeIsValid(venueFormItem, 'name')">
     </div>
   </div>
 </template>
@@ -30,6 +30,6 @@
     computed: {
       ...mapGetters(['venueFormItem'])
     },
-    mixins: [formMixin],
+    mixins: [formMixin]
   }
 </script>

@@ -9,7 +9,7 @@ export default {
     state.venueItem = payload
   },
   UPDATE_FORM_VENUE_ITEM(state, payload) {
-    state.venueFormItem = payload
+    state.venueFormItem = { ...state.venueFormItem, ...payload }
   },
   UPDATE_FORM_VENUE_OWNER_ITEMS(state, payload) {
     state.venueOwnerFormItems = payload

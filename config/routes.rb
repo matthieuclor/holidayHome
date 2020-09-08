@@ -32,7 +32,10 @@ Rails.application.routes.draw do
     resources :family_links, only: [:destroy]
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
-    resources :venues
+
+    resources :venues do
+      resources :photos, module: :venues, only: [:create]
+    end
 
     scope module: :venues do
       resources :photos, only: [:destroy]

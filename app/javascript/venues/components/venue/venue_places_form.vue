@@ -7,16 +7,16 @@
 
       <div class="col-sm-10">
         <input ref="inputSearch"
-              :value="venueFormItem.address"
-              placeholder="12 Rue de Bellecote"
-              required="required"
-              aria-required="true"
-              type="text"
-              name="venue[address]"
-              id="venue_address"
-              class="form-control string required"
-              :class="inputClass(venueFormItem, 'address')"
-              :aria-invalid="!attributeIsValid(venueFormItem, 'address')">
+               :value="venueFormItem.address"
+               placeholder="12 Rue de Bellecote"
+               required="required"
+               aria-required="true"
+               type="text"
+               name="venue[address]"
+               id="venue_address"
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'address')"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'address')">
       </div>
 
       <div v-for="(venueError, errorIndex) in venueFormItem.errors['address']"

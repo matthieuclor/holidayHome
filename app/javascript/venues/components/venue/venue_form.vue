@@ -45,7 +45,7 @@
 
         <hr class="my-4">
 
-        <VenuePhotosForm :venueForm="venueFormItem" />
+        <VenuePhotosForm :venueForm="venueFormItem" :venueId="id" />
 
         <hr class="my-4">
 
@@ -134,13 +134,7 @@
         'getFormData',
         'sendVenueForm',
         'hideSidebar',
-        'removePhoto'
       ]),
-      destroyVenuePhoto(index, id) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
-          this.removePhoto({ index, id })
-        }
-      },
       submitVenueForm({ target }) {
         this.venueFormIsSending = true
 
