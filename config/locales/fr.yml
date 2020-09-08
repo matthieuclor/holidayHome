@@ -134,6 +134,9 @@ fr:
       present: doit être vide
       required: doit exister
       taken: n'est pas disponible
+      content_type_invalid: le format du fichier n'est pas valide
+      file_size_out_of_range: le fichier est trop volumineux (%{file_size})
+      limit_out_of_range: le nombre total de fichiers est hors limites
       too_long:
         one: est trop long (pas plus d'un caractère)
         other: est trop long (pas plus de %{count} caractères)

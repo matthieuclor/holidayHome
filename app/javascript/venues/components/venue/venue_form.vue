@@ -23,35 +23,6 @@
                 class="form-control is-valid hidden">
         </div>
 
-        <div class="d-flex flex-wrap mt-3">
-          <div v-for="(photo, index) in venueFormItem.photos" :key="index">
-            <div class="mr-4 mb-3">
-              <img :src="photo.url" class="rounded">
-              <button @click.prevent="destroyVenuePhoto(index, photo.id)"
-                      class="btn btn-sm btn-danger position-absolute mt-n2 ml-n3">
-
-                <i class="fas fa-trash"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <div class="form-group row file optional venue_photos">
-          <label for="venue_photos"
-                 class="file optional col-sm-2 col-form-label text-nowrap">
-
-            Photos
-          </label>
-
-          <div class="col-sm-10 d-flex align-items-center">
-            <input multiple="multiple"
-                  type="file"
-                  name="venue[photos][]"
-                  id="venue_photos"
-                  class="form-control-file file optional">
-          </div>
-        </div>
-
         <VenueNameForm />
 
         <div class="form-group hidden venue_creator_id form-group-valid">
@@ -71,6 +42,10 @@
         </div>
 
         <VenuePlacesForm />
+
+        <hr class="my-4">
+
+        <VenuePhotosForm :venueForm="venueFormItem" />
 
         <hr class="my-4">
 
@@ -118,6 +93,7 @@
   import VenueNameForm from 'venues/components/venue/venue_name_form'
   import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton'
   import VenuePlacesForm from 'venues/components/venue/venue_places_form'
+  import VenuePhotosForm from 'venues/components/venue/venue_photos_form'
   import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form'
   import VenueBathroomForm from 'venues/components/venue/venue_bathroom_form'
   import KeyListForm from 'venues/components/key/key_list_form'
@@ -126,6 +102,7 @@
   import HomeServiceListForm from 'venues/components/home_service/home_service_list_form'
   import VenueCommentForm from 'venues/components/venue/venue_comment_form'
   import VenueEditableForOthersForm from 'venues/components/venue/venue_editable_for_others_form'
+  import formMixin from 'shared/mixins/form_mixin'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -134,10 +111,12 @@
       return { venueFormIsSending: false }
     },
     props: ['id'],
+    mixins: [formMixin],
     components: {
       VenueNameForm,
       VenueFormSkeleton,
       VenuePlacesForm,
+      VenuePhotosForm,
       VenueBedroomForm,
       VenueBathroomForm,
       KeyListForm,
@@ -164,6 +143,7 @@
       },
       submitVenueForm({ target }) {
         this.venueFormIsSending = true
+
         this.sendVenueForm(new FormData(target))
         .then(response => {
           this.$router.push({
@@ -171,7 +151,7 @@
             params: { id: response.data.venue.id }
           })
         }).catch(
-          error => this.scrollToFirstError()
+          () => this.scrollToFirstError()
         ).then(
           () => this.venueFormIsSending = false
         )
@@ -179,7 +159,9 @@
     },
     watch: {
       id: {
-        handler() { this.getFormData(this.id) },
+        handler() {
+          this.getFormData(this.id)
+        },
         immediate: true
       }
     }

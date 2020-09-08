@@ -26,6 +26,8 @@ gem 'redis', '~> 4.2.1'
 gem 'image_processing', '~> 1.11.0'
 # The official AWS SDK for Ruby
 gem 'aws-sdk-s3', require: false
+# Active Storage Validations
+gem 'active_storage_validations'
 
 # Background jobs
 gem 'sidekiq', '~> 6.1.1'

@@ -25,6 +25,9 @@ class User < ApplicationRecord
 
   default_scope { where(status: :activated) }
 
+  validates :avatar, content_type: [:png, :jpg, :jpeg],
+                     size: { less_than: 2.megabytes }
+
   validates :first_name, :last_name, presence: true
   validates :status, inclusion: { in: statuses.keys }
 

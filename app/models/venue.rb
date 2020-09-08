@@ -31,6 +31,12 @@ class Venue < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
+  validates :photos, limit: { max: 10 },
+                     content_type: [:png, :jpg, :jpeg],
+                     size: { less_than: 2.megabytes }
+
+  validates :map, content_type: :png, size: { less_than: 1.megabyte }
+
   validates :name,
             :address,
             :creator,
