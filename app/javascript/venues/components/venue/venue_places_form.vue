@@ -1,6 +1,8 @@
 <template>
   <div>
-    <div class="form-group row string required venue_name">
+    <div class="form-group row string required venue_name"
+         :class="formGroupClass(venueFormItem, 'address')">
+
       <label for="venue_address" class="string required col-sm-2 col-form-label text-nowrap">
         Adresse <abbr title="obligatoire">*</abbr>
       </label>
@@ -100,6 +102,7 @@
 
   export default {
     name: 'VenuePlacesForm',
+    mixins: [formMixin],
     data() {
       return {
         place: null,
@@ -116,7 +119,6 @@
         'venueFormItem'
       ]),
     },
-    mixins: [formMixin],
     mounted() {
       this.$nextTick(function () {
         this.options.container = this.$refs.inputSearch

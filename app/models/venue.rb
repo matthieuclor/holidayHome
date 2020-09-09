@@ -48,6 +48,13 @@ class Venue < ApplicationRecord
             :baby_beds_count,
             presence: true
 
+  validates :bedrooms_count,
+            :bathrooms_count,
+            :single_beds_count,
+            :double_beds_count,
+            :baby_beds_count,
+            numericality: { greater_than_or_equal_to: 0 }
+
   validates :with_network,
             :with_digital_code,
             :editable_for_others,

@@ -26,13 +26,14 @@
                    type="text"
                    :name="`venue[keys_attributes][${index}][name]`"
                    :id="`venue_keys_attributes_${index}_name`"
-                   placeholder="Clé principale">
+                   placeholder="Clé principale"
+                   :aria-invalid="!attributeIsValid(keyItem, 'name')">
 
             <div v-for="(keyError, errorIndex) in keyItem.errors['name']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{keyError}}
+              {{ keyError }}
             </div>
           </div>
         </div>
@@ -55,6 +56,7 @@
                       :key="ownerIndex"
                       :value="owner.id"
                       :selected="owner.id == keyItem.ownerId">
+
                 {{ owner.fullName }}
               </option>
             </select>
@@ -63,7 +65,7 @@
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{keyError}}
+              {{ keyError }}
             </div>
           </div>
         </div>

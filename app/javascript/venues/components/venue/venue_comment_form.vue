@@ -1,14 +1,16 @@
 <template>
-  <div class="form-group text optional venue_comment">
+  <div class="form-group text optional venue_comment"
+       :class="formGroupClass(venueFormItem, 'comment')">
+
     <label for="venue_comment" class="text optional">
       Commentaire
     </label>
     <textarea placeholder="Choses à savoir, bon plan, précision sur le lieu..."
               :value="venueFormItem.comment"
-              name="venue[comment]"
-              id="venue_comment"
               class="form-control text optional"
               :class="inputClass(venueFormItem, 'comment')"
+              name="venue[comment]"
+              id="venue_comment"
               :aria-invalid="!attributeIsValid(venueFormItem, 'comment')">
     </textarea>
   </div>
@@ -20,9 +22,9 @@
 
   export default {
     name: 'VenueCommentForm',
+    mixins: [formMixin],
     computed: {
       ...mapGetters(['venueFormItem'])
-    },
-    mixins: [formMixin],
+    }
   }
 </script>

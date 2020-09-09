@@ -12,7 +12,7 @@
       <div class="form-row">
         <div class="col-5">
           <div class="form-group string required venue_networks_name"
-              :class="formGroupClass(network, 'name')">
+               :class="formGroupClass(network, 'name')">
 
             <label class="string required"
                    :for="`venue_networks_attributes_${index}_name`">
@@ -27,20 +27,21 @@
                    type="text"
                    :name="`venue[networks_attributes][${index}][name]`"
                    :id="`venue_networks_attributes_${index}_name`"
-                   placeholder="Réseau Orange">
+                   placeholder="Réseau Orange"
+                   :aria-invalid="!attributeIsValid(network, 'name')">
 
             <div v-for="(networkError, errorIndex) in network.errors['name']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{networkError}}
+              {{ networkError }}
             </div>
           </div>
         </div>
 
         <div class="col-5">
           <div class="form-group string venue_networks_password"
-              :class="formGroupClass(network, 'password')">
+               :class="formGroupClass(network, 'password')">
 
             <label class="string" :for="`venue_networks_attributes_${index}_password`">
               Mot de passe du réseau
@@ -52,13 +53,14 @@
                    type="text"
                    :name="`venue[networks_attributes][${index}][password]`"
                    :id="`venue_networks_attributes_${index}_password`"
-                   placeholder="Mot de passe">
+                   placeholder="Mot de passe"
+                   :aria-invalid="!attributeIsValid(network, 'password')">
 
             <div v-for="(networkError, errorIndex) in network.errors['password']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{networkError}}
+              {{ networkError }}
             </div>
           </div>
         </div>
@@ -90,9 +92,7 @@
     props: ['network', 'index'],
     mixins: [formMixin],
     methods: {
-      ...mapActions([
-        'removeNetwork'
-      ])
+      ...mapActions(['removeNetwork'])
     }
   }
 </script>

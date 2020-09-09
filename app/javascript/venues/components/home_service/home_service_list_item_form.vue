@@ -27,13 +27,14 @@
                    type="text"
                    :name="`venue[home_services_attributes][${index}][name]`"
                    :id="`venue_home_services_attributes_${index}_name`"
-                   placeholder="Jardinier">
+                   placeholder="Jardinier"
+                   :aria-invalid="!attributeIsValid(homeService, 'name')">
 
-            <div v-for="(homeServiceError, errorIndex) in homeService.errors['name']"
+            <div v-for="(nameError, errorIndex) in homeService.errors['name']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{homeServiceError}}
+              {{ nameError }}
             </div>
           </div>
         </div>
@@ -63,13 +64,14 @@
                    type="text"
                    :name="`venue[home_services_attributes][${index}][person_in_charge]`"
                    :id="`venue_home_services_attributes_${index}_person_in_charge`"
-                   placeholder="Jean Dujardin">
+                   placeholder="Jean Dujardin"
+                   :aria-invalid="!attributeIsValid(homeService, 'personInCharge')">
 
-            <div v-for="(homeServiceError, errorIndex) in homeService.errors['personInCharge']"
+            <div v-for="(personInChargeError, errorIndex) in homeService.errors['personInCharge']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{homeServiceError}}
+              {{ personInChargeError }}
             </div>
           </div>
         </div>
@@ -88,13 +90,14 @@
                    type="text"
                    :name="`venue[home_services_attributes][${index}][address]`"
                    :id="`venue_home_services_attributes_${index}_address`"
-                   placeholder="23 Rue Des Plantes">
+                   placeholder="23 Rue Des Plantes"
+                   :aria-invalid="!attributeIsValid(homeService, 'address')">
 
-            <div v-for="(homeServiceError, errorIndex) in homeService.errors['address']"
+            <div v-for="(addressError, errorIndex) in homeService.errors['address']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{homeServiceError}}
+              {{ addressError }}
             </div>
           </div>
         </div>
@@ -115,13 +118,14 @@
                    type="text"
                    :name="`venue[home_services_attributes][${index}][phone]`"
                    :id="`venue_home_services_attributes_${index}_phone`"
-                   placeholder="06 66 76 45 45">
+                   placeholder="06 66 76 45 45"
+                   :aria-invalid="!attributeIsValid(homeService, 'phone')">
 
-            <div v-for="(homeServiceError, errorIndex) in homeService.errors['phone']"
+            <div v-for="(phoneError, errorIndex) in homeService.errors['phone']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{homeServiceError}}
+              {{ phoneError }}
             </div>
           </div>
         </div>
@@ -140,13 +144,14 @@
                    type="email"
                    :name="`venue[home_services_attributes][${index}][email]`"
                    :id="`venue_home_services_attributes_${index}_email`"
-                   placeholder="jeandujardin@mail.com">
+                   placeholder="jeandujardin@mail.com"
+                   :aria-invalid="!attributeIsValid(homeService, 'email')">
 
-            <div v-for="(homeServiceError, errorIndex) in homeService.errors['email']"
+            <div v-for="(emailError, errorIndex) in homeService.errors['email']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{homeServiceError}}
+              {{ emailError }}
             </div>
           </div>
         </div>
@@ -172,9 +177,7 @@
     props: ['homeService', 'index'],
     mixins: [formMixin],
     methods: {
-      ...mapActions([
-        'removeHomeService'
-      ])
+      ...mapActions(['removeHomeService'])
     }
   }
 </script>

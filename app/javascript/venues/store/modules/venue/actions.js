@@ -13,7 +13,6 @@ export default {
     })
   },
   getFormData({ commit }, id) {
-    commit('UPDATE_FORM_VENUE_ITEM', null)
     const url = 'venues/' +  (id ? `${id}/edit.json` : 'new.json')
 
     axios.get(url).then((response) => {

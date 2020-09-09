@@ -28,7 +28,8 @@
                type="file"
                accept="image/png|image/jpg|image/jpeg"
                :name="venueId ? '' : 'venue[photos][]'"
-               :id="venueId ? '' : 'venue_photos'">
+               :id="venueId ? '' : 'venue_photos'"
+               :aria-invalid="!attributeIsValid(venueForm, 'photos')">
 
         <div v-for="(photosError, errorIndex) in venueForm.errors['photos']"
              :key="errorIndex"
@@ -47,10 +48,7 @@
 
   export default {
     name: 'VenuePhotosForm',
-    props: [
-      'venueForm',
-      'venueId'
-    ],
+    props: ['venueForm', 'venueId'],
     mixins: [formMixin],
     methods: {
       ...mapActions([

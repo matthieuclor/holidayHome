@@ -1,7 +1,9 @@
 <template>
-  <div class="form-group row string required venue_name">
+  <div class="form-group row string required venue_name"
+       :class="formGroupClass(venueFormItem, 'name')">
+
     <label for="venue_name"
-            class="string required col-sm-2 col-form-label text-nowrap">
+           class="string required col-sm-2 col-form-label text-nowrap">
 
       Nom <abbr title="obligatoire">*</abbr>
     </label>

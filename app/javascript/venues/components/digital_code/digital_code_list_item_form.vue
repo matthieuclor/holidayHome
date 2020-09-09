@@ -27,13 +27,14 @@
                    type="text"
                    :name="`venue[digital_codes_attributes][${index}][name]`"
                    :id="`venue_digital_codes_attributes_${index}_name`"
-                   placeholder="Porte du premier bâtiment">
+                   placeholder="Porte du premier bâtiment"
+                   :aria-invalid="!attributeIsValid(digitalCode, 'name')">
 
             <div v-for="(digitalCodeError, errorIndex) in digitalCode.errors['name']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{digitalCodeError}}
+              {{ digitalCodeError }}
             </div>
           </div>
         </div>
@@ -55,13 +56,14 @@
                    type="text"
                    :name="`venue[digital_codes_attributes][${index}][password]`"
                    :id="`venue_digital_codes_attributes_${index}_password`"
-                   placeholder="Mot de passe">
+                   placeholder="Mot de passe"
+                   :aria-invalid="!attributeIsValid(digitalCode, 'password')">
 
             <div v-for="(digitalCodeError, errorIndex) in digitalCode.errors['password']"
                  :key="errorIndex"
                  class="invalid-feedback">
 
-              {{digitalCodeError}}
+              {{ digitalCodeError }}
             </div>
           </div>
         </div>
@@ -93,9 +95,7 @@
     props: ['digitalCode', 'index'],
     mixins: [formMixin],
     methods: {
-      ...mapActions([
-        'removeDigitalCode'
-      ])
+      ...mapActions(['removeDigitalCode'])
     }
   }
 </script>
