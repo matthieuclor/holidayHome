@@ -68,7 +68,7 @@
       },
       destroyVenuePhoto(index, id) {
         if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
-          this.removePhoto({ index, id })
+          this.removePhoto({ index: index, venueId: this.venueId, id: id })
         }
       }
     }

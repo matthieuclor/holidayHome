@@ -34,11 +34,9 @@ Rails.application.routes.draw do
     resources :received_invitations, only: [:index, :update]
 
     resources :venues do
-      resources :photos, module: :venues, only: [:create]
-    end
-
-    scope module: :venues do
-      resources :photos, only: [:destroy]
+      scope module: :venues do
+        resources :photos, only: [:create, :destroy]
+      end
     end
 
     resources :bookings, only: [:index, :show, :create] do

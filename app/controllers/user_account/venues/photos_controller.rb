@@ -3,9 +3,9 @@
 module UserAccount
   module Venues
     class PhotosController < UserAccount::ApplicationController
-      def create
-        @venue = Venue.find(params[:venue_id])
+      before_action :set_venue
 
+      def create
         if @venue.photos.attach(photos_params[:photos])
           flash[:success] = "Les photos ont bien été enregistrés"
           render :create, status: :ok
@@ -16,7 +16,7 @@ module UserAccount
       end
 
       def destroy
-        photo = ActiveStorage::Attachment.find_by(id: params[:id])
+        photo = @venue.photos.where(id: params[:id])
 
         if photo.present?
           photo.purge
@@ -32,6 +32,10 @@ module UserAccount
 
       def photos_params
         params.require(:venue).permit(photos: [])
+      end
+
+      def set_venue
+        @venue = Venue.find(params[:venue_id])
       end
     end
   end

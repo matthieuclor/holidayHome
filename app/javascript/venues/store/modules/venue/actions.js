@@ -20,11 +20,11 @@ export default {
       commit('UPDATE_FORM_VENUE_OWNER_ITEMS', response.data.owners)
     })
   },
-  removePhoto({ commit }, { index, id }) {
+  removePhoto({ commit }, { index, venueId, id }) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
 
     axios.delete(
-      `photos/${id}.json`,
+      `venues/${venueId}/photos/${id}.json`,
       { headers: { 'X-CSRF-TOKEN': csrfToken } }
     ).then(response => {
       commit('REMOVE_PHOTO', index)
