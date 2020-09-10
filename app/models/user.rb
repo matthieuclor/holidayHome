@@ -20,6 +20,7 @@ class User < ApplicationRecord
   has_many :bookings, dependent: :destroy
   has_many :booking_approvals, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :notifications, dependent: :destroy
 
   enum status: %i(activated deactivated blocked)
 

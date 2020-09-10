@@ -26,7 +26,11 @@ class BookingDecorator < ApplicationDecorator
   end
 
   def progress_percentage
-    @percentage ||= 100.0 - (days_left.to_f/days_for_approval.to_f * 100.0)
+    @percentage ||= if days_left.zero?
+      100.0
+    else
+      100.0 - (days_left.to_f/days_for_approval.to_f * 100.0)
+    end
   end
 
   def progress_title

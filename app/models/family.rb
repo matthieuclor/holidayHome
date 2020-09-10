@@ -11,6 +11,7 @@ class Family < ApplicationRecord
   has_many :invitations, dependent: :destroy
   has_many :venues, dependent: :destroy
   has_many :bookings, through: :venues
+  has_many :notifications, dependent: :destroy
 
   default_scope { order(:created_at) }
 

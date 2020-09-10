@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookingChannel < ApplicationCable::Channel
   def subscribed
     booking = Booking.find(params[:booking_id])
