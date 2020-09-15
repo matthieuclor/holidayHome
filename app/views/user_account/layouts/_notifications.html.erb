@@ -1,7 +1,4 @@
-<div class="dropdown"
-     id="notification-container"
-     data-user-id="<%= current_user.id %>">
-
+<div class="dropdown">
   <button class="btn btn-secondary dropdown-toggle"
           type="button"
           id="dropdownUserButton"
@@ -10,17 +7,31 @@
           aria-expanded="false">
 
     <%= fa_icon("bell", nil, prefix: "far") %>
-    <span class="badge badge-light ml-1">4</span>
+
+    <% if notifications.present? %>
+      <span class="badge badge-light ml-1">
+        <%= notifications.size %>
+      </span>
+    <% end %>
   </button>
 
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
-    <a href="#" class="dropdown-item">test 1</a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">test 2</a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">test 3</a>
-    <div class="dropdown-divider"></div>
-    <a href="#" class="dropdown-item">test 4</a>
+    <% if notifications.present? %>
+      <% notifications.each_with_index do |notifiaction, index| %>
+        <%= link_to notifiaction.url, class: "dropdown-item" do %>
+          <span><%= notifiaction.title %></span>
+          <p><%= notifiaction.description %></p>
+        <% end %>
+
+        <% unless index + 1 == notifications.size %>
+          <div class="dropdown-divider"></div>
+        <% end %>
+      <% end %>
+    <% else %>
+      <div class="dropdown-item text-muted">
+        Aucune notification
+      </div>
+    <% end %>
   </div>
 </div>
 

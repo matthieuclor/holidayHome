@@ -73,12 +73,16 @@
                 <%= link_to "Réservations", user_account_bookings_path, class: "nav-link" %>
               </li>
 
-              <li class="nav-item ml-lg-5 mt-md-3">
-                <%= render "user_account/layouts/notifications" %>
+              <li class="nav-item ml-lg-5 mt-3 mt-lg-0"
+                  id="notification-container"
+                  data-user-id="<%= current_user.id %>">
+
+                <%= render "user_account/layouts/notifications",
+                           notifications: current_user.notifications.unread %>
               </li>
             <% end %>
 
-            <li class="nav-item ml-lg-2 mt-md-2">
+            <li class="nav-item ml-lg-2 mt-2 mt-lg-0">
               <%= render "user_account/layouts/user_dropdown" %>
             </li>
           </ul>

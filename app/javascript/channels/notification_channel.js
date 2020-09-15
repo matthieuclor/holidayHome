@@ -10,7 +10,7 @@ document.addEventListener('turbolinks:load', () => {
         family_id: element.getAttribute('data-user-id')
       }, {
         received(data) {
-          console.log(data)
+          $("#notification-container").html(data)
         }
       }
     )

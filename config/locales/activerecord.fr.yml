@@ -1,6 +1,10 @@
 fr:
   activerecord:
     attributes:
+      notification/title:
+        new_message: Nouveau message
+      notification/description:
+        new_message: Vous avez un nouveau message depuis une demande de réservation no %{booking_id}
       invitation/status:
         pending: En attente
         accepted: Accepté
