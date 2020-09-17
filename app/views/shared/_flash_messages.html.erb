@@ -1,12 +1,8 @@
-<% index = 0 %>
-<% toast_id = Time.now.to_i %>
-
-<% flash.each do |key, value| %>
+<% flash.each_with_index do |(key, value), index| %>
   <% next if key == "timedout" %>
-  <% toast_error = %w(error alert).include?(key) %>
 
-  <div id="toast_<%= key %>_<%= toast_id %>_<%= index %>"
-      class="toast bg-<%= toast_error ? 'danger' : 'success' %>"
+  <div id="toast_<%= key %>_<%= index %>"
+      class="toast <%= t("flash.class.#{key}") %>"
       role="alert"
       aria-live="assertive"
       aria-atomic="true"
@@ -15,7 +11,7 @@
     <div class="toast-body">
       <div class="d-flex align-items-center">
         <div class="fa-toast-type mr-3">
-          <%= fa_icon("#{toast_error ? 'times' : 'check'}-circle", nil, class: "mr-2") %>
+          <%= fa_icon(t("flash.icon.#{key}"), nil, class: "mr-2") %>
         </div>
 
         <div class="text-white font-weight-bold mr-2">
@@ -33,8 +29,6 @@
   </div>
 
   <script>
-    $("#toast_<%= key %>_<%= toast_id %>_<%= index %>").toast("show");
+    $("#toast_<%= key %>_<%= index %>").toast("show");
   </script>
-
-  <% index += 1 %>
 <% end %>

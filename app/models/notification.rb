@@ -11,6 +11,6 @@ class Notification < ApplicationRecord
   validates :user, :family, :title, :description, :url, :status, presence: true
   validates :status, inclusion: { in: statuses.keys }
 
-  after_create -> { NewNotificationJob.perform_later(self.user_id) }
+  after_create -> { NewNotificationJob.perform_later(self.id) }
 end
 
