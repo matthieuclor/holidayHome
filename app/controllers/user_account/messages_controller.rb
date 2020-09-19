@@ -23,18 +23,16 @@ module UserAccount
         NewMessageJob.perform_later(@message)
 
         unless booking.current_users.include?(booking.user_id.to_s)
-          Notification.where(
+          Notification.create(
             url: user_account_booking_path(booking),
             user: booking.user,
             family: booking.family,
             notification_type: :new_message,
-            status: :unread
-          ).first_or_create! do |notification|
-            notification.description = Notification.human_attribute_name(
+            description: Notification.human_attribute_name(
               'description.new_message',
               { venue: booking.venue.name, dates: booking.human_date_range }
             )
-          end
+          )
         end
 
         render :create, status: :created

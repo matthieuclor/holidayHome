@@ -6,7 +6,7 @@ class NotificationTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   def setup
-    @notification = notifications(:readed_notification_new_message_from_la_tania_booking)
+    @notification = notifications(:unread_notification_new_message_from_la_tania_booking)
   end
 
   test "valid notification" do
@@ -25,7 +25,7 @@ class NotificationTest < ActiveSupport::TestCase
     notification = create(:notification, {
       notification_type: :new_message,
       description: "Vous avez un nouveau message",
-      url: "/user_account/bookings/1",
+      url: "/user_account/bookings/2",
       user: @notification.user,
       family: @notification.family
     })
@@ -38,7 +38,7 @@ class NotificationTest < ActiveSupport::TestCase
       create(:notification, {
         notification_type: :new_message,
         description: "Vous avez un nouveau message",
-        url: "/user_account/bookings/1",
+        url: "/user_account/bookings/3",
         user: @notification.user,
         family: @notification.family
       })

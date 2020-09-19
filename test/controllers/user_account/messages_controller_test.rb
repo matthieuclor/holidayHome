@@ -55,14 +55,14 @@ module UserAccount
     end
 
     test "should create message without notification because the user is on the booking page" do
+      Notification.destroy_all
       @booking.update(current_users: ["1"])
-      notifications_count = Notification.count
 
       post user_account_booking_messages_url(@booking),
         params: { message: { content: "Nouveau message" } },
         as: :json
 
-      assert_equal Notification.count, notifications_count
+      assert_equal Notification.count, 0
     end
   end
 end
