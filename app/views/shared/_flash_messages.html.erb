@@ -9,17 +9,17 @@
       data-delay="4000">
 
     <div class="toast-body">
-      <div class="d-flex align-items-center">
-        <div class="fa-toast-type mr-3">
-          <%= fa_icon(t("flash.icon.#{key}"), nil, class: "mr-2") %>
+      <div class="d-flex flex-row">
+        <div class="fa-toast-type mr-3 mt-2">
+          <%= fa_icon(t("flash.icon.#{key}")) %>
         </div>
 
-        <div class="text-white font-weight-bold mr-2">
-          <%= value %>
+        <div class="text-white font-weight-bold mt-1 mr-2">
+          <%= value.html_safe %>
         </div>
 
         <button type="button"
-                class="ml-auto mb-1 close text-white"
+                class="ml-auto mt-n1 close text-white"
                 data-dismiss="toast" aria-label="Close">
 
           <span aria-hidden="true">&times;</span>

@@ -16,15 +16,6 @@ module BookingsHelper
     )
   end
 
-  def booking_date_range(booking)
-    if booking.from == booking.to
-      "Le #{I18n.l(booking.from, format: :medium)}"
-    else
-      "Du #{I18n.l(booking.from, format: :medium)}" +
-      " au #{I18n.l(booking.to, format: :medium)}"
-    end
-  end
-
   def booking_progress_deadline(booking)
     content_tag(
       :div,

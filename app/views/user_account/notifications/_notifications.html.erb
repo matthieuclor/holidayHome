@@ -1,0 +1,68 @@
+<div class="table-responsive">
+  <table class="table table-hover">
+    <thead class="table-info">
+      <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Description</th>
+        <th scope="col" class="text-center">Date</th>
+        <th scope="col" class="text-center">Famille</th>
+        <th scope="col" class="text-center">Lu</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if @notifications.present? %>
+        <% @notifications.each do |notification| %>
+          <tr data-table-link="<%= user_account_notification_path(notification) %>">
+            <td class="font-weight-bolder">
+              <%= fa_icon(
+                Notification.human_attribute_name(
+                  "icon.#{notification.notification_type}"
+                ),
+                Notification.human_attribute_name(
+                  "notification_type.#{notification.notification_type}"
+                ),
+                { class: "mr-2", prefix: "far" }
+              ) %>
+            </td>
+
+            <td>
+              <%= notification.description.html_safe %>
+            </td>
+
+            <td class="text-center">
+              <%= l(notification.created_at) %>
+            </td>
+
+            <td class="text-center">
+              <span class="badge badge-warning">
+                <%= notification.family.name %>
+              </span>
+            </td>
+
+            <td class="text-center">
+              <%= fa_icon(
+                Notification.human_attribute_name(
+                  "status_icon.#{notification.status}"
+                ),
+                nil,
+                class: Notification.human_attribute_name(
+                  "status_icon_class.#{notification.status}"
+                )
+              ) %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="5" class="text-center">
+            Vous n'avez pas de notification en cours
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div class="d-flex justify-content-center">
+    <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
+  </div>
+</div>

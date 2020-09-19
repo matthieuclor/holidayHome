@@ -11,7 +11,7 @@ class NewNotificationJob < ApplicationJob
       "notifiaction_channel_#{notification.user_id}",
       {
         notifications: render_notifications(notifications),
-        flashes: render_flashes({ notice: notification.description })
+        flashes: render_flashes({ message: notification.description })
       }
     )
   end

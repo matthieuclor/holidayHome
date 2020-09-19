@@ -5,8 +5,10 @@ fr:
       alert: bg-danger
       success: bg-success
       notice: bg-primary
+      message: bg-primary
     icon:
       error: times-circle
       alert: times-circle
       success: check-circle
       notice: info-circle
+      message: envelope

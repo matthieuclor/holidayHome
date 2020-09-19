@@ -1,10 +1,21 @@
 fr:
   activerecord:
     attributes:
-      notification/title:
+      notification/icon:
+        new_message: envelope
+      notification/notification_type:
         new_message: Nouveau message
       notification/description:
-        new_message: Vous avez un nouveau message depuis une demande de réservation no %{booking_id}
+        new_message: "Vous avez un nouveau message depuis la demande de réservation pour %{venue}</br>%{dates}"
+      notification/status:
+        unread: Non lu
+        readed: Lu
+      notification/status_icon:
+        unread: times
+        readed: check
+      notification/status_icon_class:
+        unread: text-danger
+        readed: text-success
       invitation/status:
         pending: En attente
         accepted: Accepté

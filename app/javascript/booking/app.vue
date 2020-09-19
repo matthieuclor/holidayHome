@@ -27,6 +27,9 @@
       ...mapGetters(['flashes']),
       bookingId() {
         return document.getElementById('booking-container').getAttribute('data-booking-id')
+      },
+      bookingStatus() {
+        return document.getElementById('booking-container').getAttribute('data-booking-status')
       }
     },
     methods: {
@@ -47,17 +50,19 @@
       const updateApprovalItem = this.updateApprovalItem
       const updateBookingCurrentUsers = this.updateBookingCurrentUsers
 
-      this.subscription = consumer.subscriptions.create(
-        { channel: "BookingChannel", booking_id: this.bookingId }, {
-        received(data) {
-          if (data['message']) addMessageItem(JSON.parse(data['message']))
-          if (data['bookingApproval']) updateApprovalItem(JSON.parse(data['bookingApproval']))
-          if (data['currentUsers']) updateBookingCurrentUsers(data['currentUsers'])
-        }
-      })
+      if (this.bookingStatus == "pending") {
+        this.subscription = consumer.subscriptions.create(
+          { channel: "BookingChannel", booking_id: this.bookingId }, {
+          received(data) {
+            if (data['message']) addMessageItem(JSON.parse(data['message']))
+            if (data['bookingApproval']) updateApprovalItem(JSON.parse(data['bookingApproval']))
+            if (data['currentUsers']) updateBookingCurrentUsers(data['currentUsers'])
+          }
+        })
+      }
     },
     destroyed() {
-      consumer.subscriptions.remove(this.subscription)
+      if (this.subscription) consumer.subscriptions.remove(this.subscription)
     }
   }
 </script>

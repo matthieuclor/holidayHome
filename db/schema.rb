@@ -157,7 +157,7 @@ ActiveRecord::Schema.define(version: 2020_09_10_141218) do
   end
 
   create_table "notifications", force: :cascade do |t|
-    t.string "title"
+    t.integer "notification_type"
     t.string "description"
     t.string "url"
     t.integer "status", default: 0

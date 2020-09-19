@@ -3,8 +3,6 @@
 require 'test_helper'
 
 class MessageTest < ActiveSupport::TestCase
-  include ActiveJob::TestHelper
-
   def setup
     @message = messages(:message_to_la_tania_from_matthieu)
   end

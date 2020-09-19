@@ -1,7 +1,7 @@
 json.booking do
   json.(@booking, :id, :user_id, :status, :deadline, :created_at)
   json.status_fr Booking.human_attribute_name("status.#{@booking.status}")
-  json.date_range booking_date_range(@booking)
+  json.date_range @booking.human_date_range
   json.user_name "#{@booking.user.first_name} #{@booking.user.last_name}"
   json.venue_name @booking.venue.name
   json.progress_percentage @booking.progress_percentage

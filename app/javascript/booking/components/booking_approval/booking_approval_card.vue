@@ -30,7 +30,8 @@
 
               <div class="d-flex justify-content-between align-items-center">
                 <div>
-                  <BookingCurrentUserIcon :userId="bookingApproval.userId" />
+                  <BookingCurrentUserIcon v-if="bookingStatus == 'pending'"
+                                          :userId="bookingApproval.userId" />
 
                   <a v-if="bookingApproval.userName"
                     :href="`/user_account/users/${bookingApproval.userId}`"
@@ -59,7 +60,10 @@
 
   export default {
     name: 'BookingApprovalCard',
-    props: ['bookingApprovals'],
+    props: [
+      'bookingApprovals',
+      'bookingStatus'
+    ],
     computed: {
       bookingApprovalsCount() {
         return this.bookingApprovals.length

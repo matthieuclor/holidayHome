@@ -19,7 +19,7 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "default user status must is activated" do
+  test "default user status must be activated" do
     assert @user.activated?
   end
 

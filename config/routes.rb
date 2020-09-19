@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     end
 
     resources :dashboards, only: [:index]
+    resources :notifications, only: [:index, :show]
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
     resource :current_venues, only: [:update]

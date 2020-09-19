@@ -6,3 +6,4 @@ la_tania_booking:
   venue_id: 1
   deadline: <%= DateTime.now + 30.days %>
   status: 0
+  current_users: []

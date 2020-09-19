@@ -16,6 +16,15 @@ class BookingDecorator < ApplicationDecorator
     end
   end
 
+  def human_date_range
+    if from == to
+      "Le #{I18n.l(from, format: :medium)}"
+    else
+      "Du #{I18n.l(from, format: :medium)}" +
+      " au #{I18n.l(to, format: :medium)}"
+    end
+  end
+
   def days_left
     days_left = (deadline.to_date - Date.current).to_i
     @days_left ||= days_left < 0 ? 0 : days_left

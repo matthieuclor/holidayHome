@@ -21,7 +21,7 @@ class BookingTest < ActiveSupport::TestCase
     end
   end
 
-  test "default booking status must is pending" do
+  test "default booking status must be pending" do
     booking = create(:booking, { user: @booking.user, venue: @booking.venue })
     assert booking.pending?
   end

@@ -55,7 +55,8 @@
             </div>
             <div class="row mt-2 d-flex align-items-center">
               <div class="col-6">
-                <BookingApprovalCard :bookingApprovals="bookingApprovalItems"/>
+                <BookingApprovalCard :bookingApprovals="bookingApprovalItems"
+                                     :bookingStatus="bookingItem.status"/>
               </div>
               <div class="col-6">
                 <BookingAction :booking="bookingItem"

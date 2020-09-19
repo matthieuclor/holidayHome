@@ -24,7 +24,7 @@
         return this.isConnected ? 'text-primary' : 'text-secondary'
       },
       statusTitle() {
-        return this.isConnected ? 'Connecté' : 'Déconnecté'
+        return this.isConnected ? 'En ligne' : 'Hors ligne'
       }
     },
     mounted() {

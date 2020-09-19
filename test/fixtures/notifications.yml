@@ -1,11 +1,18 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+readed_notification_new_message_from_la_tania_booking:
+  id: 1
+  notification_type: 0
+  description: "Vous avez un nouveau message depuis la demande de réservation pour La Tania</br>Du 12 octobre 2020 au 18 octobre 2020"
+  url: "/user_account/bookings/1"
+  status: 1
+  user_id: 1
+  family_id: 1
+
+unread_notification_new_message_from_la_tania_booking:
+  id: 2
+  notification_type: 0
+  description: "Vous avez un nouveau message depuis la demande de réservation pour La Tania</br>Du 12 octobre 2020 au 18 octobre 2020"
+  url: "/user_account/bookings/1"
+  status: 0
+  user_id: 1
+  family_id: 1
