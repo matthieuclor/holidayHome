@@ -6,21 +6,34 @@
       <div class="form-row">
         <%= f.input :first_name,
                     wrapper_html: { class: "col-6" },
-                    input_html: { placeholder: "Jean" } %>
+                    input_html: {
+                      placeholder: "Jean",
+                      autocomplete: "name"
+                    } %>
+
         <%= f.input :last_name,
                     wrapper_html: { class: "col-6" },
-                    input_html: { placeholder: "Dupont" } %>
+                    input_html: {
+                      placeholder: "Dupont",
+                      autocomplete: "family-name"
+                    } %>
       </div>
 
       <%= f.input :email,
                   required: true,
-                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+                  input_html: {
+                    placeholder: "jean.dupont@mail.com",
+                    autocomplete: "email"
+                  } %>
 
       <%= f.input :password,
                   required: true,
+                  input_html: { autocomplete: "current-password" },
                   hint: ("#{@minimum_password_length} caractères minimum." if @minimum_password_length) %>
 
-      <%= f.input :password_confirmation, required: true %>
+      <%= f.input :password_confirmation,
+                  input_html: { autocomplete: "new-password" },
+                  required: true %>
 
       <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
     <% end %>

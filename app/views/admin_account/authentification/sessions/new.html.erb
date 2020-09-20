@@ -5,9 +5,12 @@
     <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
       <%= f.input :email,
                   autofocus: true,
-                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+                  input_html: {
+                    placeholder: "jean.dupont@mail.com",
+                    autocomplete: "email"
+                  } %>
 
-      <%= f.input :password, required: true %>
+      <%= f.input :password, input_html: { autocomplete: "current-password" }, required: true %>
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       <%= f.submit "Se connecter", class: "btn btn-block btn-success" %>
     <% end %>

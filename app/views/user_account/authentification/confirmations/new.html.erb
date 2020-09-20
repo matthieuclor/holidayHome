@@ -8,7 +8,10 @@
       <%= f.input :email,
                   autofocus: true,
                   value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email),
-                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+                  input_html: {
+                    placeholder: "jean.dupont@mail.com",
+                    autocomplete: "email"
+                  } %>
 
       <%= f.submit "Envoyer le mail de confirmation", class: "btn btn-block btn-success" %>
     <% end %>

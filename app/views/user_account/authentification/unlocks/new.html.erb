@@ -7,7 +7,10 @@
 
       <%= f.input :email,
                   autofocus: true,
-                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+                  input_html: {
+                    placeholder: "jean.dupont@mail.com",
+                    autocomplete: "email"
+                  } %>
 
       <%= f.submit "Envoyer le mail pour déverouiller", class: "btn btn-block btn-success" %>
     <% end %>

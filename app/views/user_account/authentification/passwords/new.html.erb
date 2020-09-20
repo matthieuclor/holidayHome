@@ -5,7 +5,10 @@
     <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
       <%= f.input :email,
                   autofocus: true,
-                  input_html: { placeholder: "jean.dupont@mail.com" } %>
+                  input_html: {
+                    placeholder: "jean.dupont@mail.com",
+                    autocomplete: "email"
+                  } %>
 
       <%= f.submit "Envoyer le mail de réinitialisation", class: "btn btn-block btn-success" %>
     <% end %>
