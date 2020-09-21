@@ -221,4 +221,5 @@ fr:
       xlong: "%d %B %Y %Hh %Mmin %Ss"
       medium: "%d %B %Y"
       short: "%d %b %Hh%M"
+      with_hour: "%d/%m/%Y à %Hh%M"
     pm: pm

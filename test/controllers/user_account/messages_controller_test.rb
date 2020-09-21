@@ -33,10 +33,13 @@ module UserAccount
       end
 
       message = @controller.view_assigns["message"]
+      notification = Notification.unread.last
 
-      assert_equal Notification.unread.count, 1
       assert_instance_of Message, message
       assert_equal message.booking, @booking
+      assert_equal notification.notification_type, "new_message"
+      assert_equal notification.user_id, @booking.user_id
+      assert_equal notification.family, @booking.family
       assert_response :created
     end
 
