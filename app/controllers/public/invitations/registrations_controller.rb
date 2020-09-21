@@ -26,6 +26,7 @@ module Public
         if @invitee.save
           @invitee.received_invitations.last.accepted!
           sign_in(@invitee)
+          create_notification(@invitee.received_invitations.last)
           flash[:success] = "Le compte a bien été créé"
           redirect_to user_account_dashboards_path
         else
@@ -48,6 +49,21 @@ module Public
         end
 
         return true
+      end
+
+      def create_notification(invitation)
+        receiver = UserDecorator.new(invitation.receiver)
+
+        Notification.create(
+          url: user_account_sended_invitations_path,
+          user: invitation.sender,
+          family: invitation.family,
+          notification_type: :accepted_invitation,
+          description: Notification.human_attribute_name(
+            'description.accepted_invitation',
+            { receiver_name: receiver.full_name }
+          )
+        )
       end
 
       def invitee_params

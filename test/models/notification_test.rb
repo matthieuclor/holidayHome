@@ -6,7 +6,7 @@ class NotificationTest < ActiveSupport::TestCase
   include ActiveJob::TestHelper
 
   def setup
-    @notification = notifications(:unread_notification_new_message_from_la_tania_booking)
+    @notification = notifications(:notification_new_message_from_la_tania_booking)
   end
 
   test "valid notification" do

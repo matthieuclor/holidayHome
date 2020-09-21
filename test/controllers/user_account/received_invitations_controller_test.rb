@@ -26,18 +26,34 @@ module UserAccount
     end
 
     test "should accepted invitation" do
-      patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'yes' }
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'yes' }
+      end
+
       invitation = @controller.view_assigns["invitation"]
       current_user = @controller.view_assigns["current_user"]
+      notification = Notification.unread.last
 
       assert invitation.accepted?
       assert current_user.families.include?(invitation.family)
+      assert_equal notification.notification_type, "accepted_invitation"
+      assert_equal notification.user_id, invitation.sender_id
+      assert_equal notification.family_id, invitation.family_id
       assert_redirected_to user_account_received_invitations_url
     end
 
     test "should refused invitation" do
-      patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'no' }
-      assert @controller.view_assigns["invitation"].refused?
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'no' }
+      end
+
+      invitation = @controller.view_assigns["invitation"]
+      notification = Notification.unread.last
+
+      assert invitation.refused?
+      assert_equal notification.notification_type, "refused_invitation"
+      assert_equal notification.user_id, invitation.sender_id
+      assert_equal notification.family_id, invitation.family_id
       assert_redirected_to user_account_received_invitations_url
     end
   end

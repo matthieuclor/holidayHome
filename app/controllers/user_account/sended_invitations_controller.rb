@@ -22,6 +22,7 @@ module UserAccount
       @invitation.family_id = current_user.current_family_id
 
       if @invitation.save
+        create_notification if @invitation.receiver
         flash[:success] = "L'invitation a bien été envoyé"
         render js: "location.reload()"
       else
@@ -46,6 +47,21 @@ module UserAccount
 
     def invitation_params
       params.require(:invitation).permit(:email)
+    end
+
+    def create_notification
+      sender = UserDecorator.new(@invitation.sender)
+
+      Notification.create(
+        url: user_account_received_invitations_path,
+        user: @invitation.receiver,
+        family: @invitation.family,
+        notification_type: :new_invitation,
+        description: Notification.human_attribute_name(
+          'description.new_invitation',
+          sender_name: sender.full_name
+        )
+      )
     end
   end
 end

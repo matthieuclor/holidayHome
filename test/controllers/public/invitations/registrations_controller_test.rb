@@ -19,22 +19,29 @@ module Public
       end
 
       test "should create invitee" do
-        post invitation_registrations_url, params: {
-          invitee: {
-            first_name: 'Donald',
-            last_name: 'Trump',
-            email: @invitation.email,
-            password: '12345678',
-            password_confirmation: '12345678',
-            family_ids: 1,
-            received_invitation_ids: @invitation.id
+        assert_enqueued_jobs 1, only: NewNotificationJob do
+          post invitation_registrations_url, params: {
+            invitee: {
+              first_name: 'Donald',
+              last_name: 'Trump',
+              email: @invitation.email,
+              password: '12345678',
+              password_confirmation: '12345678',
+              family_ids: 1,
+              received_invitation_ids: @invitation.id
+            }
           }
-        }
+        end
+
         invitee = @controller.view_assigns["invitee"]
+        notification = Notification.unread.last
 
         assert_not_nil invitee
         assert invitee.families.last == @invitation.family
         assert invitee.received_invitations.last.accepted?
+        assert_equal notification.notification_type, "accepted_invitation"
+        assert_equal notification.user_id, @invitation.sender_id
+        assert_equal notification.family_id, @invitation.family_id
         assert_redirected_to user_account_dashboards_url
       end
     end

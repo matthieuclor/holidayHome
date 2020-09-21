@@ -35,8 +35,27 @@ module UserAccount
       assert_response :success
     end
 
-    test "should create invitation" do
-      post user_account_sended_invitations_url, params: { invitation: { email: 'newinvitee@mail.com' } }, xhr: true
+    test "should create invitation with existing user" do
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        post user_account_sended_invitations_url, params: { invitation: { email: users(:sophie).email } }, xhr: true
+      end
+
+      invitation = @controller.view_assigns["invitation"]
+      current_user = @controller.view_assigns["current_user"]
+      notification = Notification.unread.last
+
+      assert_equal invitation.family_id, current_user.current_family_id
+      assert_equal notification.notification_type, "new_invitation"
+      assert_equal notification.user_id, invitation.receiver_id
+      assert_equal notification.family_id, invitation.family_id
+      assert_response :success
+    end
+
+    test "should create invitation with unexisting user" do
+      assert_enqueued_jobs 0, only: NewNotificationJob do
+        post user_account_sended_invitations_url, params: { invitation: { email: 'unexisting_user@mail.com' } }, xhr: true
+      end
+
       invitation = @controller.view_assigns["invitation"]
       current_user = @controller.view_assigns["current_user"]
 

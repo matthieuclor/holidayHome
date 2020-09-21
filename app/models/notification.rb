@@ -6,8 +6,15 @@ class Notification < ApplicationRecord
 
   default_scope { order(:created_at).reverse_order }
 
-  enum notification_type: %i(new_message)
   enum status: %i(unread readed)
+  enum notification_type: [
+    :new_message,
+    :new_invitation,
+    :accepted_invitation,
+    :refused_invitation,
+    :accepted_booking,
+    :refused_booking
+  ]
 
   validates :user,
             :family,

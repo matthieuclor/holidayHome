@@ -18,21 +18,10 @@ module UserAccount
 
       if @message.save
         booking = Booking.find(@message.booking_id)
-        booking = BookingDecorator.new(booking)
-
         NewMessageJob.perform_later(@message)
 
         unless booking.current_users.include?(booking.user_id.to_s)
-          Notification.create(
-            url: user_account_booking_path(booking),
-            user: booking.user,
-            family: booking.family,
-            notification_type: :new_message,
-            description: Notification.human_attribute_name(
-              'description.new_message',
-              { venue: booking.venue.name, dates: booking.human_date_range }
-            )
-          )
+          create_notification(booking)
         end
 
         render :create, status: :created
@@ -49,6 +38,21 @@ module UserAccount
 
     def message_params
       params.require(:message).permit(:content)
+    end
+
+    def create_notification(booking)
+      booking = BookingDecorator.new(booking)
+
+      Notification.create(
+        url: user_account_booking_path(booking),
+        user: booking.user,
+        family: booking.family,
+        notification_type: :new_message,
+        description: Notification.human_attribute_name(
+          'description.new_message',
+          { venue: booking.venue.name, dates: booking.human_date_range }
+        )
+      )
     end
   end
 end

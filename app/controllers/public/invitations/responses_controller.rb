@@ -10,8 +10,10 @@ module Public
           if params[:response] == 'yes'
             @invitation.accepted!
             @invitation.receiver.families << @invitation.family
+            create_notification(:accepted_invitation)
           else
             @invitation.refused!
+            create_notification(:refused_invitation)
           end
 
           flash[:success] = "La réponse a bien été prise en compte"
@@ -40,6 +42,21 @@ module Public
         end
 
         return true
+      end
+
+      def create_notification(type)
+        receiver = UserDecorator.new(@invitation.receiver)
+
+        Notification.create(
+          url: user_account_sended_invitations_path,
+          user: @invitation.sender,
+          family: @invitation.family,
+          notification_type: type,
+          description: Notification.human_attribute_name(
+            "description.#{type}",
+            { receiver_name: receiver.full_name }
+          )
+        )
       end
     end
   end

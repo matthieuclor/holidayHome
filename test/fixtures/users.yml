@@ -85,3 +85,15 @@ blocked_user:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 2
+
+sophie:
+  id: 8
+  first_name: Sophie
+  last_name: Delcroix
+  email: sophie_delcroix@mail.com
+  phone: 06 67 65 43 67
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password08') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id: 2
+  status: 0

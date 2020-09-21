@@ -30,7 +30,7 @@ module UserAccount
     test "should render notification" do
       family_link = family_links("matthieu_delcroix").family_id
       @user.update(current_family_id: family_link)
-      notification = notifications(:unread_notification_new_message_from_la_tania_booking)
+      notification = notifications(:notification_new_message_from_la_tania_booking)
 
       get user_account_notification_url(notification)
 

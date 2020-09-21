@@ -4,8 +4,6 @@ require 'test_helper'
 
 module UserAccount
   class MessagesControllerTest < ActionDispatch::IntegrationTest
-    include ActiveJob::TestHelper
-
     setup do
       @booking = bookings(:la_tania_booking)
       @user = users(:matthieu)
@@ -28,9 +26,7 @@ module UserAccount
     end
 
     test "should create message with notification" do
-      Notification.destroy_all
-
-      assert_enqueued_jobs 1, only: NewMessageJob do
+      assert_enqueued_jobs 2, only: [NewMessageJob, NewNotificationJob] do
         post user_account_booking_messages_url(@booking),
           params: { message: { content: "Nouveau message" } },
           as: :json
@@ -38,31 +34,30 @@ module UserAccount
 
       message = @controller.view_assigns["message"]
 
-      assert_equal Notification.count, 1
+      assert_equal Notification.unread.count, 1
       assert_instance_of Message, message
       assert_equal message.booking, @booking
       assert_response :created
     end
 
     test "should create message without notification because an existing one" do
-      notifications_count = Notification.count
+      Notification.first.unread!
 
       post user_account_booking_messages_url(@booking),
         params: { message: { content: "Nouveau message" } },
         as: :json
 
-      assert_equal Notification.count, notifications_count
+      assert_equal Notification.unread.count, 1
     end
 
     test "should create message without notification because the user is on the booking page" do
-      Notification.destroy_all
       @booking.update(current_users: ["1"])
 
       post user_account_booking_messages_url(@booking),
         params: { message: { content: "Nouveau message" } },
         as: :json
 
-      assert_equal Notification.count, 0
+      assert_equal Notification.unread.count, 0
     end
   end
 end

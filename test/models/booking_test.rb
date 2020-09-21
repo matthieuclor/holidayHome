@@ -38,28 +38,44 @@ class BookingTest < ActiveSupport::TestCase
     assert_equal booking.booking_approvals.first.user, users(:olivia)
   end
 
-  test "send mail if status change to accepted" do
-    @booking.accepted!
-    assert_enqueued_emails(1)
+  test "send mail and notification if status change to accepted" do
+    assert_enqueued_emails 1 do
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        @booking.accepted!
+      end
+    end
 
     booking_mailer = BookingMailer.send_status(@booking)
+    notification = Notification.unread.last
+
     assert_equal ['hello@hutoki.com'], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal "Réservation Acceptée pour La Tania", booking_mailer.subject
+    assert_equal notification.notification_type, "accepted_booking"
+    assert_equal notification.user_id, @booking.user_id
+    assert_equal notification.family, @booking.family
 
     @booking.booking_approvals.each do |approval|
       assert_not approval.pending?
     end
   end
 
-  test "send mail if status change to refused" do
-    @booking.refused!
-    assert_enqueued_emails(1)
+  test "send mail and notification if status change to refused" do
+    assert_enqueued_emails 1 do
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        @booking.refused!
+      end
+    end
 
     booking_mailer = BookingMailer.send_status(@booking)
+    notification = Notification.unread.last
+
     assert_equal ['hello@hutoki.com'], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal "Réservation Refusée pour La Tania", booking_mailer.subject
+    assert_equal notification.notification_type, "refused_booking"
+    assert_equal notification.user_id, @booking.user_id
+    assert_equal notification.family, @booking.family
 
     @booking.booking_approvals.each do |approval|
       assert_not approval.pending?
@@ -67,8 +83,11 @@ class BookingTest < ActiveSupport::TestCase
   end
 
   test "not send mail if status change to canceled" do
-    @booking.canceled!
-    assert_no_enqueued_emails
+    assert_no_enqueued_emails do
+      assert_enqueued_jobs 0, only: NewNotificationJob do
+        @booking.canceled!
+      end
+    end
 
     @booking.booking_approvals.each do |approval|
       assert_not approval.pending?
@@ -76,8 +95,11 @@ class BookingTest < ActiveSupport::TestCase
   end
 
   test "not send mail if status change to pending" do
-    @booking.pending!
-    assert_no_enqueued_emails
+    assert_no_enqueued_emails do
+      assert_enqueued_jobs 0, only: NewNotificationJob do
+        @booking.pending!
+      end
+    end
 
     @booking.booking_approvals.each do |approval|
       assert_not approval.out_of_time?

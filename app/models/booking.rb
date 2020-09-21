@@ -44,6 +44,18 @@ class Booking < ApplicationRecord
   def send_mail
     return if %w(pending canceled).include?(self.status)
     BookingMailer.send_status(self).deliver_later
+    booking = BookingDecorator.new(self)
+
+    Notification.create(
+      url: Rails.application.routes.url_helpers.user_account_booking_path(booking),
+      user: booking.user,
+      family: booking.family,
+      notification_type: "#{self.status}_booking".to_sym,
+      description: Notification.human_attribute_name(
+        "description.#{self.status}_booking",
+        { venue: booking.venue.name, dates: booking.human_date_range }
+      )
+    )
   end
 
   def update_booking_approvals_status
