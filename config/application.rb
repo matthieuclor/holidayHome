@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 
 module HolidayHome
   class Application < Rails::Application
+    config.time_zone = 'Europe/Paris'
     config.i18n.default_locale = :fr
 
     # Initialize configuration defaults for originally generated Rails version.

@@ -4,7 +4,7 @@ module AdminAccount
   class FamiliesController < AdminAccount::ApplicationController
     def index
       @query = Family.ransack(families_ransack_params)
-      @pagy, @families = pagy(@query.result.joins(:users))
+      @pagy, @families = pagy(@query.result.distinct.joins(:users))
     end
 
     private
