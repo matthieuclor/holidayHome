@@ -1,0 +1,50 @@
+.container-with-sidebar {
+  .content {
+    transition-duration: .5s;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 100%;
+    width: 100%;
+    height: calc(100vh - 56px);
+    overflow-y: scroll;
+    background-color: white;
+
+    @include media-breakpoint-only(xl) {
+      width: 600px;
+    }
+
+    @include media-breakpoint-between(md, lg) {
+      width: 450px;
+    }
+
+    transition-duration: .5s;
+  }
+
+  &.active {
+    .sidebar {
+      left: 0;
+
+      @include media-breakpoint-only(xl) {
+        left: calc(100% - 600px);
+      }
+
+      @include media-breakpoint-between(md, lg) {
+        left: calc(100% - 450px);
+      }
+    }
+
+    .content {
+      @include media-breakpoint-only(xl) {
+        margin-right: 600px;
+      }
+
+      @include media-breakpoint-between(md, lg) {
+        margin-right: 450px;
+      }
+
+      transition-duration: .5s;
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Checkbox</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_checkbox,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :checkbox, as: :boolean %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :checkbox_disabled, as: :boolean, disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :checkbox_required, as: :boolean %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

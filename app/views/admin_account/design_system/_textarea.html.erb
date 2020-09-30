@@ -1,0 +1,73 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Textarea</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_textarea_sm,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :textarea,
+                      as: :text,
+                      input_html: { class: "form-control-sm" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_disabled,
+                      as: :text,
+                      input_html: { class: "form-control-sm" },
+                      disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_required,
+                      as: :text,
+                      input_html: { class: "form-control-sm" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_textarea,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :textarea, as: :text %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_disabled, as: :text, disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_required, as: :text %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_textarea_lg,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :textarea,
+                      as: :text,
+                      input_html: { class: "form-control-lg" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_disabled,
+                      as: :text,
+                      input_html: { class: "form-control-lg" },
+                      disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :textarea_required,
+                      as: :text,
+                      input_html: { class: "form-control-lg" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

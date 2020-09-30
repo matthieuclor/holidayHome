@@ -1,0 +1,69 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Input</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_input_sm,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :input,
+                      hint: "Helper",
+                      input_html: { class: "form-control-sm" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :input_disabled,
+                      input_html: { class: "form-control-sm" },
+                      disabled: true %>
+        </div>
+
+          <div class="col-sm">
+          <%= f.input :input_required,
+                      input_html: { class: "form-control-sm", value: "input" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_input,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :input, hint: "Helper" %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :input_disabled, disabled: true %>
+        </div>
+
+          <div class="col-sm">
+          <%= f.input :input_required, input_html: { value: "input" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_input_lg,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :input,
+                      hint: "Helper",
+                      input_html: { class: "form-control-lg" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :input_disabled,
+                      input_html: { class: "form-control-lg" },
+                      disabled: true %>
+        </div>
+
+          <div class="col-sm">
+          <%= f.input :input_required,
+                      input_html: { class: "form-control-lg", value: "input" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

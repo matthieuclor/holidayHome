@@ -1,0 +1,77 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Select</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_select_sm,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :select,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-sm" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_disabled,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-sm" },
+                      disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_required,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-sm" } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_select,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :select,
+                      collection: (1...5).map { |x| ["option #{x}", x] } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_disabled,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_required,
+                      collection: (1...5).map { |x| ["option #{x}", x] } %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_select_lg,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :select,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-lg" } %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_disabled,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-lg" },
+                      disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :select_required,
+                      collection: (1...5).map { |x| ["option #{x}", x] },
+                      input_html: { class: "custom-select-lg" } %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

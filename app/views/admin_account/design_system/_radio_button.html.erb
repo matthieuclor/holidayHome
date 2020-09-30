@@ -1,0 +1,47 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Radio button</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_radio,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :radio_button, as: :radio_buttons %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :radio_button_disabled, as: :radio_buttons, disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :radio_button_required, as: :radio_buttons %>
+        </div>
+      </div>
+    <% end %>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_radio_inline,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :radio_button,
+                      as: :radio_buttons,
+                      wrapper: :vertical_collection_inline %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :radio_button_disabled,
+                      as: :radio_buttons,
+                      disabled: true, wrapper: :vertical_collection_inline %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :radio_button_required,
+                      as: :radio_buttons,
+                      wrapper: :vertical_collection_inline %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

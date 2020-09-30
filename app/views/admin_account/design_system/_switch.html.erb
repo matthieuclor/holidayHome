@@ -1,0 +1,26 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Switch</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :object_switch,
+                        url: admin_account_design_system_index_path do |f| %>
+      <div class="row">
+        <div class="col-sm">
+          <%= f.input :switch, as: :boolean, wrapper: :custom_boolean_switch %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :switch_disabled, as: :boolean,
+                                        wrapper: :custom_boolean_switch,
+                                        disabled: true %>
+        </div>
+
+        <div class="col-sm">
+          <%= f.input :switch_required, as: :boolean,
+                                        wrapper: :custom_boolean_switch %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">File input</h3>
+
+    <%= simple_form_for @object_docs,
+                        as: :file_input,
+                        url: admin_account_design_system_index_path do |f| %>
+
+      <%= f.input :input, as: :file, multiple: true, hint: "Helper" %>
+    <% end %>
+  </div>
+</div>

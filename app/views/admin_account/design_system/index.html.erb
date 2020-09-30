@@ -1,1 +1,85 @@
-<h1>test</h1>
+<div class="sidebar bg-white">
+  <div class="nav flex-column nav-pills p-2"
+        id="v-pills-tab"
+        role="tablist"
+        aria-orientation="vertical">
+
+    <%= link_to "Heading", "#heading", class: "nav-link active", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Input", "#input", class: "nav-link", role: "tab", data: { toggle: "pill" }%>
+    <%= link_to "Select", "#select", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Checkbox", "#checkbox", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Radio button", "#radio_button", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Switch", "#switch", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Textarea", "#textarea", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "File input", "#file_input", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Alert", "#alert", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Button", "#button", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Dropdown", "#dropdown", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Pagination", "#pagination", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Progress bar", "#progress_bar", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Card", "#card", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Table", "#table", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+  </div>
+</div>
+
+<div class="tab-content pl-3 pt-3" id="v-pills-tabContent" style="margin-left: 135px;">
+  <div class="tab-pane show active" id="heading" role="tabpanel">
+    <%= render "heading" %>
+  </div>
+
+  <div class="tab-pane" id="input" role="tabpanel">
+    <%= render "input" %>
+  </div>
+
+  <div class="tab-pane" id="select" role="tabpanel">
+    <%= render "select" %>
+  </div>
+
+  <div class="tab-pane" id="checkbox" role="tabpanel">
+    <%= render "checkbox" %>
+  </div>
+
+  <div class="tab-pane" id="radio_button" role="tabpanel">
+    <%= render "radio_button" %>
+  </div>
+
+  <div class="tab-pane" id="switch" role="tabpanel">
+    <%= render "switch" %>
+  </div>
+
+  <div class="tab-pane" id="textarea" role="tabpanel">
+    <%= render "textarea" %>
+  </div>
+
+  <div class="tab-pane" id="file_input" role="tabpanel">
+    <%= render "file_input" %>
+  </div>
+
+  <div class="tab-pane" id="alert" role="tabpanel">
+    <%= render "alert" %>
+  </div>
+
+  <div class="tab-pane" id="button" role="tabpanel">
+    <%= render "button" %>
+  </div>
+
+  <div class="tab-pane" id="dropdown" role="tabpanel">
+    <%= render "dropdown" %>
+  </div>
+
+  <div class="tab-pane" id="pagination" role="tabpanel">
+    <%= render "pagination" %>
+  </div>
+
+  <div class="tab-pane" id="progress_bar" role="tabpanel">
+    <%= render "progress_bar" %>
+  </div>
+
+  <div class="tab-pane" id="card" role="tabpanel">
+    <%= render "card" %>
+  </div>
+
+  <div class="tab-pane" id="table" role="tabpanel">
+    <%= render "table" %>
+  </div>
+</div>
