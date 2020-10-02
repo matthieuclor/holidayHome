@@ -1,0 +1,21 @@
+.card {
+  border: none;
+  @include border-radius($card-border-radius);
+  box-shadow: $box-shadow-sm;
+
+  .card-body {
+    padding: 20px;
+  }
+
+  .card-header + .card-body {
+    padding: 0 20px 20px 20px;
+  }
+
+  .card-header {
+    padding: $card-spacer-y $card-spacer-x;
+    border-bottom: none;
+    font-size: 1rem;
+    font-weight: $font-weight-bolder;
+    line-height: 20px;
+  }
+}

@@ -2,33 +2,33 @@
   <div class="card-body">
     <h3 class="mb-4">Table</h3>
 
-    <table class="table table-hover">
-        <thead class="thead-dark">
+    <table class="table table-rounded table-borderless table-hover">
+      <thead class="table-info">
+        <tr>
+          <th>Ajouté le</th>
+          <th>Nom</th>
+          <th>Prenom</th>
+          <th>Metier</th>
+          <th>Points</th>
+          <th class="text-center">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% 5.times do |x| %>
           <tr>
-            <th>Ajouté le</th>
-            <th>Nom</th>
-            <th>Prenom</th>
-            <th>Metier</th>
-            <th>Points</th>
-            <th class="text-center">Actions</th>
+            <td>03 mars 1986</td>
+            <td>Matthieu</td>
+            <td>Clor</td>
+            <td>Dev</td>
+            <td>999</td>
+            <td class="text-center">
+              <button type="button" class="btn btn-sm btn-outline-danger">
+                <%= fa_icon('trash') %>
+              </button>
+            </td>
           </tr>
-        </thead>
-        <tbody>
-          <% 5.times do |x| %>
-            <tr>
-              <td>03 mars 1986</td>
-              <td>Matthieu</td>
-              <td>Clor</td>
-              <td>Dev</td>
-              <td>999</td>
-              <td class="text-center">
-                <button type="button" class="btn btn-sm btn-outline-danger">
-                  <%= fa_icon('trash') %>
-                </button>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-    </div>
+        <% end %>
+      </tbody>
+    </table>
   </div>
+</div>

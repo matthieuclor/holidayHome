@@ -1,0 +1,17 @@
+/* Transforms */
+@mixin transform($attr) {
+	transform: $attr;
+  -moz-transform: $attr;
+  -webkit-transform: $attr;
+  -o-transform: $attr;
+  -ms-transform: $attr;
+}
+
+/* 3D Transforms */
+@mixin transform3d($attr) {
+	transform3d: $attr;
+  -moz-transform3d: $attr;
+  -webkit-transform3d: $attr;
+  -o-transform3d: $attr;
+  -ms-transform3d: $attr;
+}

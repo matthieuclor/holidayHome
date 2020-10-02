@@ -1,0 +1,406 @@
+// Colors
+
+$white:    #ffffff;
+$gray-050: #F2F2F2;
+$gray-100: #E6E6E6;
+$gray-200: #CCCCCC;
+$gray-300: #B3B3B3;
+$gray-400: #999999;
+$gray-450: #8C8C8C;
+$gray-500: #808080;
+$gray-600: #666666;
+$gray-700: #4D4D4D;
+$gray-800: #333333;
+$gray-900: #1A1A1A;
+$black:    #000000;
+
+$blue:         #22B7B7;
+$blue-darker:  #2276B7;
+$blue-dark:    #2291B7;
+$indigo:       #6610F2;
+$purple:       #9458FF;
+$pink:         #e83e8c;
+$red:          #E64C45;
+$orange:       #E7944A;
+$yellow:       #ffc107;
+$yellow-light: #FFE645;
+$teal:         #20c997;
+$cyan:         #17a2b8;
+$green:        #6CDB56;
+$green-pale:   #A7EDB2;
+$green-paler:  #E5FFEA;
+$brown:        #8A6D3B;
+$brown-pale:   #FAEBCC;
+$brown-paler:  #FCF8E3;
+
+$primary:       $blue;
+$secondary:     $gray-600;
+$success:       $green;
+$info:          $blue;
+$warning:       $orange;
+$danger:        $red;
+$light:         $gray-050;
+$lighter:       $gray-100;
+$dark:          $gray-800;
+$muted:         $gray-450;
+
+// Background
+
+$body-bg: $white;
+
+// Font
+
+$font-family-sans-serif: 'Montserrat', sans-serif, 'Helvetica Neue';
+$font-size-sm:   0.75rem; // 12px
+$font-size-base: 0.875rem; // 14px
+$font-size-lg:   1rem; // 16px
+
+$small-font-size: 85%;
+
+$font-weight-lighter: 300;
+$font-weight-light: 400;
+$font-weight-normal: 500;
+$font-weight-bold: 600;
+$font-weight-bolder: 700;
+
+$line-height-base: 1.5;
+
+$text-muted: $muted;
+
+// Headings
+
+$headings-color: $black;
+$headings-font-weight: 700;
+
+$h1-font-size: 2.25rem;
+$h3-font-size: 1.5rem;
+
+// Borders
+
+$border-color: $gray-300;
+$border-width: 1px;
+
+$border-radius: .3125rem;
+$border-radius-lg: .3125rem;
+$border-radius-sm: .3125rem;
+
+// size
+
+$width-sm: 1.875rem;
+$width:    2.5rem;
+$width-lg: 3.125rem;
+
+$height-sm: $width-sm;
+$height:    $width;
+$height-lg: $width-lg;
+
+// Spinners
+
+$spinner-width-sm: 1.2rem;
+$spinner-height-sm: 1.2rem;
+
+// Box shadows
+
+$box-shadow-sm: 0 0 .625rem rgba($black, .15);
+$box-shadow: 0 .5rem 1rem rgba($black, .15);
+$box-shadow-lg: 0 1rem 3rem rgba($black, .175);
+
+// Spacers
+
+$spacer: 1.25rem;
+$spacers: (
+  0: 0,
+  1: ($spacer * 0.25), // 5px
+  2: ($spacer * 0.5),
+  3: ($spacer * 0.75),
+  4: $spacer,
+  5: ($spacer * 1.25),
+  6: ($spacer * 1.5),
+  7: ($spacer * 1.75),
+  8: ($spacer * 2),
+  9: ($spacer * 2.25),
+  10: ($spacer * 2.5),
+  11: ($spacer * 2.75),
+  12: ($spacer * 3),
+  13: ($spacer * 3.25),
+  14: ($spacer * 3.5)
+);
+
+// Grid
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 768px,
+  md: 992px,
+  lg: 1200px,
+  xl: 1600px
+);
+
+// Container
+
+$container-max-widths: (
+  sm: 750px,
+  md: 970px,
+  lg: 1170px,
+  xl: 1200px
+);
+
+$sizes: ();
+$sizes: map-merge(
+  (
+    5: 5%,
+    10: 10%,
+    15: 15%,
+    20: 20%,
+    25: 25%,
+    30: 30%,
+    35: 35%,
+    40: 40%,
+    45: 45%,
+    48: 48%,
+    50: 50%,
+    55: 55%,
+    60: 60%,
+    65: 65%,
+    70: 70%,
+    75: 75%,
+    80: 80%,
+    85: 85%,
+    100: 100%,
+    auto: auto
+  ),
+  $sizes
+);
+
+$theme-colors: ();
+$theme-colors: map-merge(
+  (
+    'yellow':       $yellow,
+    'yellow-light': $yellow-light,
+    'purple':       $purple,
+    'muted':        $muted,
+    'black':        $black,
+    'light':        $light,
+    'lighter':      $lighter
+  ),
+  $theme-colors
+);
+
+$opacities: ();
+$opacities: map-merge(
+  (
+    10: 0.1,
+    20: 0.2,
+    30: 0.3,
+    40: 0.4,
+    50: 0.5,
+    60: 0.6,
+    70: 0.7,
+    80: 0.8,
+    90: 0.9,
+    100: 1
+  ),
+  $opacities
+);
+
+// Navbar
+
+$navbar-padding-x: .937rem; // 15px
+$navbar-padding-y: .625rem; // 10px
+
+$navbar-nav-link-padding-x: 1rem;
+
+$nav-link-font-size: 0.8125rem; // Added on top of bootstrap
+$nav-link-padding-y: 0.84375rem; // 13.5px
+
+// Computes the navbar-brand vertical padding so that
+// navbar-brand height is equal to nav-link height
+$navbar-brand-padding-y: 0.1875rem;
+
+$navbar-toggler-padding-x: 0.625rem;
+$navbar-toggler-padding-y: 0.625rem;
+
+$navbar-dark-color: rgba($white, .8);
+$navbar-dark-hover-color: $white;
+
+$navbar-light-color: rgba($black, .8);
+$navbar-light-hover-color: $blue;
+$navbar-light-active-color: $blue;
+
+// Borders
+
+$border-color: $gray-100;
+
+// Forms
+
+$form-group-margin-bottom:  1.25rem; // 20px
+$label-margin-bottom:       .625rem; // 10px
+$form-text-margin-top:      .3125rem; // 5px
+
+$input-btn-line-height:     1.4285714286rem; // 20px
+$input-btn-line-height-lg:  1.4285714286rem; // 20px
+$input-btn-line-height-sm:  1.6666666667rem; // 20px
+
+// input
+
+$input-padding-y-sm:        .3125rem; // 5px
+$input-padding-x-sm:        .625rem; // 10px
+$input-line-height-sm:      1.25rem; // 20px
+
+$input-padding-y:           .625rem; // 10px
+$input-padding-x:           .9375rem; // 15px
+$input-line-height:         1.25rem; // 20px
+
+$input-padding-y-lg:        1rem; // 16px
+$input-padding-x-lg:        1.25rem; // 20px
+$input-line-height-lg:      1.125rem; // 18px
+$input-font-size-lg:        .875rem; // 14px
+
+$input-border-color:        $gray-100;
+$input-bg:                  $gray-050;
+$input-disabled-bg:         $gray-050;
+$input-color:               $black;
+$input-border-width:        0;
+$input-height-border:       $input-border-width * 2;
+$input-box-shadow:          0;
+$input-placeholder-color:   $gray-450;
+
+$input-height-inner:         add($input-line-height * 1em, $input-padding-y * 2);
+$input-height-inner-half:    add($input-line-height * .5em, $input-padding-y);
+$input-height-inner-quarter: add($input-line-height * .25em, $input-padding-y / 2);
+
+$input-height:               add($input-line-height * 1em, add($input-padding-y * 2, $input-height-border, false));
+$input-height-sm:            add($input-line-height * 1em, add($input-padding-y-sm * 2, $input-height-border, false));
+$input-height-lg:            add($input-line-height * 1em, add($input-padding-y-lg * 2, $input-height-border, false));
+
+// checkbox
+
+$form-check-inline-input-margin-x: 0;
+
+// select
+
+$custom-select-padding-y-sm: .3125rem;
+$custom-select-padding-x-sm: .625rem;
+
+$custom-select-padding-y:    .625rem;
+$custom-select-padding-x:    .9375rem;
+
+$custom-select-padding-y-lg: 1rem;
+$custom-select-padding-x-lg: 1.25rem;
+$custom-select-font-size-lg: .875rem;
+$custom-select-height-lg:    3.125rem;
+
+$custom-select-disabled-bg:  $gray-050;
+$custom-select-box-shadow: none;
+$custom-select-focus-box-shadow: none;
+
+// // switch
+
+$custom-control-indicator-border-color: $gray-450;
+
+// Buttons
+
+$btn-focus-box-shadow: none;
+$btn-focus-width: 0;
+$btn-font-weight: $font-weight-bold;
+$btn-border-width: 0;
+
+$btn-padding-y-sm: .3125rem; // 5px
+$btn-padding-x-sm: .625rem; // 10px
+$btn-line-height-sm: $input-btn-line-height-sm; // 20px;
+
+$btn-padding-y: .625rem; // 10px
+$btn-padding-x: 1.25rem; // 20px
+$btn-line-height: $input-btn-line-height; // 20px;
+
+$btn-padding-y-lg: .9375rem; // 15px
+$btn-padding-x-lg: 1.875rem; // 30px
+$btn-line-height-lg: $input-btn-line-height-lg; // 20px;
+$btn-font-size-lg: $font-size-base;
+
+// Progress bars
+
+$progress-height:     .9375rem; // 15px
+$progress-font-size:  .625rem;
+$progress-box-shadow: none;
+$progress-bar-bg:     $warning;
+
+// Alerts
+
+$alert-padding-y:        .625rem;
+$alert-padding-x:        .625rem;
+$alert-link-font-weight: 900;
+
+$info-box-padding-y: map-get($spacers, 8);
+$info-box-padding-x: map-get($spacers, 8);
+
+$info-box-margin-top: 1.875rem;
+
+// Dropdowns
+
+$dropdown-padding-y: 0;
+$dropdown-spacer:    .625rem; // 10px
+
+$dropdown-border-color: none;
+$dropdown-border-width: 0;
+$dropdown-box-shadow:   0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+$dropdown-link-color:       $black;
+$dropdown-link-hover-color: $black;
+$dropdown-link-hover-bg:    $gray-050;
+
+$dropdown-link-active-color: $black;
+$dropdown-link-active-bg:    $gray-050;
+
+$dropdown-item-padding-y: .6875rem; // 11px
+$dropdown-item-padding-x: 1.25rem; // 20px
+
+// Links
+
+$link-color: $blue-dark;
+$link-hover-color: $blue-darker;
+$link-hover-decoration: none;
+
+// Badges
+
+$badge-font-size:   72%;
+$badge-font-weight: $font-weight-bolder;
+$badge-padding-y:   .5em;
+$badge-padding-x:   .8em;
+
+// Cards
+
+$card-spacer-y: 1.25rem;
+$card-spacer-x: 1.25rem;
+$card-border-radius: $border-radius;
+$card-cap-bg: $white;
+
+// Tables
+
+$table-cell-padding: .625rem;
+$table-hover-bg: $gray-050;
+$table-head-bg: $gray-050;
+$table-head-color: $gray-450;
+
+// Pagination
+
+$pagination-padding-y-sm: .375rem;
+$pagination-padding-x-sm: .625rem;
+
+$pagination-line-height: 18px !important;
+
+$pagination-color: $gray-450;
+$pagination-border-width: none;
+
+$pagination-hover-color: $gray-450;
+$pagination-hover-bg: $gray-050;
+
+// Toasts
+
+$toast-max-width: 400px;
+$toast-padding-x: .625rem;
+$toast-padding-y: .625rem;
+$toast-background-color: $white;
+$toast-border-width: 0;
+$toast-border-radius: .3125rem;
+$toast-box-shadow: 0 0 .625rem rgba($black, .15);

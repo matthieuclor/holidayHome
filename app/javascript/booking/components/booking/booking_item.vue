@@ -8,7 +8,7 @@
 
     <div class="d-flex justify-content-center">
       <div class="col-md-8 col-lg-6">
-        <div class="card border-0 shadow">
+        <div class="card">
           <div class="card-body">
             <div class="row">
               <div class="col-6">
@@ -18,8 +18,7 @@
               <div class="col-6">
                 <p class="mb-2">
                   <i class="fas fa-user"></i>
-                  <a class="text-decoration-none"
-                     :href="`/user_account/users/${bookingItem.userId}`"
+                  <a :href="`/user_account/users/${bookingItem.userId}`"
                      data-remote="true">
 
                     <span class="text-muted ml-2">

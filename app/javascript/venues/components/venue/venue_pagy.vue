@@ -1,5 +1,5 @@
 <template>
-  <div v-if="venuePagy && venuePagy.series.length > 1" class="d-flex justify-content-center">
+  <div v-if="venuePagy && venuePagy.series.length > 1" class="d-flex justify-content-center mt-2">
     <nav aria-label="venue page navigation">
       <ul class="pagination pagination-sm">
         <li class="page-item" :class="isDisabled(venuePagy.prev)">

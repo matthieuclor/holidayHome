@@ -1,0 +1,77 @@
+button:focus {
+  outline: none;
+}
+
+.btn {
+  position: relative;
+  box-shadow: none !important;
+
+  @include hover-focus {
+    box-shadow: none !important;
+  }
+}
+
+.btn-white {
+  border: solid 1px $gray-200;
+  &:hover {
+    color: $primary;
+  }
+}
+
+.btn-outline-gray {
+  border: 1px solid $gray-200;
+
+  &:hover {
+    background-color: $gray-100;
+  }
+}
+
+.btn:disabled {
+  cursor: not-allowed;
+}
+
+.btn:disabled[data-title]:hover {
+  cursor: not-allowed;
+  &:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: -18px;
+    border-style: solid;
+    border-width: 8px;
+    color: black;
+    @include transform(rotate(45deg) translateX(-50%));
+  }
+  &:after {
+    content: attr(data-title);
+    position: absolute;
+    width: auto;
+    white-space: nowrap;
+    top: -44px;
+    padding: .5rem;
+    font-size: .6875rem;
+    font-weight: $font-weight-base;
+    background-color: black;
+    color: white;
+    font-weight: $font-weight-base;
+    border-radius: $border-radius;
+    @include horizontal-align(absolute);
+  }
+}
+
+// exception from yiq
+
+.btn-warning, .btn-success {
+  color: $white;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.btn-outline-success, .btn-outline-warning {
+  &:hover {
+    color: $white;
+  }
+}

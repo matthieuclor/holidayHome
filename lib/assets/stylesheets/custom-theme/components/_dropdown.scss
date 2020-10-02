@@ -1,0 +1,11 @@
+.dropdown-menu.show {
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+
+  .dropdown-item {
+    &.disabled,
+    &:disabled {
+      pointer-events: auto !important;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-header p-2" id="booking_approvals">
         <h2 class="mb-0">
-          <button class="btn btn-link btn-block text-decoration-none text-muted"
+          <button class="btn btn-link btn-block text-muted"
                   type="button"
                   data-toggle="collapse"
                   data-target="#collapseOne"
@@ -35,7 +35,6 @@
 
                   <a v-if="bookingApproval.userName"
                     :href="`/user_account/users/${bookingApproval.userId}`"
-                    class="text-decoration-none text-muted"
                     data-remote="true">
                     {{ bookingApproval.userName }}
                   </a>

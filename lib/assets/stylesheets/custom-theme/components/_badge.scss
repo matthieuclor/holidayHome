@@ -1,0 +1,7 @@
+.badge {
+  vertical-align: top;
+
+  &.badge-warning, &.badge-success {
+    color: $white;
+  }
+}

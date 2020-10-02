@@ -1,0 +1,21 @@
+.custom-switch {
+  .custom-control-label {
+    cursor: pointer;
+
+    &.disabled {
+      cursor: not-allowed;
+    }
+
+    &::before {
+      background-color: $gray-100;
+    }
+  }
+
+  .invalid-feedback {
+    margin-left: -2.25rem;
+  }
+
+  .custom-control-input.is-invalid ~ .custom-control-label {
+    color: $black;
+  }
+}

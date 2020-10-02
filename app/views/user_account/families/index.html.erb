@@ -15,7 +15,7 @@
       </div>
     </div>
 
-    <div class="card border-0 shadow">
+    <div class="card">
       <div class="card-body">
         <% if @families.present? %>
           <% @families.each do |family| %>
@@ -27,19 +27,21 @@
                       <h3 class="text-nowrap mb-0 mr-2">
                         <%= family.name %>
                       </h3>
-                      <a href="#"
-                        class="collapsed badge badge-secondary mt-2"
-                        data-toggle="collapse"
-                        data-target="#collapse-<%= family.id %>"
-                        aria-expanded="true"
-                        aria-controls="collapse-<%= family.id %>">
-                        <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
-                      </a>
-                      <span class="ml-2 font-weight-bold align-self-end">
-                        Période de réservation :
-                        <%= family.days_for_approval %>
-                        <%= 'jour'.pluralize(family.days_for_approval) %>
-                      </span>
+                      <div class="d-flex align-items-center mt-2">
+                        <a href="#"
+                          class="collapsed badge badge-secondary"
+                          data-toggle="collapse"
+                          data-target="#collapse-<%= family.id %>"
+                          aria-expanded="true"
+                          aria-controls="collapse-<%= family.id %>">
+                          <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
+                        </a>
+                        <span class="ml-2 font-weight-bold align-self-end">
+                          Période de réservation :
+                          <%= family.days_for_approval %>
+                          <%= 'jour'.pluralize(family.days_for_approval) %>
+                        </span>
+                      </div>
                     </div>
 
                     <div class="mt-2 mt-sm-0 ml-sm-auto">
@@ -85,12 +87,10 @@
                         <li class="list-group-item p-1 d-flex">
                           <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
 
-                          <%= link_to user_account_user_path(user),
-                                      class: "text-decoration-none",
-                                      remote: true do %>
-
-                            <span class="text-dark mr-2"><%= user.full_name %></span>
+                          <%= link_to user_account_user_path(user), remote: true do %>
+                            <span class="mr-2"><%= user.full_name %></span>
                           <% end %>
+
                           <span class="text-muted"><%= user.email %></span>
                         </li>
                       <% end %>

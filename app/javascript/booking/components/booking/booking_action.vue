@@ -37,14 +37,14 @@
         <a v-if="currentApproval.status == 'refused'"
            @click.prevent="showApprovalForm('accepted')"
            href="#"
-           class="text-decoration-none text-success">
+           class="text-success">
 
           Approuver la réservation
         </a>
         <a v-else
            @click.prevent="showApprovalForm('refused')"
            href="#"
-           class="text-decoration-none text-danger">
+           class="text-danger">
 
           Rejeter la réservation
         </a>

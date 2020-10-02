@@ -1,0 +1,36 @@
+textarea.form-control {
+  background: $gray-050 no-repeat right 15px top/14px;
+  background-position-y: $input-padding-y;
+
+  &:not([disabled]):hover {
+    background-color: $gray-100;
+  }
+
+  &:not([disabled]):focus {
+    background-color: $white;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
+  }
+
+  &:disabled {
+    color: $gray-200;
+    cursor: not-allowed;
+
+    &::placeholder {
+      color: $gray-200;
+    }
+  }
+
+  &.is-invalid {
+    &:not(:focus) {
+      color: $red;
+    }
+  }
+}
+
+textarea.form-control-sm {
+  background-position-y: $input-padding-y-sm;
+}
+
+textarea.form-control-lg {
+  background-position-y: $input-padding-y-lg;
+}

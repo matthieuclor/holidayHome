@@ -1,8 +1,5 @@
 <% @users.each do |user| %>
-  <%= link_to user_account_user_path(user),
-              class: "text-decoration-none",
-              remote: true do %>
-
+  <%= link_to user_account_user_path(user), remote: true do %>
     <div class="rounded shadow mb-3 p-2">
       <div class="media">
         <%= user_avatar(user, format: [80, 80], avatar_class:"align-self-center rounded mr-3") %>
@@ -48,6 +45,6 @@
   <% end %>
 <% end %>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mt-2">
   <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
 </div>

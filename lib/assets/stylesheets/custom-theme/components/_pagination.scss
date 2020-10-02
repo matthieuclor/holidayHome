@@ -1,0 +1,18 @@
+.pagination {
+  margin: 0;
+
+  .page-item {
+    .page-link {
+      margin-left: 5px;
+      @include border-radius($border-radius);
+    }
+    &.active {
+      &:hover {
+        color: $white;
+      }
+      .page-link {
+        cursor: default;
+      }
+    }
+  }
+}

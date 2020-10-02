@@ -1,5 +1,5 @@
-<table class="table table-hover">
-  <thead class="thead-dark">
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
     <tr>
       <th scope="col"></th>
       <th scope="col">Nom</th>
@@ -23,7 +23,7 @@
         </td>
         <td class="text-center"><%= l(user.created_at, format: :medium) %></td>
         <td class="d-flex flex-row-reverse">
-          <button class="btn-sm btn-primary">
+          <button type="button" class="btn btn-sm btn-primary">
             Connection
           </button>
 
@@ -31,7 +31,7 @@
             <%= button_to "Valider le mail",
                           admin_account_user_email_confirmation_path(user),
                           method: :put,
-                          class: "btn-sm btn-outline-primary mr-2" %>
+                          class: "btn btn-sm btn-outline-primary mr-2" %>
           <% end %>
         </td>
       </tr>
@@ -39,6 +39,6 @@
   </tbody>
 </table>
 
-<div class="d-flex justify-content-center">
+<div class="d-flex justify-content-center mt-2">
   <%== render "shared/bootstrap_pagy" if @pagy.pages > 1 %>
 </div>

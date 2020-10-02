@@ -3,7 +3,7 @@
        class="d-flex justify-content-center">
 
     <div class="col-md-8 col-lg-6">
-      <div class="card border-0 shadow mt-2">
+      <div class="card mt-2">
         <div class="card-body">
           <form @submit.prevent="submitForm">
             <div class="form-group">

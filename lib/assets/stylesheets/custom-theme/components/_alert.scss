@@ -1,0 +1,46 @@
+.alert {
+  border: none;
+  color: $white;
+  line-height: 20px;
+  text-align: left;
+  padding: 10px;
+  opacity: .8;
+
+  .alert-link {
+    font-weight: $font-weight-bolder;
+  }
+
+  .alert-heading, .alert-link {
+    color: $white;
+  }
+
+  &.closeable {
+    padding-right: 35px;
+
+    .close {
+      &:after {
+        font-family: 'Font Awesome 5 Pro';
+        content: "\f057";
+        font-size: 16px;
+        font-weight: $font-weight-bolder;
+        line-height: 16px;
+        color: $white;
+        position: absolute;
+        top: 12px;
+        right: 10px;
+        opacity: .8;
+      }
+
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+@each $color, $value in $theme-colors {
+  .alert-#{$color} {
+    background-color: $value;
+  }
+}

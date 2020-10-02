@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center mt-3">
     <div class="col-md-12 col-lg-10">
-      <div class="card border-0 shadow">
+      <div class="card">
         <div class="card-body">
           <div class="d-flex flex-column-reverse flex-lg-row justify-content-lg-between align-items-center mb-3">
             <h5 class="card-title mb-0">

@@ -1,6 +1,36 @@
+// Variables
+
+@import "custom-theme/variables";
+
+// Dependencies
+
 @import 'bootstrap/scss/bootstrap';
-@import 'custom-theme/bootstrap';
 @import 'scss/fontawesome';
 @import 'scss/solid';
 @import 'scss/regular';
 @import 'scss/brands';
+
+// Mixins
+
+@import "custom-theme/mixins/transform";
+@import "custom-theme/mixins/alignment";
+
+// Utilities
+
+// components
+
+@import "custom-theme/components/input";
+@import "custom-theme/components/textarea";
+@import "custom-theme/components/select";
+@import "custom-theme/components/checkbox";
+@import "custom-theme/components/switch";
+@import "custom-theme/components/button";
+@import "custom-theme/components/dropdown";
+@import "custom-theme/components/badge";
+@import "custom-theme/components/card";
+@import "custom-theme/components/table";
+@import "custom-theme/components/pagination";
+@import "custom-theme/components/alert";
+@import "custom-theme/components/toast";
+@import "custom-theme/components/sidebar";
+@import "custom-theme/components/animate_sidebar";

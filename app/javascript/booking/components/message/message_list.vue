@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center">
     <div class="col-md-8 col-lg-6">
-      <div class="card border-0 shadow mt-2">
+      <div class="card mt-2">
         <div class="card-body"
              v-infinite-scroll="loadMessages"
              infinite-scroll-disabled="scrollDisabled"

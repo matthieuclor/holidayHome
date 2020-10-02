@@ -1,7 +1,6 @@
 <template>
-  <router-link :to="{ name: 'venue', params: { id: venueItem.id } }"
-               class="text-decoration-none">
-    <div class="card border-0 mb-3"
+  <router-link :to="{ name: 'venue', params: { id: venueItem.id } }">
+    <div class="card mb-3"
          @click="showSidebar"
          @mouseover="mouseover = true"
          @mouseleave="mouseover = false"

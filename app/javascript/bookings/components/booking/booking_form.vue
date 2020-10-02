@@ -1,7 +1,7 @@
 <template>
   <div class="d-flex justify-content-center mt-3">
     <div class="col-md-12 col-lg-10">
-      <div v-if="bookingFormItems" class="card border-0 shadow">
+      <div v-if="bookingFormItems" class="card">
         <div class="card-body">
           <div class="d-flex justify-content-center align-items-center ">
             <form @submit.prevent="submitBookingForm" class="form-inline mr-2">

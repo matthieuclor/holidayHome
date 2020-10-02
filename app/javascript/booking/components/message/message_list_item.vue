@@ -3,7 +3,7 @@
     <div :class="`rounded py-2 px-3 mb-3 w-75 ${bgClass} ${textClass}`">
       <div class="d-flex flex-row align-items-center justify-content-between">
         <a :href="`/user_account/users/${messageItem.userId}`"
-           :class="`text-decoration-none font-weight-bold ${textClass}`"
+           :class="`font-weight-bold ${textClass}`"
            data-remote="true">
           {{ messageItem.userName }}
         </a>

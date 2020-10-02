@@ -19,6 +19,7 @@
     <%= link_to "Progress bar", "#progress_bar", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Card", "#card", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Table", "#table", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Toast", "#toast", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
   </div>
 </div>
 
@@ -81,5 +82,9 @@
 
   <div class="tab-pane" id="table" role="tabpanel">
     <%= render "table" %>
+  </div>
+
+  <div class="tab-pane" id="toast" role="tabpanel">
+    <%= render "toast" %>
   </div>
 </div>
