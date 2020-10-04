@@ -1,10 +1,12 @@
 # frozen_string_literal: true
 
+require "form_objects/object_docs"
+
 module AdminAccount
   class DesignSystemController < AdminAccount::ApplicationController
 
     def index
-      @object_docs = ::FormObjects::ObjectDocs.new(
+      @object_docs = FormObjects::ObjectDocs.new(
         input: "input",
         input_disabled: "input",
         select: 1,
