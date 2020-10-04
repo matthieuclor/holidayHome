@@ -14,12 +14,16 @@
     <%= link_to "File input", "#file_input", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Alert", "#alert", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Button", "#button", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Tooltip", "#tooltip", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Dropdown", "#dropdown", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Pagination", "#pagination", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Progress bar", "#progress_bar", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Card", "#card", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Table", "#table", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Nav tabs", "#nav-tabs", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "List group", "#list-group", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
     <%= link_to "Toast", "#toast", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
+    <%= link_to "Modal", "#modal", class: "nav-link", role: "tab", data: { toggle: "pill" } %>
   </div>
 </div>
 
@@ -64,6 +68,10 @@
     <%= render "button" %>
   </div>
 
+  <div class="tab-pane" id="tooltip" role="tabpanel">
+    <%= render "tooltip" %>
+  </div>
+
   <div class="tab-pane" id="dropdown" role="tabpanel">
     <%= render "dropdown" %>
   </div>
@@ -84,7 +92,19 @@
     <%= render "table" %>
   </div>
 
+  <div class="tab-pane" id="nav-tabs" role="tabpanel">
+    <%= render "nav_tabs" %>
+  </div>
+
+  <div class="tab-pane" id="list-group" role="tabpanel">
+    <%= render "list_group" %>
+  </div>
+
   <div class="tab-pane" id="toast" role="tabpanel">
     <%= render "toast" %>
+  </div>
+
+  <div class="tab-pane" id="modal" role="tabpanel">
+    <%= render "modal" %>
   </div>
 </div>

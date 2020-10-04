@@ -1,0 +1,13 @@
+.list-group {
+  box-shadow: 0 0 .625rem rgba($black, .15);
+
+  .list-group-item {
+    border: none;
+
+    &.active {
+      h1, h2, h3, h4, h5, h6 {
+        color: $white;
+      }
+    }
+  }
+}

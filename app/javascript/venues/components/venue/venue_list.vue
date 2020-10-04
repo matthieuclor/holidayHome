@@ -7,8 +7,9 @@
       Pour ce faire cliquez sur le lien de creation.
     </div>
 
-    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-center">
+    <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-center mb-2">
       <h1>Mes lieux</h1>
+
       <router-link :to="{ name: 'newVenue' }">
         <button @click="showSidebar"
                 class="btn btn btn-outline-primary">

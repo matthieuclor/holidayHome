@@ -2,7 +2,7 @@
   <div class="modal" tabindex="-1" role="dialog" id="approvalModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header border-0">
+        <div class="modal-header">
           <h3 class="modal-title">
             <span v-if="status == 'accepted'" class="text-success">
               Approuver la réservation

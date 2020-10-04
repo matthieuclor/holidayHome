@@ -1,29 +1,32 @@
 <template>
-  <div class="d-flex justify-content-center mt-3">
-    <div class="col-md-12 col-lg-10">
-      <div v-if="bookingFormItems" class="card">
-        <div class="card-body">
-          <div class="d-flex justify-content-center align-items-center ">
-            <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
-              <div class="form-group">
-                <label class="mr-2">
-                  Créer une nouvelle réservation pour&nbsp;
-                  <span class="font-weight-bold">{{ currentVenue.name }}</span>
-                </label>
-                <v-date-picker @update:fromPage="updatePage"
-                               @input="submitBookingForm"
-                               mode="range"
-                               v-model="dateRange"
-                               :disabled-dates="disabledDates"
-                               ref="formCalendar" />
-              </div>
-            </form>
+  <div class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-center">
+          <div class="col-md-12 col-lg-10">
+            <div v-if="bookingFormItems" class="d-flex justify-content-center align-items-center">
+              <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
+                <div class="form-group">
+                  <label class="mr-2">
+                    Créer une nouvelle réservation pour&nbsp;
+                    <span class="font-weight-bold">{{ currentVenue.name }}</span>
+                  </label>
+
+                  <v-date-picker @update:fromPage="updatePage"
+                                @input="submitBookingForm"
+                                mode="range"
+                                v-model="dateRange"
+                                :disabled-dates="disabledDates"
+                                ref="formCalendar" />
+                </div>
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <BookingModalForm v-show="bookingModalForm" :currentVenue="currentVenue" />
+      <BookingModalForm v-show="bookingModalForm" :currentVenue="currentVenue" />
+    </div>
   </div>
 </template>
 

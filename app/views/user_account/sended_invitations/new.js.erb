@@ -3,7 +3,7 @@ if ($("#invitation-modal").length > 0) {
 }
 
 <% if flash.present? %>
-  $("#toast-container").html("<%= j render "shared/flash_messages" %>")
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
   <% flash.clear %>
 <% end %>
 

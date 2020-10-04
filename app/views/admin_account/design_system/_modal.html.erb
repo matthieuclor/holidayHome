@@ -1,0 +1,30 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="mb-4">Modal</h3>
+
+    <p><strong>Actionner une modal :</strong></p>
+
+    <div class="d-flex flex-row">
+
+      <%= button_to "xl Modal",
+                    admin_account_modals_path(params: { modal: { type: 'modal-xl' } }),
+                    remote: true,
+                    class: "btn btn-primary mr-2" %>
+
+      <%= button_to "lg Modal",
+                    admin_account_modals_path(params: { modal: { type: 'modal-lg' } }),
+                    remote: true,
+                    class: "btn btn-primary mr-2" %>
+
+      <%= button_to "basique Modal",
+                    admin_account_modals_path(params: { modal: { type: 'modal' } }),
+                    remote: true,
+                    class: "btn btn-primary mr-2" %>
+
+      <%= button_to "sm Modal",
+                    admin_account_modals_path(params: { modal: { type: 'modal-sm' } }),
+                    remote: true,
+                    class: "btn btn-primary" %>
+    </div>
+  </div>
+</div>

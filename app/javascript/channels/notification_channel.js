@@ -11,7 +11,7 @@ document.addEventListener('turbolinks:load', () => {
       }, {
         received(data) {
           $("#notification-container").html(data.notifications)
-          $("#toast-container").html(data.flashes)
+          $("#toast-container").prepend(data.flashes)
         }
       }
     )

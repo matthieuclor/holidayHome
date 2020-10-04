@@ -64,7 +64,15 @@ Rails.application.routes.draw do
 
   namespace :admin_account do
     resources :dashboards, only: [:index]
-    resources :design_system, only: [:index]
+
+    resources :design_system, only: [:index] do
+      collection do
+        scope module: :design_system do
+          resources :toasts, only: [:create]
+          resources :modals, only: [:create]
+        end
+      end
+    end
 
     resources :users do
       scope module: :users do

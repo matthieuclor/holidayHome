@@ -1,7 +1,7 @@
-<% flash.each_with_index do |(key, value), index| %>
+<% flash.each do |key, value| %>
   <% next if key == "timedout" %>
 
-  <div id="toast_<%= key %>_<%= index %>"
+  <div id="toast_<%= key %>_<%= value.object_id %>"
       class="toast <%= t("flash.class.#{key}") %>"
       role="alert"
       aria-live="assertive"
@@ -10,7 +10,7 @@
 
     <div class="toast-body">
       <div class="d-flex flex-row">
-        <div class="fa-toast-type mr-3 mt-2">
+        <div class="fa-toast-type mr-3 mt-1">
           <%= fa_icon(t("flash.icon.#{key}")) %>
         </div>
 
@@ -29,6 +29,6 @@
   </div>
 
   <script>
-    $("#toast_<%= key %>_<%= index %>").toast("show");
+    $("#toast_<%= key %>_<%= value.object_id %>").toast("show");
   </script>
 <% end %>

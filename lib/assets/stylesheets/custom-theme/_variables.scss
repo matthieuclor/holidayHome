@@ -396,3 +396,38 @@ $toast-background-color: $white;
 $toast-border-width: 0;
 $toast-border-radius: .3125rem;
 $toast-box-shadow: 0 0 .625rem rgba($black, .15);
+
+// Tooltips
+
+$tooltip-padding-y: .625rem;
+$tooltip-padding-x: .9375rem;
+$tooltip-opacity:   1;
+
+// Close
+
+$close-font-size: 1.125rem; // 18px
+$close-color: $gray-500;
+$close-text-shadow: none;
+
+// Modals
+
+$modal-header-padding: 30px 40px 0 40px;
+$modal-inner-padding: 10px 40px 40px 40px;
+$modal-content-border-width: 0;
+$modal-content-border-radius: .625rem;
+$modal-title-line-height: 1;
+$modal-footer-margin-between: 4px;
+$modal-xl: 1200px;
+$modal-lg: 900px;
+$modal-md: 600px;
+$modal-sm: 400px;
+
+// Nav tab
+
+$nav-tabs-border-color:             transparent;
+$nav-tabs-link-bg:                  $gray-050;
+$nav-tabs-border-width:             2px;
+$nav-tabs-link-hover-border-color:  transparent;
+$nav-tabs-link-active-color:        $black;
+$nav-tabs-link-active-bg:           $nav-tabs-link-bg;
+$nav-tabs-link-active-border-color: $primary;

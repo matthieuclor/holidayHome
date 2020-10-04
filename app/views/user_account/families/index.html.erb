@@ -1,6 +1,6 @@
 <div class="d-flex justify-content-center mt-4">
   <div class="col-md-12 col-lg-8">
-    <div class="d-flex flex-column flex-sm-row align-items-center">
+    <div class="d-flex flex-column flex-sm-row align-items-center mb-2">
       <h1>Mes familles</h1>
       <div class="ml-sm-auto">
         <% if @families.present? %>
@@ -19,83 +19,87 @@
       <div class="card-body">
         <% if @families.present? %>
           <% @families.each do |family| %>
-            <div class="accordion" id="familyAccordion">
-              <div class="card">
-                <div class="card-header" id="heading-<%= family.id %>">
-                  <div class="d-flex flex-column flex-sm-row align-items-sm-center">
-                    <div>
-                      <h3 class="text-nowrap mb-0 mr-2">
-                        <%= family.name %>
-                      </h3>
-                      <div class="d-flex align-items-center mt-2">
-                        <a href="#"
-                          class="collapsed badge badge-secondary"
-                          data-toggle="collapse"
-                          data-target="#collapse-<%= family.id %>"
-                          aria-expanded="true"
-                          aria-controls="collapse-<%= family.id %>">
-                          <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
-                        </a>
-                        <span class="ml-2 font-weight-bold align-self-end">
-                          Période de réservation :
-                          <%= family.days_for_approval %>
-                          <%= 'jour'.pluralize(family.days_for_approval) %>
-                        </span>
-                      </div>
+            <div class="accordion mb-3" id="familyAccordion">
+              <div id="heading-<%= family.id %>">
+                <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+                  <div>
+                    <h3 class="text-nowrap mb-0 mr-2">
+                      <%= family.name %>
+                    </h3>
+                    <div class="d-flex align-items-center mt-2">
+                      <a href="#"
+                        class="collapsed badge badge-secondary"
+                        role="button"
+                        data-toggle="collapse"
+                        data-target="#collapse-<%= family.id %>"
+                        aria-expanded="false"
+                        aria-controls="collapse-<%= family.id %>">
+
+                        <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
+                      </a>
+                      <span class="ml-2 font-weight-bold align-self-end">
+                        Période de réservation :
+                        <%= family.days_for_approval %>
+                        <%= 'jour'.pluralize(family.days_for_approval) %>
+                      </span>
                     </div>
+                  </div>
 
-                    <div class="mt-2 mt-sm-0 ml-sm-auto">
-                      <% if family.creator == current_user %>
-                        <%= button_to edit_user_account_family_path(family),
-                                      class: "btn btn-primary text-nowrap",
-                                      form_class: "float-left",
-                                      method: :get,
-                                      remote: true do %>
+                  <div class="mt-2 mt-sm-0 ml-sm-auto">
+                    <% if family.creator == current_user %>
+                      <%= button_to edit_user_account_family_path(family),
+                                    class: "btn btn-primary text-nowrap",
+                                    form_class: "float-left",
+                                    method: :get,
+                                    remote: true do %>
 
-                          <%= fa_icon("pen", "Editer", class: "mr-2") %>
-                        <% end %>
-
-                        <%= button_to user_account_family_path(family),
-                                      class: "btn btn-danger",
-                                      form_class: "float-left ml-2",
-                                      method: :delete,
-                                      data: { confirm: "Cette action effacera tous les lieux et réservations liées à cette famille, êtes-vous sûr ?" },
-                                      remote: true do %>
-
-                          <%= fa_icon("trash") %>
-                        <% end %>
-                      <% else %>
-                        <%= button_to user_account_family_link_path(
-                                        family.family_links.detect { |l| l.user_id == current_user.id }
-                                      ),
-                                      class: "btn btn-danger",
-                                      form_class: "float-left ml-2",
-                                      method: :delete,
-                                      data: { confirm: "Cette action vous désolidarisera de cette famille, êtes-vous sûr ?" } do %>
-
-                          <%= fa_icon("unlink", "Quitter", class: "mr-2") %>
-                        <% end %>
+                        <%= fa_icon("pen", "Editer", class: "mr-2") %>
                       <% end %>
-                    </div>
+
+                      <%= button_to user_account_family_path(family),
+                                    class: "btn btn-danger",
+                                    form_class: "float-left ml-2",
+                                    method: :delete,
+                                    data: { confirm: "Cette action effacera tous les lieux et réservations liées à cette famille, êtes-vous sûr ?" },
+                                    remote: true do %>
+
+                        <%= fa_icon("trash") %>
+                      <% end %>
+                    <% else %>
+                      <%= button_to user_account_family_link_path(
+                                      family.family_links.detect { |l| l.user_id == current_user.id }
+                                    ),
+                                    class: "btn btn-danger",
+                                    form_class: "float-left ml-2",
+                                    method: :delete,
+                                    data: { confirm: "Cette action vous désolidarisera de cette famille, êtes-vous sûr ?" } do %>
+
+                        <%= fa_icon("unlink", "Quitter", class: "mr-2") %>
+                      <% end %>
+                    <% end %>
                   </div>
                 </div>
+              </div>
 
-                <div id="collapse-<%= family.id %>" class="collapse" aria-labelledby="heading-<%= family.id %>" data-parent="#familyAccordion">
-                  <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                      <% @users[family.id].each do |user| %>
-                        <li class="list-group-item p-1 d-flex">
-                          <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+              <div id="collapse-<%= family.id %>"
+                   class="collapse"
+                   aria-labelledby="heading-<%= family.id %>"
+                   data-parent="#familyAccordion">
 
-                          <%= link_to user_account_user_path(user), remote: true do %>
-                            <span class="mr-2"><%= user.full_name %></span>
-                          <% end %>
+                <div class="p-2">
+                  <ul class="list-group list-group-flush">
+                    <% @users[family.id].each do |user| %>
+                      <li class="list-group-item p-1 border-0 d-flex">
+                        <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
 
-                          <span class="text-muted"><%= user.email %></span>
-                        </li>
-                      <% end %>
-                    </ul>
-                  </div>
+                        <%= link_to user_account_user_path(user), remote: true do %>
+                          <span class="mr-2"><%= user.full_name %></span>
+                        <% end %>
+
+                        <span class="text-muted"><%= user.email %></span>
+                      </li>
+                    <% end %>
+                  </ul>
                 </div>
               </div>
             </div>

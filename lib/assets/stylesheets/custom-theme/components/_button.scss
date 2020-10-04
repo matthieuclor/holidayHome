@@ -65,13 +65,13 @@ button:focus {
 .btn-warning, .btn-success {
   color: $white;
 
-  &:hover {
+  @include hover-focus {
     color: $white;
   }
 }
 
 .btn-outline-success, .btn-outline-warning {
-  &:hover {
+  @include hover-focus {
     color: $white;
   }
 }
