@@ -87,7 +87,7 @@
                    data-parent="#familyAccordion">
 
                 <div class="p-2">
-                  <ul class="list-group list-group-flush">
+                  <ul class="list-group list-group-flush shadow-none">
                     <% @users[family.id].each do |user| %>
                       <li class="list-group-item p-1 border-0 d-flex">
                         <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>

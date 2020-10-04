@@ -24,7 +24,7 @@
            data-parent="#accordion">
 
         <div class="card-body p-2">
-          <ul class="list-group list-group-flush">
+          <ul class="list-group list-group-flush shadow-none">
             <li v-for="(bookingApproval, index) in bookingApprovals" :key="index"
                 class="list-group-item border-0 p-1">
 
