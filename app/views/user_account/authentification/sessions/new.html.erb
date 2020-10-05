@@ -11,8 +11,11 @@
                   } %>
 
       <%= f.input :password,
+                  wrapper_html: { class: "m-0" },
                   input_html: { autocomplete: "current-password" },
                   required: true %>
+
+      <%= fa_icon("eye", "Voir le mot de passe", class: "password-eye") %>
 
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       <%= f.submit "Se connecter", class: "btn btn-block btn-success" %>

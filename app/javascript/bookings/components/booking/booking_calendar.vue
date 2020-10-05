@@ -95,3 +95,11 @@
     }
   }
 </script>
+
+<style scoped>
+  .vc-container {
+    border: 0;
+    border-radius: .3125rem;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
+  }
+</style>
