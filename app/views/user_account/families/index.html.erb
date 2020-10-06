@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-center mt-4">
-  <div class="col-md-12 col-lg-8">
+  <div class="col-sm-8 col-lg-6">
     <div class="d-flex flex-column flex-sm-row align-items-center mb-2">
       <h1>Mes familles</h1>
       <div class="ml-sm-auto">
@@ -18,37 +18,18 @@
     <div class="card">
       <div class="card-body">
         <% if @families.present? %>
-          <% @families.each do |family| %>
-            <div class="accordion mb-3" id="familyAccordion">
-              <div id="heading-<%= family.id %>">
-                <div class="d-flex flex-column flex-sm-row align-items-sm-center">
+          <div class="accordion" id="familyAccordion">
+            <% @families.each do |family| %>
+              <div id="heading-<%= family.id %>" class="mb-3">
+                <div class="d-flex flex-row justify-content-between">
+                  <h3 class="text-nowrap mb-0 mr-2">
+                    <%= family.name %>
+                  </h3>
+
                   <div>
-                    <h3 class="text-nowrap mb-0 mr-2">
-                      <%= family.name %>
-                    </h3>
-                    <div class="d-flex align-items-center mt-2">
-                      <a href="#"
-                        class="collapsed badge badge-secondary"
-                        role="button"
-                        data-toggle="collapse"
-                        data-target="#collapse-<%= family.id %>"
-                        aria-expanded="false"
-                        aria-controls="collapse-<%= family.id %>">
-
-                        <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
-                      </a>
-                      <span class="ml-2 font-weight-bold align-self-end">
-                        Période de réservation :
-                        <%= family.days_for_approval %>
-                        <%= 'jour'.pluralize(family.days_for_approval) %>
-                      </span>
-                    </div>
-                  </div>
-
-                  <div class="mt-2 mt-sm-0 ml-sm-auto">
                     <% if family.creator == current_user %>
                       <%= button_to edit_user_account_family_path(family),
-                                    class: "btn btn-primary text-nowrap",
+                                    class: "btn btn-sm btn-primary text-nowrap",
                                     form_class: "float-left",
                                     method: :get,
                                     remote: true do %>
@@ -57,7 +38,7 @@
                       <% end %>
 
                       <%= button_to user_account_family_path(family),
-                                    class: "btn btn-danger",
+                                    class: "btn btn-sm btn-danger",
                                     form_class: "float-left ml-2",
                                     method: :delete,
                                     data: { confirm: "Cette action effacera tous les lieux et réservations liées à cette famille, êtes-vous sûr ?" },
@@ -69,7 +50,7 @@
                       <%= button_to user_account_family_link_path(
                                       family.family_links.detect { |l| l.user_id == current_user.id }
                                     ),
-                                    class: "btn btn-danger",
+                                    class: "btn btn-sm btn-danger",
                                     form_class: "float-left ml-2",
                                     method: :delete,
                                     data: { confirm: "Cette action vous désolidarisera de cette famille, êtes-vous sûr ?" } do %>
@@ -79,50 +60,68 @@
                     <% end %>
                   </div>
                 </div>
-              </div>
 
-              <div id="collapse-<%= family.id %>"
-                   class="collapse"
-                   aria-labelledby="heading-<%= family.id %>"
-                   data-parent="#familyAccordion">
+                <div class="d-flex align-items-center">
+                  <a href="#"
+                    class="collapsed badge badge-secondary"
+                    role="button"
+                    data-toggle="collapse"
+                    data-target="#collapse-<%= family.id %>"
+                    aria-expanded="false"
+                    aria-controls="collapse-<%= family.id %>">
 
-                <div class="p-2">
-                  <ul class="list-group list-group-flush shadow-none">
-                    <% @users[family.id].each do |user| %>
-                      <li class="list-group-item p-1 border-0 d-flex">
-                        <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
-
-                        <%= link_to user_account_user_path(user), remote: true do %>
-                          <span class="mr-2"><%= user.full_name %></span>
-                        <% end %>
-
-                        <span class="text-muted"><%= user.email %></span>
-                      </li>
-                    <% end %>
-                  </ul>
+                    <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
+                  </a>
+                  <span class="ml-2 font-weight-bold align-self-end">
+                    Période de réservation :
+                    <%= family.days_for_approval %>
+                    <%= 'jour'.pluralize(family.days_for_approval) %>
+                  </span>
                 </div>
+
+                <div id="collapse-<%= family.id %>"
+                    class="collapse"
+                    aria-labelledby="heading-<%= family.id %>"
+                    data-parent="#familyAccordion">
+
+                  <div class="p-2">
+                    <ul class="list-group list-group-flush shadow-none">
+                      <% @users[family.id].each do |user| %>
+                        <li class="list-group-item p-1 border-0 d-flex">
+                          <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+
+                          <%= link_to user_account_user_path(user), remote: true do %>
+                            <span class="mr-2"><%= user.full_name %></span>
+                          <% end %>
+
+                          <span class="text-muted"><%= user.email %></span>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% else %>
+          <div class="d-flex align-items-center">
+            <div class="col-7">
+              <div class="alert alert-warning m-0">
+                <%= fa_icon("exclamation-triangle") %>
+                Vous devez dans un premier temps créer votre premier groupe familiale !
+                <br>
+                Pour ce faire cliquez sur le lien de creation.
               </div>
             </div>
-          <% end %>
-        <% else %>
-            <div class="d-flex align-items-center">
-              <div class="col-7">
-                <div class="alert alert-warning m-0">
-                  <%= fa_icon("exclamation-triangle") %>
-                  Vous devez dans un premier temps créer votre premier groupe familiale !
-                  <br>
-                  Pour ce faire cliquez sur le lien de creation.
-                </div>
-              </div>
-              <div class="col-5 d-flex justify-content-center">
-                <%= button_to new_user_account_family_path,
-                              class: "btn btn-lg btn-outline-primary",
-                              method: :get,
-                              remote: true do %>
+            <div class="col-5 d-flex justify-content-center">
+              <%= button_to new_user_account_family_path,
+                            class: "btn btn-lg btn-outline-primary",
+                            method: :get,
+                            remote: true do %>
 
-                  <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
-                <% end %>
-              </div>
+                <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
+              <% end %>
+            </div>
           </div>
         <% end %>
       </div>
