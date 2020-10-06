@@ -1,29 +1,30 @@
 <template>
   <div class="shadow p-3 rounded mb-3">
-    <h5>{{ homeService.name }}</h5>
+    <h5 class="text-nowrap mb-3">
+      <i class="fas fa-id-card mr-1"></i>
+      {{ homeService.name }}
+    </h5>
 
-    <div class="d-flex align-items-center">
-      <h5 class="text-nowrap mb-0 mr-4">
-        <i class="fas fa-user mr-2"></i>
+    <div class="d-flex flex-row">
+      <h5 class="text-nowrap mr-3 pt-1">
+        <i class="fas fa-user mr-1"></i>
         {{ homeService.personInCharge }}
       </h5>
 
-      <div class="d-flex flex-wrap text-muted m-0">
-        <div v-if="homeService.phone" class="border rounded py-1 px-2 mr-2 mt-2">
-          <i class="fas fa-phone mr-2"></i>
+      <ul class="list-group list-group-flush shadow-none">
+        <li v-if="homeService.phone" class="list-group-item text-muted p-1">
+          <i class="fas fa-phone mr-1"></i>
           {{ homeService.phone }}
-        </div>
-
-        <div v-if="homeService.email" class="border rounded py-1 px-2 mr-2 mt-2">
-          <i class="fas fa-envelope mr-2"></i>
+        </li>
+        <li v-if="homeService.email" class="list-group-item text-muted p-1">
+          <i class="fas fa-envelope mr-1"></i>
           {{ homeService.email }}
-        </div>
-
-        <div v-if="homeService.address" class="border rounded py-1 px-2 mr-2 mt-2">
-          <i class="fas fa-map-marked mr-2"></i>
+        </li>
+        <li v-if="homeService.address" class="list-group-item text-muted p-1">
+          <i class="fas fa-map-marked mr-1"></i>
           {{ homeService.address }}
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   </div>
 </template>

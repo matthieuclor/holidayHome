@@ -1,7 +1,13 @@
 <template>
   <div v-show="!keyItem.Destroy">
     <div class="shadow p-3 rounded mb-3">
-      <div class="form-group hidden venue_keys_id">
+      <div class="d-flex justify-content-end">
+        <i @click.prevent="removeKey(index)"
+            class="fas fa-trash text-danger p-2 cursor-pointer">
+        </i>
+      </div>
+
+      <div class="form-group hidden venue_keys_id m-0">
         <input :value="keyItem.id"
                type="hidden"
                :name="`venue[keys_attributes][${index}][id]`"
@@ -10,7 +16,7 @@
       </div>
 
       <div class="form-row">
-        <div class="col-6">
+        <div class="col-7">
           <div class="form-group string required venue_keys_name"
                :class="formGroupClass(keyItem, 'name')">
 
@@ -38,7 +44,7 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-5">
           <div class="form-group select required venue_keys_owner_id"
                :class="formGroupClass(keyItem, 'owner')">
 
@@ -68,12 +74,6 @@
               {{ keyError }}
             </div>
           </div>
-        </div>
-
-        <div class="col-2 d-flex justify-content-end align-items-start">
-          <button @click.prevent="removeKey(index)" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-          </button>
         </div>
       </div>
 

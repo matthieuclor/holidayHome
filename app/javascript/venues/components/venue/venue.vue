@@ -120,7 +120,10 @@
       HomeServiceList
     },
     computed: {
-      ...mapGetters(['venueItem'])
+      ...mapGetters([
+        'venueItem',
+        'sidebar'
+      ])
     },
     mixins: [textMixin],
     methods: {
@@ -142,7 +145,7 @@
       id: {
         handler() {
           this.getVenueItem(this.id)
-          this.showSidebar()
+          if (!this.sidebar) this.showSidebar()
         },
         immediate: true
       }

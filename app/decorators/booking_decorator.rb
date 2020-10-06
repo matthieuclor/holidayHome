@@ -27,7 +27,7 @@ class BookingDecorator < ApplicationDecorator
 
   def days_left
     days_left = (deadline.to_date - Date.current).to_i
-    @days_left ||= days_left < 0 ? 0 : days_left
+    @days_left ||= days_left < 0 ? 0 : (days_left + 1)
   end
 
   def days_for_approval

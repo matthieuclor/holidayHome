@@ -1,7 +1,13 @@
 <template>
   <div v-show="!homeService.Destroy">
     <div class="shadow p-3 rounded mb-3">
-      <div class="form-group hidden venue_home_services_id">
+      <div class="d-flex justify-content-end">
+        <i @click.prevent="removeHomeService(index)"
+            class="fas fa-trash text-danger p-2 cursor-pointer">
+        </i>
+      </div>
+
+      <div class="form-group hidden venue_home_services_id m-0">
         <input :value="homeService.id"
                type="hidden"
                :name="`venue[home_services_attributes][${index}][id]`"
@@ -39,14 +45,6 @@
           </div>
         </div>
 
-        <div class="col-6 d-flex justify-content-end align-items-start">
-          <button @click.prevent="removeHomeService(index)" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </div>
-
-      <div class="form-row">
         <div class="col-6">
           <div class="form-group string required venue_home_services_person_in_charge"
                :class="formGroupClass(homeService, 'personInCharge')">
@@ -75,8 +73,10 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-6">
+      <div class="form-row">
+        <div class="col-12">
           <div class="form-group string venue_home_services_address"
                :class="formGroupClass(homeService, 'address')">
 

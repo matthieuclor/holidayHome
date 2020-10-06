@@ -1,7 +1,13 @@
 <template>
   <div v-show="!network.Destroy">
     <div class="shadow p-3 rounded mb-3">
-      <div class="form-group hidden venue_networks_id">
+      <div class="d-flex justify-content-end">
+        <i @click.prevent="removeNetwork(index)"
+            class="fas fa-trash text-danger p-2 cursor-pointer">
+        </i>
+      </div>
+
+      <div class="form-group hidden venue_networks_id m-0">
         <input :value="network.id"
                type="hidden"
                :name="`venue[networks_attributes][${index}][id]`"
@@ -10,7 +16,7 @@
       </div>
 
       <div class="form-row">
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group string required venue_networks_name"
                :class="formGroupClass(network, 'name')">
 
@@ -39,7 +45,7 @@
           </div>
         </div>
 
-        <div class="col-5">
+        <div class="col-6">
           <div class="form-group string venue_networks_password"
                :class="formGroupClass(network, 'password')">
 
@@ -63,12 +69,6 @@
               {{ networkError }}
             </div>
           </div>
-        </div>
-
-        <div class="col-2 d-flex justify-content-end align-items-start">
-          <button @click.prevent="removeNetwork(index)" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-          </button>
         </div>
       </div>
 

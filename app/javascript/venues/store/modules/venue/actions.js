@@ -7,9 +7,17 @@ export default {
       commit('UPDATE_VENUE_PAGY', response.data.pagy)
     })
   },
-  getVenueItem({ commit }, id) {
-    axios.get(`venues/${id}.json`).then((response) => {
-      commit('UPDATE_VENUE_ITEM', response.data)
+  getVenueItem({ dispatch, commit }, id) {
+    dispatch('removeVenueItem').then(() => {
+      axios.get(`venues/${id}.json`).then((response) => {
+        commit('UPDATE_VENUE_ITEM', response.data)
+      })
+    })
+  },
+  removeVenueItem({ commit }) {
+    return new Promise((resolve) => {
+      commit('UPDATE_VENUE_ITEM', null)
+      resolve(true)
     })
   },
   getFormData({ commit }, id) {

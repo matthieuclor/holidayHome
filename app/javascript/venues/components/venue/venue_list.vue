@@ -1,12 +1,5 @@
 <template>
   <div class="pt-4 px-3 w-100 content">
-    <div v-if="venueItems.length == 0" class="alert alert-warning">
-      <i class="fas fa-exclamation-triangle"></i>
-      Vous devez dans un premier temps créer votre lieu !
-      <br>
-      Pour ce faire cliquez sur le lien de creation.
-    </div>
-
     <div class="d-flex flex-column flex-sm-row justify-content-sm-between align-items-center mb-2">
       <h1>Mes lieux</h1>
 
@@ -19,7 +12,15 @@
       </router-link>
     </div>
 
-    <VenueListItem v-for="venueItem in venueItems"
+    <div v-if="venueItems.length == 0" class="alert alert-warning">
+      <i class="fas fa-exclamation-triangle"></i>
+      Vous devez dans un premier temps créer votre lieu !
+      <br>
+      Pour ce faire cliquez sur le lien de creation.
+    </div>
+
+    <VenueListItem v-else
+                   v-for="venueItem in venueItems"
                    :key="venueItem.id"
                    :venueItem="venueItem" />
 

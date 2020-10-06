@@ -25,8 +25,9 @@
 
         <div class="card-body p-2">
           <ul class="list-group list-group-flush shadow-none">
-            <li v-for="(bookingApproval, index) in bookingApprovals" :key="index"
-                class="list-group-item border-0 p-1">
+            <li v-for="(bookingApproval, index) in bookingApprovals"
+                :key="index"
+                class="list-group-item p-1">
 
               <div class="d-flex justify-content-between align-items-center">
                 <div>

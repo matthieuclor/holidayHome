@@ -83,7 +83,7 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
-input[readonly] {
+input[readonly]:not([type=radio]) {
   &:hover, &:focus {
     background: $gray-050 !important;
     box-shadow: none !important;

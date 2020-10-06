@@ -1,7 +1,13 @@
 <template>
   <div v-show="!digitalCode.Destroy">
     <div class="shadow p-3 rounded mb-3">
-      <div class="form-group hidden venue_digital_codes_id">
+      <div class="d-flex justify-content-end">
+        <i @click.prevent="removeDigitalCode(index)"
+            class="fas fa-trash text-danger p-2 cursor-pointer">
+        </i>
+      </div>
+
+      <div class="form-group hidden venue_digital_codes_id m-0">
         <input :value="digitalCode.id"
                type="hidden"
                :name="`venue[digital_codes_attributes][${index}][id]`"
@@ -39,7 +45,7 @@
           </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-6">
           <div class="form-group string required venue_digital_codes_password"
                :class="formGroupClass(digitalCode, 'password')">
 
@@ -66,12 +72,6 @@
               {{ digitalCodeError }}
             </div>
           </div>
-        </div>
-
-        <div class="col-2 d-flex justify-content-end align-items-start">
-          <button @click.prevent="removeDigitalCode(index)" class="btn btn-danger">
-            <i class="fas fa-trash"></i>
-          </button>
         </div>
       </div>
 
