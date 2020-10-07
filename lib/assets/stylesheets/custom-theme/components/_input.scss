@@ -89,13 +89,3 @@ input[readonly]:not([type=radio]) {
     box-shadow: none !important;
   }
 }
-
-.password-eye {
-  padding: 5px;
-  margin-left: -5px;
-  margin-bottom: 20px;
-  cursor: pointer;
-  font-size: 1.125rem;
-  line-height: normal;
-  color: $gray-450;
-}

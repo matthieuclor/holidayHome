@@ -11,11 +11,18 @@
                   } %>
 
       <%= f.input :password,
-                  wrapper_html: { class: "m-0" },
+                  wrapper_html: { class: "mb-1" },
                   input_html: { autocomplete: "current-password" },
                   required: true %>
 
-      <%= fa_icon("eye", "Voir le mot de passe", class: "password-eye") %>
+      <fieldset class="form-group">
+        <div class="form-check password-eye" data-target="user_password">
+          <input class="form-check-input" type="checkbox" id="user_password_eye">
+          <label class="form-check-label ml-1" for="user_password_eye">
+            Voir le mot de passe
+          </label>
+        </div>
+      </fieldset>
 
       <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
       <%= f.submit "Se connecter", class: "btn btn-block btn-success" %>

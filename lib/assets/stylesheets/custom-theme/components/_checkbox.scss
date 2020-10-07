@@ -86,6 +86,39 @@ input[type=checkbox].form-check-input {
   }
 }
 
+.form-check.password-eye {
+  input[type=checkbox] {
+    font-family: "Font Awesome 5 Pro";
+    font-size: 1.125rem;
+    line-height: normal;
+    color: $gray-450;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:before {
+      content: "\f06e";
+    }
+
+    &:checked:before {
+      content: "\f070";
+      color: $gray-450;
+    }
+
+    &[disabled] {
+      &:hover {
+        cursor: not-allowed;
+      }
+
+      &:before {
+        color: $gray-300;
+      }
+    }
+  }
+}
+
+
 // Radio buttons
 
 input[type=radio].form-check-input {
