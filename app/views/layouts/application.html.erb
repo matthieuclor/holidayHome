@@ -16,9 +16,34 @@
         <span>Hutoki</span>
       <% end %>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div class="d-flex align-items-center">
+          <ul class="navbar-nav align-items-lg-center">
+            <li class="nav-item <%= 'active' if controller_name == 'pricing' %>">
+              <%= link_to "Nos offres", pricing_index_path, class: "nav-link" %>
+            </li>
+
+            <li class="nav-item <%= 'active' if controller_name == 'about' %>">
+              <%= link_to "À propos", about_index_path, class: "nav-link" %>
+            </li>
+
+            <li class="nav-item <%= 'active' if controller_name == 'blog' %>">
+              <%= link_to "Blog", blog_index_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <div class="d-flex flex-row ml-auto">
         <% if current_user.present? %>
@@ -39,7 +64,7 @@
       </div>
     </nav>
 
-    <div class="container-fluid">
+    <div class="container-fluid min-vh-100">
       <%= yield %>
     </div>
 
@@ -48,4 +73,6 @@
       <%= render "./shared/flash_messages" %>
     </div>
   </body>
+
+  <%= render "./shared/footer" unless @skip_footer %>
 </html>

@@ -13,7 +13,7 @@
     <%= javascript_pack_tag 'booking_vue', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body style="padding-top: 68px;">
+  <body class="padding-for-fixed-navbar">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white shadow-sm">
       <%= link_to root_path, class:"navbar-brand" do %>
         <span>Hutoki</span>
@@ -45,7 +45,14 @@
         </div>
       <% end %>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <button class="navbar-toggler"
+              type="button"
+              data-toggle="collapse"
+              data-target="#navbarSupportedContent"
+              aria-controls="navbarSupportedContent"
+              aria-expanded="false"
+              aria-label="Toggle navigation">
+
         <span class="navbar-toggler-icon"></span>
       </button>
 
@@ -96,7 +103,7 @@
       </div>
     <% end %>
 
-    <div class="container-fluid p-0">
+    <div class="container-fluid p-0 min-vh-100">
       <%= yield %>
     </div>
 
@@ -105,4 +112,6 @@
       <%= render "./shared/flash_messages" %>
     </div>
   </body>
+
+  <%= render "./shared/footer" unless @skip_footer %>
 </html>

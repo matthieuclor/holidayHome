@@ -10,7 +10,7 @@ module UserAccount
 
     def index
       respond_to do |format|
-        format.html
+        format.html { @skip_footer = true }
         format.json do
           @pagy, @venues = pagy(
             @current_family.venues.with_attached_photos,

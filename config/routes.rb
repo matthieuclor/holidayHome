@@ -4,6 +4,17 @@ Rails.application.routes.draw do
   scope module: :public do
     root to: 'pages#main'
 
+    resources :pricing, only: [:index]
+    resources :about, only: [:index]
+    resources :teams, only: [:index]
+    resources :blog, only: [:index, :show]
+    resources :company_details, only: [:index]
+    resources :sitemaps, only: [:index]
+    resources :faq, only: [:index]
+    resources :cgu, only: [:index]
+    resources :privacy_policy, only: [:index]
+    resources :careers, only: [:index]
+
     scope module: :invitations do
       resource :responses, only: [:new]
       resource :registrations, as: :invitation_registrations, only: [:new, :create]

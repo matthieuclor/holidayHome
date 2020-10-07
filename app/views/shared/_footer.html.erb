@@ -1,0 +1,78 @@
+<footer class="container-fluid border-top border-gray-200 bg-light mt-3">
+  <div class="d-flex justify-content-center text-muted">
+    <div class="col-11 my-5">
+      <div class="d-flex justify-content-between">
+        <ul class="list-group list-group-flush shadow-none">
+          <li class="list-group-item p-1 bg-light">
+            <h6 class="mb-1 text-muted text-uppercase">Hutoki</h6>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "À propos", about_index_path, class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Notre équipe", teams_path, class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Carrières", careers_path, class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Aide & F.A.Q", faq_index_path, class: "text-muted" %>
+          </li>
+        </ul>
+
+        <ul class="list-group list-group-flush shadow-none">
+          <li class="list-group-item p-1 bg-light">
+            <h6 class="mb-1 text-muted text-uppercase">Retrouvez nous</h6>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Blog", blog_index_path, class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Facebook", '#', class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Instagram", '#', class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Twitter", '#', class: "text-muted" %>
+          </li>
+          <li class="list-group-item p-1 bg-light">
+            <%= link_to "Linkedin", '#', class: "text-muted" %>
+          </li>
+        </ul>
+
+        <ul class="list-group list-group-flush shadow-none">
+          <li class="list-group-item p-1 bg-light">
+            <h6 class="mb-1 text-muted text-uppercase">Contact</h6>
+          </li>
+          <li class="list-group-item p-1 bg-light">hello@hutoki.com</li>
+        </ul>
+      </div>
+
+      <hr class="border-gray-200">
+
+      <div class="text-center pt-1">
+        <p class="mb-1 text-grey-200">
+          Copyright © <%= Date.current.year %> Hutoki Tout droits réservés
+        </p>
+        <p class="mb-0">
+          <span>
+            <%= link_to "Sitemap", sitemaps_path, class: "text-muted" %>
+          </span>
+          <span>•</span>
+          <span>
+            <%= link_to "Conditions général d'utilisation", cgu_index_path, class: "text-muted" %>
+          </span>
+          <span>•</span>
+          <span>
+            <%= link_to "Mentions légales", company_details_path, class: "text-muted" %>
+          </span>
+          <span>•</span>
+          <span>
+            <%= link_to "Politique des cookies", privacy_policy_index_path, class: "text-muted" %>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
