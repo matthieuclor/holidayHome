@@ -1,0 +1,17 @@
+.form-group.file {
+  .custom-file-label {
+    color: $gray-300;
+  }
+
+  .custom-file:hover {
+    .custom-file-label {
+      background-color: $gray-100;
+    }
+  }
+
+  &.form-group-invalid {
+    .invalid-feedback {
+      display: block;
+    }
+  }
+}

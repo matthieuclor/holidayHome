@@ -14,7 +14,9 @@
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
   <%= f.input :avatar,
-              input_html: { accept: "image/png|image/jpg|image/jpeg" } %>
+              label: 'Choisir mon avatar',
+              input_html: { accept: "image/png|image/jpg|image/jpeg" },
+              hint: "Les formats acceptés: png, jpg, jpeg et la taille est limités à 2mo." %>
 
   <div class="form-row">
     <%= f.input :first_name,

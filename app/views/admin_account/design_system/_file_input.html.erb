@@ -6,7 +6,11 @@
                         as: :file_input,
                         url: admin_account_design_system_index_path do |f| %>
 
-      <%= f.input :input, as: :file, multiple: true, hint: "Helper" %>
+      <%= f.input :input,
+                  as: :file,
+                  label: 'Choisir des fichiers',
+                  multiple: true,
+                  hint: "Les formats acceptés sont..." %>
     <% end %>
   </div>
 </div>

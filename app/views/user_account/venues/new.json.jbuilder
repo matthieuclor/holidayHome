@@ -27,6 +27,8 @@ json.venue do
     :family_id
   )
 
+  json.current_user_is_the_creator true
+
   json.errors @venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
 
   json.keys @venue.keys do |key|

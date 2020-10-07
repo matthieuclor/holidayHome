@@ -17,12 +17,12 @@
       </div>
     </div>
 
-    <div class="form-group row file optional venue_photos"
+    <div class="form-group file optional venue_photos"
          :class="formGroupClass(venueForm, 'photos')">
 
-      <div class="col-sm-10 d-flex align-items-center">
+      <div class="custom-file">
         <input @change="sendImages"
-               class="form-control-file file optional"
+               class="custom-file-input file optional"
                :class="inputClass(venueForm, 'photos')"
                multiple="multiple"
                type="file"
@@ -31,13 +31,25 @@
                :id="venueId ? '' : 'venue_photos'"
                :aria-invalid="!attributeIsValid(venueForm, 'photos')">
 
-        <div v-for="(photosError, errorIndex) in venueForm.errors['photos']"
-             :key="errorIndex"
-             class="invalid-feedback">
-
-          {{ photosError }}
-        </div>
+        <label class="custom-file-label file optional" :for="venueId ? '' : 'venue_photos'">
+          Choisir des photos
+        </label>
       </div>
+
+      <div v-for="(photosError, errorIndex) in venueForm.errors['photos']"
+           :key="errorIndex"
+           class="invalid-feedback">
+
+        {{ photosError }}
+      </div>
+
+      <small class="form-text text-muted">
+        Les formats acceptés: png, jpg, jpeg.
+        <br>
+        La taille d'une photo est limités à 2mo.
+        <br>
+        Le nombre total de fichiers est limité à 10.
+      </small>
     </div>
   </div>
 </template>

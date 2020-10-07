@@ -27,6 +27,8 @@ json.venue do
     :family_id
   )
 
+  json.current_user_is_the_creator @venue.creator_id == current_user.id
+
   if @venue.photos.attached?
     json.photos @venue.photos do |photo|
       if photo.blob.persisted?

@@ -75,7 +75,7 @@
 
         <VenueCommentForm />
 
-        <VenueEditableForOthersForm />
+        <VenueEditableForOthersForm v-if="venueFormItem.currentUserIsTheCreator" />
 
         <input type="submit"
                :disabled="venueFormIsSending"
