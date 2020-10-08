@@ -1,43 +1,16 @@
 <footer class="container-fluid border-top border-gray-200 bg-light mt-3">
   <div class="d-flex justify-content-center text-muted">
     <div class="col-sm-11 my-5">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-around">
         <ul class="list-group list-group-flush shadow-none">
           <li class="list-group-item p-1 bg-light">
             <h6 class="mb-1 text-muted text-uppercase">Hutoki</h6>
           </li>
           <li class="list-group-item p-1 bg-light">
-            <%= link_to "À propos", about_index_path, class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
             <%= link_to "Notre équipe", teams_path, class: "text-muted" %>
           </li>
           <li class="list-group-item p-1 bg-light">
-            <%= link_to "Carrières", careers_path, class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
             <%= link_to "Aide & F.A.Q", faq_index_path, class: "text-muted" %>
-          </li>
-        </ul>
-
-        <ul class="list-group list-group-flush shadow-none">
-          <li class="list-group-item p-1 bg-light">
-            <h6 class="mb-1 text-muted text-uppercase">Retrouvez nous</h6>
-          </li>
-          <li class="list-group-item p-1 bg-light">
-            <%= link_to "Blog", blog_index_path, class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
-            <%= link_to "Facebook", '#', class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
-            <%= link_to "Instagram", '#', class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
-            <%= link_to "Twitter", '#', class: "text-muted" %>
-          </li>
-          <li class="list-group-item p-1 bg-light">
-            <%= link_to "Linkedin", '#', class: "text-muted" %>
           </li>
         </ul>
 
@@ -50,6 +23,25 @@
       </div>
 
       <hr class="border-gray-200">
+
+      <div class="d-flex justify-content-center">
+        <%= link_to '#', class: "text-muted" do %>
+          <%= fa_icon("facebook-square", nil, { class: "fa-2x mr-2", prefix: "fab" }) %>
+        <% end %>
+
+        <%= link_to '#', class: "text-muted" do %>
+          <%= fa_icon("instagram", nil, { class: "fa-2x mr-2", prefix: "fab" }) %>
+        <% end %>
+
+        <%= link_to '#', class: "text-muted" do %>
+          <%= fa_icon("twitter-square", nil, { class: "fa-2x mr-2", prefix: "fab" }) %>
+        <% end %>
+
+
+        <%= link_to '#', class: "text-muted" do %>
+          <%= fa_icon("linkedin", nil, { class: "fa-2x", prefix: "fab" }) %>
+        <% end %>
+      </div>
 
       <div class="text-center pt-1">
         <p class="mb-1 text-grey-200">

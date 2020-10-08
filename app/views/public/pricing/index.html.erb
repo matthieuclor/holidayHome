@@ -1,1 +1,76 @@
-<h1>Pricing</h1>
+<div class="d-flex justify-content-center mt-6 mb-8">
+  <h2>Choisissez le plan qui vous convient</h2>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="col-sm-10 col-md-8">
+    <div class="row">
+      <div class="col-12 col-sm-7 mb-4 mb-sm-0">
+        <div class="card">
+          <div class="card-body text-nowrap">
+            <h3 class="card-title text-center">Basique</h3>
+
+            <ul class="list-group shadow-none">
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>Familles illimitées</span>
+              </li>
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>Membres par famille illimités</span>
+              </li>
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>Invitations par famille illimitées</span>
+              </li>
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>Lieux par famille illimités</span>
+              </li>
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>10 photos par lieu</span>
+              </li>
+              <li class="list-group-item border-bottom p-2">
+                <%= fa_icon("check-circle", nil, class: "text-success") %>
+                <span>Réservations illimitées</span>
+              </li>
+              <li class="list-group-item p-2 text-center">
+                <span class="font-weight-bolder">
+                  0 €
+                </span>
+              </li>
+            </ul>
+
+            <div class="d-flex justify-content-center">
+              <%= button_to new_user_registration_path,
+                            method: :get,
+                            form_class: "w-100",
+                            class: "btn btn btn-block btn-outline-primary" do %>
+                Plan gratuit
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-12 col-sm-5">
+        <div class="card h-100">
+          <div class="card-body text-nowrap">
+            <div class="d-flex flex-column justify-content-center h-100 text-center">
+              <h3>Premium</h3>
+
+              <div class="d-flex align-items-center justify-content-center h-100">
+                <span class="font-weight-bolder text-muted">Bientôt disponible</span>
+              </div>
+
+              <button class="btn btn btn-block btn-outline-primary mt-auto w-100" disabled>
+                Plan premium
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
