@@ -2,17 +2,20 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   scope module: :public do
-    root to: 'pages#main'
+    root 'pages#main'
+
+    scope module: :pages do
+      get 'about'
+      get 'pricing'
+      get 'qui-sommes-nous', action: :teams, as: :teams
+      get 'faq'
+      get 'cgu'
+      get 'politique-confidentialite', action: :privacy_policy, as: :privacy_policy
+      get 'mentions-legales', action: :company_details, as: :company_details
+      get 'sitemap'
+    end
 
     resources :blog, only: [:index, :show]
-    resources :pricing, only: [:index]
-    resources :about, only: [:index]
-    resources :teams, only: [:index]
-    resources :faq, only: [:index]
-    resources :sitemaps, only: [:index]
-    resources :cgu, only: [:index]
-    resources :company_details, only: [:index]
-    resources :privacy_policy, only: [:index]
 
     scope module: :invitations do
       resource :responses, only: [:new]
