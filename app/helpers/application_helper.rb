@@ -16,12 +16,12 @@ module ApplicationHelper
   end
 
   def fa_check_icon(value, text)
-    icon, color = if value.present?
-      ['check-circle', 'text-success']
+    icon, color, prefix = if value.present?
+      ['check-circle', 'text-success', 'fas']
     else
-      ['circle', 'text-secondary']
+      ['circle', 'text-secondary', 'far']
     end
 
-    fa_icon(icon, text, class: "mr-2 #{color}", prefix: "far")
+    fa_icon(icon, text, class: "mr-2 #{color}", prefix: prefix)
   end
 end

@@ -47,8 +47,11 @@
       <% end %>
     <% else %>
       <div class="dropdown-item text-muted">
-        Aucune notification
+        Aucune notification récente
       </div>
+    <% end %>
+    <%= link_to user_account_notifications_path, class: "dropdown-item" do %>
+      Voir mes notifications
     <% end %>
   </div>
 </div>

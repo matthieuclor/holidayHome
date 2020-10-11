@@ -15,12 +15,12 @@
       </div>
     </div>
 
-    <div class="card">
-      <div class="card-body">
-        <% if @families.present? %>
+    <% if @families.present? %>
+      <div class="card">
+        <div class="card-body">
           <div class="accordion" id="familyAccordion">
             <% @families.each do |family| %>
-              <div id="heading-<%= family.id %>" class="mb-3">
+              <div id="heading-<%= family.id %>" class="mb-4">
                 <div class="d-flex flex-row justify-content-between">
                   <h3 class="text-nowrap mb-0 mr-2">
                     <%= family.name %>
@@ -103,28 +103,15 @@
               </div>
             <% end %>
           </div>
-        <% else %>
-          <div class="d-flex align-items-center">
-            <div class="col-7">
-              <div class="alert alert-warning m-0">
-                <%= fa_icon("exclamation-triangle") %>
-                Vous devez dans un premier temps créer votre premier groupe familiale !
-                <br>
-                Pour ce faire cliquez sur le lien de creation.
-              </div>
-            </div>
-            <div class="col-5 d-flex justify-content-center">
-              <%= button_to new_user_account_family_path,
-                            class: "btn btn-lg btn-outline-primary",
-                            method: :get,
-                            remote: true do %>
-
-                <%= fa_icon("plus", "Créer ma première famille", class: "mr-2") %>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        </div>
       </div>
-    </div>
+    <% else %>
+      <div class="alert alert-warning">
+        <%= fa_icon("exclamation-triangle") %>
+        Vous devez dans un premier temps créer votre premier groupe familiale !
+        <br>
+        Pour ce faire cliquez sur le lien de creation.
+      </div>
+    <% end %>
   </div>
 </div>
