@@ -71,5 +71,6 @@
     </div>
   </body>
 
+  <%= render "./shared/cookies_info_card" unless cookies[:hutoki_rgpd] %>
   <%= render "./shared/footer" unless @skip_footer %>
 </html>

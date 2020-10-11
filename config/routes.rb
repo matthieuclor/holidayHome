@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get 'sitemap'
     end
 
+    resources :rgpd_cookies, only: [:create]
     resources :blog, only: [:index, :show]
 
     scope module: :invitations do

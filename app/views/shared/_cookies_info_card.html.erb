@@ -1,0 +1,22 @@
+<div id="rgpd-cookies-info-card-container" class="card fixed-bottom mx-4 my-3">
+  <div class="card-body">
+    <div class="row d-flex align-items-center">
+      <div class="col-sm-10">
+        <h5>
+          Votre vie privée
+          <%= fa_icon("lock", nil, class: "ml-1") %>
+        </h5>
+
+        <p class="m-sm-0">
+          Nous utilisons des cookies et d'autres technologies similaires afin de personnaliser notre contenu
+          ainsi que proposer une meilleure expérience. En cliquant sur OK, vous acceptez les conditions
+          énoncées dans notre <%= link_to("Politique en matière de cookies", privacy_policy_path, class: "font-weight-bold") %>.
+          Pour modifier vos préférences ou retirer votre consentement, vous devez mettre à jour vos Préférences de cookies.
+        </p>
+      </div>
+      <div class="col-sm-2">
+        <%= button_to("OK", rgpd_cookies_path, class: "btn btn-block btn-primary", remote: true) %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 
 module UserAccount
   class BookingApprovalsController < UserAccount::ApplicationController
-    respond_to(:json)
+    respond_to :json
 
     def update
       @booking = Booking.find(params[:booking_id])
