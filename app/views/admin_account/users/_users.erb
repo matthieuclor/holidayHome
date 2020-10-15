@@ -14,7 +14,9 @@
         <td>
           <%= user_avatar(user) %>
         </td>
-        <td><%= user.full_name %></td>
+        <td>
+          <%= link_to user.full_name, admin_account_user_path(user) %>
+        </td>
         <td>
           <%= user.email %>
           <span class="ml-1">
@@ -23,13 +25,14 @@
         </td>
         <td class="text-center"><%= l(user.created_at, format: :medium) %></td>
         <td class="d-flex flex-row-reverse">
-          <button type="button" class="btn btn-sm btn-primary">
-            Connection
-          </button>
+          <%= button_to "Connection",
+                        admin_account_user_sessions_path(user),
+                        form: {target: '_blank'},
+                        class: "btn btn-sm btn-primary" %>
 
           <% unless user.confirmed? %>
             <%= button_to "Valider le mail",
-                          admin_account_user_email_confirmation_path(user),
+                          admin_account_user_email_confirmations_path(user),
                           method: :put,
                           class: "btn btn-sm btn-outline-primary mr-2" %>
           <% end %>

@@ -90,7 +90,8 @@ Rails.application.routes.draw do
 
     resources :users do
       scope module: :users do
-        resource :email_confirmation, only: [:update]
+        resource :email_confirmations, only: [:update]
+        resources :sessions, only: [:create]
       end
     end
 

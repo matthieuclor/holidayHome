@@ -8,6 +8,10 @@ module AdminAccount
       @users = UserDecorator.wrap(@users)
     end
 
+    def show
+      @user = User.find(params[:id])
+    end
+
     private
 
     def users_ransack_params
