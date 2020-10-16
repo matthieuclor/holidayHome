@@ -1,0 +1,29 @@
+<div class="modal" id="user-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un utilisateur
+          <% else %>
+            Editer un utilisateur
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @user] do |f| %>
+          <%= f.input :first_name, input_html: { placeholder: "Jean" } %>
+          <%= f.input :last_name, input_html: { placeholder: "Dupont" } %>
+          <%= f.input :email, input_html: { placeholder: "jean.dupont@mail.com" } %>
+          <%= f.input :phone, input_html: { placeholder: "06 67 65 43 98" } %>
+          <%= f.input :address, input_html: { placeholder: "17 rue du paradis" } %>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

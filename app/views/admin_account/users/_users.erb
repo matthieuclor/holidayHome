@@ -27,7 +27,7 @@
         <td class="d-flex flex-row-reverse">
           <%= button_to "Connection",
                         admin_account_user_sessions_path(user),
-                        form: {target: '_blank'},
+                        form: { target: '_blank' },
                         class: "btn btn-sm btn-primary" %>
 
           <% unless user.confirmed? %>
