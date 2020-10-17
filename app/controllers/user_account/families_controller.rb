@@ -5,7 +5,7 @@ module UserAccount
     before_action :set_family, :check_creator, only: [:edit, :update, :destroy]
 
     def index
-      @families = current_user.families
+      @families = FamilyDecorator.wrap(current_user.families)
       @users = UserDecorator.wrap(User
         .with_attached_avatar
         .joins(:family_links)

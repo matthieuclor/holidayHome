@@ -27,11 +27,11 @@ module AdminAccount
     def update
       if @user.update(user_params)
         flash[:success] = "L'utilisateur a bien été mise a jours"
+        render js: "location.reload()"
       else
         flash[:error] = "Un problem est survenu lors de la mise à jour de l'utilisateur"
+        render :edit
       end
-
-      redirect_to admin_account_user_path(@user)
     end
 
     private

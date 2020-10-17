@@ -6,7 +6,7 @@
           <% if action_name == "new" %>
             Créer une famille
           <% else %>
-            Editer une famille
+            Editer la famille
           <% end %>
         </h3>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -14,16 +14,16 @@
         </button>
       </div>
       <div class="modal-body">
-        <%= simple_form_for [:user_account, @family], remote: true do |f| %>
+        <%= simple_form_for [:admin_account, @family], remote: true do |f| %>
           <%= f.input :name, input_html: { placeholder: "Dupont" } %>
-          <%= f.input :days_for_approval,
-                      as: :integer,
-                      input_html: {
-                        min: Family::MIN_DAYS_FOR_APPROVAL,
-                        max: Family::MAX_DAYS_FOR_APPROVAL,
-                        placeholder: "3"
-                      },
-                      hint: "Il represente le nombre de jours laissé au membre de la famille pour approuver ou non une demande de réservation. (doit être entre #{Family::MIN_DAYS_FOR_APPROVAL} et #{Family::MAX_DAYS_FOR_APPROVAL})" %>
+           <%= f.input :days_for_approval,
+                       as: :integer,
+                       input_html: {
+                         min: Family::MIN_DAYS_FOR_APPROVAL,
+                         max: Family::MAX_DAYS_FOR_APPROVAL,
+                         placeholder: "3"
+                       },
+                       hint: "Il represente le nombre de jours laissé au membre de la famille pour approuver ou non une demande de réservation. (doit être entre #{Family::MIN_DAYS_FOR_APPROVAL} et #{Family::MAX_DAYS_FOR_APPROVAL})" %>
 
           <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
         <% end %>

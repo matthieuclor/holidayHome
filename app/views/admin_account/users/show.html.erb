@@ -58,20 +58,19 @@
     <div class="col-12 col-md-8">
       <div class="card my-3">
         <div class="card-body">
-          <h1 class="d-flex align-items-center m-0">
-            <%= fa_icon("users", nil, class: "mr-2") %>
-            <span class="font-weight-bolder">Familles</span>
-            <span class="badge badge-secondary ml-1 ml-auto">
+          <h2 class="d-flex align-items-center m-0">
+            <%= fa_icon("users", "Familles", class: "mr-2") %>
+            <span class="badge badge-secondary ml-auto">
               <%= @user.family_links.size %>
             </span>
-          </h1>
+          </h2>
 
           <div class="col-12 col-sm-6 p-0 mt-3">
             <table class="table table-rounded table-borderless table-hover">
               <tbody>
                 <% if @user.families.present? %>
                   <% @user.families.each do |family| %>
-                    <tr>
+                    <tr data-table-link="<%= admin_account_family_path(family) %>">
                       <td class="font-weight-bolder">
                         <%= family.name %>
                       </td>
@@ -99,7 +98,12 @@
     <div class="col-12 col-md-8">
       <div class="card my-3">
         <div class="card-body">
-          <h1>Invitations reçues</h1>
+          <h2 class="d-flex align-items-center mb-3">
+            <%= fa_icon("mailbox", "Invitations reçues", class: "mr-2") %>
+            <span class="badge badge-secondary ml-auto">
+              <%= @received_invitations.size %>
+            </span>
+          </h2>
 
           <table class="table table-rounded table-borderless table-hover">
             <thead class="table-info">

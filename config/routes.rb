@@ -95,9 +95,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :families
-    resources :invitations
-    resources :venues
+    resources :families, only: [:index, :show, :edit, :update]
+    # resources :invitations
+    # resources :venues
   end
 
   authenticate :admin do

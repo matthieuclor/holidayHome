@@ -2,14 +2,33 @@
   <thead class="table-info">
     <tr>
       <th scope="col">Nom</th>
-      <th scope="col" colspan="2"></th>
+      <th scope="col">Créateur</th>
+      <th scope="col" class="text-center">Période de réservation</th>
+      <th scope="col" class="text-center">Nombre de lieux</th>
+      <th scope="col" class="text-center">Date de création</th>
     </tr>
   </thead>
   <tbody>
     <% @families.each do |family| %>
       <tr>
-        <td><%= family.name %></td>
-        <td colspan="2"></td>
+        <td>
+          <%= link_to family.name, admin_account_family_path(family) %>
+        </td>
+        <td>
+          <%= link_to "#{family.creator.first_name} #{family.creator.last_name}",
+                      admin_account_user_path(family.creator) %>
+        </td>
+        <td class="text-center font-weight-bolder">
+          <%= family.human_days_for_approval %>
+        </td>
+        <td class="text-center">
+          <span class="badge badge-secondary">
+            <%= family.venues_count %>
+          </span>
+        </td>
+        <td class="text-center">
+          <%= l(family.created_at, format: :medium) %>
+        </td>
       </tr>
     <% end %>
   </tbody>

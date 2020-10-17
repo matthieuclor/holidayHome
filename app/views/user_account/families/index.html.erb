@@ -74,8 +74,7 @@
                   </a>
                   <span class="ml-2 font-weight-bold align-self-end">
                     Période de réservation :
-                    <%= family.days_for_approval %>
-                    <%= 'jour'.pluralize(family.days_for_approval) %>
+                    <%= family.human_days_for_approval %>
                   </span>
                 </div>
 
@@ -87,7 +86,7 @@
                   <div class="p-2">
                     <ul class="list-group list-group-flush shadow-none">
                       <% @users[family.id].each do |user| %>
-                        <li class="list-group-item p-1 border-0 d-flex">
+                        <li class="list-group-item p-1 d-flex">
                           <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
 
                           <%= link_to user_account_user_path(user), remote: true do %>

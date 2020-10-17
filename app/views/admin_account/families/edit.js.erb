@@ -1,5 +1,5 @@
-if ($("#user-modal").length > 0) {
-  $("#user-modal").modal("hide")
+if ($("#family-modal").length > 0) {
+  $("#family-modal").modal("hide")
 }
 
 $("#modal-container").html("<%= j render "form" %>")
@@ -9,4 +9,4 @@ $("#modal-container").html("<%= j render "form" %>")
   <% flash.clear %>
 <% end %>
 
-$("#user-modal").modal("show")
+$("#family-modal").modal("show")
