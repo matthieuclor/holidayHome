@@ -20,7 +20,7 @@ module UserAccount
 
       families = @controller.view_assigns["families"]
 
-      assert_instance_of Family, families.first
+      assert_instance_of FamilyDecorator, families.first
       families.each { |family| assert family.users.include?(@user) }
       assert_response :success
     end
