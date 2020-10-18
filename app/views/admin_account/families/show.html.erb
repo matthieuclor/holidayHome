@@ -1,77 +1,94 @@
-<div class="d-flex flex-column">
-  <div class="d-flex justify-content-center">
-    <div class="col-12 col-md-6">
-      <div class="card my-3">
-        <div class="card-body">
-          <div class="d-flex">
-            <div>
-              <h1 class="m-0">
-                <%= "Famille #{@family.name}" %>
-              </h1>
-              <span class="text-muted">
-                <%= "Créé le #{l(@family.created_at, format: :medium)}" %>
-              </span>
-              <br>
-              <span class="text-muted">
-                Par
-                <%= link_to "#{@family.creator.first_name} #{@family.creator.last_name}",
-                            admin_account_user_path(@family.creator) %>
-              </span>
-            </div>
+<div class="row">
+  <div class="col-12">
+    <div class="card my-3">
+      <div class="card-body">
+        <div class="d-flex">
+          <div>
+            <h1 class="m-0">
+              <%= "Famille #{@family.name}" %>
+            </h1>
 
-            <%= button_to edit_admin_account_family_path(@family),
-                          method: :get,
-                          form_class: "ml-auto",
-                          class: "btn btn-sm btn-outline-warning",
-                          remote: true do %>
+            <span class="text-muted">
+              <%= "Créé le #{l(@family.created_at, format: :medium)}" %>
+            </span>
 
-              <%= fa_icon("pen") %>
-            <% end %>
+            <br>
+
+            <span class="text-muted">
+              Par
+              <%= link_to "#{@family.creator.first_name} #{@family.creator.last_name}",
+                          admin_account_user_path(@family.creator) %>
+            </span>
           </div>
 
-          <p class="mt-3 mb-0">
-            <span>Période de réservation :</span>
-            <span class="font-weight-bolder">
-              <%= @family.human_days_for_approval %>
-            </span>
-          </p>
+          <%= button_to edit_admin_account_family_path(@family),
+                        method: :get,
+                        form_class: "ml-auto",
+                        class: "btn btn-sm btn-outline-warning",
+                        remote: true do %>
+
+            <%= fa_icon("pen") %>
+          <% end %>
+        </div>
+
+        <p class="mt-3 mb-0">
+          <span>Période de réservation :</span>
+          <span class="font-weight-bolder">
+            <%= @family.human_days_for_approval %>
+          </span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12 col-md-6">
+    <div class="card my-3">
+      <div class="card-body">
+        <div id="users-family-container">
+          <%= render "shared/spinner" %>
         </div>
       </div>
     </div>
   </div>
 
-  <div class="d-flex justify-content-center">
-    <div class="col-12 col-md-6">
-      <div class="card my-3">
-        <div class="card-body">
-          <h2 class="d-flex align-items-center m-0">
-            <%= fa_icon("users", "Membres", class: "mr-2") %>
-            <span class="badge badge-secondary ml-auto">
-              <%= @users.size %>
-            </span>
-          </h2>
-
-          <ul class="list-group shadow-none mt-3">
-            <% if @users.present? %>
-              <% @users.each do |user| %>
-                <li class="list-group-item p-1 d-flex">
-                  <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
-                  <%= link_to user.full_name, admin_account_user_path(user) %>
-                  <span class="text-muted ml-2">
-                    <%= user.email %>
-                  </span>
-                </li>
-              <% end %>
-            <% else %>
-              <li class="list-group-item p-1">
-                <span class="text-muted">
-                  <%= "Aucun membre pour la famille #{@family.name}" %>
-                </span>
-              </li>
-            <% end %>
-          </ul>
+  <div class="col-12 col-md-6">
+    <div class="card my-3">
+      <div class="card-body">
+        <div id="venues-family-container">
+          <%= render "shared/spinner" %>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div class="row">
+  <div class="col-12">
+    <div class="card my-3">
+      <div class="card-body">
+        <h2 class="d-flex align-items-center m-0">
+          <%= fa_icon("tasks", "Réservations", class: "mr-2") %>
+          <span id="bookings-family-count" class="badge badge-secondary ml-auto">
+            0
+          </span>
+        </h2>
+
+        <%= render 'admin_account/families/bookings/filter' %>
+
+        <div id="bookings-family-container">
+          <%= render "shared/spinner" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    $.ajax({ url: "<%= admin_account_family_users_path(@family) %>" })
+    $.ajax({ url: "<%= admin_account_family_venues_path(@family) %>" })
+    $.ajax({ url: "<%= admin_account_family_bookings_path(@family) %>" })
+  })
+</script>

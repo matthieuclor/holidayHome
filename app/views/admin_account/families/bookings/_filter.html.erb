@@ -1,0 +1,59 @@
+<div class="d-flex flex-column flex-md-row no-gutters my-3 mx-n3">
+  <div class="col-12 col-md-10">
+    <%= search_form_for [:admin_account, @family, Booking.ransack],
+                        defaults: { wrapper_html: { class: "mb-0" } },
+                        data: { autosubmit: true },
+                        remote: true do |f| %>
+      <div class="d-flex flex-column flex-md-row">
+        <div class="col-12 col-md-3">
+          <%= f.input :user_id_eq,
+                      collection: @family.users.map { |u|
+                        ["#{u.first_name} #{u.last_name}", u.id]
+                      },
+                      label: "Membre",
+                      required: false %>
+        </div>
+        <div class="col-12 col-md-2">
+          <%= f.input :venue_id_eq,
+                      collection: @family.venues.pluck(:name, :id),
+                      label: "Lieu",
+                      required: false %>
+        </div>
+        <div class="col-12 col-md-5">
+          <div class="row no-gutters">
+            <div class="col-6 pr-3">
+              <%= f.input :from_gteq,
+                          label: "Du",
+                          as: :date,
+                          html5: true,
+                          required: false %>
+            </div>
+            <div class="col-6 pl-3">
+              <%= f.input :to_lteq,
+                          label: "Au",
+                          as: :date,
+                          html5: true,
+                          required: false %>
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md-2">
+          <%= f.input :status_eq,
+                      collection: Booking.statuses.map { |k, v|
+                        [Booking.human_attribute_name("status.#{k}"), v]
+                      },
+                      label: "Statut",
+                      required: false %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="ml-3 ml-md-0 col-md-2 pl-md-3 mt-2 mt-md-auto">
+    <%= button_to admin_account_family_path(@family),
+                  class: "btn btn-md-block btn-danger",
+                  method: :get do %>
+
+      <%= fa_icon("redo", "Réinitialiser", class: "mr-2") %>
+    <% end %>
+  </div>
+</div>

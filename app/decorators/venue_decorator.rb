@@ -2,6 +2,6 @@
 
 class VenueDecorator < ApplicationDecorator
   def beddings_count
-    single_beds_count + (double_beds_count * 2)
+    @beddings_count ||= single_beds_count + (double_beds_count * 2)
   end
 end

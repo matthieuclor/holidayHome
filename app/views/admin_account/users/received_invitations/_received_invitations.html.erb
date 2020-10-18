@@ -1,0 +1,52 @@
+<h2 class="d-flex align-items-center mb-3">
+  <%= fa_icon("mailbox", "Invitations reçues", class: "mr-2") %>
+  <span class="badge badge-secondary ml-auto">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Hôte</th>
+      <th scope="col" class="text-center">Famille</th>
+      <th scope="col" class="text-center">Date d'envoie</th>
+      <th scope="col" class="text-center">Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @received_invitations.present? %>
+      <% @received_invitations.each do |invitation| %>
+        <tr>
+          <td>
+            <%= link_to invitation.sender_full_name,
+                        admin_account_user_path(invitation.sender) %>
+          </td>
+          <td class="text-center font-weight-bolder">
+            <%= invitation.family.name %>
+          </td>
+          <td class="text-center">
+            <span class="text-muted">
+              <%= l(invitation.created_at) %>
+            </span>
+          </td>
+          <td class="d-flex justify-content-center">
+            <%= invitation_status_badge(invitation) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4" class="text-center text-muted">
+          <%= "Cet utilisateur n'a pas reçu d'invitations" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

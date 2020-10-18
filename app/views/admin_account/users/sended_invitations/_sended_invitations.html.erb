@@ -1,0 +1,54 @@
+<h2 class="d-flex align-items-center mb-3">
+  <%= fa_icon("mailbox", "Invitations envoyées", class: "mr-2") %>
+  <span class="badge badge-secondary ml-auto">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-center">Date d'envoie</th>
+      <th scope="col" class="text-center">Status</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @sended_invitations.present? %>
+      <% @sended_invitations.each do |invitation| %>
+        <tr>
+          <td class="font-weight-bolder">
+            <%= invitation.email %>
+          </td>
+          <td class="text-center">
+            <span class="text-muted">
+              <%= l(invitation.created_at) %>
+            </span>
+          </td>
+          <td class="text-center">
+            <%= invitation_status_badge(invitation) %>
+          </td>
+          <td class="text-center">
+            <span class="text-muted">
+              <%= "Le #{l(invitation.updated_at)}" %>
+            </span>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="4" class="text-center text-muted">
+          <%= "Cet utilisateur n'a pas reçu d'invitations" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>
+

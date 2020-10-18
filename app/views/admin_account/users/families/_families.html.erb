@@ -1,0 +1,37 @@
+<h2 class="d-flex align-items-center m-0">
+  <%= fa_icon("users", "Familles", class: "mr-2") %>
+  <span class="badge badge-secondary ml-auto">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<div class="col-12 col-sm-6 p-0 mt-3">
+  <table class="table table-rounded table-borderless table-hover">
+    <tbody>
+      <% if @families.present? %>
+        <% @families.each do |family| %>
+          <tr data-table-link="<%= admin_account_family_path(family) %>">
+            <td class="font-weight-bolder">
+              <%= family.name %>
+            </td>
+            <td class="text-muted text-right">
+              <%= "Créée le #{l(family.created_at, format: :medium)}" %>
+            </td>
+          </tr>
+        <% end %>
+      <% else %>
+        <tr>
+          <td colspan="2" class="text-center text-muted">
+            <%= "Aucune familles n'est liée à cet utilisateur" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <% if @pagy.pages > 1 %>
+    <div class="d-flex justify-content-center mt-2">
+      <%== render "shared/bootstrap_pagy" %>
+    </div>
+  <% end %>
+</div>

@@ -17,14 +17,13 @@ module InvitationsHelper
     )
   end
 
-  def invitation_response_btn(invitation)
+  def invitation_response_badge(invitation)
     return unless invitation.accepted? || invitation.refused?
 
     content_tag(
-      :button,
+      :span,
       (invitation.accepted? ? 'Oui' : 'Non'),
-      class: ["btn btn-sm btn-#{invitation.accepted? ? 'success' : 'danger'} px-4"],
-      disabled: true
+      class: ["badge badge-#{invitation.accepted? ? 'success' : 'danger'}"]
     )
   end
 end

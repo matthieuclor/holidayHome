@@ -58,36 +58,8 @@
     <div class="col-12 col-md-8">
       <div class="card my-3">
         <div class="card-body">
-          <h2 class="d-flex align-items-center m-0">
-            <%= fa_icon("users", "Familles", class: "mr-2") %>
-            <span class="badge badge-secondary ml-auto">
-              <%= @user.family_links.size %>
-            </span>
-          </h2>
-
-          <div class="col-12 col-sm-6 p-0 mt-3">
-            <table class="table table-rounded table-borderless table-hover">
-              <tbody>
-                <% if @user.families.present? %>
-                  <% @user.families.each do |family| %>
-                    <tr data-table-link="<%= admin_account_family_path(family) %>">
-                      <td class="font-weight-bolder">
-                        <%= family.name %>
-                      </td>
-                      <td class="text-muted text-right">
-                        <%= "Créée le #{l(family.created_at, format: :medium)}" %>
-                      </td>
-                    </tr>
-                  <% end %>
-                <% else %>
-                  <tr>
-                    <td colspan="2" class="text-center text-muted">
-                      <%= "Aucune familles n'est liée à #{@user.full_name}" %>
-                    </td>
-                  </tr>
-                <% end %>
-              </tbody>
-            </table>
+          <div id="families-user-container">
+            <%= render "shared/spinner" %>
           </div>
         </div>
       </div>
@@ -98,52 +70,31 @@
     <div class="col-12 col-md-8">
       <div class="card my-3">
         <div class="card-body">
-          <h2 class="d-flex align-items-center mb-3">
-            <%= fa_icon("mailbox", "Invitations reçues", class: "mr-2") %>
-            <span class="badge badge-secondary ml-auto">
-              <%= @received_invitations.size %>
-            </span>
-          </h2>
+          <div id="families-received-invitations-container">
+            <%= render "shared/spinner" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-          <table class="table table-rounded table-borderless table-hover">
-            <thead class="table-info">
-              <tr>
-                <th scope="col">Hôte</th>
-                <th scope="col" class="text-center">Famille</th>
-                <th scope="col" class="text-center">Date d'envoie</th>
-                <th scope="col" class="text-center">Réponse</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% if @received_invitations.present? %>
-                <% @received_invitations.each do |invitation| %>
-                  <tr>
-                    <td class="font-weight-bolder">
-                      <%= link_to invitation.sender_full_name,
-                                  admin_account_user_path(invitation.sender) %>
-                    </td>
-                    <td class="text-center">
-                      <%= invitation.family.name %>
-                    </td>
-                    <td class="text-center">
-                      <%= l(invitation.created_at) %>
-                    </td>
-                    <td class="d-flex justify-content-center">
-                      <%= Invitation.human_attribute_name("status.#{invitation.status}") %>
-                    </td>
-                  </tr>
-                <% end %>
-              <% else %>
-                <tr>
-                  <td colspan="4" class="text-center text-muted">
-                    <%= "#{@user.full_name} n'a pas reçu d'invitations" %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          </table>
+  <div class="d-flex justify-content-center">
+    <div class="col-12 col-md-8">
+      <div class="card my-3">
+        <div class="card-body">
+          <div id="families-sended-invitations-container">
+            <%= render "shared/spinner" %>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    $.ajax({ url: "<%= admin_account_user_families_path(@user) %>" })
+    $.ajax({ url: "<%= admin_account_user_received_invitations_path(@user) %>" })
+    $.ajax({ url: "<%= admin_account_user_sended_invitations_path(@user) %>" })
+  })
+</script>

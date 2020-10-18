@@ -17,7 +17,7 @@ class BookingDecorator < ApplicationDecorator
   end
 
   def human_date_range
-    if from == to
+    @human_date_range ||= if from == to
       "Le #{I18n.l(from, format: :medium)}"
     else
       "Du #{I18n.l(from, format: :medium)}" +
@@ -35,7 +35,7 @@ class BookingDecorator < ApplicationDecorator
   end
 
   def progress_percentage
-    @percentage ||= if days_left.zero?
+    @progress_percentage ||= if !pending? || days_left.zero?
       100.0
     else
       100.0 - (days_left.to_f/days_for_approval.to_f * 100.0)

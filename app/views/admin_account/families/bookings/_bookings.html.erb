@@ -2,7 +2,6 @@
   <table class="table table-rounded table-borderless table-hover">
     <thead class="table-info">
       <tr>
-        <th scope="col"></th>
         <th scope="col">Membre</th>
         <th scope="col">Lieu</th>
         <th scope="col" class="text-center">Date</th>
@@ -13,10 +12,7 @@
     <tbody>
       <% if @bookings.present? %>
         <% @bookings.each do |booking| %>
-          <tr data-table-link="<%= user_account_booking_path(booking) %>">
-            <td>
-              <%= user_avatar(booking.user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
-            </td>
+          <tr data-table-link="<%= admin_account_booking_path(booking) %>">
             <td>
               <%= booking.user_full_name %>
             </td>
@@ -39,7 +35,7 @@
       <% else %>
         <tr>
           <td colspan="7" class="text-center text-muted">
-            Vous n'avez pas de réservations en cours
+            Aucune réservation pour la famille
           </td>
         </tr>
       <% end %>

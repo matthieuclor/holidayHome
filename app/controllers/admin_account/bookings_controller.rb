@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module AdminAccount
-  class VenuesController < AdminAccount::ApplicationController
+  class BookingsController < AdminAccount::ApplicationController
     respond_to :js, :html
 
     def show
-      @venue = Venue.find(params[:id])
+      @booking = Booking.find(params[:id])
     end
   end
 end

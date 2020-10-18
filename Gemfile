@@ -43,6 +43,8 @@ gem 'ransack'
 gem 'pagy'
 # Interactors (business objects)
 gem 'interactor'
+# Beautiful JavaScript charts with one line of Ruby
+gem 'chartkick'
 
 group :staging do
   gem 'rest-client'

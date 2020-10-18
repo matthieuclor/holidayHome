@@ -92,12 +92,22 @@ Rails.application.routes.draw do
       scope module: :users do
         resource :email_confirmations, only: [:update]
         resources :sessions, only: [:create]
+        resources :families, only: [:index]
+        resources :received_invitations, only: [:index]
+        resources :sended_invitations, only: [:index]
       end
     end
 
-    resources :families, only: [:index, :show, :edit, :update]
-    # resources :invitations
-    # resources :venues
+    resources :families, only: [:index, :show, :edit, :update] do
+      scope module: :families do
+        resources :users, only: [:index]
+        resources :venues, only: [:index]
+        resources :bookings, only: [:index]
+      end
+    end
+
+    resources :venues, only: [:show]
+    resources :bookings, only: [:show]
   end
 
   authenticate :admin do

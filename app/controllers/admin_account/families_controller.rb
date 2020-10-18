@@ -15,7 +15,6 @@ module AdminAccount
       @family = FamilyDecorator.new(
         Family.joins(:creator).includes(:users).find(params[:id])
       )
-      @users = UserDecorator.wrap(@family.users.with_attached_avatar)
     end
 
     def edit

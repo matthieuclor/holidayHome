@@ -1,0 +1,7 @@
+$("#families-user-container").html("<%= j render "families" %>")
+
+document.querySelectorAll('[data-table-link]').forEach(link => {
+  link.addEventListener('click', () => {
+    window.location = link.getAttribute("data-table-link")
+  })
+})

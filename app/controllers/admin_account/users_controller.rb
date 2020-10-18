@@ -17,8 +17,6 @@ module AdminAccount
             .includes(:families, :received_invitations)
             .find(params[:id])
       )
-
-      @received_invitations = InvitationDecorator.wrap(@user.received_invitations)
     end
 
     def edit

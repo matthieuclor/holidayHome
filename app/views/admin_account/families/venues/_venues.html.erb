@@ -1,0 +1,35 @@
+<h2 class="d-flex align-items-center m-0">
+  <%= fa_icon("home", "Lieux", class: "mr-2") %>
+  <span class="badge badge-secondary ml-auto">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<ul class="list-group shadow-none mt-3">
+  <% if @venues.present? %>
+    <% @venues.each do |venue| %>
+      <%= link_to admin_account_venue_path(venue),
+                  class: "list-group-item list-group-item-action p-1" do %>
+        <span class="font-weight-bolder">
+          <%= venue.name %>
+        </span>
+        <span class="mx-1">•</span>
+        <span class="text-muted">
+          <%= venue.address %>
+        </span>
+      <% end %>
+    <% end %>
+  <% else %>
+    <li class="list-group-item p-1">
+      <span class="text-muted">
+        <%= "Aucun lieu pour cette famille" %>
+      </span>
+    </li>
+  <% end %>
+</ul>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

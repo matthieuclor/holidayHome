@@ -1,0 +1,32 @@
+<h2 class="d-flex align-items-center m-0">
+  <%= fa_icon("users", "Membres", class: "mr-2") %>
+  <span class="badge badge-secondary ml-auto">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<ul class="list-group shadow-none mt-3">
+  <% if @users.present? %>
+    <% @users.each do |user| %>
+      <li class="list-group-item p-1 d-flex">
+        <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+        <%= link_to user.full_name, admin_account_user_path(user) %>
+        <span class="text-muted ml-2">
+          <%= user.email %>
+        </span>
+      </li>
+    <% end %>
+  <% else %>
+    <li class="list-group-item p-1">
+      <span class="text-muted">
+        <%= "Aucun membre pour la famille #{@family.name}" %>
+      </span>
+    </li>
+  <% end %>
+</ul>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>
