@@ -39,7 +39,7 @@ class BookingTest < ActiveSupport::TestCase
   end
 
   test "send mail and notification if status change to accepted" do
-    assert_enqueued_emails 1 do
+    assert_enqueued_email_with BookingMailer, :send_status, args: @booking do
       assert_enqueued_jobs 1, only: NewNotificationJob do
         @booking.accepted!
       end
@@ -61,7 +61,7 @@ class BookingTest < ActiveSupport::TestCase
   end
 
   test "send mail and notification if status change to refused" do
-    assert_enqueued_emails 1 do
+    assert_enqueued_email_with BookingMailer, :send_status, args: @booking do
       assert_enqueued_jobs 1, only: NewNotificationJob do
         @booking.refused!
       end
