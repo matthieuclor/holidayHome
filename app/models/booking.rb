@@ -13,6 +13,8 @@ class Booking < ApplicationRecord
 
   enum status: %i(pending accepted refused canceled)
 
+  validates_with BookingValidFromPlan
+
   validates :from, :to, :user, :venue, presence: true
   validates :status, inclusion: { in: statuses.keys }
 

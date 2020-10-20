@@ -23,6 +23,7 @@ class User < ApplicationRecord
   has_many :notifications, dependent: :destroy
 
   enum status: %i(activated deactivated blocked)
+  enum plan: %i(basic premium)
 
   default_scope { where(status: :activated) }
 

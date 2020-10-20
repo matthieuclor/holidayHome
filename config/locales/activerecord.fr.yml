@@ -1,6 +1,9 @@
 fr:
   activerecord:
     attributes:
+      user/plan:
+        basic: Basique
+        premimum: Premium
       notification/icon:
         new_message: envelope
         new_invitation: mailbox

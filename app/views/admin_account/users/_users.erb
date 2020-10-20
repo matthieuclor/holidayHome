@@ -5,6 +5,7 @@
       <th scope="col">Nom</th>
       <th scope="col">Email</th>
       <th scope="col" class="text-center">Inscription</th>
+      <th scope="col" class="text-center">Plan</th>
       <th scope="col"></th>
     </tr>
   </thead>
@@ -23,7 +24,12 @@
             <%= user_confirmed_status(user.confirmed?) %>
           </span>
         </td>
-        <td class="text-center"><%= l(user.created_at, format: :medium) %></td>
+        <td class="text-center">
+          <%= l(user.created_at, format: :medium) %>
+        </td>
+        <td class="text-center">
+          <%= user_plan_badge(user) %>
+        </td>
         <td class="d-flex flex-row-reverse">
           <%= button_to "Connection",
                         admin_account_user_sessions_path(user),

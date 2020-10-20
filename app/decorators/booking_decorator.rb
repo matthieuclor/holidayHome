@@ -27,7 +27,7 @@ class BookingDecorator < ApplicationDecorator
 
   def days_left
     days_left = (deadline.to_date - Date.current).to_i
-    @days_left ||= days_left < 0 ? 0 : (days_left + 1)
+    @days_left ||= days_left < 0 ? 0 : days_left
   end
 
   def days_for_approval
@@ -46,8 +46,7 @@ class BookingDecorator < ApplicationDecorator
     @progress_title ||= if days_left.zero?
       "Terminé"
     else
-      "#{days_left}
-      #{'jour'.pluralize(days_left)}
+      "#{distance_of_time_in_words(DateTime.now, deadline)}
       #{'restant'.pluralize(days_left)}"
     end
   end
