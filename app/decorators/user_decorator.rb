@@ -6,8 +6,9 @@ class UserDecorator < ApplicationDecorator
   end
 
   def plan_days_left
+    return 0 unless premium?
     days_left = (plan_deadline.to_date - Date.current).to_i
-    @plan_days_left ||= days_left < 0 ? 0 : (days_left + 1)
+    @plan_days_left ||= days_left < 0 ? 0 : days_left
   end
 
   def plan_progress_percentage
@@ -25,7 +26,7 @@ class UserDecorator < ApplicationDecorator
       "Terminé"
     else
       "#{plan_days_left}
-      #{'jour'.pluralize(plan_days_left)}
+      #{distance_of_time_in_words(DateTime.now, plan_deadline)}
       #{'restant'.pluralize(plan_days_left)}"
     end
   end

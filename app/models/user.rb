@@ -30,7 +30,7 @@ class User < ApplicationRecord
   validates :avatar, content_type: [:png, :jpg, :jpeg],
                      size: { less_than: 2.megabytes }
 
-  validates :first_name, :last_name, :plan_deadline, presence: true
+  validates :first_name, :last_name, presence: true
   validates :status, inclusion: { in: statuses.keys }
   validates :plan, inclusion: { in: plans.keys }
 

@@ -13,6 +13,6 @@ FactoryBot.define do
     password_confirmation { password }
     confirmed_at { Date.today }
     plan { 0 }
-    plan_deadline { Date.yesterday }
+    plan_deadline { nil }
   end
 end
