@@ -13,7 +13,7 @@ matthieu:
   reset_password_sent_at: <%= DateTime.now %>
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 pierre:
   id: 2
@@ -27,7 +27,7 @@ pierre:
   current_family_id: 2
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 olivia:
   id: 3
@@ -41,7 +41,7 @@ olivia:
   current_family_id: 1
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 locked_user:
   id: 4
@@ -56,7 +56,7 @@ locked_user:
   unlock_token: ame4gdumQ5ykYKfsYBN2
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 stephanie:
   id: 5
@@ -70,7 +70,7 @@ stephanie:
   current_family_id: 1
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 deactivated_user:
   id: 6
@@ -84,7 +84,7 @@ deactivated_user:
   current_family_id: 1
   status: 1
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 blocked_user:
   id: 7
@@ -98,7 +98,7 @@ blocked_user:
   current_family_id: 1
   status: 2
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
 
 sophie:
   id: 8
@@ -112,4 +112,4 @@ sophie:
   current_family_id: 2
   status: 0
   plan: 0
-  plan_deadline: <%= Date.yesterday %>
+  plan_deadline:
