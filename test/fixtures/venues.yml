@@ -31,3 +31,20 @@ plg:
   baby_beds_count: 0
   creator_id: 1
   family_id: 1
+
+praz_loup:
+  id: 3
+  name: Praz loup
+  address: 12 Rue du test
+  bedrooms_count: 5
+  bathrooms_count: 3
+  with_network: true
+  with_digital_code: false
+  with_home_service: true
+  comment: Ceci est un commentaire, il commente quoi...
+  editable_for_others: true
+  single_beds_count: 5
+  double_beds_count: 2
+  baby_beds_count: 1
+  creator_id: 1
+  family_id: 2

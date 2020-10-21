@@ -11,7 +11,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  %i(first_name last_name email).each do |attibute|
+  %i(first_name last_name email plan_deadline).each do |attibute|
     test "invalid user without #{attibute}" do
       @user.send("#{attibute}=", nil)
       assert_not @user.valid?

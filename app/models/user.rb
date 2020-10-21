@@ -30,8 +30,9 @@ class User < ApplicationRecord
   validates :avatar, content_type: [:png, :jpg, :jpeg],
                      size: { less_than: 2.megabytes }
 
-  validates :first_name, :last_name, presence: true
+  validates :first_name, :last_name, :plan_deadline, presence: true
   validates :status, inclusion: { in: statuses.keys }
+  validates :plan, inclusion: { in: plans.keys }
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?

@@ -12,6 +12,8 @@ matthieu:
   reset_password_token: ame4gdumQ5ykYKfsYBN2
   reset_password_sent_at: <%= DateTime.now %>
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 pierre:
   id: 2
@@ -24,6 +26,8 @@ pierre:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 2
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 olivia:
   id: 3
@@ -36,6 +40,8 @@ olivia:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 locked_user:
   id: 4
@@ -49,6 +55,8 @@ locked_user:
   locked_at: <%= DateTime.now %>
   unlock_token: ame4gdumQ5ykYKfsYBN2
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 stephanie:
   id: 5
@@ -61,6 +69,8 @@ stephanie:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 deactivated_user:
   id: 6
@@ -73,6 +83,8 @@ deactivated_user:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 1
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 blocked_user:
   id: 7
@@ -85,6 +97,8 @@ blocked_user:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 1
   status: 2
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>
 
 sophie:
   id: 8
@@ -97,3 +111,5 @@ sophie:
   confirmed_at: <%= DateTime.now %>
   current_family_id: 2
   status: 0
+  plan: 0
+  plan_deadline: <%= Date.yesterday %>

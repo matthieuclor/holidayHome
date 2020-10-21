@@ -21,6 +21,58 @@ class BookingTest < ActiveSupport::TestCase
     end
   end
 
+  test "not create booking on second venue when user has basic plan" do
+    booking = build(:booking, { user: @booking.user, venue: venues(:plg) })
+    assert_not booking.valid?
+    assert booking.errors[:plan].present?
+  end
+
+  test "not create booking on second family when user has basic plan" do
+    booking = build(:booking, { user: @booking.user, venue: venues(:praz_loup) })
+    assert_not booking.valid?
+    assert booking.errors[:plan].present?
+  end
+
+  test "send mail and notification if status change on second booking when user has basic plan" do
+    @booking2 = bookings(:plg_booking)
+
+    assert_enqueued_email_with BookingMailer, :send_status, args: @booking2 do
+      assert_enqueued_jobs 1, only: NewNotificationJob do
+        @booking2.accepted!
+      end
+    end
+
+    booking_mailer = BookingMailer.send_status(@booking2)
+    notification = Notification.unread.last
+
+    assert_equal ['hello@hutoki.com'], booking_mailer.from
+    assert_equal [@booking2.user.email], booking_mailer.to
+    assert_equal "Réservation Acceptée pour La Galère", booking_mailer.subject
+    assert_equal notification.notification_type, "accepted_booking"
+    assert_equal notification.user_id, @booking2.user_id
+    assert_equal notification.family, @booking2.family
+
+    @booking2.booking_approvals.each do |approval|
+      assert_not approval.pending?
+    end
+  end
+
+  test "create booking on second venue when user has premium plan" do
+    @booking.user.premium!
+
+    booking = build(:booking, { user: @booking.user, venue: venues(:plg) })
+    assert booking.valid?
+    assert_not booking.errors[:plan].present?
+  end
+
+  test "not create booking on second family when user has premium plan" do
+    @booking.user.premium!
+
+    booking = build(:booking, { user: @booking.user, venue: venues(:praz_loup) })
+    assert booking.valid?
+    assert_not booking.errors[:plan].present?
+  end
+
   test "default booking status must be pending" do
     booking = create(:booking, { user: @booking.user, venue: @booking.venue })
     assert booking.pending?

@@ -7,3 +7,13 @@ la_tania_booking:
   deadline: <%= DateTime.now + 30.days %>
   status: 0
   current_users: []
+
+plg_booking:
+  id: 2
+  from: <%= DateTime.now + 10.days %>
+  to: <%= DateTime.now + 17.days %>
+  user_id: 1
+  venue_id: 2
+  deadline: <%= DateTime.now + 30.days %>
+  status: 0
+  current_users: []

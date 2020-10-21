@@ -12,5 +12,7 @@ FactoryBot.define do
     password { password }
     password_confirmation { password }
     confirmed_at { Date.today }
+    plan { 0 }
+    plan_deadline { Date.yesterday }
   end
 end
