@@ -24,4 +24,30 @@ class FamilyTest < ActiveSupport::TestCase
     assert_not @family.valid?
     assert_not_nil @family.errors[:days_for_approval]
   end
+
+  test "invalid family when i create second family" do
+    family = build(
+      :family,
+      name: 'Second',
+      days_for_approval: 10,
+      creator: @family.creator
+    )
+
+    assert_not family.valid?
+    assert family.errors[:base].present?
+  end
+
+  test "valid family when user is premium" do
+    @family.creator.premium!
+
+    family = build(
+      :family,
+      name: 'Premium',
+      days_for_approval: 15,
+      creator: @family.creator
+    )
+
+    assert family.valid?
+    assert_not family.errors[:base].present?
+  end
 end

@@ -7,6 +7,10 @@ if ($("#invitation-modal").length > 0) {
   <% flash.clear %>
 <% end %>
 
-$("#modal-container").html("<%= j render "modal_form" %>")
-
-$("#invitation-modal").modal("show")
+<% if @plan_error %>
+  $("#plan-info-container").html("<%= j render "./shared/plan_info_card" %>")
+  Turbolinks.dispatch("turbolinks:load")
+<% else %>
+  $("#modal-container").html("<%= j render "modal_form" %>")
+  $("#invitation-modal").modal("show")
+<% end %>

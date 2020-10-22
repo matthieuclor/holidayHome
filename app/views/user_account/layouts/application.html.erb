@@ -109,12 +109,17 @@
       <%= yield %>
     </div>
 
-    <div id="modal-container"></div>
+    <div id="modal-container">
+    </div>
     <div id="toast-container">
       <%= render "./shared/flash_messages" %>
     </div>
+    <div id="plan-info-container">
+      <%= render "./shared/plan_info_card" if @plan_error %>
+    </div>
+
+    <%= render "./shared/cookies_info_card" unless cookies[:hutoki_rgpd] %>
   </body>
 
-  <%= render "./shared/cookies_info_card" unless cookies[:hutoki_rgpd] %>
   <%= render "./shared/footer" unless @skip_footer %>
 </html>

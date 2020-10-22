@@ -26,7 +26,8 @@ module UserAccount
         flash[:success] = "L'invitation a bien été envoyé"
         render js: "location.reload()"
       else
-        flash[:error] = "Un problem est survenu lors de l'envoi de l'invitation"
+        @plan_error = @invitation.errors[:base].first
+        flash[:error] = @plan_error || "Un problem est survenu lors de l'envoi de l'invitation"
         render :new, status: :unprocessable_entity
       end
     end

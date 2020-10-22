@@ -58,3 +58,17 @@ fr:
         baby: bébé
       message:
         content: Le contenu
+    errors:
+      models:
+        family:
+          attributes:
+            base:
+              plan_basic_limit: Votre plan actuel ne permet pas de créer cette famille
+        booking:
+          attributes:
+            base:
+              plan_basic_limit: Votre plan actuel ne permet pas de créer cette réservation
+        invitation:
+          attributes:
+            base:
+              plan_basic_limit: Votre plan actuel ne permet pas de créer cette invitation

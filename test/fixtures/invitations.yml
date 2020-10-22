@@ -2,8 +2,8 @@ matthieu_invite_olivia:
   id: 1
   sender_id: 1
   receiver_id: 3
-  email: oliviaclor@gmail.com
   family_id: 1
+  email: oliviaclor@gmail.com
   token: ame4gdumQ5ykYKfsYBN1
   status: 0
 
@@ -18,8 +18,8 @@ matthieu_invite_user:
 matthieu_reinvite_user:
   id: 3
   sender_id: 1
+  family_id: 2
   email: resend@mail.com
-  family_id: 1
   token: ame4gdumQ5ykYKfsYBN3
   last_send_at: <%= DateTime.now %>
   status: 0

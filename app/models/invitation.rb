@@ -12,6 +12,7 @@ class Invitation < ApplicationRecord
 
   enum status: %i(pending accepted refused)
 
+  validates_with InvitationValidFromPlan, on: :create
   validates :sender, :family, :status, presence: true
   validates :email, format: { with: Devise.email_regexp }, presence: true
   validates :status, inclusion: { in: statuses.keys }

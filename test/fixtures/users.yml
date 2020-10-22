@@ -113,3 +113,17 @@ sophie:
   status: 0
   plan: 0
   plan_deadline:
+
+bryan:
+  id: 9
+  first_name: Bryan
+  last_name: Kitchen
+  email: bryan_kitchen@mail.com
+  phone: 06 67 65 43 87
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password09') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id:
+  status: 0
+  plan: 0
+  plan_deadline:

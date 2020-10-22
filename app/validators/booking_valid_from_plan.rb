@@ -2,9 +2,9 @@
 
 class BookingValidFromPlan < ActiveModel::Validator
   def validate(booking)
-    return if booking.family&.users&.any? { |user| user.premium? }
-    return if booking.venue == booking.user&.families&.first&.venues&.first
+    return if booking.family.users.any? { |user| user.premium? }
+    return if booking.venue == booking.user.families.first.venues.first
 
-    booking.errors[:plan] << "Votre plan actuel ne permet pas de créer ou de modifier cette réservation"
+    booking.errors.add(:base, :plan_basic_limit)
   end
 end

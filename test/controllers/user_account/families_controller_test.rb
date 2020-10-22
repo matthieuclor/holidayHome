@@ -34,8 +34,21 @@ module UserAccount
       assert_response :success
     end
 
-    test "should create family" do
+    test "should not create family with basic plan" do
       post user_account_families_url, params: { family: { name: 'test', days_for_approval: 15 } }, xhr: true
+      assert_response :unprocessable_entity
+    end
+
+    test "should create only one family with basic plan" do
+      sign_out :user
+      sign_in users(:bryan), scope: :user
+      post user_account_families_url, params: { family: { name: 'test', days_for_approval: 15 } }, xhr: true
+      assert_response :success
+    end
+
+    test "should create family with premium plan" do
+      @user.premium!
+      post user_account_families_url, params: { family: { name: 'test2', days_for_approval: 15 } }, xhr: true
       assert_response :success
     end
 
@@ -45,8 +58,13 @@ module UserAccount
     end
 
     test "should update family" do
-      patch user_account_family_url(families(:legue)), params: { family: { name: 'test' } }, xhr: true
+      patch user_account_family_url(families(:legue)), params: { family: { name: 'test3' } }, xhr: true
       assert_response :success
+    end
+
+    test "should not update family with existing name" do
+      patch user_account_family_url(families(:legue)), params: { family: { name: 'clor' } }, xhr: true
+      assert_response :unprocessable_entity
     end
 
     test "should destroy family" do

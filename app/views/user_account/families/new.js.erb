@@ -2,11 +2,15 @@ if ($("#family-modal").length > 0) {
   $("#family-modal").modal("hide")
 }
 
-$("#modal-container").html("<%= j render "modal_form" %>")
-
 <% if flash.present? %>
   $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
   <% flash.clear %>
 <% end %>
 
-$("#family-modal").modal("show")
+<% if @plan_error %>
+  $("#plan-info-container").html("<%= j render "./shared/plan_info_card" %>")
+  Turbolinks.dispatch("turbolinks:load")
+<% else %>
+  $("#modal-container").html("<%= j render "modal_form" %>")
+  $("#family-modal").modal("show")
+<% end %>

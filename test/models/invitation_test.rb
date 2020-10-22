@@ -17,14 +17,73 @@ class InvitationTest < ActiveSupport::TestCase
     test "invalid invitation without #{attibute}" do
       @invitation.send("#{attibute}=", nil)
       assert_not @invitation.valid?
-      assert_not_nil @invitation.errors[attibute]
+      assert @invitation.errors[attibute].present?
     end
+  end
+
+  test "valid invitation when they is less than 3 invitations on family" do
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: "test@mail.com"
+    })
+
+    assert invitation.valid?
+    assert_not invitation.errors[:base].present?
+  end
+
+  test "invalid invitation when they is 3 invitations on family" do
+    create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family
+    })
+
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: "test@mail.com"
+    })
+
+    assert_not invitation.valid?
+    assert invitation.errors[:base].present?
+  end
+
+  test "invalid invitation when the family is not the first" do
+    @invitation = invitations(:matthieu_reinvite_user)
+
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: "test@mail.com"
+    })
+
+    assert_not invitation.valid?
+    assert invitation.errors[:base].present?
+  end
+
+  test "valid invitation when sender is premium" do
+    create(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family
+    })
+
+    @invitation.sender.premium!
+    @invitation.reload
+
+    invitation = build(:invitation, {
+      sender: @invitation.sender,
+      family: @invitation.family,
+      email: "test@mail.com"
+    })
+
+    assert invitation.valid?
+    assert_not invitation.errors[:base].present?
   end
 
   test "invalid invitation with the wrong email format" do
     @invitation.email = "test.test.com"
     assert_not @invitation.valid?
-    assert_not_nil @invitation.errors[:email]
+    assert @invitation.errors[:email].present?
   end
 
   test "invalid invitation with duplicate email on family and pending status" do
@@ -35,7 +94,7 @@ class InvitationTest < ActiveSupport::TestCase
     })
 
     assert_not invitation.valid?
-    assert_not_nil invitation.errors[:email]
+    assert invitation.errors[:email].present?
   end
 
   test "invalid invitation with existing receiver on family" do
@@ -46,7 +105,7 @@ class InvitationTest < ActiveSupport::TestCase
     })
 
     assert_not invitation.valid?
-    assert_not_nil invitation.errors[:email]
+    assert invitation.errors[:email].present?
   end
 
   test "set token after create invitation" do

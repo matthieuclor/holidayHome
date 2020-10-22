@@ -24,13 +24,13 @@ class BookingTest < ActiveSupport::TestCase
   test "not create booking on second venue when user has basic plan" do
     booking = build(:booking, { user: @booking.user, venue: venues(:plg) })
     assert_not booking.valid?
-    assert booking.errors[:plan].present?
+    assert booking.errors[:base].present?
   end
 
   test "not create booking on second family when user has basic plan" do
     booking = build(:booking, { user: @booking.user, venue: venues(:praz_loup) })
     assert_not booking.valid?
-    assert booking.errors[:plan].present?
+    assert booking.errors[:base].present?
   end
 
   test "send mail and notification if status change on second booking when user has basic plan" do
@@ -62,7 +62,7 @@ class BookingTest < ActiveSupport::TestCase
 
     booking = build(:booking, { user: @booking.user, venue: venues(:plg) })
     assert booking.valid?
-    assert_not booking.errors[:plan].present?
+    assert_not booking.errors[:base].present?
   end
 
   test "not create booking on second family when user has premium plan" do
@@ -70,7 +70,7 @@ class BookingTest < ActiveSupport::TestCase
 
     booking = build(:booking, { user: @booking.user, venue: venues(:praz_loup) })
     assert booking.valid?
-    assert_not booking.errors[:plan].present?
+    assert_not booking.errors[:base].present?
   end
 
   test "default booking status must be pending" do

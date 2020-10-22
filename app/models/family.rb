@@ -15,6 +15,7 @@ class Family < ApplicationRecord
 
   default_scope { order(:created_at) }
 
+  validates_with FamilyValidFromPlan, on: :create
   validates :name, :days_for_approval, presence: true
   validates :days_for_approval, inclusion: MIN_DAYS_FOR_APPROVAL..MAX_DAYS_FOR_APPROVAL
 end

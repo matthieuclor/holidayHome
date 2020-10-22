@@ -30,7 +30,8 @@ module UserAccount
         flash[:success] = "La famille a bien été créé"
         render js: "location.reload()"
       else
-        flash[:error] = "Un problem est survenu lors de la creation de la famille"
+        @plan_error = @family.errors[:base].first
+        flash[:error] = @plan_error || "Un problem est survenu lors de la creation de la famille"
         render :new, status: :unprocessable_entity
       end
     end
@@ -39,7 +40,9 @@ module UserAccount
     end
 
     def update
-      if @family.update(family_params)
+      check_name_validity
+
+      if @family.errors.empty? && @family.update(family_params)
         flash[:success] = "La famille a bien été mise à jour"
         render js: "location.reload()"
       else

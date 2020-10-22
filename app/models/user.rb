@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  PLAN_BASIC_LIMIT = {
+    families: 1,
+    families_users: 3,
+    families_venues: 1,
+    venues_photos: 1
+  }
+
   # Include default devise modules. Others available are:
   # :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
