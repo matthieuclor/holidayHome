@@ -92,7 +92,7 @@
   import { mapActions } from 'vuex'
 
   export default {
-    name: 'PlanMessage',
+    name: 'PlanInfoCard',
     props: ['planError'],
     methods: {
       ...mapActions(['updatePlanError']),

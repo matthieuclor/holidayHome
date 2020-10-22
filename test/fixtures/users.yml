@@ -54,6 +54,7 @@ locked_user:
   confirmed_at: <%= DateTime.now %>
   locked_at: <%= DateTime.now %>
   unlock_token: ame4gdumQ5ykYKfsYBN2
+  current_family_id: 1
   status: 0
   plan: 0
   plan_deadline:
@@ -124,6 +125,20 @@ bryan:
   encrypted_password: <%= Devise::Encryptor.digest(User, 'password09') %>
   confirmed_at: <%= DateTime.now %>
   current_family_id:
+  status: 0
+  plan: 0
+  plan_deadline:
+
+alex:
+  id: 10
+  first_name: Alex
+  last_name: Bouhours
+  email: alex_bouhours@mail.com
+  phone: 06 67 65 43 65
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password10') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id: 3
   status: 0
   plan: 0
   plan_deadline:

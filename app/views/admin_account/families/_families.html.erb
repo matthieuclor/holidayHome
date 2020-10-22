@@ -6,6 +6,7 @@
       <th scope="col" class="text-center">Période de réservation</th>
       <th scope="col" class="text-center">Nombre de lieux</th>
       <th scope="col" class="text-center">Date de création</th>
+      <th scope="col" class="text-center">Plan</th>
     </tr>
   </thead>
   <tbody>
@@ -28,6 +29,9 @@
         </td>
         <td class="text-center">
           <%= l(family.created_at, format: :medium) %>
+        </td>
+        <td class="text-center">
+          <%= family_plan_badge(family) %>
         </td>
       </tr>
     <% end %>

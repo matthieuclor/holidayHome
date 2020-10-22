@@ -41,7 +41,8 @@ module UserAccount
         flash[:success] = "Le lieu a bien été créé"
         render :create, status: :created
       else
-        flash[:error] = "Un problem est survenu lors de la création du lieu"
+        @plan_error = @venue.errors[:base].first
+        flash[:error] = @plan_error || "Un problem est survenu lors de la création du lieu"
         render :new, status: :unprocessable_entity
       end
     end

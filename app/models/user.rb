@@ -43,6 +43,7 @@ class User < ApplicationRecord
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
+  before_save -> { families.update_all(plan: plan) }, if: :plan_changed?
 
   def active_for_authentication?
     self.activated! if self.deactivated?

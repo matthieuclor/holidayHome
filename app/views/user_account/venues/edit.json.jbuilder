@@ -27,6 +27,8 @@ json.venue do
     :family_id
   )
 
+  json.photo_limit @venue.family.premium? ? 10 : User::PLAN_BASIC_LIMIT[:venues_photos]
+
   json.current_user_is_the_creator @venue.creator_id == current_user.id
 
   if @venue.photos.attached?

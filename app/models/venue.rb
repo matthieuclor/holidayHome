@@ -31,9 +31,13 @@ class Venue < ApplicationRecord
                                 reject_if: :all_blank,
                                 allow_destroy: true
 
-  validates :photos, limit: { max: 10 },
-                     content_type: [:png, :jpg, :jpeg],
+  validates_with VenueValidFromPlan, on: :create
+
+  validates :photos, content_type: [:png, :jpg, :jpeg],
                      size: { less_than: 2.megabytes }
+  validates :photos, limit: { max: 10 }
+  validates :photos, limit: { max: User::PLAN_BASIC_LIMIT[:venues_photos] },
+                     unless: -> (venue) { venue.creator&.families&.first&.premium? }
 
   validates :map, content_type: :png, size: { less_than: 1.megabyte }
 

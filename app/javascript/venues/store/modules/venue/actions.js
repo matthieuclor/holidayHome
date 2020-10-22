@@ -101,13 +101,20 @@ export default {
           }
         }
       ).then(response => {
-          dispatch('getVenueItems')
-          commit('UPDATE_FLASHES', response.data.flashes)
-          resolve(response)
+        dispatch('getVenueItems')
+        commit('UPDATE_FLASHES', response.data.flashes)
+        commit('UPDATE_PLAN_ERROR', null)
+        resolve(response)
       }).catch(error => {
+        commit('UPDATE_FLASHES', error.response.data.flashes)
+
+        if (error.response.data.planError) {
+          commit('UPDATE_SIDEBAR', false)
+          commit('UPDATE_PLAN_ERROR', error.response.data.planError)
+        } else {
           commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue)
-          commit('UPDATE_FLASHES', error.response.data.flashes)
-          reject(error)
+        }
+        reject(error)
       })
     })
   },

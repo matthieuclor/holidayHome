@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_20_133056) do
+ActiveRecord::Schema.define(version: 2020_10_22_223013) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -89,6 +89,7 @@ ActiveRecord::Schema.define(version: 2020_10_20_133056) do
     t.integer "venues_count", default: 0
     t.integer "days_for_approval"
     t.bigint "creator_id"
+    t.integer "plan", default: 0
     t.index ["creator_id"], name: "index_families_on_creator_id"
   end
 

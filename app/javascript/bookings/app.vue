@@ -8,7 +8,7 @@
 
     <BookingCalendar />
 
-    <PlanMessage v-if="planError" :planError="planError" />
+    <PlanInfoCard v-if="planError" :planError="planError" />
 
     <div id="v-toast-container">
       <FlashMessage v-for="(flash, index) in flashes" :key="index" :flash="flash" />
@@ -22,7 +22,7 @@
   import BookingForm from 'bookings/components/booking/booking_form'
   import BookingCalendar from 'bookings/components/booking/booking_calendar'
   import FlashMessage from 'shared/components/flash/flash_message'
-  import PlanMessage from 'shared/components/plan_error/plan_message'
+  import PlanInfoCard from 'shared/components/plan_error/plan_info_card'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -40,8 +40,8 @@
       VenueList,
       BookingForm,
       BookingCalendar,
-      FlashMessage,
-      PlanMessage
+      PlanInfoCard,
+      FlashMessage
     },
     methods: {
       ...mapActions(['getVenueItems'])

@@ -19,6 +19,7 @@ class VenueTest < ActiveSupport::TestCase
   end
 
   test "update venues count on venue family" do
+    @venue.creator.premium!
     create(:venue, { family: @venue.family, creator: @venue.creator })
     assert_equal @venue.family.venues_count, 2
   end
@@ -40,9 +41,40 @@ class VenueTest < ActiveSupport::TestCase
   end
 
   test "invalid venue with duplicate name on family" do
-    venue = build(:venue, { family: @venue.family, name: @venue.name })
+    @venue.creator.premium!
+    venue = build(:venue, { family: @venue.family, name: @venue.name, creator: @venue.creator })
     assert_not venue.valid?
-    assert_not_nil @venue.errors[:name]
+    assert venue.errors[:name].present?
+  end
+
+  test "invalid second venue with basic plan" do
+    @user = users(:alex)
+    create(:venue, { family: @user.families.first, creator: @user })
+    venue = build(:venue, { family: @user.families.first, creator: @user })
+    assert_not venue.valid?
+    assert venue.errors[:base].present?
+  end
+
+  test "invalid venue with basic plan when family is not the first" do
+    venue = build(:venue, { family: families(:bouhours), creator: users(:sophie) })
+    assert_not venue.valid?
+    assert venue.errors[:base].present?
+  end
+
+  test "valid second venue with premium plan" do
+    @user = users(:alex)
+    @user.premium!
+    @user.reload
+    create(:venue, { family: @user.families.first, creator: @user })
+    venue = build(:venue, { family: @user.families.first, creator: @user })
+    assert venue.valid?
+    assert_not venue.errors[:base].present?
+  end
+
+  test "valid first venue with basic plan" do
+    venue = build(:venue, { family: families(:bouhours), creator: users(:alex) })
+    assert venue.valid?
+    assert_not venue.errors[:base].present?
   end
 
   test "destroy nested objects when user set to false with nested object" do

@@ -8,6 +8,11 @@
               <%= "Famille #{@family.name}" %>
             </h1>
 
+            <span class="text-muted">Plan :</span>
+            <%= family_plan_badge(@family) %>
+
+            <br>
+
             <span class="text-muted">
               <%= "Créé le #{l(@family.created_at, format: :medium)}" %>
             </span>

@@ -22,3 +22,13 @@ sophie_delcroix:
   id: 5
   user_id: 8
   family_id: 2
+
+alex_bouhours:
+  id: 6
+  user_id: 10
+  family_id: 3
+
+sophie_bouhours:
+  id: 7
+  user_id: 8
+  family_id: 3

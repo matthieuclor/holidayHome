@@ -1,4 +1,3 @@
-
 json.venue do
   json.(
     @venue,
@@ -26,6 +25,8 @@ json.venue do
     :creator_id,
     :family_id
   )
+
+  json.photo_limit @venue.family.premium? ? 10 : User::PLAN_BASIC_LIMIT[:venues_photos]
 
   json.current_user_is_the_creator true
 
@@ -66,6 +67,8 @@ json.owners @owners do |owner|
   json.id owner.id
   json.full_name "#{owner.first_name} #{owner.last_name}"
 end
+
+json.plan_error @plan_error if @plan_error
 
 if flash.present?
   json.flashes flash do |key, value|

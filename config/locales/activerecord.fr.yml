@@ -4,6 +4,9 @@ fr:
       user/plan:
         basic: Basique
         premimum: Premium
+      family/plan:
+        basic: Basique
+        premimum: Premium
       notification/icon:
         new_message: envelope
         new_invitation: mailbox
@@ -60,6 +63,10 @@ fr:
         content: Le contenu
     errors:
       models:
+        venue:
+          attributes:
+            base:
+              plan_basic_limit: Votre plan actuel ne permet pas de créer ce lieu
         family:
           attributes:
             base:

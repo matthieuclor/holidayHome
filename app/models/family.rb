@@ -13,9 +13,12 @@ class Family < ApplicationRecord
   has_many :bookings, through: :venues
   has_many :notifications, dependent: :destroy
 
+  enum plan: %i(basic premium)
+
   default_scope { order(:created_at) }
 
   validates_with FamilyValidFromPlan, on: :create
   validates :name, :days_for_approval, presence: true
   validates :days_for_approval, inclusion: MIN_DAYS_FOR_APPROVAL..MAX_DAYS_FOR_APPROVAL
+  validates :plan, inclusion: { in: plans.keys }
 end

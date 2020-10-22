@@ -42,14 +42,17 @@ export default {
         }
       ).then(response => {
         commit('UPDATE_FLASHES', response.data.flashes)
-        commit('UPDATE_PLAN_ERROR', null)
         dispatch('getBookingItems', { minDate, maxDate })
         commit('UPDATE_BOOKING_MODAL_FORM', false)
+        commit('UPDATE_PLAN_ERROR', null)
         resolve(response)
       }).catch(error => {
         commit('UPDATE_FLASHES', error.response.data.flashes)
-        commit('UPDATE_PLAN_ERROR', error.response.data.planError)
         commit('UPDATE_BOOKING_MODAL_FORM', false)
+
+        if (error.response.data.planError) {
+          commit('UPDATE_PLAN_ERROR', error.response.data.planError)
+        }
         reject(error)
       })
     })

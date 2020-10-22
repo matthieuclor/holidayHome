@@ -52,4 +52,12 @@ class UserTest < ActiveSupport::TestCase
     @user.save
     assert_equal @user.last_name, "Test"
   end
+
+  test "update all families when plan updated" do
+    @user.premium!
+    @user.reload.families.each { |family| assert family.premium? }
+
+    @user.basic!
+    @user.reload.families.each { |family| assert family.basic? }
+  end
 end

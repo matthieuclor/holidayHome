@@ -48,7 +48,7 @@
         <br>
         La taille d'une photo est limités à 2mo.
         <br>
-        Le nombre total de fichiers est limité à 10.
+        Le nombre total de fichiers est limité à {{ venueForm.photoLimit }}.
       </small>
     </div>
   </div>
