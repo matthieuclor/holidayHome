@@ -62,11 +62,6 @@ module UserAccount
       assert_response :success
     end
 
-    test "should not update family with existing name" do
-      patch user_account_family_url(families(:legue)), params: { family: { name: 'clor' } }, xhr: true
-      assert_response :unprocessable_entity
-    end
-
     test "should destroy family" do
       delete user_account_family_url(families(:legue))
       assert_redirected_to user_account_families_url

@@ -40,9 +40,7 @@ module UserAccount
     end
 
     def update
-      check_name_validity
-
-      if @family.errors.empty? && @family.update(family_params)
+      if @family.update(family_params)
         flash[:success] = "La famille a bien été mise à jour"
         render js: "location.reload()"
       else
