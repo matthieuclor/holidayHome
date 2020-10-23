@@ -14,7 +14,7 @@ module UserAccount
         notification.readed! if notification.unread?
 
         if current_user.current_family_id != notification.family_id
-          current_user.update(current_family_id: notification.family_id)
+          current_user.update(current_family: notification.family)
         end
       end
 

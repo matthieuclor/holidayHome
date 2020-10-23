@@ -13,22 +13,30 @@
             <ul class="list-group shadow-none">
               <li class="list-group-item border-bottom p-2">
                 <%= fa_icon("check-circle", nil, class: "text-warning") %>
-                <span class="font-weight-bolder">1</span>
+                <span class="font-weight-bolder">
+                  <%= User::PLAN_BASIC_LIMIT[:families] %>
+                </span>
                 <span>famille</span>
               </li>
               <li class="list-group-item border-bottom p-2">
                 <%= fa_icon("check-circle", nil, class: "text-warning") %>
-                <span class="font-weight-bolder">3</span>
+                <span class="font-weight-bolder">
+                  <%= User::PLAN_BASIC_LIMIT[:families_users] %>
+                </span>
                 <span>membres par famille</span>
               </li>
               <li class="list-group-item border-bottom p-2">
                 <%= fa_icon("check-circle", nil, class: "text-warning") %>
-                <span class="font-weight-bolder">1</span>
+                <span class="font-weight-bolder">
+                  <%= User::PLAN_BASIC_LIMIT[:families_venues] %>
+                </span>
                 <span>lieu par famille</span>
               </li>
               <li class="list-group-item border-bottom p-2">
                 <%= fa_icon("check-circle", nil, class: "text-warning") %>
-                <span class="font-weight-bolder">1</span>
+                <span class="font-weight-bolder">
+                  <%= User::PLAN_BASIC_LIMIT[:venues_photos] %>
+                </span>
                 <span>photo par lieu</span>
               </li>
               <li class="list-group-item border-bottom p-2">

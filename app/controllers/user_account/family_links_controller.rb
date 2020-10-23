@@ -32,9 +32,9 @@ module UserAccount
       return unless current_user.current_family_id == @family_link.family_id
 
       if current_user.families.present?
-        current_user.update(current_family_id: current_user.families.first.id)
+        current_user.update(current_family: current_user.families.first)
       else
-        current_user.update(current_family_id: nil)
+        current_user.update(current_family: nil)
       end
     end
   end

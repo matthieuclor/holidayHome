@@ -1,0 +1,4 @@
+$("#plan").html("<%= j render "show" %>")
+$("#plan-tab").attr('href', '#plan')
+$("#plan-tab").removeAttr("data-remote")
+Turbolinks.dispatch("turbolinks:load")

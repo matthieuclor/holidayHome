@@ -41,6 +41,7 @@
                 </li>
                 <% if @user.premium? %>
                   <li class="list-group-item p-1">
+                    <%= fa_icon("badge-percent", nil, class: "mr-2 float-left") %>
                     <%= plan_progress(@user) %>
                   </li>
                 <% end %>

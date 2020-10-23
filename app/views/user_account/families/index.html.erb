@@ -22,9 +22,13 @@
             <% @families.each do |family| %>
               <div id="heading-<%= family.id %>" class="mb-4">
                 <div class="d-flex flex-row justify-content-between">
-                  <h3 class="text-nowrap mb-0 mr-2">
-                    <%= family.name %>
-                  </h3>
+                  <div class="d-flex align-items-center">
+                    <h3 class="text-nowrap mb-0 mr-2">
+                      <%= family.name %>
+                    </h3>
+                    <span class="text-muted mr-1">Plan :</span>
+                    <%= plan_badge(family) %>
+                  </div>
 
                   <div>
                     <% if family.creator == current_user %>
@@ -63,8 +67,7 @@
 
                 <div class="d-flex align-items-center">
                   <a href="#"
-                    class="collapsed badge badge-secondary"
-                    role="button"
+                    class="font-weight-bolder"
                     data-toggle="collapse"
                     data-target="#collapse-<%= family.id %>"
                     aria-expanded="false"
@@ -83,20 +86,27 @@
                     aria-labelledby="heading-<%= family.id %>"
                     data-parent="#familyAccordion">
 
-                  <div class="p-2">
-                    <ul class="list-group list-group-flush shadow-none">
-                      <% @users[family.id].each do |user| %>
-                        <li class="list-group-item p-1 d-flex">
-                          <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
-
-                          <%= link_to user_account_user_path(user), remote: true do %>
-                            <span class="mr-2"><%= user.full_name %></span>
-                          <% end %>
-
-                          <span class="text-muted"><%= user.email %></span>
-                        </li>
-                      <% end %>
-                    </ul>
+                  <div class="table-responsive-sm mt-1">
+                    <table class="table table-rounded table-borderless table-hover">
+                      <tbody>
+                        <% @users[family.id].each do |user| %>
+                          <tr data-table-link="<%= user_account_user_path(user) %>" data-remote="true">
+                            <td>
+                              <%= user_avatar(user, format: [25, 25], avatar_class: "rounded-circle mr-2") %>
+                            </td>
+                            <td class="text-nowrap">
+                              <%= user.full_name %>
+                            </td>
+                            <td class="text-muted">
+                              <%= user.email %>
+                            </td>
+                            <td>
+                              <%= plan_badge(user) %>
+                            </td>
+                          </tr>
+                        <% end %>
+                      </tbody>
+                    </table>
                   </div>
                 </div>
               </div>

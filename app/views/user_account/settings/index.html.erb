@@ -13,6 +13,9 @@
         </a>
       </li>
       <li class="nav-item">
+        <%= link_to 'Gestion du plan', user_account_plans_path, remote: true, class: 'nav-link', id: 'plan-tab', data: { toggle: 'tab', target: '#plan' }, role: 'tab' %>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" id="deactivate-account-tab" data-toggle="tab" href="#deactivate-account" role="tab" aria-controls="deactivate-account" aria-selected="false">
           Gestion du compte
         </a>
@@ -26,6 +29,9 @@
             <%= render "shared/spinner" %>
           </div>
           <div class="tab-pane fade" id="edit-password" role="tabpanel" aria-labelledby="edit-password-tab">
+            <%= render "shared/spinner" %>
+          </div>
+          <div class="tab-pane fade" id="plan" role="tabpanel" aria-labelledby="plan-tab">
             <%= render "shared/spinner" %>
           </div>
           <div class="tab-pane fade" id="deactivate-account" role="tabpanel" aria-labelledby="deactivate-account-tab">

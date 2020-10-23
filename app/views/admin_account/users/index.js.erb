@@ -8,3 +8,5 @@ $("#users-container").html("<%= j render 'users' %>")
   $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
   <% flash.clear %>
 <% end %>
+
+Turbolinks.dispatch("turbolinks:load")

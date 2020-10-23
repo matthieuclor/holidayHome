@@ -20,7 +20,7 @@ module Public
         @invitee.skip_confirmation!
         @invitee.assign_attributes({
           confirmed_at: Time.now,
-          current_family_id: @invitee.families.first.id
+          current_family: @invitee.families.first
         })
 
         if @invitee.save

@@ -1,0 +1,66 @@
+<h4 class="mb-3 text-center">
+  Le plan Basique limite vos actions !
+</h4>
+
+<ul class="list-unstyled mb-0 mx-auto">
+  <li>
+    <i class="fas fa-check-circle text-warning"></i>
+    <span class="text-muted">Vous ne pouvez gérer qu'une seule famille</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-warning"></i>
+    <span class="text-muted">Vous ne pouvez avoir que 3 membres liés à une famille</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-warning"></i>
+    <span class="text-muted">Vous ne pouvez gérer qu'un lieu sur une famille</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-warning"></i>
+    <span class="text-muted">Et vous ne pouvez mettre qu'une seule photo sur ce lieu</span>
+  </li>
+</ul>
+
+<hr class="my-3">
+
+<h4 class="mb-3 text-center">Pourquoi passer au plan Premium ?</h4>
+
+<ul class="list-unstyled mb-0">
+  <li>
+    <i class="fas fa-check-circle text-success"></i>
+    <span class="text-muted">Familles illimitées</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-success"></i>
+    <span class="text-muted">Membres par famille illimités</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-success"></i>
+    <span class="text-muted">Lieux par famille illimités</span>
+  </li>
+  <li>
+    <i class="fas fa-check-circle text-success"></i>
+    <span class="text-muted">10 photos par lieu</span>
+  </li>
+</ul>
+
+<hr class="my-3">
+
+<div class="text-center text-opacity-3">
+  <span class="font-weight-bolder font-size-1-2 text-line-through">
+    29 €
+  </span>
+  <span class="text-muted">par an</span>
+</div>
+<div class="text-primary text-center text-wrap">
+  <span class="font-weight-bolder font-size-1-2">
+    Gratuit 🎉
+  </span>
+  <span class="text-nowrap">(Offre pour le lancement)</span>
+</div>
+
+<%= button_to "Plan premium",
+              edit_user_account_plans_path,
+              remote: true,
+              method: :get,
+              class: "btn btn-block btn-outline-primary" %>

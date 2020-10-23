@@ -15,6 +15,8 @@ class User < ApplicationRecord
 
   has_one_attached :avatar, dependent: :destroy
 
+  belongs_to :current_family, class_name: "Family", optional: true
+
   has_many :family_links, dependent: :destroy
   has_many :families, through: :family_links
   has_many :created_families, class_name: "Family"

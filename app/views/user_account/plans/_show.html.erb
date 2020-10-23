@@ -1,0 +1,19 @@
+<% if @current_user.premium? %>
+  <ul class="list-group shadow-none">
+    <li class="list-group-item p-1">
+      <span class="text-muted">Plan :</span>
+      <%= plan_badge(@current_user) %>
+    </li>
+    <li class="list-group-item p-1">
+      <span class="text-muted">Date de fin du plan :</span>
+      <span class="font-weight-bolder">
+        <%= l(@current_user.plan_deadline, formats: :medium) %>
+      </span>
+    </li>
+    <li class="list-group-item p-1">
+      <%= plan_progress(@current_user) %>
+    </li>
+  </ul>
+<% else %>
+  <%= render "plan_info" %>
+<% end %>

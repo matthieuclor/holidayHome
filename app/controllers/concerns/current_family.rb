@@ -5,11 +5,11 @@ module CurrentFamily
 
   included do
     def set_current_family
-      @current_family = Family.find_by(id: current_user.current_family_id)
+      @current_family = current_user.current_family
 
       unless @current_family.present?
-        if current_family_id = current_user.families.first&.id
-          current_user.update(current_family_id: current_family_id)
+        if current_family = current_user.families.first
+          current_user.update(current_family: current_family)
           set_current_family
         end
       end

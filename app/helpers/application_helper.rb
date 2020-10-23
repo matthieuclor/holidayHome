@@ -31,7 +31,9 @@ module ApplicationHelper
     content_tag(
       :span,
       record_class.constantize.human_attribute_name("plan.#{record.plan}"),
-      class: ["badge badge-#{record.premium? ? 'success' : 'secondary'}"]
+      class: ["badge badge-#{record.premium? ? 'success' : 'secondary'}"],
+      data: { toggle: "tooltip" },
+      title: (record.plan_progress_title if record.premium?)
     )
   end
 

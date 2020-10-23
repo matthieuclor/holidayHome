@@ -16,7 +16,7 @@
       <div class="row">
         <div class="col-sm-5">
           <h4 class="mb-3">
-            <span>Le plan Basique limite vos actions !</span>
+            Le plan Basique limite vos actions !
           </h4>
 
           <ul class="list-unstyled mb-0">

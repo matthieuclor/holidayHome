@@ -47,6 +47,7 @@ Rails.application.routes.draw do
     resources :family_links, only: [:destroy]
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
+    resource :plans, only: [:show, :edit, :update]
 
     resources :venues do
       scope module: :venues do
