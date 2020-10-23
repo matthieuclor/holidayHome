@@ -9,13 +9,6 @@
             <div class="ml-3">
               <h1 class="m-0"><%= @user.full_name %></h1>
 
-              <span class="text-muted">Plan :</span>
-              <%= user_plan_badge(@user) %>
-
-              <div class="my-1">
-                <%= user_progress_deadline(@user) if @user.premium? %>
-              </div>
-
               <span class="text-muted">
                 <%= "Créé le #{l(@user.created_at, format: :medium)}" %>
               </span>
@@ -39,26 +32,39 @@
             <% end %>
           </div>
 
-          <ul class="list-group shadow-none mt-3">
-            <li class="list-group-item p-1">
-              <%= fa_icon("envelope", nil, class: "mr-2") %>
-              <span class="text-muted">
-                <%= @user.email || "Non renseigné" %>
-              </span>
-            </li>
-            <li class="list-group-item p-1">
-              <%= fa_icon("phone", nil, class: "mr-2") %>
-              <span class="text-muted">
-                <%= @user.phone || "Non renseigné" %>
-              </span>
-            </li>
-            <li class="list-group-item p-1">
-              <%= fa_icon("map-marked", nil, class: "mr-2") %>
-              <span class="text-muted">
-                <%= @user.address || "Non renseigné" %>
-              </span>
-            </li>
-          </ul>
+          <div class="row">
+            <div class="col-sm-6">
+              <ul class="list-group shadow-none mt-3">
+                <li class="list-group-item p-1">
+                  <%= fa_icon("badge-check", nil, class: "mr-2") %>
+                  <%= plan_badge(@user) %>
+                </li>
+                <% if @user.premium? %>
+                  <li class="list-group-item p-1">
+                    <%= plan_progress(@user) %>
+                  </li>
+                <% end %>
+                <li class="list-group-item p-1">
+                  <%= fa_icon("envelope", nil, class: "mr-2") %>
+                  <span class="text-muted">
+                    <%= @user.email || "Non renseigné" %>
+                  </span>
+                </li>
+                <li class="list-group-item p-1">
+                  <%= fa_icon("phone", nil, class: "mr-2") %>
+                  <span class="text-muted">
+                    <%= @user.phone || "Non renseigné" %>
+                  </span>
+                </li>
+                <li class="list-group-item p-1">
+                  <%= fa_icon("map-marked", nil, class: "mr-2") %>
+                  <span class="text-muted">
+                    <%= @user.address || "Non renseigné" %>
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>

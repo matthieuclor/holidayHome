@@ -39,7 +39,15 @@ module AdminAccount
     end
 
     def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :phone, :address)
+      params.require(:user).permit(
+        :first_name,
+        :last_name,
+        :email,
+        :phone,
+        :address,
+        :plan,
+        :plan_deadline
+      )
     end
 
     def users_ransack_params

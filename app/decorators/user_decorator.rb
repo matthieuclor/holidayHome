@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UserDecorator < ApplicationDecorator
+  include ActionView::Helpers::DateHelper
+
   def full_name
     @full_name ||= "#{first_name} #{last_name}"
   end
@@ -25,9 +27,7 @@ class UserDecorator < ApplicationDecorator
     @plan_progress_title ||= if plan_days_left.zero?
       "Terminé"
     else
-      "#{plan_days_left}
-      #{distance_of_time_in_words(DateTime.now, plan_deadline)}
-      #{'restant'.pluralize(plan_days_left)}"
+      "Il reste #{distance_of_time_in_words(DateTime.now, plan_deadline)}"
     end
   end
 end

@@ -15,11 +15,29 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [:admin_account, @user], remote: true do |f| %>
-          <%= f.input :first_name, input_html: { placeholder: "Jean" } %>
-          <%= f.input :last_name, input_html: { placeholder: "Dupont" } %>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :first_name, input_html: { placeholder: "Jean" } %>
+            </div>
+            <div class="col-6">
+              <%= f.input :last_name, input_html: { placeholder: "Dupont" } %>
+            </div>
+          </div>
+
           <%= f.input :email, input_html: { placeholder: "jean.dupont@mail.com" } %>
           <%= f.input :phone, input_html: { placeholder: "06 67 65 43 98" } %>
           <%= f.input :address, input_html: { placeholder: "17 rue du paradis" } %>
+
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :plan, collection: User.plans.map { |k, v|
+                [User.human_attribute_name("plan.#{k}"), k]
+              }, selected: @user.plan %>
+            </div>
+            <div class="col-6">
+              <%= f.input :plan_deadline, as: :date, html5: true %>
+            </div>
+          </div>
 
           <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
         <% end %>

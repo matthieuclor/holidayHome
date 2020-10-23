@@ -11,6 +11,9 @@ fr:
     error_notification:
       default_message: "Erreur, veuillez vérifier vos réponses:"
     labels:
+      user:
+        plan_deadline: Date de fin de plan
       family:
         name: Nom
         days_for_approval: Jours laissés pour une demande de réservation
+        plan_deadline: Date de fin de plan

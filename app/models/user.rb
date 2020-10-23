@@ -40,10 +40,14 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :status, inclusion: { in: statuses.keys }
   validates :plan, inclusion: { in: plans.keys }
+  validates_presence_of :plan_deadline, if: :premium?
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
-  before_save -> { families.update_all(plan: plan) }, if: :plan_changed?
+  before_save -> {
+    self.plan_deadline = nil if basic?
+    families.update_all(plan: plan, plan_deadline: plan_deadline)
+  }, if: :plan_changed?
 
   def active_for_authentication?
     self.activated! if self.deactivated?

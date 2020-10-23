@@ -19,7 +19,7 @@ class VenueTest < ActiveSupport::TestCase
   end
 
   test "update venues count on venue family" do
-    @venue.creator.premium!
+    @venue.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     create(:venue, { family: @venue.family, creator: @venue.creator })
     assert_equal @venue.family.venues_count, 2
   end
@@ -41,7 +41,7 @@ class VenueTest < ActiveSupport::TestCase
   end
 
   test "invalid venue with duplicate name on family" do
-    @venue.creator.premium!
+    @venue.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     venue = build(:venue, { family: @venue.family, name: @venue.name, creator: @venue.creator })
     assert_not venue.valid?
     assert venue.errors[:name].present?
@@ -63,7 +63,7 @@ class VenueTest < ActiveSupport::TestCase
 
   test "valid second venue with premium plan" do
     @user = users(:alex)
-    @user.premium!
+    @user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     @user.reload
     create(:venue, { family: @user.families.first, creator: @user })
     venue = build(:venue, { family: @user.families.first, creator: @user })

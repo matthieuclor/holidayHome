@@ -12,7 +12,7 @@ class BookingDecorator < ApplicationDecorator
     if accepted?
       " le #{I18n.l(created_at)}"
     else
-      " en attente (il reste #{distance_of_time_in_words(DateTime.now, deadline)})"
+      " en attente (#{progress_title})"
     end
   end
 
@@ -46,8 +46,7 @@ class BookingDecorator < ApplicationDecorator
     @progress_title ||= if days_left.zero?
       "Terminé"
     else
-      "#{distance_of_time_in_words(DateTime.now, deadline)}
-      #{'restant'.pluralize(days_left)}"
+      "Il reste #{distance_of_time_in_words(DateTime.now, deadline)}"
     end
   end
 end

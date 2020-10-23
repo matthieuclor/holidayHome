@@ -38,7 +38,7 @@ class FamilyTest < ActiveSupport::TestCase
   end
 
   test "valid family when user is premium" do
-    @family.creator.premium!
+    @family.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
 
     family = build(
       :family,

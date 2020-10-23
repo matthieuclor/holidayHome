@@ -58,16 +58,14 @@ class BookingTest < ActiveSupport::TestCase
   end
 
   test "create booking on second venue when user has premium plan" do
-    @booking.user.premium!
-
+    @booking.user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     booking = build(:booking, { user: @booking.user, venue: venues(:plg) })
     assert booking.valid?
     assert_not booking.errors[:base].present?
   end
 
   test "not create booking on second family when user has premium plan" do
-    @booking.user.premium!
-
+    @booking.user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     booking = build(:booking, { user: @booking.user, venue: venues(:praz_loup) })
     assert booking.valid?
     assert_not booking.errors[:base].present?

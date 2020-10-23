@@ -21,4 +21,5 @@ class Family < ApplicationRecord
   validates :name, :days_for_approval, presence: true
   validates :days_for_approval, inclusion: MIN_DAYS_FOR_APPROVAL..MAX_DAYS_FOR_APPROVAL
   validates :plan, inclusion: { in: plans.keys }
+  validates_presence_of :plan_deadline, if: :premium?
 end

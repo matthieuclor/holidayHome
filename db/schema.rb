@@ -90,6 +90,7 @@ ActiveRecord::Schema.define(version: 2020_10_22_223013) do
     t.integer "days_for_approval"
     t.bigint "creator_id"
     t.integer "plan", default: 0
+    t.date "plan_deadline"
     t.index ["creator_id"], name: "index_families_on_creator_id"
   end
 

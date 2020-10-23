@@ -67,7 +67,7 @@ class InvitationTest < ActiveSupport::TestCase
       family: @invitation.family
     })
 
-    @invitation.sender.premium!
+    @invitation.sender.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     @invitation.reload
 
     invitation = build(:invitation, {

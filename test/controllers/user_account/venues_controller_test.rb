@@ -137,7 +137,7 @@ module UserAccount
     end
 
     test "should create second venue with premium plan as json" do
-      @user.premium!
+      @user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
 
       post user_account_venues_url, params: { venue: {
         name: 'PLG',

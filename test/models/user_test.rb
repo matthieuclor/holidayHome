@@ -53,11 +53,27 @@ class UserTest < ActiveSupport::TestCase
     assert_equal @user.last_name, "Test"
   end
 
-  test "update all families when plan updated" do
-    @user.premium!
-    @user.reload.families.each { |family| assert family.premium? }
+  test "update all families when plan pass to premium" do
+    deadline = Date.current + 1.year
+
+    @user.update(plan: :premium, plan_deadline: deadline)
+    assert_equal @user.plan_deadline, deadline
+
+    @user.reload.families.each do |family|
+      assert family.premium?
+      assert_equal family.plan_deadline, deadline
+    end
+  end
+
+  test "update all families when plan pass to basic" do
+    deadline = Date.current + 1.year
 
     @user.basic!
-    @user.reload.families.each { |family| assert family.basic? }
+    assert_nil @user.plan_deadline
+
+    @user.reload.families.each do |family|
+      assert family.basic?
+      assert_nil family.plan_deadline
+    end
   end
 end

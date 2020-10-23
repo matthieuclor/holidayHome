@@ -4,15 +4,7 @@
       <div class="card-body">
         <div class="d-flex">
           <div>
-            <h1 class="m-0">
-              <%= "Famille #{@family.name}" %>
-            </h1>
-
-            <span class="text-muted">Plan :</span>
-            <%= family_plan_badge(@family) %>
-
-            <br>
-
+            <h1 class="m-0"><%= "Famille #{@family.name}" %></h1>
             <span class="text-muted">
               <%= "Créé le #{l(@family.created_at, format: :medium)}" %>
             </span>
@@ -24,6 +16,17 @@
               <%= link_to "#{@family.creator.first_name} #{@family.creator.last_name}",
                           admin_account_user_path(@family.creator) %>
             </span>
+
+            <br>
+
+            <span class="text-muted">Plan :</span>
+            <%= plan_badge(@family) %>
+
+            <% if @family.premium? %>
+              <div class="mt-1">
+                <%= plan_progress(@family) %>
+              </div>
+            <% end %>
           </div>
 
           <%= button_to edit_admin_account_family_path(@family),
