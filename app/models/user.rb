@@ -47,6 +47,7 @@ class User < ApplicationRecord
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
   before_save -> { self.plan_deadline = nil if basic? }, if: :plan_changed?
+
   after_save :set_families_plan, if: :plan_previously_changed?
 
   def active_for_authentication?
@@ -66,12 +67,8 @@ class User < ApplicationRecord
 
   def set_families_plan
     if basic?
-      Family.where(
-        id: families.premium
-                    .joins(:users)
-                    .reject { |f| f.users.any? { |u| u.premium? } }
-                    .pluck(:id)
-      ).update_all(plan: plan, plan_deadline: plan_deadline)
+      ids = families.premium.reject { |f| f.premium_users.present? }.pluck(:id)
+      Family.where(id: ids).update_all(plan: plan, plan_deadline: plan_deadline)
     else
       families.update_all(plan: plan, plan_deadline: plan_deadline)
     end
