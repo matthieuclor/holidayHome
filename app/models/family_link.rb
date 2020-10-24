@@ -9,4 +9,15 @@ class FamilyLink < ApplicationRecord
                             optional: true
 
   validates :family, :user, presence: true
+
+  after_create :set_family_plan
+
+  private
+
+  def set_family_plan
+    family.update(
+      plan: family.premium_users.present? ? :premium : :basic,
+      plan_deadline: family.premium_users.maximum(:plan_deadline)
+    )
+  end
 end

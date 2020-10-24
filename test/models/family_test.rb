@@ -49,8 +49,8 @@ class FamilyTest < ActiveSupport::TestCase
     )
 
     assert family.valid?
-    assert family.premium?
-    assert_equal family.plan_deadline, deadline
+    assert family.basic?
+    assert_nil family.plan_deadline
     assert_not family.errors[:base].present?
   end
 end

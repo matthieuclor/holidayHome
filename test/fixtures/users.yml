@@ -142,3 +142,17 @@ alex:
   status: 0
   plan: 0
   plan_deadline:
+
+christian:
+  id: 11
+  first_name: Christian
+  last_name: Clor
+  email: christian_clor@mail.com
+  phone: 06 67 65 43 49
+  address: 12 Rue du test
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password11') %>
+  confirmed_at: <%= DateTime.now %>
+  current_family_id:
+  status: 0
+  plan: 0
+  plan_deadline:
