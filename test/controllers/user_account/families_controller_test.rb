@@ -47,7 +47,8 @@ module UserAccount
     end
 
     test "should create family with premium plan" do
-      @user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
+      @user.update(plan: :premium, plan_deadline: Date.current + 1.year)
+      @user.reload
       post user_account_families_url, params: { family: { name: 'test2', days_for_approval: 15 } }, xhr: true
       assert_response :success
     end

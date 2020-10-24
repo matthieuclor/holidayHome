@@ -23,4 +23,14 @@ class Family < ApplicationRecord
   validates :days_for_approval, inclusion: MIN_DAYS_FOR_APPROVAL..MAX_DAYS_FOR_APPROVAL
   validates :plan, inclusion: { in: plans.keys }
   validates_presence_of :plan_deadline, if: :premium?
+
+  before_validation :set_creator_plan, on: :create
+
+  private
+
+  def set_creator_plan
+    return unless creator
+    self.plan = creator.plan
+    self.plan_deadline = creator.plan_deadline
+  end
 end

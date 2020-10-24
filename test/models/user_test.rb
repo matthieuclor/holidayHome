@@ -56,17 +56,23 @@ class UserTest < ActiveSupport::TestCase
   test "update all families except when other premium users are present" do
     @olivia = users(:olivia)
     deadline = Date.current + 1.year
+    deadline_max = Date.current + 10.year
 
-    @user.update(plan: :premium, plan_deadline: deadline)
+    @user.update(plan: :premium, plan_deadline: deadline_max)
     @user.reload.families.each do |family|
       assert family.premium?
-      assert_equal family.plan_deadline, deadline
+      assert_equal family.plan_deadline, deadline_max
     end
 
     @olivia.update(plan: :premium, plan_deadline: deadline)
     @olivia.reload.families.each do |family|
       assert family.premium?
-      assert_equal family.plan_deadline, deadline
+
+      if family.users.include?(@user)
+        assert_equal family.plan_deadline, deadline_max
+      else
+        assert_equal family.plan_deadline, deadline
+      end
     end
 
     @user.basic!

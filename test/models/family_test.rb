@@ -38,7 +38,8 @@ class FamilyTest < ActiveSupport::TestCase
   end
 
   test "valid family when user is premium" do
-    @family.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
+    deadline = Date.current + 1.year
+    @family.creator.update(plan: :premium, plan_deadline: deadline)
 
     family = build(
       :family,
@@ -48,6 +49,8 @@ class FamilyTest < ActiveSupport::TestCase
     )
 
     assert family.valid?
+    assert family.premium?
+    assert_equal family.plan_deadline, deadline
     assert_not family.errors[:base].present?
   end
 end

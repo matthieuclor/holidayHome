@@ -67,10 +67,20 @@ class User < ApplicationRecord
 
   def set_families_plan
     if basic?
-      ids = families.premium.reject { |f| f.premium_users.present? }.pluck(:id)
-      Family.where(id: ids).update_all(plan: plan, plan_deadline: plan_deadline)
+      families.premium.each do |family|
+        if family.premium_users.present?
+          family.update(plan_deadline: family.premium_users.maximum(:plan_deadline))
+        else
+          family.update(plan: plan, plan_deadline: plan_deadline)
+        end
+      end
     else
-      families.update_all(plan: plan, plan_deadline: plan_deadline)
+      families.each do |family|
+        family.update(
+          plan: plan,
+          plan_deadline: family.premium_users.maximum(:plan_deadline)
+        )
+      end
     end
   end
 end
