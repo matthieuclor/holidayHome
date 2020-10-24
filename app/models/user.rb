@@ -73,7 +73,7 @@ class User < ApplicationRecord
                     .pluck(:id)
       ).update_all(plan: plan, plan_deadline: plan_deadline)
     else
-      families.basic.update_all(plan: plan, plan_deadline: plan_deadline)
+      families.update_all(plan: plan, plan_deadline: plan_deadline)
     end
   end
 end
