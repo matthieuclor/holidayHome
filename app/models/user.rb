@@ -46,10 +46,8 @@ class User < ApplicationRecord
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
-  before_save -> {
-    self.plan_deadline = nil if basic?
-    families.update_all(plan: plan, plan_deadline: plan_deadline)
-  }, if: :plan_changed?
+  before_save -> { self.plan_deadline = nil if basic? }, if: :plan_changed?
+  after_save :set_families_plan, if: :plan_previously_changed?
 
   def active_for_authentication?
     self.activated! if self.deactivated?
@@ -62,5 +60,20 @@ class User < ApplicationRecord
 
   def self.find_for_authentication(conditions)
     unscoped { super(conditions) }
+  end
+
+  private
+
+  def set_families_plan
+    if basic?
+      Family.where(
+        id: families.premium
+                    .joins(:users)
+                    .reject { |f| f.users.any? { |u| u.premium? } }
+                    .pluck(:id)
+      ).update_all(plan: plan, plan_deadline: plan_deadline)
+    else
+      families.basic.update_all(plan: plan, plan_deadline: plan_deadline)
+    end
   end
 end
