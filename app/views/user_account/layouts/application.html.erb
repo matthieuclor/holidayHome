@@ -98,12 +98,7 @@
       </div>
     </nav>
 
-    <% unless current_user.confirmed? %>
-      <div class="alert alert-warning text-center">
-        <%= fa_icon("exclamation-triangle") %>
-        Votre compte pourrait être bloqué d'ici quelques jours, pensez a valider votre adresse email !
-      </div>
-    <% end %>
+    <%= render "shared/confirmable_message" unless current_user.confirmed? %>
 
     <div class="container-fluid p-0 min-vh-100">
       <%= yield %>

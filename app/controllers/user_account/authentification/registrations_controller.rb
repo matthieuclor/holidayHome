@@ -35,6 +35,10 @@ class UserAccount::Authentification::RegistrationsController < Devise::Registrat
   end
 
   def after_sign_up_path_for(resource)
+    if cookies[:hutoki_plan] == "premium"
+      resource.update(plan: :premium, plan_deadline: Date.current + 1.year)
+    end
+
     user_account_dashboards_path
   end
 

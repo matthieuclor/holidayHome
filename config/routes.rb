@@ -34,6 +34,7 @@ Rails.application.routes.draw do
 
   namespace :user_account do
     scope module: 'authentification/registrations' do
+      resource :plans, only: [:create]
       resource :avatars, only: [:destroy]
       resource :statuses, only: [:destroy]
     end

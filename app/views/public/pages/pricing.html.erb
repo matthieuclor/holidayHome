@@ -54,8 +54,8 @@
               </div>
 
               <%= button_to "Plan gratuit",
-                            new_user_registration_path,
-                            method: :get,
+                            user_account_plans_path(user: { plan: 'basic' }),
+                            method: :post,
                             class: "btn btn btn-block btn-outline-primary" %>
             </div>
           </div>
@@ -114,8 +114,10 @@
               </div>
 
               <%= button_to "Plan premium",
-                            new_user_registration_path,
-                            method: :get,
+                            current_user ?
+                              user_account_settings_path(anchor: 'plan') :
+                              user_account_plans_path(user: { plan: 'premium' }),
+                            method: current_user ? :get : :post,
                             class: "btn btn btn-block btn-outline-primary" %>
             </div>
           </div>
