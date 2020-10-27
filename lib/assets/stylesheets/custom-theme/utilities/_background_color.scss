@@ -1,0 +1,10 @@
+.rotated-bg-primary {
+  position: absolute;
+  z-index: -1;
+  background: $primary;
+  width: 100%;
+  left: 0;
+  top: -50px;
+  bottom: -50px;
+  transform: skew(0,-3deg);
+}

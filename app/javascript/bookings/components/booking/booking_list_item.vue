@@ -1,6 +1,6 @@
 <template>
   <a :href="`/user_account/bookings/${bookingPendingItem.id}`"
-     class="list-group-item list-group-item-action text-center">
+     class="list-group-item list-group-item-action text-center rounded">
     Demande de <span class="font-weight-bold">{{bookingPendingItem.userName}}</span>
     du <span class="font-weight-bold">{{bookingPendingItem.from}}</span>
     au <span class="font-weight-bold">{{bookingPendingItem.to}}</span>

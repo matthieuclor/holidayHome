@@ -17,7 +17,7 @@
               </a>
             </div>
 
-            <div v-if="bookingPendingItems.length > 0" class="list-group">
+            <div v-if="bookingPendingItems.length > 0" class="list-group shadow-none">
               <BookingListItem v-for="bookingPendingItem in bookingPendingItems"
                               :key="bookingPendingItem.id"
                               :bookingPendingItem="bookingPendingItem" />
