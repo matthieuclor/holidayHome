@@ -42,6 +42,10 @@ class UserAccount::Authentification::RegistrationsController < Devise::Registrat
     user_account_dashboards_path
   end
 
+  def after_update_path_for(resource)
+    user_account_settings_path
+  end
+
   def after_inactive_sign_up_path_for(resource)
     user_account_dashboards_path
   end

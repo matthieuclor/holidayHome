@@ -57,7 +57,7 @@ module UserAccount
           }
         }
 
-        assert_redirected_to root_url
+        assert_redirected_to user_account_settings_url
       end
 
       test "should destroy user" do
