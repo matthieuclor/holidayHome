@@ -71,6 +71,10 @@ button:focus {
 .btn-warning, .btn-success {
   color: $white;
 
+  &:disabled {
+    color: $white;
+  }
+
   @include hover-focus {
     color: $white;
   }
