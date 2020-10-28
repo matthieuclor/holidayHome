@@ -13,11 +13,12 @@ class BookingApproval < ApplicationRecord
   validates :status, inclusion: { in: statuses.keys }
   validates_uniqueness_of :user, scope: :booking
 
-  after_create :send_mail
+  after_create_commit :send_mail_and_notification
 
   private
 
-  def send_mail
-    BookingMailer.send_approval(self.booking, self.user).deliver_later
+  def send_mail_and_notification
+    BookingMailer.send_approval(booking, user).deliver_later
+    NewBookingApprovalJob.perform_later(self)
   end
 end

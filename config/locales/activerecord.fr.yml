@@ -12,13 +12,15 @@ fr:
         new_invitation: mailbox
         accepted_invitation: user-plus
         refused_invitation: user-times
-        accepted_booking: check-circle
-        refused_booking: times-circle
+        new_booking: calendar-week
+        accepted_booking: calendar-check
+        refused_booking: calendar-times
       notification/notification_type:
         new_message: Nouveau message
         new_invitation: Nouvelle invitation
         accepted_invitation: Invitation acceptée
         refused_invitation: Invitation refusée
+        new_booking: Nouvelle réservation
         accepted_booking: Réservation acceptée
         refused_booking: Réservation refusée
       notification/description:
@@ -26,6 +28,7 @@ fr:
         new_invitation: "Vous venez de recevoir une invitation de %{sender_name}"
         accepted_invitation: "%{receiver_name} vient d'accepter votre invitation"
         refused_invitation: "%{receiver_name} vient de refuser votre invitation"
+        new_booking: "Vous venez de recevoir une réservation de %{sender_name} pour %{venue}</br>%{dates}"
         accepted_booking: "Votre réservation pour %{venue}</br>%{dates} vient d'être acceptée"
         refused_booking: "Votre réservation pour %{venue}</br>%{dates} vient d'être refusée"
       notification/status:

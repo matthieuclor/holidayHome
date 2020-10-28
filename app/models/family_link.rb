@@ -9,8 +9,9 @@ class FamilyLink < ApplicationRecord
                             optional: true
 
   validates :family, :user, presence: true
+  validates :family, uniqueness: { scope: :user }
 
-  after_create :set_family_plan
+  after_create_commit :set_family_plan
 
   private
 

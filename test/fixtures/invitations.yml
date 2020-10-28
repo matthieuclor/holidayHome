@@ -23,3 +23,12 @@ matthieu_reinvite_user:
   token: ame4gdumQ5ykYKfsYBN3
   last_send_at: <%= DateTime.now %>
   status: 0
+
+alex_invite_olivia:
+  id: 4
+  sender_id: 10
+  receiver_id: 3
+  family_id: 3
+  email: oliviaclor@gmail.com
+  token: ame4gdumQ5ykYKfsYBN4
+  status: 0

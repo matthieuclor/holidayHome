@@ -19,7 +19,7 @@ class Booking < ApplicationRecord
 
   before_create :set_deadline
 
-  after_create :set_booking_approvals
+  after_create_commit :set_booking_approvals
 
   after_update :send_mail, if: :status_previously_changed?
   after_update :update_booking_approvals_status, if: :status_previously_changed?

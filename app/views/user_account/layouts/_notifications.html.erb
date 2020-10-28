@@ -17,7 +17,7 @@
 
   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
     <% if notifications.present? %>
-      <% notifications.each_with_index do |notifiaction, index| %>
+      <% notifications.each do |notifiaction| %>
         <%= link_to user_account_notification_path(notifiaction), class: "dropdown-item" do %>
           <div class="d-flex justify-content-between align-items-center">
             <div class="font-weight-bolder text-primary">
@@ -40,19 +40,15 @@
             <%= notifiaction.description.html_safe %>
           </p>
         <% end %>
-
-        <% unless index + 1 == notifications.size %>
-          <div class="dropdown-divider"></div>
-        <% end %>
       <% end %>
     <% else %>
       <div class="dropdown-item text-muted">
         Aucune notification récente
       </div>
     <% end %>
-    <%= link_to user_account_notifications_path, class: "dropdown-item" do %>
-      Voir mes notifications
-    <% end %>
+    <%= link_to "Voir mes notifications",
+                user_account_notifications_path,
+                class: "dropdown-item border-top text-center font-weight-bolder" %>
   </div>
 </div>
 

@@ -23,9 +23,7 @@ module UserAccount
         family_params.merge(creator: current_user)
       )
 
-      check_name_validity
-
-      if @family.errors.empty? && @family.save
+      if check_name_validity && @family.save
         add_family_to_current_user
         flash[:success] = "La famille a bien été créé"
         render js: "location.reload()"
@@ -85,6 +83,7 @@ module UserAccount
       family_names = current_user.families.pluck(:name).map(&:downcase)
       name = family_params[:name]&.downcase
       @family.errors.add(:name, :exclusion) if family_names.include?(name)
+      @family.errors.empty?
     end
 
     def add_family_to_current_user

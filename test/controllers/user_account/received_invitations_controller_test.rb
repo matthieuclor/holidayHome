@@ -27,7 +27,7 @@ module UserAccount
 
     test "should accepted invitation" do
       assert_enqueued_jobs 1, only: NewNotificationJob do
-        patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'yes' }
+        patch user_account_received_invitation_url(invitations(:alex_invite_olivia)), params: { response: 'yes' }
       end
 
       invitation = @controller.view_assigns["invitation"]
@@ -44,7 +44,7 @@ module UserAccount
 
     test "should refused invitation" do
       assert_enqueued_jobs 1, only: NewNotificationJob do
-        patch user_account_received_invitation_url(invitations(:matthieu_invite_olivia)), params: { response: 'no' }
+        patch user_account_received_invitation_url(invitations(:alex_invite_olivia)), params: { response: 'no' }
       end
 
       invitation = @controller.view_assigns["invitation"]

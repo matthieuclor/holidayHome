@@ -76,7 +76,10 @@
           ...this.bookingDateRange,
           ...this.calendar,
           message: this.message
-        }).then(() => this.updateBookingDateRange(null))
+        }).then(() => {
+          this.updateBookingDateRange(null)
+          this.message = null
+        })
       }
     },
     mounted() {

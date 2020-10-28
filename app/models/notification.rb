@@ -12,6 +12,7 @@ class Notification < ApplicationRecord
     :new_invitation,
     :accepted_invitation,
     :refused_invitation,
+    :new_booking,
     :accepted_booking,
     :refused_booking
   ]
@@ -26,8 +27,10 @@ class Notification < ApplicationRecord
 
   validates :status, inclusion: { in: statuses.keys }
   validates :notification_type, inclusion: { in: notification_types.keys }
-  validates_uniqueness_of :url, conditions: -> { where(status: :unread) }
+  validates_uniqueness_of :description,
+                          scope: :user,
+                          conditions: -> { where(status: :unread) }
 
-  after_create -> { NewNotificationJob.perform_later(self.id) }
+  after_create_commit -> { NewNotificationJob.perform_later(self.id) }
 end
 
