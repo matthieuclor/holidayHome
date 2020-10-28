@@ -19,6 +19,16 @@ class FamilyLinkTest < ActiveSupport::TestCase
     end
   end
 
+  test "should not create family link whith existing one" do
+    family_link = build(:family_link, {
+      user: @family_link.user,
+      family: @family_link.family
+    })
+
+    assert_not family_link.valid?
+    assert_not_nil family_link.errors[:family]
+  end
+
   test "update family when family link is created with a premium user" do
     deadline = Date.current + 1.year
     users(:matthieu).update(plan: :premium, plan_deadline: deadline)

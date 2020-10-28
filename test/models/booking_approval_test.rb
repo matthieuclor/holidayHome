@@ -38,6 +38,7 @@ class BookingApprovalTest < ActiveSupport::TestCase
     })
 
     assert_enqueued_emails(booking.booking_approvals.size)
+    assert_enqueued_jobs(booking.booking_approvals.size * 2)
 
     booking.booking_approvals.each do |booking_approval|
       booking_mailer = BookingMailer.send_approval(booking, booking_approval.user)

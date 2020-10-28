@@ -15,7 +15,9 @@
     <% end %>
   </button>
 
-  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownUserButton">
+  <div class="dropdown-menu dropdown-menu-right notification-component"
+       aria-labelledby="dropdownUserButton">
+
     <% if notifications.present? %>
       <% notifications.each do |notifiaction| %>
         <%= link_to user_account_notification_path(notifiaction), class: "dropdown-item" do %>
