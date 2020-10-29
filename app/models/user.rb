@@ -51,12 +51,12 @@ class User < ApplicationRecord
   after_save :set_families_plan, if: :plan_previously_changed?
 
   def active_for_authentication?
-    self.activated! if self.deactivated?
-    super && self.activated?
+    activated! if deactivated?
+    super && activated?
   end
 
   def inactive_message
-    self.activated? ? super : self.status.to_sym
+    activated? ? super : status.to_sym
   end
 
   def self.find_for_authentication(conditions)

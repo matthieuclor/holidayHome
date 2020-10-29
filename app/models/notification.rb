@@ -31,6 +31,6 @@ class Notification < ApplicationRecord
                           scope: :user,
                           conditions: -> { where(status: :unread) }
 
-  after_create_commit -> { NewNotificationJob.perform_later(self.id) }
+  after_create_commit -> { NewNotificationJob.perform_later(id) }
 end
 

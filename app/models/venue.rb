@@ -73,26 +73,26 @@ class Venue < ApplicationRecord
   private
 
   def attach_map
-    self.map.attach(
+    map.attach(
       io: open(
         GOOGLE_MAP_URL +
-        "?center=#{self.lat},#{self.lng}" +
+        "?center=#{lat},#{lng}" +
         "&zoom=#{GOOGLE_MAP_ZOOM}" +
         "&size=#{GOOGLE_MAP_SIZE}" +
         "&maptype=#{GOOGLE_MAP_TYPE}" +
-        "&markers=#{self.lat},#{self.lng}" +
+        "&markers=#{lat},#{lng}" +
         "&format=#{GOOGLE_MAP_FORMAT}" +
         "&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
       ),
-      filename: "#{self.name.parameterize}.#{GOOGLE_MAP_FORMAT}"
+      filename: "#{name.parameterize}.#{GOOGLE_MAP_FORMAT}"
     )
   end
 
   def remove_nested_objects
-    return if self.with_network && self.with_digital_code && self.with_home_service
+    return if with_network && with_digital_code && with_home_service
 
-    Network.destroy(self.networks.pluck(:id)) unless self.with_network
-    DigitalCode.destroy(self.digital_codes.pluck(:id)) unless self.with_digital_code
-    HomeService.destroy(self.home_services.pluck(:id)) unless self.with_home_service
+    Network.destroy(networks.pluck(:id)) unless with_network
+    DigitalCode.destroy(digital_codes.pluck(:id)) unless with_digital_code
+    HomeService.destroy(home_services.pluck(:id)) unless with_home_service
   end
 end

@@ -28,18 +28,18 @@ class Invitation < ApplicationRecord
   private
 
   def set_token
-    self.token = Digest::SHA1.hexdigest([Time.now, self.email, rand].join)
+    self.token = Digest::SHA1.hexdigest([Time.now, email, rand].join)
   end
 
   def set_receiver
-    self.receiver = User.find_by(email: self.email)
+    self.receiver = User.find_by(email: email)
   end
 
   def uniqueness_of_receiver_family
-    return unless self.receiver.present?
+    return unless receiver.present?
 
-    if self.receiver.family_links.pluck(:family_id).include?(self.family_id)
-      self.errors.add(:email, :exclusion)
+    if receiver.family_links.pluck(:family_id).include?(family_id)
+      errors.add(:email, :exclusion)
     end
   end
 end
