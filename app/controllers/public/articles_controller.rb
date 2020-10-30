@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Public
-  class BlogController < ApplicationController
+  class ArticlesController < ApplicationController
     def index
     end
 

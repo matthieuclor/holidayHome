@@ -1,3 +1,22 @@
 .dropdown-menu.show {
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.15);
 }
+
+.navbar-dark {
+  a.dropdown-toggle {
+    color: $navbar-dark-color;
+    padding-top: $nav-link-padding-y;
+    padding-bottom: $nav-link-padding-y;
+    padding-right: $navbar-nav-link-padding-x;
+    padding-left: $navbar-nav-link-padding-x;
+
+    &:hover,
+    &:focus {
+      color: $navbar-dark-hover-color;
+    }
+
+    &.disabled {
+      color: $navbar-dark-disabled-color;
+    }
+  }
+}

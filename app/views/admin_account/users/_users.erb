@@ -10,38 +10,46 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td>
-          <%= user_avatar(user) %>
-        </td>
-        <td>
-          <%= link_to user.full_name, admin_account_user_path(user) %>
-        </td>
-        <td>
-          <%= user.email %>
-          <span class="ml-1">
-            <%= user_confirmed_status(user.confirmed?) %>
-          </span>
-        </td>
-        <td class="text-center">
-          <%= l(user.created_at, format: :medium) %>
-        </td>
-        <td class="text-center">
-          <%= plan_badge(user) %>
-        </td>
-        <td class="d-flex flex-row-reverse">
-          <%= button_to "Connection",
-                        admin_account_user_sessions_path(user),
-                        form: { target: '_blank' },
-                        class: "btn btn-sm btn-primary" %>
+    <% if @users.present? %>
+      <% @users.each do |user| %>
+        <tr>
+          <td>
+            <%= user_avatar(user) %>
+          </td>
+          <td>
+            <%= link_to user.full_name, admin_account_user_path(user) %>
+          </td>
+          <td>
+            <%= user.email %>
+            <span class="ml-1">
+              <%= user_confirmed_status(user.confirmed?) %>
+            </span>
+          </td>
+          <td class="text-center">
+            <%= l(user.created_at, format: :medium) %>
+          </td>
+          <td class="text-center">
+            <%= plan_badge(user) %>
+          </td>
+          <td class="d-flex flex-row-reverse">
+            <%= button_to "Connection",
+                          admin_account_user_sessions_path(user),
+                          form: { target: '_blank' },
+                          class: "btn btn-sm btn-primary" %>
 
-          <% unless user.confirmed? %>
-            <%= button_to "Valider le mail",
-                          admin_account_user_email_confirmations_path(user),
-                          method: :put,
-                          class: "btn btn-sm btn-outline-primary mr-2" %>
-          <% end %>
+            <% unless user.confirmed? %>
+              <%= button_to "Valider le mail",
+                            admin_account_user_email_confirmations_path(user),
+                            method: :put,
+                            class: "btn btn-sm btn-outline-primary mr-2" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="6" class="text-center text-muted">
+          aucun utilisateur n'a été trouvé
         </td>
       </tr>
     <% end %>

@@ -1,0 +1,37 @@
+<div class="d-flex justify-content-center">
+  <div class="col-11">
+    <div class="card my-3">
+      <div class="card-body py-0">
+        <div class="d-flex align-content-center my-4">
+          <div>
+            <h1 class="m-0">
+              <%= @article.title %>
+            </h1>
+            <span class="text-muted">
+              <%= @article.slug %>
+            </span>
+          </div>
+          <div class="ml-auto">
+            <%= link_to fa_icon("trash", "Supprimer", class: "mr-1"),
+                        admin_account_article_path(@article),
+                        method: :delete,
+                        class: "btn btn-outline-danger",
+                        data: { confirm: "Etes vous sûrs ?" } %>
+
+            <%= link_to fa_icon("pen", "Editer", class: "mr-1"),
+                        edit_admin_account_article_path(@article),
+                        remote: true,
+                        class: "btn btn-outline-warning" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <%= @article.body %>
+      </div>
+    </div>
+  </div>
+</div>
+

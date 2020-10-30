@@ -10,28 +10,36 @@
     </tr>
   </thead>
   <tbody>
-    <% @families.each do |family| %>
+    <% if @families.present? %>
+      <% @families.each do |family| %>
+        <tr>
+          <td>
+            <%= link_to family.name, admin_account_family_path(family) %>
+          </td>
+          <td>
+            <%= link_to "#{family.creator.first_name} #{family.creator.last_name}",
+                        admin_account_user_path(family.creator) %>
+          </td>
+          <td class="text-center font-weight-bolder">
+            <%= family.human_days_for_approval %>
+          </td>
+          <td class="text-center">
+            <span class="badge badge-secondary">
+              <%= family.venues_count %>
+            </span>
+          </td>
+          <td class="text-center">
+            <%= l(family.created_at, format: :medium) %>
+          </td>
+          <td class="text-center">
+            <%= plan_badge(family) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
       <tr>
-        <td>
-          <%= link_to family.name, admin_account_family_path(family) %>
-        </td>
-        <td>
-          <%= link_to "#{family.creator.first_name} #{family.creator.last_name}",
-                      admin_account_user_path(family.creator) %>
-        </td>
-        <td class="text-center font-weight-bolder">
-          <%= family.human_days_for_approval %>
-        </td>
-        <td class="text-center">
-          <span class="badge badge-secondary">
-            <%= family.venues_count %>
-          </span>
-        </td>
-        <td class="text-center">
-          <%= l(family.created_at, format: :medium) %>
-        </td>
-        <td class="text-center">
-          <%= plan_badge(family) %>
+        <td colspan="6" class="text-center text-muted">
+          aucune famille n'a été trouvé
         </td>
       </tr>
     <% end %>

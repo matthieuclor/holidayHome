@@ -45,6 +45,8 @@ gem 'pagy'
 gem 'interactor'
 # Beautiful JavaScript charts with one line of Ruby
 gem 'chartkick'
+# SitemapGenerator is the easiest way to generate Sitemaps in Ruby
+gem 'sitemap_generator'
 
 group :staging do
   gem 'rest-client'

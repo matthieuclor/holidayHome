@@ -7,7 +7,7 @@ module AdminAccount
 
     def index
       @query = Family.ransack(families_ransack_params)
-      @pagy, @families = pagy(@query.result.distinct.joins(:users, :creator))
+      @pagy, @families = pagy(@query.result.joins(:users, :creator))
       @families = FamilyDecorator.wrap(@families)
     end
 

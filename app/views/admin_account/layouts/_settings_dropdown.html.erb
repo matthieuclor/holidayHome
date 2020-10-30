@@ -1,0 +1,23 @@
+<div class="dropdown">
+  <a href="#"
+     id="dropdownSettingsButton"
+     class="dropdown-toggle"
+     data-toggle="dropdown"
+     aria-haspopup="true"
+     aria-expanded="false">
+
+    Gestion du site
+  </a>
+
+  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownSettingsButton">
+    <%= link_to "Design system",
+                admin_account_design_system_index_path,
+                class: "dropdown-item #{'active' if controller_name == 'design_system'}" %>
+
+    <%= link_to "Articles",
+                admin_account_articles_path,
+                class: "dropdown-item #{'active' if controller_name == 'articles'}" %>
+
+    <%= link_to "Sidekiq", sidekiq_web_path, target: "_blank", class: "dropdown-item" %>
+  </div>
+</div>

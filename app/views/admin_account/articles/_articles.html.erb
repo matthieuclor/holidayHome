@@ -1,0 +1,38 @@
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Titre</th>
+      <th scope="col">Slug</th>
+      <th scope="col" class="text-center">Date de création</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @articles.present? %>
+      <% @articles.each do |article| %>
+        <tr data-table-link="<%= admin_account_article_path(article) %>">
+          <td>
+            <%= article.title %>
+          </td>
+          <td>
+            <%= article.slug %>
+          </td>
+          <td class="text-center">
+            <%= l(article.created_at, format: :medium) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="3" class="text-center text-muted">
+          aucun article n'a été trouvé
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
 
     resources :rgpd_cookies, only: [:create]
-    resources :blog, only: [:index, :show]
+    resources :blog, as: :articles, controller: :articles, param: :slug, only: [:index, :show]
 
     scope module: :invitations do
       resource :responses, only: [:new]
@@ -110,6 +110,7 @@ Rails.application.routes.draw do
 
     resources :venues, only: [:show]
     resources :bookings, only: [:show]
+    resources :articles
   end
 
   authenticate :admin do
