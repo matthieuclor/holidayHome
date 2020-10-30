@@ -62,6 +62,9 @@ fr:
         single: simple
         double: double
         baby: bébé
+      article/status:
+        online: En ligne
+        offline: Hors ligne
       message:
         content: Le contenu
     errors:

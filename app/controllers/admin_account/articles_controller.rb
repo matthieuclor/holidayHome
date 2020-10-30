@@ -59,11 +59,11 @@ module AdminAccount
     end
 
     def article_params
-      params.require(:article).permit(:title, :body)
+      params.require(:article).permit(:title, :status, :body)
     end
 
     def articles_ransack_params
-      @articles_ransack_params ||= params[:q]&.permit(:title_cont)
+      @articles_ransack_params ||= params[:q]&.permit(:title_cont, :status_eq)
     end
   end
 end

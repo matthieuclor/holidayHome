@@ -60,6 +60,7 @@ ActiveRecord::Schema.define(version: 2020_10_30_140628) do
   create_table "articles", force: :cascade do |t|
     t.string "title"
     t.string "slug"
+    t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
