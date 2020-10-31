@@ -34,10 +34,10 @@ module AdminAccount
 
     def update
       if @article.update(article_params)
-        flash[:success] = "L'article a bien été créé"
+        flash[:success] = "L'article a bien été mis à jour"
         render js: "location.reload()"
       else
-        flash[:error] = "Un problem est survenu lors de la création de l'article"
+        flash[:error] = "Un problem est survenu lors de la mise à jour de l'article"
         render :edit, status: :unprocessable_entity
       end
     end
@@ -59,7 +59,7 @@ module AdminAccount
     end
 
     def article_params
-      params.require(:article).permit(:title, :status, :body)
+      params.require(:article).permit(:title, :body)
     end
 
     def articles_ransack_params

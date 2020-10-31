@@ -2,14 +2,32 @@
   <div class="col-11">
     <div class="card my-3">
       <div class="card-body py-0">
-        <div class="d-flex align-content-center my-4">
+        <div class="d-flex my-4">
           <div>
             <h1 class="m-0">
               <%= @article.title %>
             </h1>
+
             <span class="text-muted">
               <%= @article.slug %>
             </span>
+
+            <%= link_to admin_account_article_status_path(
+                          @article,
+                          { article: { status: @article.online? ? 'offline' : 'online' } }
+                        ),
+                        method: :put,
+                        remote: true do %>
+              <div class="custom-control custom-switch mt-2">
+                <%= check_box_tag("articleStatus",
+                                  nil,
+                                  @article.online?,
+                                  class: "custom-control-input") %>
+                <label class="custom-control-label" for="articleStatus">
+                  En ligne
+                </label>
+              </div>
+            <% end %>
           </div>
           <div class="ml-auto">
             <%= link_to fa_icon("trash", "Supprimer", class: "mr-1"),

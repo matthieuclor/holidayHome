@@ -15,21 +15,10 @@
       </div>
       <div class="modal-body">
         <%= simple_form_for [:admin_account, @article], remote: true do |f| %>
-          <div class="row">
-            <div class="col-sm-9">
-              <%= f.input :title,
-                          input_html: {
-                            placeholder: "Choisir un titre accrocheur pour votre article"
-                          } %>
-            </div>
-            <div class="col-sm-3">
-              <%= f.input :status,
-                          collection: Article.statuses.map { |k, v|
-                            [Article.human_attribute_name("status.#{k}"), k]
-                          },
-                          include_blank: false %>
-            </div>
-          </div>
+          <%= f.input :title,
+                      input_html: {
+                        placeholder: "Choisir un titre accrocheur pour votre article"
+                      } %>
 
           <%= f.rich_text_area :body %>
 

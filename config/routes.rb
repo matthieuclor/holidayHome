@@ -108,9 +108,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :articles do
+      scope module: :articles do
+        resource :status, only: [:update]
+      end
+    end
+
     resources :venues, only: [:show]
     resources :bookings, only: [:show]
-    resources :articles
   end
 
   authenticate :admin do
