@@ -1,0 +1,48 @@
+.trix-content {
+  .attachment-gallery {
+    > action-text-attachment,
+    > .attachment {
+      flex: 1 0 33%;
+      padding: 0 0.5em;
+      max-width: 33%;
+    }
+
+    &.attachment-gallery--2,
+    &.attachment-gallery--4 {
+      > action-text-attachment,
+      > .attachment {
+        flex-basis: 50%;
+        max-width: 50%;
+      }
+    }
+  }
+
+  action-text-attachment {
+    .attachment {
+      padding: 0 !important;
+      max-width: 100% !important;
+    }
+  }
+
+  h1 {
+    text-align: center;
+    font-size: 2.25rem;
+    margin-bottom: 0.625rem;
+  }
+
+  .attachment__name, .attachment__size {
+    display: none;
+  }
+}
+
+trix-editor {
+  .attachment__name, .attachment__size {
+    display: inline !important;
+  }
+
+  img {
+    border-radius: 0.3125rem !important;
+  }
+
+  margin-bottom: 1.25rem;
+}

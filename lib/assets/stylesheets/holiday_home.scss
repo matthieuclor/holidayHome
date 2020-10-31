@@ -9,6 +9,7 @@
 @import 'scss/solid';
 @import 'scss/regular';
 @import 'scss/brands';
+@import "trix/dist/trix";
 
 // Mixins
 
@@ -48,3 +49,4 @@
 @import "custom-theme/components/nav_tabs";
 @import "custom-theme/components/list_group";
 @import "custom-theme/components/notifications";
+@import "custom-theme/components/actiontext";

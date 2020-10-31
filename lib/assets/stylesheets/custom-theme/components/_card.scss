@@ -19,3 +19,14 @@
     line-height: 20px;
   }
 }
+
+a {
+  .card {
+    transition-duration: .2s;
+
+    &:hover {
+      @extend .shadow-lg;
+      transition-duration: .2s;
+    }
+  }
+}

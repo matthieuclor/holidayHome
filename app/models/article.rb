@@ -5,6 +5,8 @@ class Article < ApplicationRecord
 
   enum status: %i(offline online)
 
+  default_scope { order(:created_at) }
+
   validates :title, :body, :slug, presence: true
   validates :title, :slug, uniqueness: true
   validates :status, inclusion: { in: statuses.keys }
