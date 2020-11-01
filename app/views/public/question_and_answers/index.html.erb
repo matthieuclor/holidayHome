@@ -3,4 +3,39 @@
 </div>
 
 <div class="d-flex justify-content-center">
+  <div class="col-md-8">
+    <div class="card mb-3">
+      <div class="card-body py-2">
+        <div class="d-flex align-content-center">
+          <div class="col-sm-9 px-0">
+            <%= search_form_for @query,
+                                wrapper: :inline_form,
+                                remote: true,
+                                data: { autosubmit: true } do |f| %>
+
+              <%= f.input :question_or_answer_cont,
+                          as: :string,
+                          label: false,
+                          required: false,
+                          input_html: {
+                            class: "my-2",
+                            placeholder: "Rechercher une question ou une réponse"
+                          } %>
+            <% end %>
+          </div>
+          <div class="ml-auto">
+            <%= button_to "Réinitialiser",
+                          question_and_answers_path,
+                          method: :get,
+                          id: "reset-filter",
+                          class: "btn btn-danger m-2 d-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="question-and-answer-container">
+      <%= render "question_and_answers" %>
+    </div>
+  </div>
 </div>

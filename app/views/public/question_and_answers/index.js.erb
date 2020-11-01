@@ -1,0 +1,7 @@
+$("#question-and-answer-container").html("<%= j render 'question_and_answers' %>")
+
+<% if @question_and_answer_ransack_params.present? %>
+  $("#reset-filter").removeClass("d-none")
+<% end %>
+
+Turbolinks.dispatch("turbolinks:load")
