@@ -8,6 +8,7 @@ module Public
 
     def show
       @article = Article.online.find_by(slug: params[:slug])
+      head :not_found unless @article
     end
   end
 end

@@ -1,11 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+first_article:
+  id: 1
+  title: My first article
+  slug: my-first-article
+  status: 0
 
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+second_article:
+  id: 2
+  title: My second article
+  slug: my-second-article
+  status: 1
