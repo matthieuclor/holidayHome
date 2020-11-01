@@ -1,6 +1,6 @@
 $("#users-container").html("<%= j render 'users' %>")
 
-<% if @users_ransack_params.present? %>
+<% if @user_ransack_params.present? %>
   $("#reset-filter").removeClass("d-none")
 <% end %>
 

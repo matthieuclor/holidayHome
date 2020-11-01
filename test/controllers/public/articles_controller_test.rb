@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module Public
-  class BlogControllerTest < ActionDispatch::IntegrationTest
+  class ArticlesControllerTest < ActionDispatch::IntegrationTest
     test "should get online articles" do
       get articles_url
       articles = @controller.view_assigns["articles"]

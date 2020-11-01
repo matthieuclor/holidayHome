@@ -14,9 +14,6 @@ module Public
     def teams
     end
 
-    def faq
-    end
-
     def cgu
     end
 

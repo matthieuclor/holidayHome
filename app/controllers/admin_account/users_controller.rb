@@ -6,7 +6,7 @@ module AdminAccount
     respond_to :js, :html
 
     def index
-      @query = User.ransack(users_ransack_params)
+      @query = User.ransack(user_ransack_params)
       @pagy, @users = pagy(@query.result.includes(:avatar_attachment))
       @users = UserDecorator.wrap(@users)
     end
@@ -50,8 +50,8 @@ module AdminAccount
       )
     end
 
-    def users_ransack_params
-      @users_ransack_params ||= params[:q]&.permit(
+    def user_ransack_params
+      @user_ransack_params ||= params[:q]&.permit(
         :first_name_or_last_name_or_email_cont
       )
     end

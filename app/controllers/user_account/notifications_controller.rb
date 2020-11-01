@@ -3,7 +3,7 @@
 module UserAccount
   class NotificationsController < UserAccount::ApplicationController
     def index
-      @query = current_user.notifications.joins(:family).ransack(notifications_ransack_params)
+      @query = current_user.notifications.joins(:family).ransack(notification_ransack_params)
       @pagy, @notifications = pagy(@query.result)
     end
 
@@ -23,8 +23,8 @@ module UserAccount
 
     private
 
-    def notifications_ransack_params
-      @notifications_ransack_params ||= params[:q]&.permit(
+    def notification_ransack_params
+      @notification_ransack_params ||= params[:q]&.permit(
         :notification_type_eq,
         :family_id_eq,
         :created_at_gteq,

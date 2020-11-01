@@ -65,6 +65,9 @@ fr:
       article/status:
         online: En ligne
         offline: Hors ligne
+      question_and_answer/status:
+        online: En ligne
+        offline: Hors ligne
       message:
         content: Le contenu
     errors:

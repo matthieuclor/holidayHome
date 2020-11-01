@@ -1,0 +1,11 @@
+first_question_and_answer:
+  id: 1
+  question: My first Q&A ?
+  answer: My first Q&A
+  status: 0
+
+second_question_and_answer:
+  id: 2
+  question: My second Q&A ?
+  answer: My second Q&A
+  status: 1

@@ -1,0 +1,33 @@
+<div class="modal" id="question-and-answer-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer une faq
+          <% else %>
+            Editer une faq
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @question_and_answer], remote: true do |f| %>
+          <%= f.input :question,
+                      input_html: {
+                        placeholder: "Comment utilise t on Hutoki ?"
+                      } %>
+
+          <%= f.input :answer,
+                      input_html: {
+                        placeholder: "Tout simplement !"
+                      } %>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

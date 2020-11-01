@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_30_140628) do
+ActiveRecord::Schema.define(version: 2020_11_01_115923) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -187,6 +187,14 @@ ActiveRecord::Schema.define(version: 2020_10_30_140628) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["family_id"], name: "index_notifications_on_family_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "question_and_answers", force: :cascade do |t|
+    t.string "question"
+    t.string "answer"
+    t.integer "status", default: 0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", force: :cascade do |t|

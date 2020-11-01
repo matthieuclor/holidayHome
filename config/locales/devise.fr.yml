@@ -32,6 +32,9 @@ fr:
       article:
         title: Titre
         status: Statut
+      question_and_answer:
+        question: Question
+        answer: Réponse
     models:
       user: Utilisateur
   devise:

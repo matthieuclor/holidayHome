@@ -1,6 +1,6 @@
-$("#articles-container").html("<%= j render 'articles' %>")
+$("#question-and-answers-container").html("<%= j render 'question_and_answers' %>")
 
-<% if @article_ransack_params.present? %>
+<% if @question_and_answer_ransack_params.present? %>
   $("#reset-filter").removeClass("d-none")
 <% end %>
 

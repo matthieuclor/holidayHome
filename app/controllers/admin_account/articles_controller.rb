@@ -6,7 +6,7 @@ module AdminAccount
     before_action :set_article, only: [:show, :edit, :update, :destroy]
 
     def index
-      @query = Article.ransack(articles_ransack_params)
+      @query = Article.ransack(article_ransack_params)
       @pagy, @articles = pagy(@query.result.with_rich_text_body_and_embeds)
     end
 
@@ -62,8 +62,8 @@ module AdminAccount
       params.require(:article).permit(:title, :body)
     end
 
-    def articles_ransack_params
-      @articles_ransack_params ||= params[:q]&.permit(:title_cont, :status_eq)
+    def article_ransack_params
+      @article_ransack_params ||= params[:q]&.permit(:title_cont, :status_eq)
     end
   end
 end

@@ -6,7 +6,7 @@ module UserAccount
     before_action :set_current_family, only: [:index]
 
     def index
-      @query = @current_family.bookings.joins(:user).ransack(bookings_ransack_params)
+      @query = @current_family.bookings.joins(:user).ransack(booking_ransack_params)
       @pagy, @bookings = pagy(
         @query.result.includes(:venue, user: [:avatar_attachment])
       )
@@ -53,8 +53,8 @@ module UserAccount
       )
     end
 
-    def bookings_ransack_params
-      @bookings_ransack_params ||= params[:q]&.permit(
+    def booking_ransack_params
+      @booking_ransack_params ||= params[:q]&.permit(
         :user_id_eq,
         :venue_id_eq,
         :status_eq,

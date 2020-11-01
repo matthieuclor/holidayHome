@@ -1,6 +1,6 @@
 $("#families-container").html("<%= j render 'families' %>")
 
-<% if @families_ransack_params.present? %>
+<% if @family_ransack_params.present? %>
   $("#reset-filter").removeClass("d-none")
 <% end %>
 

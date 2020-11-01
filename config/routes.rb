@@ -8,15 +8,15 @@ Rails.application.routes.draw do
       get 'about'
       get 'pricing'
       get 'qui-sommes-nous', action: :teams, as: :teams
-      get 'faq'
       get 'cgu'
-      get 'politique-confidentialite', action: :privacy_policy, as: :privacy_policy
-      get 'mentions-legales', action: :company_details, as: :company_details
+      get 'politique-confidentialite', as: :privacy_policy, action: :privacy_policy
+      get 'mentions-legales', as: :company_details, action: :company_details
       get 'sitemap'
     end
 
     resources :rgpd_cookies, only: [:create]
     resources :blog, as: :articles, controller: :articles, param: :slug, only: [:index, :show]
+    resources :faq, as: :question_and_answers, controller: :question_and_answers, only: :index
 
     scope module: :invitations do
       resource :responses, only: [:new]
@@ -110,6 +110,12 @@ Rails.application.routes.draw do
 
     resources :articles do
       scope module: :articles do
+        resource :status, only: [:update]
+      end
+    end
+
+    resources :question_and_answers do
+      scope module: :question_and_answers do
         resource :status, only: [:update]
       end
     end

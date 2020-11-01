@@ -1,0 +1,55 @@
+<div class="d-flex justify-content-center">
+  <div class="col-11">
+    <div class="card my-3">
+      <div class="card-body py-0">
+        <div class="d-flex my-4">
+          <div class="col-sm-8 col-md-9 p-0">
+            <h2 class="m-0">
+              <%= @question_and_answer.question %>
+            </h2>
+
+            <%= link_to admin_account_question_and_answer_status_path(
+                          @question_and_answer,
+                          { question_and_answer: {
+                            status: @question_and_answer.online? ? 'offline' : 'online' }
+                          }
+                        ),
+                        method: :put,
+                        remote: true do %>
+              <div class="custom-control custom-switch mt-2">
+                <%= check_box_tag("questionAndAnswerStatus",
+                                  nil,
+                                  @question_and_answer.online?,
+                                  class: "custom-control-input") %>
+                <label class="custom-control-label" for="questionAndAnswerStatus">
+                  En ligne
+                </label>
+              </div>
+            <% end %>
+          </div>
+          <div class="ml-auto">
+            <%= link_to fa_icon("trash", "Supprimer", class: "mr-1"),
+                        admin_account_question_and_answer_path(@question_and_answer),
+                        method: :delete,
+                        class: "btn btn-outline-danger",
+                        data: { confirm: "Etes vous sûrs ?" } %>
+
+            <%= link_to fa_icon("pen", "Editer", class: "mr-1"),
+                        edit_admin_account_question_and_answer_path(@question_and_answer),
+                        remote: true,
+                        class: "btn btn-outline-warning" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <p class="m-0">
+          <%= @question_and_answer.answer %>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+

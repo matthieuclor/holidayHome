@@ -15,12 +15,15 @@ SitemapGenerator::Sitemap.create do
 
   add articles_path, priority: 0.7, changefreq: 'daily'
 
-  Article.find_each do |article|
-    add article_path(article), lastmod: article.updated_at
+  Article.online.each do |article|
+    add article_path(article), lastmod: article.updated_at, priority: 0.7
   end
+
+  add question_and_answers_path,
+      lastmod: QuestionAndAnswer.online.maximum(:updated_at),
+      priority: 0.2
 
   add about_path, changefreq: 'monthly', priority: 0.2
   add pricing_path, changefreq: 'monthly', priority: 0.2
   add teams_path, changefreq: 'monthly', priority: 0.2
-  add faq_path, changefreq: 'monthly', priority: 0.2
 end

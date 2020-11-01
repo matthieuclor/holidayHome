@@ -6,7 +6,7 @@ module AdminAccount
     respond_to :js, :html
 
     def index
-      @query = Family.ransack(families_ransack_params)
+      @query = Family.ransack(family_ransack_params)
       @pagy, @families = pagy(@query.result.joins(:users, :creator))
       @families = FamilyDecorator.wrap(@families)
     end
@@ -40,8 +40,8 @@ module AdminAccount
       params.require(:family).permit(:name, :days_for_approval)
     end
 
-    def families_ransack_params
-      @families_ransack_params ||= params[:q]&.permit(:name_cont)
+    def family_ransack_params
+      @family_ransack_params ||= params[:q]&.permit(:name_cont)
     end
   end
 end

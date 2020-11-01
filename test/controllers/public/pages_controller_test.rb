@@ -24,11 +24,6 @@ module Public
       assert_response :success
     end
 
-    test "should get faq" do
-      get faq_url
-      assert_response :success
-    end
-
     test "should get cgu" do
       get cgu_url
       assert_response :success

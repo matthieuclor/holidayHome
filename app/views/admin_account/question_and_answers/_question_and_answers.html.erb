@@ -1,34 +1,30 @@
 <table class="table table-rounded table-borderless table-hover">
   <thead class="table-info">
     <tr>
-      <th scope="col">Titre</th>
-      <th scope="col">Slug</th>
+      <th scope="col">Question</th>
       <th scope="col" class="text-center">Date de création</th>
       <th scope="col" class="text-center">Statut</th>
     </tr>
   </thead>
   <tbody>
-    <% if @articles.present? %>
-      <% @articles.each do |article| %>
-        <tr data-table-link="<%= admin_account_article_path(article) %>">
+    <% if @question_and_answers.present? %>
+      <% @question_and_answers.each do |question_and_answer| %>
+        <tr data-table-link="<%= admin_account_question_and_answer_path(question_and_answer) %>">
           <td>
-            <%= article.title %>
-          </td>
-          <td>
-            <%= article.slug %>
+            <%= question_and_answer.question %>
           </td>
           <td class="text-center">
-            <%= l(article.created_at, format: :medium) %>
+            <%= l(question_and_answer.created_at, format: :medium) %>
           </td>
           <td class="text-center">
-            <%= network_status_badge(article) %>
+            <%= network_status_badge(question_and_answer) %>
           </td>
         </tr>
       <% end %>
     <% else %>
       <tr>
         <td colspan="3" class="text-center text-muted">
-          aucun article n'a été trouvé
+          aucun faq n'a été trouvé
         </td>
       </tr>
     <% end %>

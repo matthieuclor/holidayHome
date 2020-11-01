@@ -37,6 +37,14 @@ module ApplicationHelper
     )
   end
 
+  def network_status_badge(record)
+    content_tag(
+      :span,
+      record.class.name.constantize.human_attribute_name("status.#{record.status}"),
+      class: ["badge badge-#{record.online? ? 'success' : 'secondary'}"]
+    )
+  end
+
   def plan_progress(record)
     content_tag(
       :div,

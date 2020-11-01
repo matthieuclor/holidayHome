@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-11">
+    <div class="card my-3">
+      <div class="card-body py-0">
+        <div class="d-flex align-content-center my-4">
+          <h1 class="m-0 mr-auto">Faqs</h1>
+
+          <%= button_to "Réinitialiser",
+                        admin_account_question_and_answers_path,
+                        method: :get,
+                        id: "reset-filter",
+                        class: "btn btn-danger m-2 d-none" %>
+          <div class="col-5 p-0">
+            <%= search_form_for [:admin_account, @query],
+                                wrapper: :inline_form,
+                                data: { autosubmit: true },
+                                remote: true do |f| %>
+
+              <div class="row d-flex align-items-center">
+                <div class="col-8">
+                  <%= f.input :question_or_answer_cont,
+                              as: :string,
+                              label: false,
+                              required: false,
+                              input_html: {
+                                class: "my-2",
+                                placeholder: "Rechercher une question ou une réponse"
+                              } %>
+                </div>
+                <div class="col-4 pl-0">
+                  <%= f.input :status_eq,
+                              label: false,
+                              required: false,
+                              collection: QuestionAndAnswer.statuses.map { |k, v|
+                                [QuestionAndAnswer.human_attribute_name("status.#{k}"), v]
+                              } %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-end mb-2">
+          <%= link_to fa_icon("plus", "Créer" , class: "mr-1"),
+                      new_admin_account_question_and_answer_path,
+                      remote: true,
+                      class: "btn btn-outline-primary ml-auto" %>
+        </div>
+
+        <div id="question-and-answers-container">
+          <%= render "question_and_answers" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
