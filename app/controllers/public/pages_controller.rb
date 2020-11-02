@@ -11,9 +11,6 @@ module Public
     def pricing
     end
 
-    def teams
-    end
-
     def cgu
     end
 

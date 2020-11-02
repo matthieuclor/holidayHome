@@ -23,7 +23,10 @@ SitemapGenerator::Sitemap.create do
       lastmod: QuestionAndAnswer.online.maximum(:updated_at),
       priority: 0.2
 
+  add team_members_path,
+      lastmod: TeamMember.online.maximum(:updated_at),
+      priority: 0.2
+
   add about_path, changefreq: 'monthly', priority: 0.2
   add pricing_path, changefreq: 'monthly', priority: 0.2
-  add teams_path, changefreq: 'monthly', priority: 0.2
 end

@@ -1,0 +1,14 @@
+pierre:
+  id: 1
+  first_name: Pierre
+  last_name:  Clor
+  function: Développeur
+  status: 0
+
+matthieu:
+  id: 2
+  first_name: Matthieu
+  last_name:  Clor
+  function: Développeur
+  status: 1
+

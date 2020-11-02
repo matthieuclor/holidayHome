@@ -19,11 +19,6 @@ module Public
       assert_response :success
     end
 
-    test "should get teams" do
-      get teams_url
-      assert_response :success
-    end
-
     test "should get cgu" do
       get cgu_url
       assert_response :success
