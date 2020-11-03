@@ -18,9 +18,9 @@ module AdminAccount
     end
 
     def create
-      question_and_answer = QuestionAndAnswer.new(question_and_answer_params)
+      @question_and_answer = QuestionAndAnswer.new(question_and_answer_params)
 
-      if question_and_answer.save
+      if @question_and_answer.save
         flash[:success] = "La faq a bien été créé"
         render js: "location.reload()"
       else

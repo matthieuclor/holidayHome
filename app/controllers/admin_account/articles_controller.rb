@@ -18,9 +18,9 @@ module AdminAccount
     end
 
     def create
-      article = Article.new(article_params)
+      @article = Article.new(article_params)
 
-      if article.save
+      if @article.save
         flash[:success] = "L'article a bien été créé"
         render js: "location.reload()"
       else

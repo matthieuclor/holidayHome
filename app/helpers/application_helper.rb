@@ -38,9 +38,11 @@ module ApplicationHelper
   end
 
   def network_status_badge(record)
+    record_class = record.class.name.chomp("Decorator")
+
     content_tag(
       :span,
-      record.class.name.constantize.human_attribute_name("status.#{record.status}"),
+      record_class.constantize.human_attribute_name("status.#{record.status}"),
       class: ["badge badge-#{record.online? ? 'success' : 'secondary'}"]
     )
   end

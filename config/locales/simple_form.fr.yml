@@ -17,3 +17,13 @@ fr:
         name: Nom
         days_for_approval: Jours laissés pour une demande de réservation
         plan_deadline: Date de fin de plan
+      article:
+        title: Titre
+        status: Statut
+      question_and_answer:
+        question: Question
+        answer: Réponse
+      team_member:
+        first_name: Prénom
+        last_name: Nom
+        function: Fonction

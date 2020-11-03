@@ -9,6 +9,8 @@ class TeamMember < ApplicationRecord
 
   validates :first_name, :last_name, :function, presence: true
   validates :status, inclusion: { in: statuses.keys }
+  validates :photo, content_type: [:png, :jpg, :jpeg],
+                    size: { less_than: 2.megabytes }
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?

@@ -1,0 +1,66 @@
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col"></th>
+      <th scope="col">Nom</th>
+      <th scope="col">Fonction</th>
+      <th scope="col" class="text-center">Date de création</th>
+      <th scope="col" class="text-center">Statut</th>
+      <th scope="col" class="text-center">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @team_members.present? %>
+      <% @team_members.each do |team_member| %>
+        <tr>
+          <td>
+            <% if team_member.photo.attached? && team_member.photo.persisted? %>
+              <%= image_tag(team_member.photo.variant(resize_to_limit: [100, 100]), class: "rounded") %>
+            <% end %>
+          </td>
+          <td class="font-weight-bolder">
+            <%= team_member.full_name %>
+          </td>
+          <td>
+            <%= team_member.function %>
+          </td>
+          <td class="text-center">
+            <%= l(team_member.created_at, format: :medium) %>
+          </td>
+          <td class="text-center">
+            <%= network_status_badge(team_member) %>
+          </td>
+          <td>
+            <div class="d-flex justify-content-end">
+              <%= button_to edit_admin_account_team_member_path(team_member),
+                            method: :get,
+                            remote: true,
+                            class: "btn btn-sm btn-outline-warning mr-1" do %>
+                <%= fa_icon('pen', 'editer', class: 'mr-1') %>
+              <% end %>
+
+              <%= button_to admin_account_team_member_path(team_member),
+                            method: :delete,
+                            data: { confirm: "Etes-vous sûr ?" },
+                            class: "btn btn-sm btn-outline-danger ml-1" do %>
+                <%= fa_icon('trash', 'supprimer', class: 'mr-1') %>
+              <% end %>
+            </div>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="6" class="text-center text-muted">
+          aucun membre n'a été trouvé
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

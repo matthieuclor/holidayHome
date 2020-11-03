@@ -14,13 +14,17 @@
                 admin_account_design_system_index_path,
                 class: "dropdown-item #{'active' if controller_name == 'design_system'}" %>
 
-    <%= link_to "Articles",
-                admin_account_articles_path,
-                class: "dropdown-item #{'active' if controller_name == 'articles'}" %>
+    <%= link_to "Membres",
+                admin_account_team_members_path,
+                class: "dropdown-item #{'active' if controller_name == 'team_members'}" %>
 
     <%= link_to "FAQs",
                 admin_account_question_and_answers_path,
                 class: "dropdown-item #{'active' if controller_name == 'question_and_answers'}" %>
+
+    <%= link_to "Articles",
+                admin_account_articles_path,
+                class: "dropdown-item #{'active' if controller_name == 'articles'}" %>
 
     <%= link_to "Sidekiq", sidekiq_web_path, target: "_blank", class: "dropdown-item" %>
   </div>

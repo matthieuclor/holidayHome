@@ -1,0 +1,60 @@
+<div class="modal" id="team-member-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un membre
+          <% else %>
+            Editer un membre
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% if @team_member.photo.attached? && @team_member.photo.persisted? %>
+          <div class="d-flex align-items-center mb-4">
+            <%= image_tag(@team_member.photo.variant(resize_to_limit: [100, 100]), class: "rounded") %>
+
+            <%= button_to admin_account_team_member_photos_path(@team_member),
+                          method: :delete,
+                          remote: true,
+                          class: "btn btn-sm btn-danger ml-3",
+                          data: { confirm: "Etes-vous sûr ?" } do %>
+
+              <%= fa_icon('trash', 'Supprimer la photo', class: "mr-2") %>
+            <% end %>
+          </div>
+        <% end %>
+
+        <%= simple_form_for [:admin_account, @team_member], remote: true do |f| %>
+          <%= f.input :photo,
+                      label: 'Choisir une photo',
+                      input_html: { accept: "image/png|image/jpg|image/jpeg" },
+                      hint: "Les formats acceptés: png, jpg, jpeg et la taille est limités à 2mo." %>
+
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :first_name, input_html: { placeholder: "Pierre" } %>
+            </div>
+            <div class="col-6">
+              <%= f.input :last_name, input_html: { placeholder: "Clor" } %>
+            </div>
+          </div>
+
+          <%= f.input :function, input_html: { placeholder: "Développeur" } %>
+
+          <%= f.input :status, as: :boolean,
+                               label: "En ligne",
+                               checked_value: 'online',
+                               unchecked_value: 'offline',
+                               wrapper: :custom_boolean_switch %>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -29,12 +29,6 @@ fr:
         unconfirmed_email: Email non confirmé
         unlock_token: Clé de déverrouillage
         updated_at: Date de mise à jour
-      article:
-        title: Titre
-        status: Statut
-      question_and_answer:
-        question: Question
-        answer: Réponse
     models:
       user: Utilisateur
   devise:

@@ -120,6 +120,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :team_members, only: [:index, :new, :create, :edit, :update, :destroy] do
+      scope module: :team_members do
+        resource :photos, only: [:destroy]
+      end
+    end
+
     resources :venues, only: [:show]
     resources :bookings, only: [:show]
   end
