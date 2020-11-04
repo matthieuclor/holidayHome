@@ -21,6 +21,12 @@ class TeamMemberTest < ActiveSupport::TestCase
     end
   end
 
+  test "invalid online team member without photo" do
+    @team_member.status = :online
+    assert_not @team_member.valid?
+    assert_not_nil @team_member.errors[:photo]
+  end
+
   %i(first_name last_name function).each do |attibute|
     test "capitalize #{attibute} before save" do
       @team_member.send("#{attibute}=", "test")

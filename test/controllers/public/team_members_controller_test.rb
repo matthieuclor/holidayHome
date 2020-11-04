@@ -7,7 +7,7 @@ module Public
     test "should get online team members" do
       get team_members_url
       team_members = @controller.view_assigns["team_members"]
-      assert_instance_of TeamMember, team_members.first
+      assert_instance_of TeamMemberDecorator, team_members.first
       team_members.each { |team_member| assert team_member.online? }
       assert_response :success
     end
