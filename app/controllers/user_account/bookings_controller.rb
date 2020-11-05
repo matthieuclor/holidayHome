@@ -14,13 +14,18 @@ module UserAccount
     end
 
     def show
-      @booking = BookingDecorator.new(
-        Booking.includes(
-          :user,
-          venue: [:photos_attachments],
-          booking_approvals: [:user]
-        ).find(params[:id])
-      )
+      respond_to do |format|
+        format.html { @booking = Booking.find(params[:id]) }
+        format.json do
+          @booking = BookingDecorator.new(
+            Booking.includes(
+              :user,
+              venue: [:photos_attachments],
+              booking_approvals: [:user]
+            ).find(params[:id])
+          )
+        end
+      end
     end
 
     def create

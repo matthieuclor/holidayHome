@@ -126,6 +126,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :admins, only: [:index]
     resources :venues, only: [:show]
     resources :bookings, only: [:show]
   end

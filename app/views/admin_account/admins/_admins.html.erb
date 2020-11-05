@@ -1,0 +1,38 @@
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Email</th>
+      <th scope="col" class="text-center">Date de création</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @admins.present? %>
+      <% @admins.each do |admin| %>
+        <tr>
+          <td class="font-weight-bolder">
+            <%= admin.full_name %>
+          </td>
+          <td>
+            <%= admin.email %>
+          </td>
+          <td class="text-center">
+            <%= l(admin.created_at, format: :medium) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="3" class="text-center text-muted">
+          aucun admin n'a été trouvé
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

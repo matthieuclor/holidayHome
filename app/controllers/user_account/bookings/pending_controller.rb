@@ -8,12 +8,14 @@ module UserAccount
       before_action :set_current_family, :set_current_venue
 
       def index
-        @pending_bookings = @current_family
+        @pending_bookings = BookingDecorator.wrap(
+          @current_family
           .bookings
           .joins(:booking_approvals, :user)
           .where(status: :pending)
           .where(venue: @current_venue)
           .where(booking_approvals: { user: current_user, status: :pending })
+        )
       end
     end
   end

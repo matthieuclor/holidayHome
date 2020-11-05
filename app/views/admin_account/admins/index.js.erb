@@ -1,0 +1,10 @@
+$("#admins-container").html("<%= j render 'admins' %>")
+
+<% if @admin_ransack_params.present? %>
+  $("#reset-filter").removeClass("d-none")
+<% end %>
+
+<% if flash.present? %>
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
+  <% flash.clear %>
+<% end %>

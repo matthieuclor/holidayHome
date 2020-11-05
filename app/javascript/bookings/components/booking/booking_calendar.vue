@@ -71,7 +71,7 @@
       },
       linkToBooking(day) {
         if (day.attributes) {
-          location.replace(`/user_account/bookings/${day.attributes[0].key}`)
+          location.assign(`/user_account/bookings/${day.attributes[0].key}`)
         }
       }
     },

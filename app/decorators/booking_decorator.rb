@@ -20,8 +20,15 @@ class BookingDecorator < ApplicationDecorator
     @human_date_range ||= if from == to
       "Le #{I18n.l(from, format: :medium)}"
     else
-      "Du #{I18n.l(from, format: :medium)}" +
-      " au #{I18n.l(to, format: :medium)}"
+      if from.year == to.year
+        if from.month == to.month
+          "Du #{from.day} au #{I18n.l(to, format: :medium)}"
+        else
+          "Du #{I18n.l(from, format: "%d %B")} au #{I18n.l(to, format: :medium)}"
+        end
+      else
+        "Du #{I18n.l(from, format: :medium)} au #{I18n.l(to, format: :medium)}"
+      end
     end
   end
 
