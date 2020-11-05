@@ -1,7 +1,7 @@
 notification_new_message_from_la_tania_booking:
   id: 1
   notification_type: 0
-  description: "Vous avez un nouveau message depuis la demande de réservation pour La Tania</br>Du <%= I18n.l(DateTime.now, format: :medium) %> au <%= I18n.l(DateTime.now + 7.days, format: :medium) %>"
+  description: "Vous avez un nouveau message depuis la demande de réservation pour La Tania</br>Du <%= DateTime.now.day %> au <%= I18n.l(DateTime.now + 7.days, format: :medium) %>"
   url: "/user_account/bookings/1"
   status: 1
   user_id: 1

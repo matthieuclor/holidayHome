@@ -16,7 +16,7 @@ module UserAccount
 
         assert_instance_of Family, current_family
         assert_instance_of Venue, current_venue
-        assert_instance_of Booking, pending_bookings.first
+        assert_instance_of BookingDecorator, pending_bookings.first
         pending_bookings.each { |booking| booking.pending? }
         assert_response :success
       end

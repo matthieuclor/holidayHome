@@ -27,8 +27,18 @@ module UserAccount
       assert_response :success
     end
 
-    test "should render booking" do
+    test "should render booking with html" do
       get user_account_booking_url(bookings(:la_tania_booking))
+
+      booking = @controller.view_assigns["booking"]
+
+      assert_instance_of Booking, booking
+      assert_equal booking.user, @user
+      assert_response :success
+    end
+
+    test "should render booking with json" do
+      get user_account_booking_url(bookings(:la_tania_booking)), as: :json
 
       booking = @controller.view_assigns["booking"]
 
