@@ -1,0 +1,10 @@
+$("#school-holidays-container").html("<%= j render 'school_holidays' %>")
+
+<% if @school_holiday_ransack_params.present? %>
+  $("#reset-filter").removeClass("d-none")
+<% end %>
+
+<% if flash.present? %>
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
+  <% flash.clear %>
+<% end %>

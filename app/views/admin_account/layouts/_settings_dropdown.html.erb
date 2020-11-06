@@ -16,9 +16,13 @@
                 admin_account_design_system_index_path,
                 class: "dropdown-item #{'active' if controller_name == 'design_system'}" %>
 
-    <%=link_to "Administrateurs",
+    <%= link_to "Administrateurs",
                 admin_account_admins_path,
                 class: "dropdown-item #{'active' if controller_name == 'admins'}" %>
+
+    <%= link_to "Vacances scolaires",
+                admin_account_school_holidays_path,
+                class: "dropdown-item #{'active' if controller_name == 'school_holidays'}" %>
 
     <%= link_to "Membres",
                 admin_account_team_members_path,

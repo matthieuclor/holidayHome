@@ -1,0 +1,27 @@
+<div class="d-flex justify-content-center">
+  <div class="col-11">
+    <div class="card my-3">
+      <div class="card-body py-0">
+        <div class="d-flex align-content-center my-4">
+          <h1 class="m-0 mr-auto">Vacances scolaires</h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="card mb-3">
+      <div class="card-body">
+        <div class="d-flex justify-content-end mb-2">
+          <%= link_to fa_icon("sync", "Synchroniser" , class: "mr-1"),
+                      admin_account_school_holidays_path,
+                      method: :post,
+                      remote: true,
+                      class: "btn btn-outline-primary ml-auto" %>
+        </div>
+
+        <div id="school-holidays-container">
+          <%= render "school_holidays" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

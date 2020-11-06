@@ -127,6 +127,7 @@ Rails.application.routes.draw do
     end
 
     resources :admins, only: [:index]
+    resources :school_holidays, only: [:index, :create]
     resources :venues, only: [:show]
     resources :bookings, only: [:show]
   end

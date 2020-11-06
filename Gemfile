@@ -47,6 +47,8 @@ gem 'interactor'
 gem 'chartkick'
 # SitemapGenerator is the easiest way to generate Sitemaps in Ruby
 gem 'sitemap_generator'
+# Faraday is an HTTP client library that provides a common interface over many adapters
+gem 'faraday'
 
 group :staging do
   gem 'rest-client'

@@ -1,0 +1,4 @@
+<% if flash.present? %>
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
+  <% flash.clear %>
+<% end %>
