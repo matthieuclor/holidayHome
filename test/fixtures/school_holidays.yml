@@ -1,11 +1,8 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-# This model initially had no columns defined. If you add columns to the
-# model remove the '{}' from the fixture names and add the columns immediately
-# below each fixture, per the syntax in the comments below
-#
-one: {}
-# column: value
-#
-two: {}
-# column: value
+christmas_holidays:
+  id: 1
+  description: Vacances de Noël
+  zone: Zone A
+  school_year: 2020-2021
+  locations: ["Versailles", "Créteil", "Montpellier", "Paris", "Toulouse"]
+  from: <%= Date.new(2020, 12, 19) %>
+  to: <%= Date.new(2021, 1, 4) %>

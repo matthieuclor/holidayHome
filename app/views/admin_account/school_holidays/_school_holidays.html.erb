@@ -26,10 +26,18 @@
             <%= school_holiday_locations_with_tooltip(school_holiday) %>
           </td>
           <td class="text-center">
-            <%= l(school_holiday.from, format: :medium) %>
+            <% if school_holiday.from %>
+              <%= l(school_holiday.from, format: :medium) %>
+            <% else %>
+              <span class="text-muted">N.C</span>
+            <% end %>
           </td>
           <td class="text-center">
-            <%= l(school_holiday.to, format: :medium) %>
+            <% if school_holiday.to %>
+              <%= l(school_holiday.to, format: :medium) %>
+            <% else %>
+              <span class="text-muted">N.C</span>
+            <% end %>
           </td>
         </tr>
       <% end %>
