@@ -22,7 +22,7 @@ module UserAccount
         )
 
         assert_emails(1)
-        assert_equal ['hello@hutoki.com'], authentification_mailer.from
+        assert_equal [I18n.t("contact.email")], authentification_mailer.from
         assert_equal [users(:locked_user).email], authentification_mailer.to
         assert_equal "Instructions pour déverrouiller le compte", authentification_mailer.subject
         assert_redirected_to new_user_session_url

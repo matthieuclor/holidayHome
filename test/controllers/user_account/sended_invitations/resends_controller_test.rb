@@ -25,7 +25,7 @@ module UserAccount
         user_mailer = InvitationMailer.send_to_known_user(invitation, receiver)
         assert_emails(1) { user_mailer.deliver_later }
 
-        assert_equal ['hello@hutoki.com'], user_mailer.from
+        assert_equal [I18n.t("contact.email")], user_mailer.from
         assert_equal [receiver.email], user_mailer.to
         assert_equal "Invitation à rejoindre la famille #{invitation.family.name}", user_mailer.subject
         assert_equal (invitation_query.send_count + 1), invitation.send_count

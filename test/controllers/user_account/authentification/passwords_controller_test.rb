@@ -23,7 +23,7 @@ module UserAccount
         )
 
         assert_emails(1)
-        assert_equal ['hello@hutoki.com'], authentification_mailer.from
+        assert_equal [I18n.t("contact.email")], authentification_mailer.from
         assert_equal [users(:matthieu).email], authentification_mailer.to
         assert_equal "Instructions pour changer le mot de passe", authentification_mailer.subject
         assert_redirected_to new_user_session_url

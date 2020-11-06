@@ -14,7 +14,7 @@
       <% @team_members.each do |team_member| %>
         <tr>
           <td>
-            <% if team_member.photo.attached? && team_member.photo.persisted? %>
+            <% if team_member.photo.attached? %>
               <%= image_tag(team_member.photo.variant(resize_to_limit: [100, 100]), class: "rounded") %>
             <% end %>
           </td>

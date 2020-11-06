@@ -1,0 +1,50 @@
+<table class="table table-rounded table-borderless table-hover">
+  <thead class="table-info">
+    <tr>
+      <th scope="col">Description</th>
+      <th scope="col">Zone</th>
+      <th scope="col">Année scolaire</th>
+      <th scope="col">Académies</th>
+      <th scope="col" class="text-center">Date de début</th>
+      <th scope="col" class="text-center">Date de fin</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% if @school_holidays.present? %>
+      <% @school_holidays.each do |school_holiday| %>
+        <tr>
+          <td class="font-weight-bolder">
+            <%= school_holiday.description %>
+          </td>
+          <td>
+            <%= school_holiday.zone %>
+          </td>
+          <td>
+            <%= school_holiday.school_year %>
+          </td>
+          <td class="text-truncate">
+            <%= school_holiday_locations_with_tooltip(school_holiday) %>
+          </td>
+          <td class="text-center">
+            <%= l(school_holiday.from, format: :medium) %>
+          </td>
+          <td class="text-center">
+            <%= l(school_holiday.to, format: :medium) %>
+          </td>
+        </tr>
+      <% end %>
+    <% else %>
+      <tr>
+        <td colspan="6" class="text-center text-muted">
+          aucune vacance scolaire n'a été trouvé
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

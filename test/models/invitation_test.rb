@@ -147,7 +147,7 @@ class InvitationTest < ActiveSupport::TestCase
     assert_enqueued_emails(1)
 
     user_mailer = InvitationMailer.send_to_known_user(invitation, user)
-    assert_equal ['hello@hutoki.com'], user_mailer.from
+    assert_equal [I18n.t("contact.email")], user_mailer.from
     assert_equal [user.email], user_mailer.to
     assert_equal "Invitation à rejoindre la famille #{invitation.family.name}", user_mailer.subject
     assert_not_nil invitation.last_send_at
@@ -163,7 +163,7 @@ class InvitationTest < ActiveSupport::TestCase
     assert_enqueued_emails(1)
 
     user_mailer = InvitationMailer.send_to_unknown_user(invitation)
-    assert_equal ['hello@hutoki.com'], user_mailer.from
+    assert_equal [I18n.t("contact.email")], user_mailer.from
     assert_equal [invitation.email], user_mailer.to
     assert_equal "Invitation à créer son compte", user_mailer.subject
     assert_not_nil invitation.last_send_at

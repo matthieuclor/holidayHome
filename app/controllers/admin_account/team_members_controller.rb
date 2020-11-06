@@ -7,7 +7,7 @@ module AdminAccount
 
     def index
       @query = TeamMember.ransack(team_member_ransack_params)
-      @pagy, @team_members = pagy(@query.result.includes(:photo_attachment), items: 10)
+      @pagy, @team_members = pagy(@query.result.with_attached_photo, items: 10)
       @team_members = TeamMemberDecorator.wrap(@team_members)
     end
 

@@ -7,7 +7,7 @@ module AdminAccount
 
     def index
       @query = User.ransack(user_ransack_params)
-      @pagy, @users = pagy(@query.result.includes(:avatar_attachment))
+      @pagy, @users = pagy(@query.result.with_attached_avatar)
       @users = UserDecorator.wrap(@users)
     end
 

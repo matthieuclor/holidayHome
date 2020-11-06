@@ -8,3 +8,5 @@ $("#school-holidays-container").html("<%= j render 'school_holidays' %>")
   $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
   <% flash.clear %>
 <% end %>
+
+Turbolinks.dispatch("turbolinks:load")

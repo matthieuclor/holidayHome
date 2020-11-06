@@ -1,4 +1,4 @@
-<% if current_user.avatar.attached? && current_user.avatar.persisted? %>
+<% if current_user.avatar.attached? %>
   <div class="d-flex align-items-center mb-4">
     <%= image_tag(current_user.avatar.variant(resize_to_limit: [80, 80]), class: "rounded-circle") %>
 

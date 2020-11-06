@@ -4,6 +4,37 @@
       <div class="card-body py-0">
         <div class="d-flex align-content-center my-4">
           <h1 class="m-0 mr-auto">Vacances scolaires</h1>
+
+          <%= button_to "Réinitialiser",
+                        admin_account_school_holidays_path,
+                        method: :get,
+                        id: "reset-filter",
+                        class: "btn btn-danger m-2 d-none" %>
+          <div class="col-5 p-0 d-flex align-items-center">
+            <%= search_form_for [:admin_account, @query],
+                                wrapper: :inline_form,
+                                data: { autosubmit: true },
+                                class: "w-100",
+                                remote: true do |f| %>
+
+              <div class="row">
+                <div class="col-8">
+                  <%= f.input :zone_eq,
+                              label: false,
+                              prompt: "Filtrer par zone",
+                              required: false,
+                              collection: SchoolHoliday.pluck(:zone).uniq %>
+                </div>
+                <div class="col-4 pl-0">
+                  <%= f.input :school_year_eq,
+                              label: false,
+                              prompt: "Annnée scolaire",
+                              required: false,
+                              collection: SchoolHoliday.pluck(:school_year).uniq %>
+                </div>
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
@@ -11,11 +42,19 @@
     <div class="card mb-3">
       <div class="card-body">
         <div class="d-flex justify-content-end mb-2">
-          <%= link_to fa_icon("sync", "Synchroniser" , class: "mr-1"),
-                      admin_account_school_holidays_path,
-                      method: :post,
-                      remote: true,
-                      class: "btn btn-outline-primary ml-auto" %>
+          <%= button_to admin_account_school_holidays_path,
+                        remote: true,
+                        class: "btn btn-outline-primary ml-auto",
+                        data: {
+                          disable_with: fa_icon(
+                            "sync",
+                            "Synchroniser",
+                            class: "mr-1"
+                          )
+                        } do %>
+
+            <%= fa_icon("sync", "Synchroniser", class: "mr-1") %>
+          <% end %>
         </div>
 
         <div id="school-holidays-container">
