@@ -4,7 +4,7 @@ document.addEventListener('turbolinks:load', () => {
       if (link.getAttribute("data-remote") == 'true') {
         $.ajax(link.getAttribute("data-table-link"))
       } else {
-        window.location = link.getAttribute("data-table-link")
+        location.assign(link.getAttribute("data-table-link"))
       }
     })
   })
