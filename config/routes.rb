@@ -44,6 +44,7 @@ Rails.application.routes.draw do
     resources :settings, only: [:index]
     resource :current_families, only: [:update]
     resource :current_venues, only: [:update]
+    resource :current_school_holiday_zones, only: [:update]
     resources :families, only: [:index, :new, :create, :edit, :update, :destroy]
     resources :family_links, only: [:destroy]
     resources :users, only: [:index, :show]
@@ -66,6 +67,12 @@ Rails.application.routes.draw do
           resources :range, only: [:index]
           resources :pending, only: [:index]
         end
+      end
+    end
+
+    resource :school_holidays, only: [] do
+      scope module: :school_holidays do
+        resources :range, only: [:index]
       end
     end
 

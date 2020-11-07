@@ -6,12 +6,10 @@
 
     <VenueContainer />
 
-    <PlanInfoCard v-if="planError" :planError="planError" />
+    <PlanInfoCard />
 
     <div id="v-toast-container">
-      <FlashMessage v-for="(flash, index) in flashes"
-                    :key="index"
-                    :flash="flash" />
+      <FlashMessage v-for="(flash, index) in flashes" :key="index" :flash="flash" />
     </div>
   </div>
 </template>
@@ -28,8 +26,7 @@
     computed: {
       ...mapGetters([
         'flashes',
-        'sidebar',
-        'planError'
+        'sidebar'
       ])
     },
     components: {

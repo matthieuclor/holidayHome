@@ -3,16 +3,15 @@ import actions from './actions'
 import getters from './getters'
 
 const state = {
-  venueItems: null,
-  chunkedVenueItems: null,
-  currentVenue: null
+  currentSchoolHolidayZones: null,
+  schoolHolidayItems: []
 }
 
-const venueModule = {
+const schoolHolidayModule = {
   state,
   mutations,
   actions,
   getters
 }
 
-export default venueModule
+export default schoolHolidayModule

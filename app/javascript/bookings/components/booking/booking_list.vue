@@ -1,5 +1,5 @@
 <template>
-  <div class="col-12 mt-3">
+  <div v-if="currentVenue && currentUser" class="col-12 mt-3">
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-center">
@@ -38,10 +38,10 @@
 
   export default {
     name: 'BookingList',
-    props: ['currentVenue'],
     computed: {
       ...mapGetters([
         'bookingPendingItems',
+        'currentVenue',
         'currentUser'
       ])
     },

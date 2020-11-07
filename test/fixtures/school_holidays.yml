@@ -4,5 +4,5 @@ christmas_holidays:
   zone: Zone A
   school_year: 2020-2021
   locations: ["Versailles", "Créteil", "Montpellier", "Paris", "Toulouse"]
-  from: <%= Date.new(2020, 12, 19) %>
-  to: <%= Date.new(2021, 1, 4) %>
+  from: <%= Date.current - 10.days %>
+  to: <%= Date.current + 10.days %>

@@ -6,9 +6,9 @@
           class="list-group list-group-horizontal-md">
 
         <VenueListItem v-for="venueItem in chunkedItems"
-                      :key="venueItem.id"
-                      :venueItem="venueItem"
-                      :currentVenue="currentVenue" />
+                       :key="venueItem.id"
+                       :venueItem="venueItem"
+                       :currentVenue="currentVenue" />
 
       </ul>
     </div>
@@ -17,18 +17,18 @@
 
 <script>
   import VenueListItem from 'bookings/components/venue/venue_list_item'
-  import { chunk } from 'lodash'
+  import { mapGetters } from 'vuex'
 
   export default {
     name: 'VenueList',
-    props: ['venueItems', 'currentVenue'],
     components: {
       VenueListItem
     },
     computed: {
-      chunkedVenueItems() {
-        return chunk(this.venueItems, 3)
-      }
-    }
+      ...mapGetters([
+        'currentVenue',
+        'chunkedVenueItems'
+      ])
+    },
   }
 </script>

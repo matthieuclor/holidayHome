@@ -7,6 +7,7 @@ export default {
       commit('UPDATE_VENUE_ITEMS', response.data.venues)
       commit('UPDATE_CURRENT_VENUE', response.data.currentVenue)
       commit('UPDATE_CURRENT_USER', response.data.currentUser)
+      commit('UPDATE_CURRENT_SCHOOL_HOLIDAY_ZONES', response.data.currentSchoolHolidayZones)
     })
   },
   setCurrentVenue({ commit }, id) {

@@ -1,5 +1,5 @@
 <template>
-  <div class="card fixed-bottom m-3">
+  <div v-if="planError" class="card fixed-bottom m-3">
     <div class="card-body">
       <div class="d-flex justify-content-between mb-3">
         <div class="alert alert-danger m-0" role="alert">
@@ -89,11 +89,13 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+  import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'PlanInfoCard',
-    props: ['planError'],
+    computed: {
+      ...mapGetters(['planError'])
+    },
     methods: {
       ...mapActions(['updatePlanError']),
       removePlanError() {

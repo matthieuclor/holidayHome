@@ -1,13 +1,13 @@
 <template>
   <div>
     <BookingItem />
+
     <MessageForm />
+
     <MessageList />
 
     <div id="v-toast-container">
-      <FlashMessage v-for="(flash, index) in flashes"
-                    :key="index"
-                    :flash="flash" />
+      <FlashMessage v-for="(flash, index) in flashes" :key="index" :flash="flash" />
     </div>
   </div>
 </template>

@@ -1,14 +1,14 @@
 <template>
-  <div v-if="venueItems && currentVenue">
-    <VenueList :venueItems="venueItems" :currentVenue="currentVenue" />
+  <div>
+    <VenueList />
 
-    <BookingList :currentVenue="currentVenue" />
+    <BookingList />
 
-    <BookingForm :currentVenue="currentVenue" />
+    <BookingFormContainer />
 
     <BookingCalendar />
 
-    <PlanInfoCard v-if="planError" :planError="planError" />
+    <PlanInfoCard />
 
     <div id="v-toast-container">
       <FlashMessage v-for="(flash, index) in flashes" :key="index" :flash="flash" />
@@ -19,7 +19,7 @@
 <script>
   import BookingList from 'bookings/components/booking/booking_list'
   import VenueList from 'bookings/components/venue/venue_list'
-  import BookingForm from 'bookings/components/booking/booking_form'
+  import BookingFormContainer from 'bookings/components/booking/booking_form_container'
   import BookingCalendar from 'bookings/components/booking/booking_calendar'
   import FlashMessage from 'shared/components/flash/flash_message'
   import PlanInfoCard from 'shared/components/plan_error/plan_info_card'
@@ -28,17 +28,12 @@
   export default {
     name: 'App',
     computed: {
-      ...mapGetters([
-        'venueItems',
-        'currentVenue',
-        'flashes',
-        'planError'
-      ])
+      ...mapGetters(['flashes'])
     },
     components: {
       BookingList,
       VenueList,
-      BookingForm,
+      BookingFormContainer,
       BookingCalendar,
       PlanInfoCard,
       FlashMessage

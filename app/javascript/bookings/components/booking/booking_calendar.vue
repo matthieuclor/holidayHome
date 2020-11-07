@@ -21,7 +21,9 @@
       ...mapGetters([
         'bookingItems',
         'currentVenue',
-        'calendar'
+        'calendar',
+        'currentSchoolHolidayZones',
+        'schoolHolidayItems'
       ]),
       layout() {
         return this.$screens(
@@ -35,26 +37,41 @@
         )
       },
       attributes() {
-        return this.bookingItems.map(
-          item => {
-            return {
-              key: item.id,
-              highlight: {
-                color: `${item.status == 'accepted' ? 'green' : 'orange'}`,
-                fillMode: 'light'
-              },
-              popover: {
-                label: item.label
-              },
-              dates: [{ start: new Date(item.from), end: new Date(item.to) }]
+        return [
+          ...this.bookingItems.map(
+            item => {
+              return {
+                key: item.id,
+                highlight: {
+                  color: `${item.status == 'accepted' ? 'green' : 'orange'}`,
+                  fillMode: 'light'
+                },
+                popover: {
+                  label: item.label
+                },
+                dates: [{ start: new Date(item.from), end: new Date(item.to) }]
+              }
             }
-          }
-        )
+          ),
+          ...this.schoolHolidayItems.map(
+            item => {
+              return {
+                key: item.id,
+                dot: this.get_dot_color(item.zone),
+                popover: {
+                  label: `${item.description} (${item.zone})`
+                },
+                dates: [{ start: new Date(item.from), end: new Date(item.to) }]
+              }
+            }
+          )
+        ]
       },
     },
     methods: {
       ...mapActions([
         'getBookingItems',
+        'getSchoolHolidayItems',
         'updateCalendar'
       ]),
       updatePage(event) {
@@ -68,10 +85,21 @@
         })
 
         this.getBookingItems(this.calendar)
+        this.getSchoolHolidayItems(this.calendar)
       },
       linkToBooking(day) {
-        if (day.attributes) {
+        if (day.attributes[0].highlight) {
           location.assign(`/user_account/bookings/${day.attributes[0].key}`)
+        }
+      },
+      get_dot_color(zone) {
+        switch (zone) {
+          case 'Zone A':
+            return 'blue'
+          case 'Zone B':
+            return 'red'
+          case 'Zone C':
+            return 'yellow'
         }
       }
     },
@@ -79,16 +107,20 @@
       currentVenue: {
         handler() {
           if (!this.calendar) {
-            const currentDate = new Date()
-
             this.updateCalendar({
-              month: currentDate.getMonth() + 1,
-              year: currentDate.getFullYear(),
+              month: new Date().getMonth() + 1,
+              year: new Date().getFullYear(),
               monthCount: 12
             })
           }
 
           this.getBookingItems(this.calendar)
+        },
+        immediate: true
+      },
+      currentSchoolHolidayZones: {
+        handler() {
+          this.getSchoolHolidayItems(this.calendar)
         },
         immediate: true
       }

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_06_005524) do
+ActiveRecord::Schema.define(version: 2020_11_07_163150) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -246,6 +246,7 @@ ActiveRecord::Schema.define(version: 2020_11_06_005524) do
     t.inet "last_sign_in_ip"
     t.integer "plan", default: 0
     t.date "plan_deadline"
+    t.hstore "current_school_holiday_zones", default: {"A"=>"false", "B"=>"false", "C"=>"false"}
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["current_venue_id"], name: "index_users_on_current_venue_id", using: :gin
     t.index ["email"], name: "index_users_on_email", unique: true

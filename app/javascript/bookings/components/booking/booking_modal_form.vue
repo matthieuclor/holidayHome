@@ -50,11 +50,11 @@
 
   export default {
     name: 'BookingModalForm',
-    props: ['currentVenue'],
     data: () => ({ message: null }),
     computed: {
       ...mapGetters([
         'calendar',
+        'currentVenue',
         'bookingModalForm',
         'bookingDateRange'
       ]),

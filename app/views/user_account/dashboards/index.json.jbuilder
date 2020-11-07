@@ -11,3 +11,5 @@ end
 json.current_venue(@current_venue, :id, :name)
 
 json.current_user(current_user, :id)
+
+json.current_school_holiday_zones current_user.current_school_holiday_zones

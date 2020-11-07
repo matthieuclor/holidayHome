@@ -1,59 +1,44 @@
 <template>
-  <div class="col-12 mt-3">
-    <div class="card">
-      <div class="card-body">
-        <div class="d-flex justify-content-center">
-          <div class="col-md-12 col-lg-10">
-            <div v-if="bookingFormItems" class="d-flex justify-content-center align-items-center">
-              <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
-                <div class="form-group">
-                  <label class="mr-2">
-                    Créer une nouvelle réservation pour&nbsp;
-                    <span class="font-weight-bold">{{ currentVenue.name }}</span>
-                  </label>
+  <div v-if="currentVenue"
+       class="d-flex justify-content-center align-items-center">
 
-                  <v-date-picker @update:fromPage="updatePage"
-                                @input="submitBookingForm"
-                                mode="range"
-                                v-model="dateRange"
-                                :disabled-dates="disabledDates"
-                                ref="formCalendar" />
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
+    <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
+      <div class="form-group">
+        <label class="mr-2">
+          Créer une réservation pour&nbsp;
+          <span class="font-weight-bold">{{ currentVenue.name }}</span>
+        </label>
+
+        <v-date-picker v-if="bookingFormItems"
+                       @update:fromPage="updatePage"
+                       @input="submitBookingForm"
+                       mode="range"
+                       v-model="dateRange"
+                       :disabled-dates="disabledDates"
+                       ref="formCalendar" />
       </div>
-
-      <BookingModalForm v-show="bookingModalForm" :currentVenue="currentVenue" />
-    </div>
+    </form>
   </div>
 </template>
 
 <script>
-  import BookingModalForm from './booking_modal_form'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
     name: 'BookingForm',
-    props: ['currentVenue'],
     data: () => ({ dateRange: null }),
     computed: {
       ...mapGetters([
+        'currentVenue',
         'formCalendar',
         'bookingFormItems',
-        'bookingModalForm',
-        'bookingDateRange',
-        'currentUser'
+        'bookingDateRange'
       ]),
       disabledDates() {
         return this.bookingFormItems.map(
           item => ({ start: new Date(item.from), end: new Date(item.to) })
         )
       }
-    },
-    components: {
-      BookingModalForm
     },
     methods: {
       ...mapActions([
