@@ -1,6 +1,6 @@
 <template>
-  <div class="d-flex justify-content-center align-items-center">
-    <span>Vacances scolaires :</span>
+  <div class="d-flex px-4 pt-4 pb-2">
+    <span class="font-weight-bold">Vacances scolaires :</span>
 
     <div v-for="(value, key) in currentSchoolHolidayZones"
          :key="key"

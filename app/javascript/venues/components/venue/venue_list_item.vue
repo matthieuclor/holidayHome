@@ -1,11 +1,6 @@
 <template>
   <router-link :to="{ name: 'venue', params: { id: venueItem.id } }">
-    <div class="card mb-3"
-         @click="showSidebar"
-         @mouseover="mouseover = true"
-         @mouseleave="mouseover = false"
-         :class="shadowType(venueItem.id)">
-
+    <div @click="showSidebar" class="card mb-3" :class="shadowType(venueItem.id)">
       <div class="row no-gutters">
         <div class="col-lg-4 p-2">
           <img v-if="venueItem.firstPhotoUrl"
@@ -65,9 +60,6 @@
 
   export default {
     name: 'VenueListItem',
-    data() {
-      return { mouseover: false }
-    },
     props: ['venueItem'],
     mixins: [textMixin],
     components: {
@@ -76,7 +68,7 @@
     methods: {
       ...mapActions(['showSidebar']),
       shadowType(id) {
-        return this.$route.params.id == id || this.mouseover ? 'shadow' : 'shadow-sm'
+        return this.$route.params.id == id ? 'shadow' : 'shadow-sm'
       }
     }
   }

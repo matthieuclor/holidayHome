@@ -4,7 +4,7 @@
 
     <BookingList />
 
-    <BookingFormContainer />
+    <BookingForm />
 
     <BookingCalendar />
 
@@ -19,7 +19,7 @@
 <script>
   import BookingList from 'bookings/components/booking/booking_list'
   import VenueList from 'bookings/components/venue/venue_list'
-  import BookingFormContainer from 'bookings/components/booking/booking_form_container'
+  import BookingForm from 'bookings/components/booking/booking_form'
   import BookingCalendar from 'bookings/components/booking/booking_calendar'
   import FlashMessage from 'shared/components/flash/flash_message'
   import PlanInfoCard from 'shared/components/plan_error/plan_info_card'
@@ -33,7 +33,7 @@
     components: {
       BookingList,
       VenueList,
-      BookingFormContainer,
+      BookingForm,
       BookingCalendar,
       PlanInfoCard,
       FlashMessage

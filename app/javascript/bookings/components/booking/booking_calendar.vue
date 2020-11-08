@@ -1,18 +1,25 @@
 <template>
   <div v-if="bookingItems" class="d-flex justify-content-center my-3">
     <div class="w-100 px-3">
-      <v-calendar @update:fromPage="updatePage"
-                  @dayclick="linkToBooking"
-                  :columns="layout.columns"
-                  :rows="layout.rows"
-                  :is-expanded="true"
-                  :attributes="attributes"
-                  ref="calendar" />
+      <div class="card">
+        <div class="card-body p-0">
+          <SchoolHolidayZoneForm />
+
+          <v-calendar @update:fromPage="updatePage"
+                      @dayclick="linkToBooking"
+                      :columns="layout.columns"
+                      :rows="layout.rows"
+                      :is-expanded="true"
+                      :attributes="attributes"
+                      ref="calendar" />
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+  import SchoolHolidayZoneForm from 'bookings/components/school_holiday/school_holiday_zone_form'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -67,6 +74,9 @@
           )
         ]
       },
+    },
+    components: {
+      SchoolHolidayZoneForm
     },
     methods: {
       ...mapActions([
@@ -131,7 +141,5 @@
 <style scoped>
   .vc-container {
     border: 0;
-    border-radius: .3125rem;
-    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
   }
 </style>

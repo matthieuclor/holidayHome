@@ -1,27 +1,34 @@
 <template>
-  <div v-if="currentVenue"
-       class="d-flex justify-content-center align-items-center">
+  <div v-if="currentVenue" class="col-12 mt-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex justify-content-center align-items-center">
+          <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
+            <div class="form-group">
+              <label class="mr-2">
+                Créer une réservation pour&nbsp;
+                <span class="font-weight-bold">{{ currentVenue.name }}</span>
+              </label>
 
-    <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
-      <div class="form-group">
-        <label class="mr-2">
-          Créer une réservation pour&nbsp;
-          <span class="font-weight-bold">{{ currentVenue.name }}</span>
-        </label>
-
-        <v-date-picker v-if="bookingFormItems"
-                       @update:fromPage="updatePage"
-                       @input="submitBookingForm"
-                       mode="range"
-                       v-model="dateRange"
-                       :disabled-dates="disabledDates"
-                       ref="formCalendar" />
+              <v-date-picker v-if="bookingFormItems"
+                            @update:fromPage="updatePage"
+                            @input="submitBookingForm"
+                            mode="range"
+                            v-model="dateRange"
+                            :disabled-dates="disabledDates"
+                            ref="formCalendar" />
+            </div>
+          </form>
+        </div>
       </div>
-    </form>
+    </div>
+
+    <BookingModalForm v-show="bookingModalForm" />
   </div>
 </template>
 
 <script>
+  import BookingModalForm from './booking_modal_form'
   import { mapGetters, mapActions } from 'vuex'
 
   export default {
@@ -32,13 +39,17 @@
         'currentVenue',
         'formCalendar',
         'bookingFormItems',
-        'bookingDateRange'
+        'bookingDateRange',
+        'bookingModalForm'
       ]),
       disabledDates() {
         return this.bookingFormItems.map(
           item => ({ start: new Date(item.from), end: new Date(item.to) })
         )
       }
+    },
+    components: {
+      BookingModalForm
     },
     methods: {
       ...mapActions([
