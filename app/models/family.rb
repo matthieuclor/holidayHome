@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Family < ApplicationRecord
-  MIN_DAYS_FOR_APPROVAL = 0
-  MAX_DAYS_FOR_APPROVAL = 30
+  MIN_DAYS_FOR_APPROVAL = 0.freeze
+  MAX_DAYS_FOR_APPROVAL = 30.freeze
 
   belongs_to :creator, class_name: "User"
 

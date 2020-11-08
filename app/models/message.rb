@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
-  CONTENT_MAX = 500
+  CONTENT_MAX = 500.freeze
 
   belongs_to :user
   belongs_to :booking

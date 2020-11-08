@@ -11,7 +11,7 @@ class UserTest < ActiveSupport::TestCase
     assert @user.valid?
   end
 
-  %i(first_name last_name email).each do |attibute|
+  %i(first_name last_name email current_school_holiday_zones).each do |attibute|
     test "invalid user without #{attibute}" do
       @user.send("#{attibute}=", nil)
       assert_not @user.valid?
@@ -39,6 +39,18 @@ class UserTest < ActiveSupport::TestCase
     @user.password = '1234567'
     assert_not @user.valid?
     assert_not_nil @user.errors[:password]
+  end
+
+  test "invalid user with the wrong zones keys" do
+    @user.current_school_holiday_zones =  { "A": "false", "B": "false", "D": "true"}
+    assert_not @user.valid?
+    assert_not_nil @user.errors[:current_school_holiday_zones]
+  end
+
+  test "invalid user with the wrong zones values" do
+    @user.current_school_holiday_zones =  { "A": "false", "B": "test", "C": "true"}
+    assert_not @user.valid?
+    assert_not_nil @user.errors[:current_school_holiday_zones]
   end
 
   test "capitalize first name before save" do

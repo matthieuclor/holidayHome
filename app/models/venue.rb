@@ -3,11 +3,11 @@
 require 'open-uri'
 
 class Venue < ApplicationRecord
-  GOOGLE_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap"
-  GOOGLE_MAP_ZOOM = "11"
-  GOOGLE_MAP_SIZE = "400x400"
-  GOOGLE_MAP_TYPE = "roadmap"
-  GOOGLE_MAP_FORMAT = "png"
+  GOOGLE_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap".freeze
+  GOOGLE_MAP_ZOOM = "11".freeze
+  GOOGLE_MAP_SIZE = "400x400".freeze
+  GOOGLE_MAP_TYPE = "roadmap".freeze
+  GOOGLE_MAP_FORMAT = "png".freeze
 
   has_many_attached :photos, dependent: :destroy
   has_one_attached :map, dependent: :destroy

@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 class Invitation < ApplicationRecord
-  LIMIT_OF_SEND = 3
-  LIMIT_OF_SEND_DATE = 24.hours
+  LIMIT_OF_SEND = 3.freeze
+  LIMIT_OF_SEND_DATE = 24.hours.freeze
 
   belongs_to :sender, class_name: "User"
   belongs_to :receiver, class_name: "User", optional: true

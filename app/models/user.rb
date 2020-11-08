@@ -6,7 +6,7 @@ class User < ApplicationRecord
     families_users: 3,
     families_venues: 1,
     venues_photos: 1
-  }
+  }.freeze
 
   # Include default devise modules. Others available are:
   # :omniauthable
@@ -43,6 +43,7 @@ class User < ApplicationRecord
   validates :status, inclusion: { in: statuses.keys }
   validates :plan, inclusion: { in: plans.keys }
   validates_presence_of :plan_deadline, if: :premium?
+  validate :current_school_holiday_zones_presence_and_inclusion
 
   before_save -> { first_name.capitalize! }, if: :first_name_changed?
   before_save -> { last_name.capitalize! }, if: :last_name_changed?
@@ -64,6 +65,23 @@ class User < ApplicationRecord
   end
 
   private
+
+  def current_school_holiday_zones_presence_and_inclusion
+    if current_school_holiday_zones.nil?
+      errors.add(:current_school_holiday_zones, :presence)
+      return
+    end
+
+    unless current_school_holiday_zones.keys == ["A", "B", "C"]
+      errors.add(:current_school_holiday_zones, :inclusion)
+    end
+
+    valid_values = ["true", "false", true, false]
+
+    unless current_school_holiday_zones.values.all? { |v| valid_values.include?(v) }
+      errors.add(:current_school_holiday_zones, :inclusion)
+    end
+  end
 
   def set_families_plan
     if basic?
