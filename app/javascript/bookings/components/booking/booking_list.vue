@@ -3,7 +3,7 @@
     <div class="card">
       <div class="card-body">
         <div class="d-flex justify-content-center">
-          <div class="col-md-12 col-lg-10">
+          <div class="col-md-12">
             <div class="d-flex flex-column-reverse flex-lg-row justify-content-lg-between align-items-center mb-3">
               <h5 class="card-title mb-0">
                 Demande de réservation en attente de votre approbation pour {{currentVenue.name}}
