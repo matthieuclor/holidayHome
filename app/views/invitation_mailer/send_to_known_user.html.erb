@@ -10,21 +10,21 @@
   <table border="0" cellpadding="0" cellspacing="0" align="center" class="mcnButtonContentContainer" style="border-collapse: separate !important; width: 250px; border-spacing: 20px;">
     <tbody>
       <tr>
-        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #48CB4B; border-radius: 5px;">
+        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: #4aca7b; border-radius: 5px;">
           <%= link_to 'Oui',
                       new_responses_url(response: 'yes', token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",
-                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff;" %>
+                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff; padding: 15px 30px;" %>
         </td>
-        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px; background-color: #dc3545; border-radius: 5px;">
+        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; background-color: #f56565; border-radius: 5px;">
           <%= link_to 'Non',
                       new_responses_url(response: 'no', token: @invitation.token),
                       class: "mcnButton",
                       title: "Oui",
                       target: "_blank",
-                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff;" %>
+                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff; padding: 15px 30px;" %>
         </td>
       </tr>
     </tbody>
@@ -34,16 +34,16 @@
 
   <br>
 
-  <table border="0" cellpadding="0" cellspacing="0" align="center" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 5px;background-color: #48CB4B; width: 200px;">
+  <table border="0" cellpadding="0" cellspacing="0" align="center" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 5px;background-color: #38b2ac; width: 200px;">
     <tbody>
       <tr>
-        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px; padding: 15px 30px;">
+        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: &quot;Open Sans&quot;, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 14px;">
           <%= link_to 'Me connecter',
                       user_account_received_invitations_url,
                       class: "mcnButton",
                       title: "Me connecter",
                       target: "_blank",
-                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff;" %>
+                      style: "font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #fff; padding: 15px 30px;" %>
         </td>
       </tr>
     </tbody>
