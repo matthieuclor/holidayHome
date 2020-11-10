@@ -30,7 +30,7 @@
               </textarea>
 
               <small id="messageHelp" class="form-text text-muted">
-                Vous n'avez pas besoin d'indiquer vos dates dans ce message
+                Vous n'avez pas besoin d'indiquer le lieu ou encore vos dates dans ce message
               </small>
             </div>
 
