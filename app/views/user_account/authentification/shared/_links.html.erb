@@ -6,7 +6,7 @@
 
 <% if devise_mapping.registerable? && controller_name != 'registrations' %>
   <span>Pas encore inscrit ?</span>
-  <%= link_to "Créer mon compte", new_registration_path(resource_name) %>
+  <%= link_to "Créer mon compte", pricing_path %>
   <br>
 <% end %>
 
