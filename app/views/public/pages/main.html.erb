@@ -1,4 +1,4 @@
-<div class="py-12">
+<div class="mx-n3 py-12">
   <h1 class="text-center font-size-2-8">
     Planifiez vos vacances en toutes transparence
   </h1>
@@ -8,14 +8,15 @@
   </p>
 
   <div class="d-flex justify-content-center">
-    <%= link_to "Découvrez nos offres dès maintenant !",
-                pricing_path,
-                class: "btn btn-lg btn-outline-primary" %>
+    <%= button_to "Découvrez nos offres dès maintenant !",
+                  pricing_path,
+                  method: :get,
+                  class: "btn btn-lg btn-outline-primary" %>
   </div>
 </div>
 
 <div class="mx-n3 my-12 position-relative bg-primary">
-  <div class="rotated-bg-primary"></div>
+  <div class="rotated-bg-primary-3"></div>
 
   <div class="p-5">
     <h1 class="text-white text-center mb-8">
@@ -32,9 +33,10 @@
               </h4>
 
               <p class="text-white opacity-8 font-size-1-2 my-auto">
-                Créez des demandes de réservation de vos maisons familiales en quelques clics,
+                Visualisez le planning par famille et par lieu,
                 <br>
-                visualisez le planning par famille et par lieu.
+                en un coup d'oeil vous retrouvez toutes les informations utiles
+                pour une organisation optimal et une transparence total !
               </p>
             </div>
           </div>
@@ -49,6 +51,260 @@
   </div>
 </div>
 
-<div class="py-12">
-  <h1 class="text-center">test</h1>
+<div class="mx-n3 py-12">
+  <div class="p-5">
+    <h1 class="text-center mb-8">
+      Visualisez et gérez toutes vos familles !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_families.min.png", class: "img-fluid rounded shadow") %>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="mb-6">
+                Une interface simple pour gérez vos familles !
+              </h4>
+
+              <p class="text-muted font-size-1-2 my-auto">
+                Vous pouvez personaliser vos famille en indiquant une période
+                de réservation afin de laisser du temps au membres familiaux pour
+                approuver ou non au demandes de réservations.
+              </p>
+
+              <%= button_to "Tester Hutoki dès maintenant !",
+                            pricing_path,
+                            method: :get,
+                            class: "btn btn-lg btn-outline-primary mt-6" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-n3 my-12 position-relative bg-primary">
+  <div class="rotated-bg-primary-1"></div>
+
+  <div class="p-5">
+    <h1 class="text-white text-center mb-8">
+      Invitez toute votre famille !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="text-white mb-6">
+                Gérer sereinement vos invitations !
+              </h4>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                Visualisez les invitations envoyées et leurs statuts.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_invitation.min.png", class: "img-fluid rounded") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-n3 py-12">
+  <div class="p-5">
+    <h1 class="text-center mb-8">
+      Créez une demande de réservation en quelques clics !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_new_booking.min.png", class: "img-fluid rounded shadow") %>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="mb-6">
+                Un outil simple et rapide !
+              </h4>
+
+              <p class="text-muted font-size-1-2 my-auto">
+                Envoyez votre demande à toutes les personnes concernées
+                accompagné d'un message personalisée en un clic !
+              </p>
+
+              <%= button_to "Découvrez Hutoki !",
+                            pricing_path,
+                            method: :get,
+                            class: "btn btn-lg btn-outline-primary mt-6" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-n3 my-12 position-relative bg-primary">
+  <div class="rotated-bg-primary-3"></div>
+
+  <div class="p-5">
+    <h1 class="text-white text-center mb-8">
+      Communiquez en temps réel !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="text-white mb-6">
+                Discutez et approuvez en famille les demandes de réservation !
+              </h4>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                A chaques demande de réservation sa discution familiale !
+              </p>
+
+              <br>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                Retrouvez toutes les informations sur la réservation afin de
+                répondre au mieux au demandes.
+              </p>
+
+              <br>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                Discutez, commentez au sujet de la réservation en famille.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_booking.min.png", class: "img-fluid rounded") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-n3 pt-12 pb-4">
+  <div class="p-5">
+    <h1 class="text-center mb-8">
+      Visualisez et filtrez toutes les réservations !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_bookings.min.png", class: "img-fluid rounded shadow") %>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="mb-6">
+                Gardez l'historique par famille !
+              </h4>
+
+              <p class="text-muted font-size-1-2 my-auto">
+                Vous avez la possibilitée de filtrer les réservation pour retrouver
+                ou gérer rapidement les demandes.
+              </p>
+
+              <%= button_to "Tester Hutoki dès maintenant !",
+                            pricing_path,
+                            method: :get,
+                            class: "btn btn-lg btn-outline-primary mt-6" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-n3 my-12 position-relative bg-primary">
+  <div class="rotated-bg-primary-1"></div>
+
+  <div class="p-5">
+    <h1 class="text-white text-center mb-8">
+      Retrouvez tous vos lieux par famille !
+    </h1>
+
+    <div class="row pb-4">
+      <div class="col-md-6 mb-4 mb-md-0">
+        <div class="d-flex flex-column py-4 h-100">
+          <div class="d-flex justify-content-center my-auto">
+            <div class="col-md-8">
+              <h4 class="text-white mb-6">
+                Complétez les informations de vos lieux !
+              </h4>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                Combien de chambres, de salle de bain ?
+                <br>
+                Y a t-il internet sur place ?
+                <br>
+                Combien de lits simples, doubles ?
+                <br>
+                Y a t-il un lit bébé ?
+                <br>
+                Quelle est le code pour accéder au local poubelle ?
+              </p>
+
+              <br>
+
+              <p class="text-white opacity-8 font-size-1-2 my-auto">
+                Retrouvez toutes ces informations et plus sur une interface
+                simple et bien organisée !
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="d-flex justify-content-center">
+          <%= image_tag("screenshots/user_venues.min.png", class: "img-fluid rounded") %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="mt-12 mb-4">
+    <h4 class="text-center mb-6">Lancez-vous !</h4>
+
+    <p class="font-size-1-2 text-muted text-center m-0">
+      Gérez vos plannings familiaux en ligne,
+      <br>
+      optimisez votre gestion de maison de vacance familiale.
+    </p>
+
+    <div class="d-flex justify-content-center">
+      <%= button_to "C'est parti !",
+                    pricing_path,
+                    method: :get,
+                    class: "btn btn-lg btn-outline-primary mt-6" %>
+    </div>
+  </div>
 </div>
