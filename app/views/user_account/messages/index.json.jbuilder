@@ -1,5 +1,6 @@
 json.messages @messages do |message|
-  json.(message, :id, :content, :user_id)
+  json.(message, :id, :user_id)
+  json.content simple_format(message.content)
   json.created_at "Le #{l(message.created_at, format: :medium)}"
   json.user_name "#{message.user.first_name} #{message.user.last_name}"
   json.approval_status message.booking_approval&.status

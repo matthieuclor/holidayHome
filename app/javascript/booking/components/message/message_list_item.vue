@@ -14,8 +14,7 @@
         </span>
       </div>
 
-      <div class="my-1">
-        {{ messageItem.content }}
+      <div class="my-1 vue-html" v-html="messageItem.content">
       </div>
 
       <div class="d-flex flex-row align-items-center">
