@@ -17,7 +17,7 @@
           <form @submit.prevent="submitBookingModalForm">
             <div class="form-group">
               <label for="message">
-                Vous avez la possibilitée d'accompagner votre demande de réservation avec un message
+                Vous avez la possibilité d'accompagner votre demande de réservation avec un message
               </label>
 
               <textarea v-model="message"
