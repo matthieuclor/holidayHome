@@ -89,12 +89,12 @@
   </div>
 </div>
 
-<div class="mx-n3 my-12 position-relative bg-primary">
+<div class="mx-n3 py-12 position-relative bg-primary">
   <div class="rotated-bg-primary-1"></div>
 
   <div class="p-5">
     <h1 class="text-white text-center mb-8">
-      Invitez toute votre famille !
+      Créez une demande de réservation en quelques clics !
     </h1>
 
     <div class="row pb-4">
@@ -103,11 +103,12 @@
           <div class="d-flex justify-content-center my-auto">
             <div class="col-md-8">
               <h4 class="text-white mb-6">
-                Gérer sereinement vos invitations !
+                Un outil simple et rapide !
               </h4>
 
               <p class="text-white opacity-8 font-size-1-2 my-auto">
-                Visualisez les invitations envoyées et leurs statuts.
+                Envoyez votre demande à toutes les personnes concernées
+                accompagné d'un message personalisée en un clic !
               </p>
             </div>
           </div>
@@ -115,23 +116,24 @@
       </div>
       <div class="col-md-6">
         <div class="d-flex justify-content-center">
-          <%= image_tag("screenshots/user_invitation.min.png", class: "img-fluid rounded") %>
+          <%= image_tag("screenshots/user_new_booking.min.png", class: "img-fluid rounded") %>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<div class="mx-n3 py-12">
+<div class="mx-n3 my-12">
+
   <div class="p-5">
     <h1 class="text-center mb-8">
-      Créez une demande de réservation en quelques clics !
+      Communiquez en temps réel !
     </h1>
 
     <div class="row pb-4">
       <div class="col-md-6">
         <div class="d-flex justify-content-center">
-          <%= image_tag("screenshots/user_new_booking.min.png", class: "img-fluid rounded shadow") %>
+          <%= image_tag("screenshots/user_booking.min.png", class: "img-fluid rounded shadow") %>
         </div>
       </div>
       <div class="col-md-6 mb-4 mb-md-0">
@@ -139,12 +141,24 @@
           <div class="d-flex justify-content-center my-auto">
             <div class="col-md-8">
               <h4 class="mb-6">
-                Un outil simple et rapide !
+                Discutez et approuvez en famille les demandes de réservation !
               </h4>
 
               <p class="text-muted font-size-1-2 my-auto">
-                Envoyez votre demande à toutes les personnes concernées
-                accompagné d'un message personalisée en un clic !
+                A chaques demande de réservation sa discution familiale !
+              </p>
+
+              <br>
+
+              <p class="text-muted font-size-1-2 my-auto">
+                Retrouvez toutes les informations sur la réservation afin de
+                répondre au mieux au demandes.
+              </p>
+
+              <br>
+
+              <p class="text-muted font-size-1-2 my-auto">
+                Discutez, commentez au sujet de la réservation en famille.
               </p>
 
               <%= button_to "Découvrez Hutoki !",
@@ -161,89 +175,6 @@
 
 <div class="mx-n3 my-12 position-relative bg-primary">
   <div class="rotated-bg-primary-3"></div>
-
-  <div class="p-5">
-    <h1 class="text-white text-center mb-8">
-      Communiquez en temps réel !
-    </h1>
-
-    <div class="row pb-4">
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="d-flex flex-column py-4 h-100">
-          <div class="d-flex justify-content-center my-auto">
-            <div class="col-md-8">
-              <h4 class="text-white mb-6">
-                Discutez et approuvez en famille les demandes de réservation !
-              </h4>
-
-              <p class="text-white opacity-8 font-size-1-2 my-auto">
-                A chaques demande de réservation sa discution familiale !
-              </p>
-
-              <br>
-
-              <p class="text-white opacity-8 font-size-1-2 my-auto">
-                Retrouvez toutes les informations sur la réservation afin de
-                répondre au mieux au demandes.
-              </p>
-
-              <br>
-
-              <p class="text-white opacity-8 font-size-1-2 my-auto">
-                Discutez, commentez au sujet de la réservation en famille.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="d-flex justify-content-center">
-          <%= image_tag("screenshots/user_booking.min.png", class: "img-fluid rounded") %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mx-n3 pt-12 pb-4">
-  <div class="p-5">
-    <h1 class="text-center mb-8">
-      Visualisez et filtrez toutes les réservations !
-    </h1>
-
-    <div class="row pb-4">
-      <div class="col-md-6">
-        <div class="d-flex justify-content-center">
-          <%= image_tag("screenshots/user_bookings.min.png", class: "img-fluid rounded shadow") %>
-        </div>
-      </div>
-      <div class="col-md-6 mb-4 mb-md-0">
-        <div class="d-flex flex-column py-4 h-100">
-          <div class="d-flex justify-content-center my-auto">
-            <div class="col-md-8">
-              <h4 class="mb-6">
-                Gardez l'historique par famille !
-              </h4>
-
-              <p class="text-muted font-size-1-2 my-auto">
-                Vous avez la possibilitée de filtrer les réservation pour retrouver
-                ou gérer rapidement les demandes.
-              </p>
-
-              <%= button_to "Tester Hutoki dès maintenant !",
-                            pricing_path,
-                            method: :get,
-                            class: "btn btn-lg btn-outline-primary mt-6" %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="mx-n3 my-12 position-relative bg-primary">
-  <div class="rotated-bg-primary-1"></div>
 
   <div class="p-5">
     <h1 class="text-white text-center mb-8">
@@ -268,7 +199,7 @@
                 <br>
                 Y a t-il un lit bébé ?
                 <br>
-                Quelle est le code pour accéder au local poubelle ?
+                Quel est le code pour accéder au local poubelle ?
               </p>
 
               <br>
