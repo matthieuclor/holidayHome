@@ -20,7 +20,8 @@ module Public
     def company_details
     end
 
-    def sitemap
+    def sitemaps
+      @articles = Article.online.pluck(:slug)
     end
   end
 end

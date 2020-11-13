@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-center mt-6 mb-8">
+  <h1>Plan du site</h1>
+</div>
+
+<div class="d-flex justify-content-center">
+  <div class="col-md-10">
+    <h2 class="mb-4">Articles de blog</h2>
+
+    <ul class="list-unstyled">
+      <li class="py-1">
+        <%= link_to articles_url, articles_path %>
+      </li>
+
+      <% @articles.each do |article| %>
+        <li class="py-1">
+          <%= link_to article_url(article), article_path(article) %>
+        </li>
+      <% end %>
+    </ul>
+
+    <hr>
+
+    <h2 class="mb-4">À propos</h2>
+
+    <ul class="list-unstyled">
+      <li class="py-1">
+        <%= link_to team_members_url, team_members_path %>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 class="mb-4">Notre équipe</h2>
+
+    <ul class="list-unstyled">
+      <li class="py-1">
+        <%= link_to team_members_url, team_members_path %>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 class="mb-4">Nos offres</h2>
+
+    <ul class="list-unstyled">
+      <li class="py-1">
+        <%= link_to pricing_url, pricing_path %>
+      </li>
+    </ul>
+
+    <hr>
+
+    <h2 class="mb-4">Aide & F.A.Q</h2>
+
+    <ul class="list-unstyled">
+      <li class="py-1">
+        <%= link_to question_and_answers_url, question_and_answers_path %>
+      </li>
+    </ul>
+  </div>
+</div>

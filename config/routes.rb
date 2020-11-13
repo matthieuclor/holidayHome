@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       get 'cgu'
       get 'politique-confidentialite', as: :privacy_policy, action: :privacy_policy
       get 'mentions-legales', as: :company_details, action: :company_details
-      get 'sitemap'
+      get 'sitemaps'
     end
 
     resources :rgpd_cookies, only: [:create]

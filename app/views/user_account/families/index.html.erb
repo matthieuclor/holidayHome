@@ -73,7 +73,7 @@
                     aria-expanded="false"
                     aria-controls="collapse-<%= family.id %>">
 
-                    <%= "#{pluralize(@users[family.id].size, 'membre')}" %>
+                    <%= "#{pluralize(@users[family.id].size, 'membre', plural: 'membres')}" %>
                   </a>
                   <span class="ml-2 font-weight-bold align-self-end">
                     Période de réservation :
