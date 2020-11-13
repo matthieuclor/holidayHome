@@ -46,7 +46,7 @@
       <small class="form-text text-muted">
         Les formats acceptés: png, jpg, jpeg.
         <br>
-        La taille d'une photo est limités à 2mo.
+        La taille d'une photo est limitée à 2mo.
         <br>
         Le nombre total de fichiers est limité à {{ venueForm.photoLimit }}.
       </small>

@@ -14,7 +14,7 @@ class SendInvitationEmail
     end
 
     if @invitation.is_out_of_limit_of_send_date?
-      context.fail!(error: "Une durée de #{Invitation::LIMIT_OF_SEND_DATE / 3600} heures est nécessaire entre chaque envoie")
+      context.fail!(error: "Une durée de #{Invitation::LIMIT_OF_SEND_DATE / 3600} heures est nécessaire entre chaque envoi")
     end
   end
 

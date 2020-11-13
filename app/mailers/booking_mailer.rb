@@ -14,7 +14,7 @@ class BookingMailer < ApplicationMailer
   def send_status(booking)
     @booking, @user = [booking, booking.user]
     @status = Booking.human_attribute_name("status.#{@booking.status}")
-    @main_title = "Réservation #{@status} pour #{@booking.venue.name}"
+    @main_title = "Réservation #{@status.downcase} pour #{@booking.venue.name}"
     @sub_title = ""
 
     mail(to: @user.email, subject: @main_title)
