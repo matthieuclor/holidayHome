@@ -1,0 +1,28 @@
+<div class="d-flex flex-column flex-sm-row flex-wrap">
+  <% if @articles.present? %>
+    <% @articles.each do |article| %>
+      <div class="col-sm-6 py-3 px-0">
+        <%= link_to article_path(article.slug) do %>
+          <div class="card h-100">
+            <% if article.body.embeds.present? %>
+              <%= image_tag(
+                article.body.embeds.first.variant(resize_to_fill: [500, 300]),
+                class: "card-img-top"
+              ) %>
+            <% end %>
+
+            <div class="card-body">
+              <h5 class="card-title m-0">
+                <%= article.title %>
+              </h5>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <span class="w-100 text-center text-muted py-4">
+      Aucun article pour le moment...
+    </span>
+  <% end %>
+</div>

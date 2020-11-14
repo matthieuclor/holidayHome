@@ -1,0 +1,5 @@
+$("#articles-container").html("<%= j render 'articles' %>")
+
+<% if @article_ransack_params.present? %>
+  $("#reset-filter").removeClass("d-none")
+<% end %>

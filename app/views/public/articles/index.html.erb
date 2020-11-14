@@ -4,33 +4,38 @@
 
 <div class="d-flex justify-content-center">
   <div class="col-md-10">
-    <div class="d-flex flex-column flex-sm-row flex-wrap">
-      <% if @articles.present? %>
-        <% @articles.each do |article| %>
-          <div class="col-sm-6 py-3">
-            <%= link_to article_path(article.slug) do %>
-              <div class="card h-100">
-                <% if article.body.embeds.present? %>
-                  <%= image_tag(
-                    article.body.embeds.first.variant(resize_to_fill: [500, 300]),
-                    class: "card-img-top"
-                  ) %>
-                <% end %>
+    <div class="card mb-3">
+      <div class="card-body py-2">
+        <div class="d-flex align-content-center">
+          <div class="col-sm-9 px-0">
+            <%= search_form_for @query,
+                                wrapper: :inline_form,
+                                remote: true,
+                                data: { autosubmit: true } do |f| %>
 
-                <div class="card-body">
-                  <h5 class="card-title m-0">
-                    <%= article.title %>
-                  </h5>
-                </div>
-              </div>
+              <%= f.input :title_cont,
+                          as: :string,
+                          label: false,
+                          required: false,
+                          input_html: {
+                            class: "my-2",
+                            placeholder: "Rechercher un article"
+                          } %>
             <% end %>
           </div>
-        <% end %>
-      <% else %>
-        <p class="text-muted text-center w-100">
-          Aucun article pour le moment...
-        </p>
-      <% end %>
+          <div class="ml-auto">
+            <%= button_to "Réinitialiser",
+                          articles_path,
+                          method: :get,
+                          id: "reset-filter",
+                          class: "btn btn-danger m-2 d-none" %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="articles-container">
+      <%= render "articles" %>
     </div>
   </div>
 </div>
