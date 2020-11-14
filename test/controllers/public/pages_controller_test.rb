@@ -35,7 +35,7 @@ module Public
     end
 
     test "should get sitemap" do
-      get sitemap_url
+      get sitemaps_url
       assert_response :success
     end
   end

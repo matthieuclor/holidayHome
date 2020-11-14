@@ -47,7 +47,7 @@ class BookingTest < ActiveSupport::TestCase
 
     assert_equal [I18n.t("contact.email")], booking_mailer.from
     assert_equal [@booking2.user.email], booking_mailer.to
-    assert_equal "Réservation Acceptée pour La Galère", booking_mailer.subject
+    assert_equal "Réservation acceptée pour La Galère", booking_mailer.subject
     assert_equal notification.notification_type, "accepted_booking"
     assert_equal notification.user_id, @booking2.user_id
     assert_equal notification.family, @booking2.family
@@ -100,7 +100,7 @@ class BookingTest < ActiveSupport::TestCase
 
     assert_equal [I18n.t("contact.email")], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
-    assert_equal "Réservation Acceptée pour La Tania", booking_mailer.subject
+    assert_equal "Réservation acceptée pour La Tania", booking_mailer.subject
     assert_equal notification.notification_type, "accepted_booking"
     assert_equal notification.user_id, @booking.user_id
     assert_equal notification.family, @booking.family
@@ -122,7 +122,7 @@ class BookingTest < ActiveSupport::TestCase
 
     assert_equal [I18n.t("contact.email")], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
-    assert_equal "Réservation Refusée pour La Tania", booking_mailer.subject
+    assert_equal "Réservation refusée pour La Tania", booking_mailer.subject
     assert_equal notification.notification_type, "refused_booking"
     assert_equal notification.user_id, @booking.user_id
     assert_equal notification.family, @booking.family
