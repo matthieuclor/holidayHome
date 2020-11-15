@@ -6,7 +6,6 @@ class InvitationMailer < ApplicationMailer
     @receiver, @invitation, @family = user, invitation, invitation.family
     @sender = UserDecorator.new(@invitation.sender)
     @main_title = "Invitation à rejoindre la famille #{@family.name}"
-    @sub_title = ""
 
     mail(to: @invitation.email, subject: @main_title)
   end
@@ -15,7 +14,6 @@ class InvitationMailer < ApplicationMailer
     @invitation, @family = invitation, invitation.family
     @sender = UserDecorator.new(@invitation.sender)
     @main_title = "Invitation à créer son compte"
-    @sub_title = ""
 
     mail(to: @invitation.email, subject: @main_title)
   end

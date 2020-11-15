@@ -6,7 +6,6 @@ class BookingMailer < ApplicationMailer
     @booking, @user = [booking, user]
     @sender = UserDecorator.new(booking.user)
     @main_title = "Demande de réservation pour #{@booking.venue.name}"
-    @sub_title = ""
 
     mail(to: @user.email, subject: @main_title)
   end
@@ -15,7 +14,6 @@ class BookingMailer < ApplicationMailer
     @booking, @user = [booking, booking.user]
     @status = Booking.human_attribute_name("status.#{@booking.status}")
     @main_title = "Réservation #{@status.downcase} pour #{@booking.venue.name}"
-    @sub_title = ""
 
     mail(to: @user.email, subject: @main_title)
   end
