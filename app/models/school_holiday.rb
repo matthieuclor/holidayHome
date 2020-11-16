@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class SchoolHoliday < ApplicationRecord
   default_scope { order(:school_year, :zone) }
 
