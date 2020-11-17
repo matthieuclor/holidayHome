@@ -21,12 +21,6 @@ module UserAccount
           .where(from: from..to, zone: current_zones)
           .where('school_holidays.from IS NOT NULL')
           .where('school_holidays.to IS NOT NULL')
-          .or(
-            SchoolHoliday
-              .where(to: from..to, zone: current_zones)
-              .where('school_holidays.from IS NOT NULL')
-              .where('school_holidays.to IS NOT NULL')
-          )
       end
     end
   end
