@@ -1,1 +1,27 @@
-# See https://www.robotstxt.org/robotstxt.html for documentation on how to use the robots.txt file
+Sitemap: https://www.hutoki.com/sitemaps/sitemap.xml.gz
+
+User-agent: *
+Disallow: /admins/*
+Disallow: /user_account/*
+Disallow: /admin_account/*
+
+Disallow: /*?page=*
+Disallow: /*?q*
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: MegaIndex.ru
+Disallow: /
+
+User-agent: dotbot
+Disallow: /
+
+User-agent: BUbiNG
+Disallow: /
+
+User-agent: spbot
+Disallow: /
