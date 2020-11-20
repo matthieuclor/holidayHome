@@ -1,67 +1,150 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>The page you were looking for doesn't exist (404)</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <style>
-  .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
-    text-align: center;
-    font-family: arial, sans-serif;
-    margin: 0;
-  }
+  <head>
+    <title>
+      Nous sommes désolés, cette page n'existe pas. (404)
+    </title>
 
-  .rails-default-error-page div.dialog {
-    width: 95%;
-    max-width: 33em;
-    margin: 4em auto 0;
-  }
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0, shrink-to-fit=no">
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
 
-  .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
-    background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
+    <style>
+      *{-moz-box-sizing:border-box;-webkit-box-sizing:border-box;box-sizing:border-box}html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,abbr,address,cite,code,del,dfn,em,img,ins,kbd,q,samp,small,strong,sub,sup,var,b,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,caption,article,aside,canvas,details,figcaption,figure,footer,header,hgroup,menu,nav,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;outline:0;vertical-align:baseline;background:transparent}article,aside,details,figcaption,figure,footer,header,hgroup,nav,section{display:block}html{font-size:16px;line-height:24px;width:100%;height:100%;-webkit-text-size-adjust:100%;-ms-text-size-adjust:100%;overflow-y:scroll;overflow-x:hidden}img{vertical-align:middle;max-width:100%;height:auto;border:0;-ms-interpolation-mode:bicubic}body{min-height:100%;-webkit-font-smoothing:subpixel-antialiased}.clearfix{clear:both;zoom:1}.clearfix:before,.clearfix:after{content:&quot;\0020&quot;;display:block;height:0;visibility:hidden}.clearfix:after{clear:both}
 
-  .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
-    line-height: 1.5em;
-  }
+      body {
+        margin: 0;
+        font-family: "Montserrat", sans-serif, "Helvetica Neue";
+        font-size: 1.125rem;
+        font-weight: 500;
+        line-height: 1.5;
+        color: #1A1A1A;
+        text-align: left;
+        background-color: #ffffff;
+      }
 
-  .rails-default-error-page div.dialog > p {
-    margin: 0 0 1em;
-    padding: 1em;
-    background-color: #F7F7F7;
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    border-top-color: #DADADA;
-    color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
-  }
-  </style>
-</head>
+      button:focus {
+       outline: none;
+      }
 
-<body class="rails-default-error-page">
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <div>
-      <h1>The page you were looking for doesn't exist.</h1>
-      <p>You may have mistyped the address or the page may have moved.</p>
+      p {
+        display: block;
+        margin-block-start: 1.25em;
+        margin-block-end: 1.25em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+      }
+
+      h1, h2 {
+        margin-top: 0;
+        margin-bottom: 1.25rem;
+      }
+
+      .container-fluid {
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      .text-warning {
+        color: #ed8936;
+      }
+
+      .d-flex {
+        display: -ms-flexbox;
+        display: flex;
+      }
+
+      .justify-content-center {
+        -ms-flex-pack: center;
+        justify-content: center;
+      }
+
+      .align-items-center {
+        -ms-flex-align: center;
+        align-items: center;
+      }
+
+      .h-100 {
+        height: 100% !important;
+      }
+
+      .mt-2 {
+        margin-top: 10px !important;
+      }
+
+      .btn {
+        cursor: pointer;
+        text-transform: none;
+        overflow: visible;
+        margin: 0;
+        font-family: inherit;
+        display: inline-block;
+        font-weight: 600;
+        color: #1A1A1A;
+        text-align: center;
+        vertical-align: middle;
+        user-select: none;
+        background-color: transparent;
+        border: 0 solid transparent;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.875rem;
+        line-height: 1.4285714286;
+        border-radius: 0.3125rem;
+        transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+      }
+
+      .btn-outline-primary {
+        border: 1px solid #38b2ac;
+        position: relative;
+        box-shadow: none !important;
+        color: #38b2ac;
+      }
+
+      .btn-outline-primary:hover {
+        color: #ffffff;
+        background-color: #38b2ac;
+        border-color: #38b2ac;
+      }
+    </style>
+  </head>
+
+  <body class="h-100">
+    <div class="container-fluid h-100">
+      <div class="d-flex align-items-center justify-content-center h-100">
+        <div>
+          <h1 class="text-warning">
+            404
+          </h1>
+
+          <h2>
+            Oups, vous vous êtes perdu ?
+            <br>
+            Cette page n'existe pas.
+          </h2>
+
+          <hr>
+
+          <p>
+            Si vous pensez avoir trouvé un problème sur le site, n'hésitez pas à nous le signaler.
+          </p>
+
+          <a href="http://www.hutoki.com">
+            <button class="btn btn-outline-primary">
+              Retour à la page principale
+            </button>
+          </a>
+
+          <br>
+
+          <a href="mailto:support@hutoki.com" target="_blank">
+            <button class="btn btn-outline-primary mt-2">
+              Signaler un problème
+            </button>
+          </a>
+        </div>
+      </div>
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
-</body>
+  </body>
 </html>
