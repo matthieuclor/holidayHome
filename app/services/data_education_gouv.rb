@@ -1,11 +1,11 @@
 class DataEducationGouv
-  include DataEducationGouvFr::QueryMethods
+  include DataEducation::QueryMethods
   attr_accessor :url, :dataset, :rows, :start, :format, :lang, :timezone,
                 :q, :facet, :query, :records, :facet_groups, :parameters, :error
 
   def initialize(**args)
-    @url = args[:url] || I18n.t("data_education.url")
-    @dataset = args[:dataset] || I18n.t("data_education.dataset")
+    @url = args[:url] || Rails.application.credentials.dig(:data_education, :url)
+    @dataset = args[:dataset] || Rails.application.credentials.dig(:data_education, :dataset)
     @rows = args[:rows] || 50
     @start = args[:start] || 0
     @format = args[:format] || "json"

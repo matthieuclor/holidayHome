@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-module DataEducationGouvFr
+module DataEducation
   module QueryMethods
     def _eq(key, value)
       if value.nil?

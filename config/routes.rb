@@ -50,6 +50,7 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :show]
     resources :received_invitations, only: [:index, :update]
     resource :plans, only: [:show, :edit, :update]
+    resource :algolia_places, only: [:create]
 
     resources :venues do
       scope module: :venues do

@@ -1,6 +1,5 @@
 fr:
   contact:
     email: hello@hutoki.com
-  data_education:
-    url: https://data.education.gouv.fr/api/records/1.0/search/
-    dataset: fr-en-calendrier-scolaire
+  support:
+    email: support@hutoki.com

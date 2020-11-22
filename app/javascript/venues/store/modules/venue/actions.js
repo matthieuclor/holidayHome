@@ -1,4 +1,5 @@
 import axios from 'axios'
+import qs from 'qs'
 
 export default {
   getVenueItems({ commit }, page = 1) {
@@ -83,6 +84,25 @@ export default {
   removeHomeService({ commit }, index) {
     commit('REMOVE_HOME_SERVICE', index)
   },
+  getAlgoliaPlacesSuggestions({ commit }, query) {
+    const csrfToken = document.querySelector('[name=csrf-token]').content
+
+    return new Promise((resolve, reject) => {
+      axios(
+        {
+          method: 'post',
+          url: '/user_account/algolia_places',
+          data: qs.stringify({ algolia_places: { query: query } }),
+          headers: { 'X-CSRF-TOKEN': csrfToken }
+        }
+      ).then(response => {
+        resolve(response)
+      }).catch(error => {
+        commit('UPDATE_FLASHES', error.response.data.flashes)
+        reject(error)
+      })
+    })
+  },
   sendVenueForm({ commit, dispatch }, formData) {
     const csrfToken = document.querySelector('[name=csrf-token]').content
     const venueId = formData.get('venue[id]')
@@ -95,10 +115,7 @@ export default {
           method: method,
           url: url,
           data: formData,
-          headers: {
-            'X-CSRF-TOKEN': csrfToken,
-            'Content-Type': 'multipart/form-data'
-          }
+          headers: { 'X-CSRF-TOKEN': csrfToken }
         }
       ).then(response => {
         dispatch('getVenueItems')
