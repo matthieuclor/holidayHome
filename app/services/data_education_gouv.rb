@@ -30,13 +30,14 @@ class DataEducationGouv
       { 'Accept' => 'application/json' }
     )
 
+    response_body = JSON.parse(response.body)
+
     if response.success?
-      response_body = JSON.parse(response.body)
       self.records = response_body["records"]
       self.parameters = response_body["parameters"]
       self.facet_groups = response_body["facet_groups"]
     else
-      self.error = response.body
+      self.error = response_body["error"]
     end
 
     self
@@ -64,7 +65,7 @@ class DataEducationGouv
     self.query = ""
 
     @q.each do |key, value|
-      methods = DataEducationGouvFr::QueryMethods.instance_methods.map(&:to_s).join('|')
+      methods = DataEducation::QueryMethods.instance_methods.map(&:to_s).join('|')
       match_data = key.match(/^(?<attribute>\S+)(?<method>#{methods})+$/)
       raise SyntaxError.new("unexpected #{key}") unless match_data
 

@@ -10,9 +10,9 @@ module UserAccount
       ).call
 
       if @algolia_places.error.present?
-        render :create, status: :unprocessable_entity
+        render status: :unprocessable_entity
       else
-        render :create, status: :ok
+        render status: :ok
       end
     end
 

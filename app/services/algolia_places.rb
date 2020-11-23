@@ -23,11 +23,12 @@ class AlgoliaPlaces
       }.to_json
     end
 
+    response_body = JSON.parse(response.body)
+
     if response.success?
-      response_body = JSON.parse(response.body)
       self.hits = response_body["hits"]
     else
-      self.error = response.body
+      self.error = response_body["message"]
     end
 
     self

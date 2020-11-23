@@ -1,34 +1,5 @@
 <template>
   <div>
-    <div class="form-group row">
-      <label for="venue_address2" class="col-sm-2 col-form-label text-nowrap">
-        Adresse2 <abbr title="obligatoire">*</abbr>
-      </label>
-
-      <div class="col-sm-10">
-        <VueAutosuggest :suggestions="suggestions"
-                        :input-props="inputProps"
-                        @input="onInputChange"
-                        v-model="address"
-                        @selected="selectHandler"
-                        @click="clickHandler">
-        <template slot-scope="{suggestion}">
-          <span class="my-suggestion-item">
-            {{suggestion.item}}
-          </span>
-        </template>
-      </VueAutosuggest>
-
-        <!-- <input @input="debounceAddress"
-               v-model="address"
-               placeholder="12 Rue de Bellecote"
-               type="text"
-               name="venue[address2]"
-               id="venue_address2"
-               class="form-control"> -->
-      </div>
-    </div>
-
     <div class="form-group row string required venue_name"
          :class="formGroupClass(venueFormItem, 'address')">
 
@@ -37,17 +8,28 @@
       </label>
 
       <div class="col-sm-10">
-        <input ref="inputSearch"
-               :value="venueFormItem.address"
-               placeholder="12 Rue de Bellecote"
-               required="required"
-               aria-required="true"
-               type="text"
-               name="venue[address]"
-               id="venue_address"
-               class="form-control string required"
-               :class="inputClass(venueFormItem, 'address')"
-               :aria-invalid="!attributeIsValid(venueFormItem, 'address')">
+        <VueAutosuggest :suggestions="suggestions"
+                        :input-props="{...inputProps, class: `form-control string required ${inputClass(venueFormItem, 'address')}`}"
+                        @input="onInputChange"
+                        v-model="address"
+                        @selected="selectHandler">
+
+          <template slot-scope="{suggestion}">
+            <div class="my-suggestion-item text-nowrap text-truncate">
+              <i :class="suggestion.item.iconClass"
+                class="text-muted item-icon">
+              </i>
+
+              <span v-html="suggestion.item.name"
+                    class="item-name">
+              </span>
+
+              <span v-html="suggestion.item.address"
+                    class="item-address text-muted">
+              </span>
+            </div>
+          </template>
+        </VueAutosuggest>
       </div>
 
       <div v-for="(venueError, errorIndex) in venueFormItem.errors['address']"
@@ -129,7 +111,6 @@
   import { VueAutosuggest } from 'vue-autosuggest';
   import { mapGetters, mapActions } from 'vuex'
   import { debounce } from 'lodash'
-  import places from 'places.js'
 
   export default {
     name: 'VenuePlacesForm',
@@ -137,27 +118,19 @@
     data() {
       return {
         address: "",
-        suggestions: [
-          { data: ['Frodo', 'Samwise', 'Gandalf', 'Galadriel', 'Faramir', 'Éowyn'] }
-        ],
+        suggestions: [],
         inputProps: {
-          id:'venue_address2',
           placeholder:'12 Rue de Bellecote',
-          class:'form-control'
-        },
-        place: null,
-        language: 'fr',
-        options: {
-          appId: 'pl75UUU9N2VV',
-          apiKey: '9a55decbc8fd5c78a1d571f4143fef56',
-          container: null
+          name: "venue[address]",
+          id: "venue_address",
+          'aria-required': "true",
+          required: "required",
+          autocomplete: "off"
         }
       }
     },
     computed: {
-      ...mapGetters([
-        'venueFormItem'
-      ]),
+      ...mapGetters(['venueFormItem']),
     },
     components: {
       VueAutosuggest
@@ -167,32 +140,103 @@
       onInputChange: debounce(function() {
         if (this.address.length > 0) {
           this.getAlgoliaPlacesSuggestions(this.address)
-          .then(response => console.log(response))
+          .then(res => {
+            this.suggestions = [
+              {
+                data: res.data.hits.map(item => {
+                  return {
+                    name: item.name,
+                    address: item.address,
+                    iconClass: item.iconClass,
+                    fullAddress: item.fullAddress,
+                    city: item.city,
+                    postcode: item.postcode,
+                    country: item.country,
+                    countryCode: item.countryCode,
+                    administrative: item.administrative,
+                    county: item.county,
+                    lat: item.lat,
+                    lng: item.lng
+                  }
+                })
+              }
+            ]
+          })
+        } else {
+          this.suggestions = []
         }
       }, 500),
       selectHandler(e) {
-        console.log("selectHandler", e)
-      },
-      clickHandler(e) {
-        console.log("clickHandler", e)
+        this.suggestions = []
+        this.address = e.item.fullAddress
+        this.venueFormItem.address = e.item.fullAddress
+        this.venueFormItem.city = e.item.city
+        this.venueFormItem.postcode = e.item.postcode
+        this.venueFormItem.country = e.item.country
+        this.venueFormItem.countryCode = e.item.countryCode
+        this.venueFormItem.administrative = e.item.administrative
+        this.venueFormItem.county = e.item.county
+        this.venueFormItem.lat = e.item.lat
+        this.venueFormItem.lng = e.item.lng
       }
     },
-    mounted() {
-      this.$nextTick(function() {
-        this.options.container = this.$refs.inputSearch
-        this.place = places(this.options).configure(this.language)
-        this.place.on('change', event => {
-          this.venueFormItem.address = event.suggestion.value
-          this.venueFormItem.city = event.suggestion.name
-          this.venueFormItem.postcode = event.suggestion.postcode
-          this.venueFormItem.country = event.suggestion.country
-          this.venueFormItem.countryCode = event.suggestion.countryCode
-          this.venueFormItem.administrative = event.suggestion.administrative
-          this.venueFormItem.county = event.suggestion.county
-          this.venueFormItem.lat = event.suggestion.latlng.lat
-          this.venueFormItem.lng = event.suggestion.latlng.lng
-        })
-      })
+    watch: {
+      venueFormItem: {
+        handler() {
+          this.address = this.venueFormItem.address
+        },
+        immediate: true
+      }
     }
   }
 </script>
+
+<style>
+  .autosuggest__results-container {
+    margin-top: 3px;
+    border-radius: 0.3125rem;
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
+  }
+
+  .autosuggest__results > ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .autosuggest__results-item {
+    cursor: pointer;
+    height: 46px;
+    line-height: 46px;
+    padding-left: 18px;
+  }
+
+  .autosuggest__results-item:hover {
+    background-color: #F2F2F2;
+  }
+
+  .autosuggest__results-item:hover .item-icon {
+    color: #38b2ac !important;
+  }
+
+  .my-suggestion-item > .item-name em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .my-suggestion-item > .item-address em {
+    font-weight: bold;
+    font-style: normal;
+  }
+
+  .my-suggestion-item > .item-address {
+    font-size: smaller;
+    margin-left: 12px;
+  }
+
+  .item-icon {
+    margin-right: 10px;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+  }
+</style>

@@ -91,7 +91,7 @@ export default {
       axios(
         {
           method: 'post',
-          url: '/user_account/algolia_places',
+          url: '/user_account/algolia_places.json',
           data: qs.stringify({ algolia_places: { query: query } }),
           headers: { 'X-CSRF-TOKEN': csrfToken }
         }
