@@ -1,5 +1,5 @@
 class DataEducationGouv
-  include DataEducation::QueryMethods
+  include Callable, DataEducation::QueryMethods
   attr_accessor :url, :dataset, :rows, :start, :format, :lang, :timezone,
                 :q, :facet, :query, :records, :facet_groups, :parameters, :error
 

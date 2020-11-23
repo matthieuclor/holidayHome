@@ -4,11 +4,11 @@ class SynchronizeSchoolHolidays
   include Interactor
 
   def call
-    school_years = DataEducationGouv.new(
+    school_years = DataEducationGouv.call(
       rows: 0,
       q: { zones_start: 'Zone', population_eq: ['Élèves', nil] },
       facet: "annee_scolaire"
-    ).call
+    )
 
     if school_years.error.present?
       context.fail!(error: "Un problem est survenu lors de la synchronisation : #{school_years.error}")

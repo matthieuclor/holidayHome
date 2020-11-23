@@ -5,9 +5,7 @@ module UserAccount
     respond_to :json
 
     def create
-      @algolia_places = AlgoliaPlaces.new(
-        query: algolia_places_params[:query]
-      ).call
+      @algolia_places = AlgoliaPlaces.call(query: algolia_places_params[:query])
 
       if @algolia_places.error.present?
         render status: :unprocessable_entity
