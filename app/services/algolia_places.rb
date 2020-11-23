@@ -1,6 +1,5 @@
 class AlgoliaPlaces
   include Callable
-
   attr_accessor :hits_per_page, :language, :app_id, :app_url, :api_key, :query,
                 :hits, :error
 
