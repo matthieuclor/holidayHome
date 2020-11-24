@@ -6,7 +6,7 @@ module Public
       def new
         @invitation = Invitation.find_by(token: params[:token])
 
-        if is_invitation_valid?
+        if invitation_valid?
           if params[:response] == 'yes'
             @invitation.accepted!
             @invitation.receiver.families << @invitation.family
@@ -16,7 +16,7 @@ module Public
             create_notification(:refused_invitation)
           end
 
-          flash[:success] = "La réponse a bien été prise en compte"
+          flash[:success] = 'La réponse a bien été prise en compte'
           redirect_to user_account_received_invitations_path
         else
           redirect_to root_path
@@ -25,9 +25,9 @@ module Public
 
       private
 
-      def is_invitation_valid?
+      def invitation_valid?
         unless @invitation.present?
-          flash[:error] = "Votre invitation a été éffacée entre temps"
+          flash[:error] = 'Votre invitation a été éffacée entre temps'
           return false
         end
 
@@ -37,11 +37,11 @@ module Public
         end
 
         if @invitation.accepted? || @invitation.refused?
-          flash[:error] = "Vous avez déja répondu a cette invitation"
+          flash[:error] = 'Vous avez déja répondu a cette invitation'
           return false
         end
 
-        return true
+        true
       end
 
       def create_notification(type)

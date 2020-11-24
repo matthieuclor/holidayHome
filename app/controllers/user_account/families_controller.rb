@@ -2,15 +2,15 @@
 
 module UserAccount
   class FamiliesController < UserAccount::ApplicationController
-    before_action :set_family, :check_creator, only: [:edit, :update, :destroy]
+    before_action :set_family, :check_creator, only: %i(edit update destroy)
 
     def index
       @families = FamilyDecorator.wrap(current_user.families)
-      @users = UserDecorator.wrap(User
-        .with_attached_avatar
-        .joins(:family_links)
-        .where(family_links: { family_id: @families.pluck(:id) })
-        .select("users.*, family_links.family_id as family_id")
+      @users = UserDecorator.wrap(
+        User.with_attached_avatar
+            .joins(:family_links)
+            .where(family_links: { family_id: @families.pluck(:id) })
+            .select('users.*, family_links.family_id as family_id')
       ).group_by(&:family_id)
     end
 
@@ -25,11 +25,11 @@ module UserAccount
 
       if check_name_validity && @family.save
         add_family_to_current_user
-        flash[:success] = "La famille a bien été créé"
-        render js: "location.reload()"
+        flash[:success] = 'La famille a bien été créé'
+        render js: 'location.reload()'
       else
         @plan_error = @family.errors[:base].first
-        flash[:error] = @plan_error || "Un problem est survenu lors de la creation de la famille"
+        flash[:error] = @plan_error || 'Un problem est survenu lors de la creation de la famille'
         render :new, status: :unprocessable_entity
       end
     end
@@ -39,10 +39,10 @@ module UserAccount
 
     def update
       if @family.update(family_params)
-        flash[:success] = "La famille a bien été mise à jour"
-        render js: "location.reload()"
+        flash[:success] = 'La famille a bien été mise à jour'
+        render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de la famille"
+        flash[:error] = 'Un problem est survenu lors de la mise à jour de la famille'
         render :edit, status: :unprocessable_entity
       end
     end
@@ -50,9 +50,9 @@ module UserAccount
     def destroy
       if @family.destroy
         remove_family_from_current_user
-        flash[:success] = "La famille a bien été supprimée"
+        flash[:success] = 'La famille a bien été supprimée'
       else
-        flash[:error] = "Un problem est survenu lors de la suppression de la famille"
+        flash[:error] = 'Un problem est survenu lors de la suppression de la famille'
       end
 
       redirect_to user_account_families_path
@@ -69,13 +69,13 @@ module UserAccount
     end
 
     def check_creator
-      unless @family.creator == current_user
-        flash[:error] = "Vous n'avez pas les droits pour modifier cette famille."
+      return if @family.creator == current_user
 
-        respond_to do |format|
-          format.html { redirect_to user_account_families_path }
-          format.js { render js: "location.reload()" }
-        end
+      flash[:error] = "Vous n'avez pas les droits pour modifier cette famille."
+
+      respond_to do |format|
+        format.html { redirect_to user_account_families_path }
+        format.js { render js: 'location.reload()' }
       end
     end
 
@@ -88,6 +88,7 @@ module UserAccount
 
     def add_family_to_current_user
       return if current_user.current_family_id
+
       current_user.update(current_family: @family)
     end
 

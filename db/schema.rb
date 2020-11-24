@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_07_163150) do
+ActiveRecord::Schema.define(version: 2020_11_24_220058) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -63,6 +63,8 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["slug"], name: "index_articles_on_slug", unique: true
+    t.index ["title"], name: "index_articles_on_title", unique: true
   end
 
   create_table "booking_approvals", force: :cascade do |t|
@@ -74,6 +76,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.bigint "message_id"
     t.index ["booking_id"], name: "index_booking_approvals_on_booking_id"
     t.index ["message_id"], name: "index_booking_approvals_on_message_id"
+    t.index ["user_id", "booking_id"], name: "index_booking_approvals_on_user_id_and_booking_id", unique: true
     t.index ["user_id"], name: "index_booking_approvals_on_user_id"
   end
 
@@ -97,6 +100,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "venue_id"], name: "index_digital_codes_on_name_and_venue_id", unique: true
     t.index ["venue_id"], name: "index_digital_codes_on_venue_id"
   end
 
@@ -115,6 +119,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
   create_table "family_links", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "family_id"
+    t.index ["family_id", "user_id"], name: "index_family_links_on_family_id_and_user_id", unique: true
     t.index ["family_id"], name: "index_family_links_on_family_id"
     t.index ["user_id"], name: "index_family_links_on_user_id"
   end
@@ -128,6 +133,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "venue_id"], name: "index_home_services_on_name_and_venue_id", unique: true
     t.index ["venue_id"], name: "index_home_services_on_venue_id"
   end
 
@@ -142,6 +148,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.integer "send_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email", "family_id"], name: "index_invitations_on_email_and_family_id", unique: true
     t.index ["family_id"], name: "index_invitations_on_family_id"
     t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
     t.index ["sender_id"], name: "index_invitations_on_sender_id"
@@ -153,6 +160,7 @@ ActiveRecord::Schema.define(version: 2020_11_07_163150) do
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "venue_id"], name: "index_keys_on_name_and_venue_id", unique: true
     t.index ["owner_id"], name: "index_keys_on_owner_id"
     t.index ["venue_id"], name: "index_keys_on_venue_id"
   end

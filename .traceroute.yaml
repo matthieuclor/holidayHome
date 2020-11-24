@@ -1,0 +1,10 @@
+# .traceroute.yaml
+
+ignore_unreachable_actions:
+  - ^rails\/conductor\/action_mailbox\/inbound_emails
+  - ^devise
+  - set_current_family$
+  - set_current_venue$
+ignore_unused_routes:
+  - ^rails\/conductor\/action_mailbox\/inbound_emails
+  - ^\/sidekiq

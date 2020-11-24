@@ -5,7 +5,7 @@ module Public
     respond_to :js
 
     def create
-      cookies[:hutoki_rgpd] = { value: "accepted", expires: 13.month.from_now }
+      cookies[:hutoki_rgpd] = { value: 'accepted', expires: 13.months.from_now }
     end
   end
 end

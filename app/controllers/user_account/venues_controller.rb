@@ -4,9 +4,9 @@ module UserAccount
   class VenuesController < UserAccount::ApplicationController
     include CurrentFamily
 
-    before_action :set_current_family, only: [:index, :new, :create, :edit, :update]
-    before_action :set_venue, only: [:show, :edit, :update, :destroy]
-    before_action :set_owners, only: [:new, :edit]
+    before_action :set_current_family, only: %i(index new create edit update)
+    before_action :set_venue, only: %i(show edit update destroy)
+    before_action :set_owners, only: %i(new edit)
 
     def index
       respond_to do |format|
@@ -38,11 +38,11 @@ module UserAccount
       @venue = Venue.new(venue_params)
 
       if @venue.save
-        flash[:success] = "Le lieu a bien été créé"
+        flash[:success] = 'Le lieu a bien été créé'
         render :create, status: :created
       else
         @plan_error = @venue.errors[:base].first
-        flash[:error] = @plan_error || "Un problem est survenu lors de la création du lieu"
+        flash[:error] = @plan_error || 'Un problem est survenu lors de la création du lieu'
         render :new, status: :unprocessable_entity
       end
     end
@@ -52,21 +52,21 @@ module UserAccount
 
     def update
       if @venue.update(venue_params)
-        flash[:success] = "Le lieu a bien été mise à jour"
+        flash[:success] = 'Le lieu a bien été mise à jour'
         render :update, status: :ok
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de du lieu"
+        flash[:error] = 'Un problem est survenu lors de la mise à jour de du lieu'
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @venue.destroy
-        flash[:success] = "Le lieu a bien été supprimé"
-        render :destroy, status: :ok
+        flash[:success] = 'Le lieu a bien été supprimé'
+        render status: :ok
       else
-        flash[:error] = "Un problem est survenu lors de la suppression du lieu"
-        render :destroy, status: :unprocessable_entity
+        flash[:error] = 'Un problem est survenu lors de la suppression du lieu'
+        render status: :unprocessable_entity
       end
     end
 
@@ -75,12 +75,8 @@ module UserAccount
     def set_venue
       @venue = Venue
         .with_attached_photos
-        .includes(
-          :home_services,
-          :networks,
-          :digital_codes,
-          keys: [:owner]
-        ).find(params[:id])
+        .includes(:home_services, :networks, :digital_codes, keys: :owner)
+        .find(params[:id])
     end
 
     def set_owners
@@ -112,36 +108,11 @@ module UserAccount
         :baby_beds_count,
         :creator_id,
         :family_id,
-        photos: [],
-        keys_attributes: [
-          :id,
-          :name,
-          :owner_id,
-          :_destroy
-        ],
-        networks_attributes: [
-          :id,
-          :name,
-          :connection_type,
-          :network_name,
-          :password,
-          :_destroy
-        ],
-        digital_codes_attributes: [
-          :id,
-          :name,
-          :password,
-          :_destroy
-        ],
-        home_services_attributes: [
-          :id,
-          :name,
-          :person_in_charge,
-          :address,
-          :phone,
-          :email,
-          :_destroy
-        ]
+        photos: %i(),
+        keys_attributes: %i(id name owner_id _destroy),
+        networks_attributes: %i(id name connection_type network_name password _destroy),
+        digital_codes_attributes: %i(id name password _destroy),
+        home_services_attributes: %i(id name person_in_charge address phone email _destroy)
       )
     end
   end

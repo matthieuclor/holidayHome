@@ -10,17 +10,18 @@ module UserAccount
     def update
       @invitation = Invitation.find(params[:id])
 
-      if is_invitation_valid?
-        if params[:response] == 'no'
+      if invitation_valid?
+        case params[:response]
+        when 'no'
           @invitation.refused!
           create_notification(:refused_invitation)
-        elsif params[:response] == 'yes'
+        when 'yes'
           @invitation.accepted!
           create_notification(:accepted_invitation)
           current_user.families << @invitation.family
         end
 
-        flash[:success] = "La réponse a bien été prise en compte"
+        flash[:success] = 'La réponse a bien été prise en compte'
       end
 
       redirect_to user_account_received_invitations_path
@@ -28,13 +29,13 @@ module UserAccount
 
     private
 
-    def is_invitation_valid?
+    def invitation_valid?
       unless %w(yes no).include?(params[:response])
         flash[:error] = "Votre invitation n'a pas le bon format"
         return false
       end
 
-      return true
+      true
     end
 
     def create_notification(type)

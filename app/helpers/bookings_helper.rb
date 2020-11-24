@@ -2,35 +2,31 @@
 
 module BookingsHelper
   def booking_status_badge(status)
-    badge_class = case status
-      when 'pending' then 'secondary'
-      when 'accepted' then 'success'
-      when 'refused' then 'danger'
-      when 'canceled' then 'warning'
-    end
+    badge_class = {
+      pending: 'secondary',
+      accepted: 'success',
+      refused: 'danger',
+      canceled: 'warning'
+    }
 
-    content_tag(
-      :span,
+    tag.span(
       Booking.human_attribute_name("status.#{status}"),
-      class: ["badge badge-#{badge_class}"]
+      class: ["badge badge-#{badge_class[status.to_sym]}"]
     )
   end
 
   def booking_progress_deadline(booking)
-    content_tag(
-      :div,
-      content_tag(
-        :div,
-        nil,
-        class: ["progress-bar", "#{'bg-success' if booking.progress_percentage >= 100}"],
-        role: "progressbar",
+    tag.div(
+      tag.div(
+        class: ['progress-bar', ('bg-success' if booking.progress_percentage >= 100)],
+        role: 'progressbar',
         style: "width: #{booking.progress_percentage}%;",
-        'aria-valuenow': "#{booking.progress_percentage}",
-        'aria-valuemin': "0",
-        'aria-valuemax': "100"
+        'aria-valuenow': booking.progress_percentage.to_s,
+        'aria-valuemin': '0',
+        'aria-valuemax': '100'
       ),
-      class: "progress",
-      data: { toggle: "tooltip" },
+      class: 'progress',
+      data: { toggle: 'tooltip' },
       title: booking.progress_title
     )
   end

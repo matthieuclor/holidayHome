@@ -6,14 +6,14 @@ class CloseBookingJob < ApplicationJob
   def perform
     Booking.joins(:booking_approvals)
       .pending
-      .where("now() >= deadline")
+      .where('now() >= deadline')
       .where(booking_approvals: { status: :refused })
       .distinct
       .each { |b| b.update_attribute(:status, :refused) }
 
     Booking.joins(:booking_approvals)
       .pending
-      .where("now() >= deadline")
+      .where('now() >= deadline')
       .distinct
       .each { |b| b.update_attribute(:status, :accepted) }
 

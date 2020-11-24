@@ -3,12 +3,10 @@
 module ApplicationHelper
   include Pagy::Frontend
 
-  def fa_icon(icon, text="", options={})
-    content_tag(
-      :i,
-      nil,
+  def fa_icon(icon, text = '', options = {})
+    tag.i(
       class: [
-        options[:prefix] || "fas",
+        options[:prefix] || 'fas',
         "fa-#{icon}",
         options[:class]
       ]
@@ -16,52 +14,48 @@ module ApplicationHelper
   end
 
   def fa_check_icon(value, text)
-    icon, color, prefix = if value.present?
-      ['check-circle', 'text-success', 'fas']
-    else
-      ['circle', 'text-secondary', 'far']
-    end
+    icon, color, prefix =
+      if value.present?
+        %w(check-circle text-success fas)
+      else
+        %w(circle text-secondary far)
+      end
 
     fa_icon(icon, text, class: "mr-2 #{color}", prefix: prefix)
   end
 
   def plan_badge(record)
-    record_class = record.class.name.chomp("Decorator")
+    record_class = record.class.name.chomp('Decorator')
 
-    content_tag(
-      :span,
+    tag.span(
       record_class.constantize.human_attribute_name("plan.#{record.plan}"),
       class: ["badge badge-#{record.premium? ? 'success' : 'secondary'}"],
-      data: { toggle: "tooltip" },
+      data: { toggle: 'tooltip' },
       title: (record.plan_progress_title if record.premium?)
     )
   end
 
   def network_status_badge(record)
-    record_class = record.class.name.chomp("Decorator")
+    record_class = record.class.name.chomp('Decorator')
 
-    content_tag(
-      :span,
+    tag.span(
       record_class.constantize.human_attribute_name("status.#{record.status}"),
       class: ["badge badge-#{record.online? ? 'success' : 'secondary'}"]
     )
   end
 
   def plan_progress(record)
-    content_tag(
-      :div,
-      content_tag(
-        :div,
-        nil,
-        class: ["progress-bar", "#{'bg-success' if record.plan_progress_percentage >= 100}"],
-        role: "progressbar",
+    tag.div(
+      tag.div(
+        class: ['progress-bar', ('bg-success' if record.plan_progress_percentage >= 100)],
+        role: 'progressbar',
         style: "width: #{record.plan_progress_percentage}%;",
-        'aria-valuenow': "#{record.plan_progress_percentage}",
-        'aria-valuemin': "0",
-        'aria-valuemax': "100"
+        'aria-valuenow': record.plan_progress_percentage.to_s,
+        'aria-valuemin': '0',
+        'aria-valuemax': '100'
       ),
-      class: "progress",
-      data: { toggle: "tooltip" },
+      class: 'progress',
+      data: { toggle: 'tooltip' },
       title: record.plan_progress_title
     )
   end

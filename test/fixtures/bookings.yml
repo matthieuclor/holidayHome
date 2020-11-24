@@ -1,7 +1,7 @@
 la_tania_booking:
   id: 1
-  from: <%= DateTime.now %>
-  to: <%= DateTime.now + 7.days %>
+  from: <%= DateTime.now.beginning_of_month + 3.days %>
+  to: <%= DateTime.now.beginning_of_month + 10.days %>
   user_id: 1
   venue_id: 1
   deadline: <%= DateTime.now + 30.days %>

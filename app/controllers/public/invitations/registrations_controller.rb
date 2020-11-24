@@ -6,7 +6,7 @@ module Public
       def new
         @invitation = Invitation.find_by(token: params[:token])
 
-        if is_invitation_valid?
+        if invitation_valid?
           @invitee = User.new(email: @invitation.email)
           @invitee.families << Family.find_by(id: @invitation.family_id)
           @invitee.received_invitations << @invitation
@@ -19,7 +19,7 @@ module Public
         @invitee = User.new(invitee_params)
         @invitee.skip_confirmation!
         @invitee.assign_attributes({
-          confirmed_at: Time.now,
+          confirmed_at: Time.current,
           current_family: @invitee.families.first
         })
 
@@ -27,28 +27,28 @@ module Public
           @invitee.received_invitations.last.accepted!
           sign_in(@invitee)
           create_notification(@invitee.received_invitations.last)
-          flash[:success] = "Le compte a bien été créé"
+          flash[:success] = 'Le compte a bien été créé'
           redirect_to user_account_dashboards_path
         else
-          flash[:error] = "Un problem est survenu lors de la creation de votre compte"
+          flash[:error] = 'Un problem est survenu lors de la creation de votre compte'
           render :new
         end
       end
 
       private
 
-      def is_invitation_valid?
+      def invitation_valid?
         unless @invitation.present?
-          flash[:error] = "Votre invitation a été éffacée entre temps"
+          flash[:error] = 'Votre invitation a été éffacée entre temps'
           return false
         end
 
         if @invitation.receiver_id.present?
-          flash[:error] = "Vous avez déja créé votre compte avec cette invitation"
+          flash[:error] = 'Vous avez déja créé votre compte avec cette invitation'
           return false
         end
 
-        return true
+        true
       end
 
       def create_notification(invitation)

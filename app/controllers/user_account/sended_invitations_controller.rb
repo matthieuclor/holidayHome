@@ -4,7 +4,7 @@ module UserAccount
   class SendedInvitationsController < UserAccount::ApplicationController
     include CurrentFamily
 
-    before_action :set_current_family, only: [:index, :new, :create]
+    before_action :set_current_family, only: %i(index new create)
 
     def index
       @pagy, @invitations = pagy(
@@ -24,7 +24,7 @@ module UserAccount
       if @invitation.save
         create_notification if @invitation.receiver
         flash[:success] = "L'invitation a bien été envoyé"
-        render js: "location.reload()"
+        render js: 'location.reload()'
       else
         @plan_error = @invitation.errors[:base].first
         flash[:error] = @plan_error || "Un problem est survenu lors de l'envoi de l'invitation"

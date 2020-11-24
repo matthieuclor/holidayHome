@@ -9,7 +9,8 @@ module AdminAccount
         @pagy, @users = pagy(
           User.joins(:family_links)
               .where(family_links: { family_id: params[:family_id] })
-              .with_attached_avatar)
+              .with_attached_avatar
+        )
 
         @users = UserDecorator.wrap(@users)
       end

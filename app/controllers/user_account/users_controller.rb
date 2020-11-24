@@ -4,7 +4,7 @@ module UserAccount
   class UsersController < UserAccount::ApplicationController
     include CurrentFamily
 
-    before_action :set_current_family, only: [:index]
+    before_action :set_current_family, only: :index
 
     def index
       @pagy, @users = pagy(@current_family.users.with_attached_avatar, items: 10)
@@ -16,7 +16,7 @@ module UserAccount
         @user = UserDecorator.new(User.with_attached_avatar.find(params[:id]))
       else
         flash[:error] = "Vous n'êtes pas censé voir cet utilisateur"
-        render js: "location.reload()", status: :unauthorized
+        render js: 'location.reload()', status: :unauthorized
       end
     end
 

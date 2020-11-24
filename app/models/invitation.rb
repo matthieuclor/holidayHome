@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 class Invitation < ApplicationRecord
-  LIMIT_OF_SEND = 3.freeze
-  LIMIT_OF_SEND_DATE = 24.hours.freeze
+  LIMIT_OF_SEND = 3
+  LIMIT_OF_SEND_DATE = 24.hours
 
-  belongs_to :sender, class_name: "User"
-  belongs_to :receiver, class_name: "User", optional: true
+  belongs_to :sender, class_name: 'User'
+  belongs_to :receiver, class_name: 'User', optional: true
   belongs_to :family
 
   default_scope { order(:created_at) }
@@ -17,8 +17,9 @@ class Invitation < ApplicationRecord
   validates :email, format: { with: Devise.email_regexp }, presence: true
   validates :status, inclusion: { in: statuses.keys }
   validate :uniqueness_of_receiver_family, on: :create
-  validates_uniqueness_of :email, scope: :family_id, conditions: -> {
-    where(status: 'pending')
+  validates :email, uniqueness: {
+    scope: :family,
+    conditions: -> { where(status: 'pending') }
   }
 
   before_validation :set_receiver
@@ -28,7 +29,7 @@ class Invitation < ApplicationRecord
   private
 
   def set_token
-    self.token = Digest::SHA1.hexdigest([Time.now, email, rand].join)
+    self.token = Digest::SHA1.hexdigest([Time.current, email, rand].join)
   end
 
   def set_receiver
@@ -37,9 +38,8 @@ class Invitation < ApplicationRecord
 
   def uniqueness_of_receiver_family
     return unless receiver.present?
+    return unless receiver.family_links.pluck(:family_id).include?(family_id)
 
-    if receiver.family_links.pluck(:family_id).include?(family_id)
-      errors.add(:email, :exclusion)
-    end
+    errors.add(:email, :exclusion)
   end
 end

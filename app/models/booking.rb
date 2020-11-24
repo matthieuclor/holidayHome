@@ -29,7 +29,7 @@ class Booking < ApplicationRecord
   private
 
   def set_deadline
-    new_deadline = DateTime.now + self.family.days_for_approval.days
+    new_deadline = DateTime.now + family.days_for_approval.days
     self.deadline = from < new_deadline ? from : new_deadline
   end
 
@@ -39,6 +39,7 @@ class Booking < ApplicationRecord
     else
       family.users.each do |user|
         next if user_id == user.id
+
         BookingApproval.create(booking: self, user: user)
       end
     end
@@ -46,6 +47,7 @@ class Booking < ApplicationRecord
 
   def send_mail
     return if %w(pending canceled).include?(status)
+
     BookingMailer.send_status(self).deliver_later
     Notification.create(
       url: Rails.application.routes.url_helpers.user_account_booking_path(self),
@@ -64,6 +66,7 @@ class Booking < ApplicationRecord
 
   def update_booking_approvals_status
     return if pending?
+
     booking_approvals.pending.update_all(status: :out_of_time)
   end
 end

@@ -9,16 +9,16 @@ module CurrentVenue
         id: current_user.current_venue_id[current_user.current_family_id.to_s].to_s
       )
 
-      unless @current_venue.present?
-        first_venue_id = Family.find_by(
-          id: current_user.current_family_id
-        )&.venues&.first&.id
+      return if @current_venue.present?
 
-        if first_venue_id
-          current_user.current_venue_id[current_user.current_family_id.to_s] = first_venue_id
-          set_current_venue if current_user.save
-        end
-      end
+      first_venue_id = Family.find_by(
+        id: current_user.current_family_id
+      )&.venues&.first&.id
+
+      return unless first_venue_id
+
+      current_user.current_venue_id[current_user.current_family_id.to_s] = first_venue_id
+      set_current_venue if current_user.save
     end
   end
 end

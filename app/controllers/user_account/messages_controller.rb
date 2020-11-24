@@ -20,9 +20,7 @@ module UserAccount
         booking = Booking.find(@message.booking_id)
         NewMessageJob.perform_later(@message)
 
-        unless booking.current_users.include?(booking.user_id.to_s)
-          create_notification(booking)
-        end
+        booking.current_users.include?(booking.user_id.to_s) || create_notification(booking)
 
         render :create, status: :created
       else

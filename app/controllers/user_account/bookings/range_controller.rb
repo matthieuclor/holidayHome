@@ -3,15 +3,15 @@
 module UserAccount
   module Bookings
     class RangeController < UserAccount::ApplicationController
-      respond_to :json
       include CurrentVenue
+      respond_to :json
       before_action :set_current_venue
 
       def index
         begin
-          from = Date.parse(params["minDate"])
-          to = Date.parse(params["maxDate"])
-        rescue TypeError => e
+          from = Date.parse(params['minDate'])
+          to = Date.parse(params['maxDate'])
+        rescue TypeError
           head :unprocessable_entity
         end
 

@@ -7,9 +7,9 @@ module UserAccount
     def destroy
       if @family_link.destroy
         remove_family_from_current_user
-        flash[:success] = "Vous êtes désolidarisé de la famille"
+        flash[:success] = 'Vous êtes désolidarisé de la famille'
       else
-        flash[:error] = "Un problem est survenu lors de la désolidarisation de la famille"
+        flash[:error] = 'Un problem est survenu lors de la désolidarisation de la famille'
       end
 
       redirect_to user_account_families_path
@@ -22,10 +22,10 @@ module UserAccount
     end
 
     def check_user
-      unless @family_link.user == current_user
-        flash[:error] = "Vous n'avez pas les droits de vous désolidariser de cette famille"
-        redirect_to user_account_families_path
-      end
+      return if @family_link.user == current_user
+
+      flash[:error] = "Vous n'avez pas les droits de vous désolidariser de cette famille"
+      redirect_to user_account_families_path
     end
 
     def remove_family_from_current_user

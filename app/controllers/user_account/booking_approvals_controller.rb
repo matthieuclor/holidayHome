@@ -15,14 +15,12 @@ module UserAccount
         NewMessageJob.perform_later(@booking_approval.message)
         UpdateBookingApprovalJob.perform_later(@booking_approval)
 
-        unless @booking.current_users.include?(@booking.user_id.to_s)
-          create_notification
-        end
+        @booking.current_users.include?(@booking.user_id.to_s) || create_notification
 
-        flash[:success] = "La réservation a bien été mise à jour"
+        flash[:success] = 'La réservation a bien été mise à jour'
         render :update, status: :ok
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de la réservation"
+        flash[:error] = 'Un problem est survenu lors de la mise à jour de la réservation'
         render :edit, status: :unprocessable_entity
       end
     end

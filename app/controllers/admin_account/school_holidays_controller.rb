@@ -13,8 +13,8 @@ module AdminAccount
       context = SynchronizeSchoolHolidays.call
 
       if context.success?
-        flash[:success] = "La synchronisation a bien fonctionnée"
-        render js: "location.reload()"
+        flash[:success] = 'La synchronisation a bien fonctionnée'
+        render js: 'location.reload()'
       else
         flash[:error] = context.error
         render status: :unprocessable_entity

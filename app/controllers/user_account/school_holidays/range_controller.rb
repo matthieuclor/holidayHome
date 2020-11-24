@@ -7,9 +7,9 @@ module UserAccount
 
       def index
         begin
-          from = Date.parse(params["minDate"])
-          to = Date.parse(params["maxDate"])
-        rescue TypeError => e
+          from = Date.parse(params['minDate'])
+          to = Date.parse(params['maxDate'])
+        rescue TypeError
           head :unprocessable_entity
         end
 

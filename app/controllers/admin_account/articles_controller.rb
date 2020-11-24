@@ -3,7 +3,7 @@
 module AdminAccount
   class ArticlesController < AdminAccount::ApplicationController
     respond_to :js, :html
-    before_action :set_article, only: [:show, :edit, :update, :destroy]
+    before_action :set_article, only: %i(show edit update destroy)
 
     def index
       @query = Article.ransack(article_ransack_params)
@@ -22,7 +22,7 @@ module AdminAccount
 
       if @article.save
         flash[:success] = "L'article a bien été créé"
-        render js: "location.reload()"
+        render js: 'location.reload()'
       else
         flash[:error] = "Un problem est survenu lors de la création de l'article"
         render :new, status: :unprocessable_entity
@@ -35,7 +35,7 @@ module AdminAccount
     def update
       if @article.update(article_params)
         flash[:success] = "L'article a bien été mis à jour"
-        render js: "location.reload()"
+        render js: 'location.reload()'
       else
         flash[:error] = "Un problem est survenu lors de la mise à jour de l'article"
         render :edit, status: :unprocessable_entity

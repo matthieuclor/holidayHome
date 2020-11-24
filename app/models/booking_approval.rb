@@ -11,7 +11,7 @@ class BookingApproval < ApplicationRecord
 
   validates :booking, :user, :status, presence: true
   validates :status, inclusion: { in: statuses.keys }
-  validates_uniqueness_of :user, scope: :booking
+  validates :user, uniqueness: { scope: :booking }
 
   after_create_commit :send_mail_and_notification
 

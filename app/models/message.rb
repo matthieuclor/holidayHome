@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 
 class Message < ApplicationRecord
-  CONTENT_MAX = 500.freeze
+  CONTENT_MAX = 500
 
   belongs_to :user
   belongs_to :booking
 
-  has_one :booking_approval
+  has_one :booking_approval, dependent: :nullify
 
   default_scope { order(:created_at).reverse_order }
 

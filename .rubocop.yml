@@ -1,0 +1,34 @@
+require: rubocop-rails
+
+AllCops:
+  Exclude:
+    - 'app/controllers/admin_account/authentification/sessions_controller.rb'
+    - 'app/controllers/user_account/authentification/*.rb'
+    - 'app/interactors/synchronize_school_holidays.rb'
+
+Style/Documentation:
+  Enabled: false
+Style/PercentLiteralDelimiters:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
+Rails/Blank:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Layout/FirstHashElementIndentation:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Style/MixinGrouping:
+  Enabled: false
+Style/ParallelAssignment:
+  Enabled: false
+Rails/EnumHash:
+  Enabled: false

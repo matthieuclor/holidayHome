@@ -3,7 +3,7 @@
 module AdminAccount
   class TeamMembersController < AdminAccount::ApplicationController
     respond_to :js, :html
-    before_action :set_team_member, only: [:edit, :update, :destroy]
+    before_action :set_team_member, only: %i(edit update destroy)
 
     def index
       @query = TeamMember.ransack(team_member_ransack_params)
@@ -19,10 +19,10 @@ module AdminAccount
       @team_member = TeamMember.new(team_member_params)
 
       if @team_member.save
-        flash[:success] = "Le mambre a bien été créé"
-        render js: "location.reload()"
+        flash[:success] = 'Le mambre a bien été créé'
+        render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la création du membre"
+        flash[:error] = 'Un problem est survenu lors de la création du membre'
         render :new, status: :unprocessable_entity
       end
     end
@@ -32,19 +32,19 @@ module AdminAccount
 
     def update
       if @team_member.update(team_member_params)
-        flash[:success] = "Le membre a bien été mise à jour"
-        render js: "location.reload()"
+        flash[:success] = 'Le membre a bien été mise à jour'
+        render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour du membre"
+        flash[:error] = 'Un problem est survenu lors de la mise à jour du membre'
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @team_member.destroy
-        flash[:success] = "Le membre a bien été supprimée"
+        flash[:success] = 'Le membre a bien été supprimée'
       else
-        flash[:error] = "Un problem est survenu lors de la suppression du membre"
+        flash[:error] = 'Un problem est survenu lors de la suppression du membre'
       end
 
       redirect_to admin_account_team_members_path

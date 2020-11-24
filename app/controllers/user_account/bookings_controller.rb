@@ -3,7 +3,7 @@
 module UserAccount
   class BookingsController < UserAccount::ApplicationController
     include CurrentVenue, CurrentFamily
-    before_action :set_current_family, only: [:index]
+    before_action :set_current_family, only: :index
 
     def index
       @query = @current_family.bookings.joins(:user).ransack(booking_ransack_params)
@@ -39,11 +39,11 @@ module UserAccount
       new_booking.messages.first.user = current_user
 
       if new_booking.save
-        flash[:success] = "La réservation a bien été créé"
+        flash[:success] = 'La réservation a bien été créé'
         render :create, status: :created
       else
         @plan_error = new_booking.errors[:base].first
-        flash[:error] = @plan_error || "Un problem est survenu lors de la creation de la réservation"
+        flash[:error] = @plan_error || 'Un problem est survenu lors de la creation de la réservation'
         render :create, status: :unprocessable_entity
       end
     end
