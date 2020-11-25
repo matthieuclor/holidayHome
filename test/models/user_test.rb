@@ -99,4 +99,25 @@ class UserTest < ActiveSupport::TestCase
       end
     end
   end
+
+  test "destroy sended invitations when user destroyed" do
+    sended_invitations = @user.sended_invitations
+    assert sended_invitations.present?
+    assert @user.destroy
+    assert_empty sended_invitations.reload
+  end
+
+  test "destroy received invitations when user destroyed" do
+    received_invitations = @user.received_invitations
+    assert received_invitations.present?
+    assert @user.destroy
+    assert_empty received_invitations.reload
+  end
+
+  test "destroy keys when user destroyed" do
+    keys = @user.keys
+    assert keys.present?
+    assert @user.destroy
+    assert_empty keys.reload
+  end
 end

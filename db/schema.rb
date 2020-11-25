@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_220058) do
+ActiveRecord::Schema.define(version: 2020_11_24_234907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -148,7 +148,6 @@ ActiveRecord::Schema.define(version: 2020_11_24_220058) do
     t.integer "send_count", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["email", "family_id"], name: "index_invitations_on_email_and_family_id", unique: true
     t.index ["family_id"], name: "index_invitations_on_family_id"
     t.index ["receiver_id"], name: "index_invitations_on_receiver_id"
     t.index ["sender_id"], name: "index_invitations_on_sender_id"
@@ -181,6 +180,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_220058) do
     t.bigint "venue_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["name", "venue_id"], name: "index_networks_on_name_and_venue_id", unique: true
     t.index ["venue_id"], name: "index_networks_on_venue_id"
   end
 
@@ -203,6 +203,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_220058) do
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["question"], name: "index_question_and_answers_on_question", unique: true
   end
 
   create_table "school_holidays", force: :cascade do |t|
@@ -214,6 +215,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_220058) do
     t.date "to"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["description", "zone", "school_year"], name: "index_school_holidays_on_description_and_zone_and_school_year", unique: true
   end
 
   create_table "team_members", force: :cascade do |t|
@@ -289,6 +291,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_220058) do
     t.integer "baby_beds_count", default: 0
     t.index ["creator_id"], name: "index_venues_on_creator_id"
     t.index ["family_id"], name: "index_venues_on_family_id"
+    t.index ["name", "family_id"], name: "index_venues_on_name_and_family_id", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"

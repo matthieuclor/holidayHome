@@ -3,16 +3,16 @@
 require 'open-uri'
 
 class Venue < ApplicationRecord
-  GOOGLE_MAP_URL = "https://maps.googleapis.com/maps/api/staticmap".freeze
-  GOOGLE_MAP_ZOOM = "11".freeze
-  GOOGLE_MAP_SIZE = "400x400".freeze
-  GOOGLE_MAP_TYPE = "roadmap".freeze
-  GOOGLE_MAP_FORMAT = "png".freeze
+  GOOGLE_MAP_URL = 'https://maps.googleapis.com/maps/api/staticmap'
+  GOOGLE_MAP_ZOOM = '11'
+  GOOGLE_MAP_SIZE = '400x400'
+  GOOGLE_MAP_TYPE = 'roadmap'
+  GOOGLE_MAP_FORMAT = 'png'
 
   has_many_attached :photos, dependent: :destroy
   has_one_attached :map, dependent: :destroy
 
-  belongs_to :creator, class_name: "User"
+  belongs_to :creator, class_name: 'User'
   belongs_to :family, counter_cache: true
 
   has_many :keys, dependent: :destroy
@@ -24,7 +24,7 @@ class Venue < ApplicationRecord
   default_scope { order(:created_at) }
 
   accepts_nested_attributes_for :keys, :networks,
-                                reject_if: -> (attr) { attr['name'].blank? },
+                                reject_if: ->(attr) { attr['name'].blank? },
                                 allow_destroy: true
 
   accepts_nested_attributes_for :digital_codes, :home_services,
@@ -33,11 +33,11 @@ class Venue < ApplicationRecord
 
   validates_with VenueValidFromPlan, on: :create
 
-  validates :photos, content_type: [:png, :jpg, :jpeg],
+  validates :photos, content_type: %i(png jpg jpeg),
                      size: { less_than: 2.megabytes }
   validates :photos, limit: { max: 10 }
   validates :photos, limit: { max: User::PLAN_BASIC_LIMIT[:venues_photos] },
-                     unless: -> (venue) { venue.creator&.families&.first&.premium? }
+                     unless: ->(venue) { venue.creator&.families&.first&.premium? }
 
   validates :map, content_type: :png, size: { less_than: 1.megabyte }
 
@@ -65,9 +65,9 @@ class Venue < ApplicationRecord
             :with_home_service,
             inclusion: { in: [true, false] }
 
-  validates :name, uniqueness: { scope: :family_id }
+  validates :name, uniqueness: { scope: :family }
 
-  before_save :attach_map, if: -> (obj) { obj.lat_changed? || obj.lng_changed? }
+  before_save :attach_map, if: ->(obj) { obj.lat_changed? || obj.lng_changed? }
   before_save :remove_nested_objects
 
   private
@@ -76,12 +76,12 @@ class Venue < ApplicationRecord
     map.attach(
       io: open(
         GOOGLE_MAP_URL +
-        "?center=#{lat},#{lng}" +
-        "&zoom=#{GOOGLE_MAP_ZOOM}" +
-        "&size=#{GOOGLE_MAP_SIZE}" +
-        "&maptype=#{GOOGLE_MAP_TYPE}" +
-        "&markers=#{lat},#{lng}" +
-        "&format=#{GOOGLE_MAP_FORMAT}" +
+        "?center=#{lat},#{lng}" \
+        "&zoom=#{GOOGLE_MAP_ZOOM}" \
+        "&size=#{GOOGLE_MAP_SIZE}" \
+        "&maptype=#{GOOGLE_MAP_TYPE}" \
+        "&markers=#{lat},#{lng}" \
+        "&format=#{GOOGLE_MAP_FORMAT}" \
         "&key=#{Rails.application.credentials.dig(:google, :secret_access_key)}"
       ),
       filename: "#{name.parameterize}.#{GOOGLE_MAP_FORMAT}"

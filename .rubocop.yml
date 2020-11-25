@@ -5,6 +5,8 @@ AllCops:
     - 'app/controllers/admin_account/authentification/sessions_controller.rb'
     - 'app/controllers/user_account/authentification/*.rb'
     - 'app/interactors/synchronize_school_holidays.rb'
+    - 'app/models/invitation.rb'
+    - 'app/models/notification.rb'
 
 Style/Documentation:
   Enabled: false
