@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 module UserAccount
@@ -9,7 +11,7 @@ module UserAccount
           sign_in @user, scope: :user
         end
 
-        test "should deactivate user and cancel bookings" do
+        test 'should deactivate user and cancel bookings' do
           delete user_account_statuses_url
 
           assert @user.deactivated?

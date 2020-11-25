@@ -1,4 +1,6 @@
-json.(message, :id, :content, :user_id)
+# frozen_string_literal: true
+
+json.call(message, :id, :content, :user_id)
 json.created_at "Le #{l(message.created_at, format: :medium)}"
 json.user_name "#{message.user.first_name} #{message.user.last_name}"
 json.approval_status message.booking_approval&.status

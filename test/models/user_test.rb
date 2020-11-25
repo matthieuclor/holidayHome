@@ -7,7 +7,7 @@ class UserTest < ActiveSupport::TestCase
     @user = users(:matthieu)
   end
 
-  test "valid user" do
+  test 'valid user' do
     assert @user.valid?
   end
 
@@ -19,56 +19,56 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "default user status must be activated" do
+  test 'default user status must be activated' do
     assert @user.activated?
   end
 
-  test "invalid user with the wrong email format" do
+  test 'invalid user with the wrong email format' do
     @user.email = 'test.test.com'
     assert_not @user.valid?
     assert_not_nil @user.errors[:email]
   end
 
-  test "invalid user with exsting email" do
+  test 'invalid user with exsting email' do
     user = build(:user, { email: @user.email })
     assert_not user.valid?
     assert_not_nil user.errors[:email]
   end
 
-  test "invalid user with the wrong password length" do
+  test 'invalid user with the wrong password length' do
     @user.password = '1234567'
     assert_not @user.valid?
     assert_not_nil @user.errors[:password]
   end
 
-  test "invalid user with the wrong zones keys" do
-    @user.current_school_holiday_zones =  { "A": "false", "B": "false", "D": "true"}
+  test 'invalid user with the wrong zones keys' do
+    @user.current_school_holiday_zones =  { 'A': 'false', 'B': 'false', 'D': 'true' }
     assert_not @user.valid?
     assert_not_nil @user.errors[:current_school_holiday_zones]
   end
 
-  test "invalid user with the wrong zones values" do
-    @user.current_school_holiday_zones =  { "A": "false", "B": "test", "C": "true"}
+  test 'invalid user with the wrong zones values' do
+    @user.current_school_holiday_zones =  { 'A': 'false', 'B': 'test', 'C': 'true' }
     assert_not @user.valid?
     assert_not_nil @user.errors[:current_school_holiday_zones]
   end
 
-  test "capitalize first name before save" do
-    @user.first_name = "test"
+  test 'capitalize first name before save' do
+    @user.first_name = 'test'
     @user.save
-    assert_equal @user.first_name, "Test"
+    assert_equal @user.first_name, 'Test'
   end
 
-  test "capitalize last name before save" do
-    @user.last_name = "test"
+  test 'capitalize last name before save' do
+    @user.last_name = 'test'
     @user.save
-    assert_equal @user.last_name, "Test"
+    assert_equal @user.last_name, 'Test'
   end
 
-  test "update all families except when other premium users are present" do
+  test 'update all families except when other premium users are present' do
     @olivia = users(:olivia)
     deadline = Date.current + 1.year
-    deadline_max = Date.current + 10.year
+    deadline_max = Date.current + 10.years
 
     @user.update(plan: :premium, plan_deadline: deadline_max)
     @user.reload.families.each do |family|
@@ -100,21 +100,21 @@ class UserTest < ActiveSupport::TestCase
     end
   end
 
-  test "destroy sended invitations when user destroyed" do
+  test 'destroy sended invitations when user destroyed' do
     sended_invitations = @user.sended_invitations
     assert sended_invitations.present?
     assert @user.destroy
     assert_empty sended_invitations.reload
   end
 
-  test "destroy received invitations when user destroyed" do
+  test 'destroy received invitations when user destroyed' do
     received_invitations = @user.received_invitations
     assert received_invitations.present?
     assert @user.destroy
     assert_empty received_invitations.reload
   end
 
-  test "destroy keys when user destroyed" do
+  test 'destroy keys when user destroyed' do
     keys = @user.keys
     assert keys.present?
     assert @user.destroy

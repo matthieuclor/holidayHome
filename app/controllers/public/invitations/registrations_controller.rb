@@ -18,10 +18,9 @@ module Public
       def create
         @invitee = User.new(invitee_params)
         @invitee.skip_confirmation!
-        @invitee.assign_attributes({
-          confirmed_at: Time.current,
-          current_family: @invitee.families.first
-        })
+        @invitee.assign_attributes(
+          { confirmed_at: Time.current, current_family: @invitee.families.first }
+        )
 
         if @invitee.save
           @invitee.received_invitations.last.accepted!

@@ -1,3 +1,5 @@
+# frozen_string_literal: false
+
 class DataEducationGouv
   include Callable, DataEducation::QueryMethods
   attr_accessor :url, :dataset, :rows, :start, :format, :lang, :timezone,
@@ -8,15 +10,16 @@ class DataEducationGouv
     @dataset = args[:dataset] || Rails.application.credentials.dig(:data_education, :dataset)
     @rows = args[:rows] || 50
     @start = args[:start] || 0
-    @format = args[:format] || "json"
-    @lang = args[:lang] || "FR"
-    @timezone = args[:timezone] || "Europe/Berlin"
+    @format = args[:format] || 'json'
+    @lang = args[:lang] || 'FR'
+    @timezone = args[:timezone] || 'Europe/Berlin'
     @q = args[:q] || {}
     @facet = args[:facet]
   end
 
   def call
-    response = Faraday.get(url,
+    response = Faraday.get(
+      url,
       {
         dataset: dataset,
         q: query || build_query,
@@ -27,17 +30,17 @@ class DataEducationGouv
         lang: lang,
         timezone: timezone
       },
-      { 'Accept' => 'application/json' }
+      { 'Accept': 'application/json' }
     )
 
     response_body = JSON.parse(response.body)
 
     if response.success?
-      self.records = response_body["records"]
-      self.parameters = response_body["parameters"]
-      self.facet_groups = response_body["facet_groups"]
+      self.records = response_body['records']
+      self.parameters = response_body['parameters']
+      self.facet_groups = response_body['facet_groups']
     else
-      self.error = response_body["error"]
+      self.error = response_body['error']
     end
 
     self
@@ -62,16 +65,16 @@ class DataEducationGouv
   private
 
   def build_query
-    self.query = ""
+    self.query = ''
 
     @q.each do |key, value|
       methods = DataEducation::QueryMethods.instance_methods.map(&:to_s).join('|')
       match_data = key.match(/^(?<attribute>\S+)(?<method>#{methods})+$/)
-      raise SyntaxError.new("unexpected #{key}") unless match_data
+      raise(SyntaxError, "unexpected #{key}") unless match_data
 
-      if value.kind_of?(Array)
+      if value.is_a?(Array)
         attributes = value.map { |v| send(match_data[:method], match_data[:attribute], v) }
-        query << " (#{attributes.join(" OR ")}) AND"
+        query << " (#{attributes.join(' OR ')}) AND"
       else
         query << " #{send(match_data[:method], match_data[:attribute], value)} AND"
       end

@@ -9,24 +9,24 @@ module UserAccount
       sign_in @user, scope: :user
     end
 
-    test "redirected if not logged in" do
+    test 'redirected if not logged in' do
       sign_out :user
       get user_account_venues_url
       assert_redirected_to new_user_session_url
     end
 
-    test "should get index" do
+    test 'should get index' do
       get user_account_venues_url
-      current_family = @controller.view_assigns["current_family"]
+      current_family = @controller.view_assigns['current_family']
       assert_instance_of Family, current_family
       assert_response :success
     end
 
-    test "should get index as json" do
+    test 'should get index as json' do
       get user_account_venues_url, as: :json
-      current_family = @controller.view_assigns["current_family"]
-      pagy = @controller.view_assigns["pagy"]
-      venues = @controller.view_assigns["venues"]
+      current_family = @controller.view_assigns['current_family']
+      pagy = @controller.view_assigns['pagy']
+      venues = @controller.view_assigns['venues']
 
       assert_instance_of Family, current_family
       assert_instance_of VenueDecorator, venues.first
@@ -34,19 +34,19 @@ module UserAccount
       assert_response :success
     end
 
-    test "should get show as json" do
+    test 'should get show as json' do
       get user_account_venue_url(venues(:la_tania)), as: :json
-      venue = @controller.view_assigns["venue"]
+      venue = @controller.view_assigns['venue']
 
       assert_instance_of VenueDecorator, venue
       assert_response :success
     end
 
-    test "should get new as json" do
+    test 'should get new as json' do
       get new_user_account_venue_url, as: :json
-      current_family = @controller.view_assigns["current_family"]
-      owners = @controller.view_assigns["owners"]
-      venue = @controller.view_assigns["venue"]
+      current_family = @controller.view_assigns['current_family']
+      owners = @controller.view_assigns['owners']
+      venue = @controller.view_assigns['venue']
 
       assert_instance_of Family, current_family
       assert_instance_of User, owners.first
@@ -65,7 +65,7 @@ module UserAccount
       assert_response :success
     end
 
-    test "should create first venue with basic plan as json" do
+    test 'should create first venue with basic plan as json' do
       sign_out :user
       sign_in users(:alex), scope: :user
 
@@ -102,7 +102,7 @@ module UserAccount
       assert_response :success
     end
 
-    test "should not create second venue with basic plan as json" do
+    test 'should not create second venue with basic plan as json' do
       post user_account_venues_url, params: { venue: {
         name: 'PLG',
         address: '12 rue du test',
@@ -136,7 +136,7 @@ module UserAccount
       assert_response :unprocessable_entity
     end
 
-    test "should create second venue with premium plan as json" do
+    test 'should create second venue with premium plan as json' do
       @user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
 
       post user_account_venues_url, params: { venue: {
@@ -172,17 +172,17 @@ module UserAccount
       assert_response :success
     end
 
-    test "should get edit as json" do
+    test 'should get edit as json' do
       get edit_user_account_venue_url(venues(:la_tania)), as: :json
-      current_family = @controller.view_assigns["current_family"]
-      venue = @controller.view_assigns["venue"]
+      current_family = @controller.view_assigns['current_family']
+      venue = @controller.view_assigns['venue']
 
       assert_instance_of Family, current_family
       assert_instance_of Venue, venue
       assert_response :success
     end
 
-    test "should update venue as json" do
+    test 'should update venue as json' do
       patch user_account_venue_url(
         venues(:la_tania)
       ), params: { venue: { name: 'La Tania updated' } }, as: :json
@@ -190,7 +190,7 @@ module UserAccount
       assert_response :success
     end
 
-    test "should destroy venue as json" do
+    test 'should destroy venue as json' do
       delete user_account_venue_url(venues(:la_tania)), as: :json
       assert_response :success
     end

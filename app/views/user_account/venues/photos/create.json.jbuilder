@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.venue do
   if @venue.photos.attached?
     json.photos @venue.photos do |photo|
@@ -8,7 +10,7 @@ json.venue do
     end
   end
 
-  json.errors @venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
+  json.errors(@venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) })
 end
 
 if flash.present?

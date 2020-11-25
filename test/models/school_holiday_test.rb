@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class SchoolHolidayTest < ActiveSupport::TestCase
@@ -5,7 +7,7 @@ class SchoolHolidayTest < ActiveSupport::TestCase
     @school_holiday = school_holidays(:christmas_holidays)
   end
 
-  test "valid school holiday" do
+  test 'valid school holiday' do
     assert @school_holiday.valid?
   end
 
@@ -17,7 +19,7 @@ class SchoolHolidayTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid school holiday with duplicate description" do
+  test 'invalid school holiday with duplicate description' do
     school_holiday = build(
       :school_holiday,
       {

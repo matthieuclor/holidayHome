@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class QuestionAndAnswerTest < ActiveSupport::TestCase
@@ -5,11 +7,11 @@ class QuestionAndAnswerTest < ActiveSupport::TestCase
     @question_and_answer = question_and_answers(:first_question_and_answer)
   end
 
-  test "valid Q&A" do
+  test 'valid Q&A' do
     assert @question_and_answer.valid?
   end
 
-  test "default Q&A status must be offline" do
+  test 'default Q&A status must be offline' do
     assert @question_and_answer.offline?
   end
 
@@ -21,10 +23,10 @@ class QuestionAndAnswerTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid Q&A with duplicate question" do
+  test 'invalid Q&A with duplicate question' do
     question_and_answer = build(
       :question_and_answer,
-      { question:  @question_and_answer.question }
+      { question: @question_and_answer.question }
     )
 
     assert_not question_and_answer.valid?

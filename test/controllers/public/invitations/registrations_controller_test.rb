@@ -9,16 +9,16 @@ module Public
         @invitation = invitations(:matthieu_invite_user)
       end
 
-      test "should get new" do
+      test 'should get new' do
         get new_invitation_registrations_url(token: @invitation.token)
-        invitee = @controller.view_assigns["invitee"]
+        invitee = @controller.view_assigns['invitee']
 
         assert_instance_of User, invitee
         assert invitee.new_record?
         assert_response :success
       end
 
-      test "should create invitee" do
+      test 'should create invitee' do
         assert_enqueued_jobs 1, only: NewNotificationJob do
           post invitation_registrations_url, params: {
             invitee: {
@@ -33,13 +33,13 @@ module Public
           }
         end
 
-        invitee = @controller.view_assigns["invitee"]
+        invitee = @controller.view_assigns['invitee']
         notification = Notification.unread.last
 
         assert_not_nil invitee
         assert invitee.families.last == @invitation.family
         assert invitee.received_invitations.last.accepted?
-        assert_equal notification.notification_type, "accepted_invitation"
+        assert_equal notification.notification_type, 'accepted_invitation'
         assert_equal notification.user_id, @invitation.sender_id
         assert_equal notification.family_id, @invitation.family_id
         assert_redirected_to user_account_dashboards_url

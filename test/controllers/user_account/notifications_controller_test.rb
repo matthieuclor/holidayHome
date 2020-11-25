@@ -9,17 +9,17 @@ module UserAccount
       sign_in @user, scope: :user
     end
 
-    test "redirected if not logged in" do
+    test 'redirected if not logged in' do
       sign_out @user
       get user_account_notifications_url
       assert_response :redirect
     end
 
-    test "should render paginate notifications" do
+    test 'should render paginate notifications' do
       get user_account_notifications_url
 
-      notifications = @controller.view_assigns["notifications"]
-      pagy = @controller.view_assigns["pagy"]
+      notifications = @controller.view_assigns['notifications']
+      pagy = @controller.view_assigns['pagy']
 
       assert_instance_of Notification, notifications.first
       assert_instance_of Pagy, pagy
@@ -27,8 +27,8 @@ module UserAccount
       assert_response :success
     end
 
-    test "should render notification" do
-      family_link = family_links("matthieu_delcroix").family_id
+    test 'should render notification' do
+      family_link = family_links('matthieu_delcroix').family_id
       @user.update(current_family_id: family_link)
       notification = notifications(:notification_new_message_from_la_tania_booking)
 

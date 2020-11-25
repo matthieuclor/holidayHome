@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.current_school_holiday_zones current_user.current_school_holiday_zones
 
 if flash.present?

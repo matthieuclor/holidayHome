@@ -4,37 +4,37 @@ require 'test_helper'
 
 module Public
   class PagesControllerTest < ActionDispatch::IntegrationTest
-    test "should get main" do
+    test 'should get main' do
       get root_url
       assert_response :success
     end
 
-    test "should get about" do
+    test 'should get about' do
       get about_url
       assert_response :success
     end
 
-    test "should get pricing" do
+    test 'should get pricing' do
       get pricing_url
       assert_response :success
     end
 
-    test "should get cgu" do
+    test 'should get cgu' do
       get cgu_url
       assert_response :success
     end
 
-    test "should get privacy_policy" do
+    test 'should get privacy_policy' do
       get privacy_policy_url
       assert_response :success
     end
 
-    test "should get company_details" do
+    test 'should get company_details' do
       get company_details_url
       assert_response :success
     end
 
-    test "should get sitemap" do
+    test 'should get sitemap' do
       get sitemaps_url
       assert_response :success
     end

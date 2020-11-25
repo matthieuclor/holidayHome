@@ -9,7 +9,7 @@ class NotificationTest < ActiveSupport::TestCase
     @notification = notifications(:notification_new_message_from_la_tania_booking)
   end
 
-  test "valid notification" do
+  test 'valid notification' do
     assert @notification.valid?
   end
 
@@ -21,27 +21,33 @@ class NotificationTest < ActiveSupport::TestCase
     end
   end
 
-  test "default notification status must be unread" do
-    notification = create(:notification, {
-      notification_type: :new_message,
-      description: "Vous avez un nouveau message",
-      url: "/user_account/bookings/2",
-      user: @notification.user,
-      family: @notification.family
-    })
+  test 'default notification status must be unread' do
+    notification = create(
+      :notification,
+      {
+        notification_type: :new_message,
+        description: 'Vous avez un nouveau message',
+        url: '/user_account/bookings/2',
+        user: @notification.user,
+        family: @notification.family
+      }
+    )
 
     assert notification.unread?
   end
 
-  test "should launch job after create" do
+  test 'should launch job after create' do
     assert_enqueued_jobs 1, only: NewNotificationJob do
-      create(:notification, {
-        notification_type: :new_message,
-        description: "Vous avez un nouveau message",
-        url: "/user_account/bookings/3",
-        user: @notification.user,
-        family: @notification.family
-      })
+      create(
+        :notification,
+        {
+          notification_type: :new_message,
+          description: 'Vous avez un nouveau message',
+          url: '/user_account/bookings/3',
+          user: @notification.user,
+          family: @notification.family
+        }
+      )
     end
   end
 end

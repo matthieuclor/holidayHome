@@ -7,7 +7,7 @@ class FamilyTest < ActiveSupport::TestCase
     @family = families(:clor)
   end
 
-  test "valid family" do
+  test 'valid family' do
     assert @family.valid?
   end
 
@@ -19,13 +19,13 @@ class FamilyTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid family with the wrong days for approval" do
+  test 'invalid family with the wrong days for approval' do
     @family.days_for_approval = Family::MAX_DAYS_FOR_APPROVAL + 1
     assert_not @family.valid?
     assert_not_nil @family.errors[:days_for_approval]
   end
 
-  test "invalid family when i create second family" do
+  test 'invalid family when i create second family' do
     family = build(
       :family,
       name: 'Second',
@@ -37,7 +37,7 @@ class FamilyTest < ActiveSupport::TestCase
     assert family.errors[:base].present?
   end
 
-  test "valid family when user is premium" do
+  test 'valid family when user is premium' do
     deadline = Date.current + 1.year
     @family.creator.update(plan: :premium, plan_deadline: deadline)
 

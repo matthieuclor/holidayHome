@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class ArticleTest < ActiveSupport::TestCase
@@ -5,11 +7,11 @@ class ArticleTest < ActiveSupport::TestCase
     @article = articles(:first_article)
   end
 
-  test "valid article" do
+  test 'valid article' do
     assert @article.valid?
   end
 
-  test "default article status must be offline" do
+  test 'default article status must be offline' do
     assert @article.offline?
   end
 
@@ -21,16 +23,16 @@ class ArticleTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid article with duplicate title and slug" do
-    article = build(:article, { title:  @article.title })
+  test 'invalid article with duplicate title and slug' do
+    article = build(:article, { title: @article.title })
     assert_not article.valid?
     assert_not_nil article.errors[:title]
     assert_not_nil article.errors[:slug]
   end
 
-  test "generate slug from title before validate article" do
-    article = build(:article, { title:  "Ceci est un test !" })
+  test 'generate slug from title before validate article' do
+    article = build(:article, { title:  'Ceci est un test !' })
     article.valid?
-    assert_equal article.slug, "ceci-est-un-test"
+    assert_equal article.slug, 'ceci-est-un-test'
   end
 end

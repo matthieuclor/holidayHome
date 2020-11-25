@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class VenueTest < ActiveSupport::TestCase
@@ -5,11 +7,11 @@ class VenueTest < ActiveSupport::TestCase
     @venue = venues(:la_tania)
   end
 
-  test "valid venue" do
+  test 'valid venue' do
     assert @venue.valid?
   end
 
-  test "valid venue with dependencies" do
+  test 'valid venue with dependencies' do
     @venue.keys << create(:key, { owner: @venue.creator, venue: @venue })
     @venue.networks << create(:network, { venue: @venue })
     @venue.digital_codes << create(:digital_code, { venue: @venue })
@@ -18,7 +20,7 @@ class VenueTest < ActiveSupport::TestCase
     assert @venue.valid?
   end
 
-  test "update venues count on venue family" do
+  test 'update venues count on venue family' do
     @venue.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     create(:venue, { family: @venue.family, creator: @venue.creator })
     assert_equal @venue.family.venues_count, 2
@@ -40,14 +42,14 @@ class VenueTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid venue with duplicate name on family" do
+  test 'invalid venue with duplicate name on family' do
     @venue.creator.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     venue = build(:venue, { family: @venue.family, name: @venue.name, creator: @venue.creator })
     assert_not venue.valid?
     assert venue.errors[:name].present?
   end
 
-  test "invalid second venue with basic plan" do
+  test 'invalid second venue with basic plan' do
     @user = users(:alex)
     create(:venue, { family: @user.families.first, creator: @user })
     venue = build(:venue, { family: @user.families.first, creator: @user })
@@ -55,13 +57,13 @@ class VenueTest < ActiveSupport::TestCase
     assert venue.errors[:base].present?
   end
 
-  test "invalid venue with basic plan when family is not the first" do
+  test 'invalid venue with basic plan when family is not the first' do
     venue = build(:venue, { family: families(:bouhours), creator: users(:sophie) })
     assert_not venue.valid?
     assert venue.errors[:base].present?
   end
 
-  test "valid second venue with premium plan" do
+  test 'valid second venue with premium plan' do
     @user = users(:alex)
     @user.update(plan: :premium, plan_deadline: (Date.current + 1.year))
     @user.reload
@@ -71,13 +73,13 @@ class VenueTest < ActiveSupport::TestCase
     assert_not venue.errors[:base].present?
   end
 
-  test "valid first venue with basic plan" do
+  test 'valid first venue with basic plan' do
     venue = build(:venue, { family: families(:bouhours), creator: users(:alex) })
     assert venue.valid?
     assert_not venue.errors[:base].present?
   end
 
-  test "destroy nested objects when user set to false with nested object" do
+  test 'destroy nested objects when user set to false with nested object' do
     assert @venue.with_network
     assert @venue.with_digital_code
     assert @venue.with_home_service

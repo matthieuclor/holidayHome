@@ -8,8 +8,7 @@ class User < ApplicationRecord
     venues_photos: 1
   }.freeze
 
-  # Include default devise modules. Others available are:
-  # :omniauthable
+  # Include default devise modules. Others available are: :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :timeoutable, :confirmable, :lockable, :trackable
 

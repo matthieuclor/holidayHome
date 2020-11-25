@@ -9,16 +9,16 @@ module UserAccount
         sign_in users(:matthieu), scope: :user
       end
 
-      test "should get new" do
+      test 'should get new' do
         sign_out :user
         get new_user_registration_url, xhr: true
-        user = @controller.view_assigns["user"]
+        user = @controller.view_assigns['user']
 
         assert user.new_record?
         assert_response :success
       end
 
-      test "should create user" do
+      test 'should create user' do
         sign_out :user
         post user_registration_url, params: {
           user: {
@@ -30,7 +30,7 @@ module UserAccount
           }
         }
 
-        created_user = @controller.view_assigns["user"]
+        created_user = @controller.view_assigns['user']
         authentification_mailer = AuthentificationMailer.confirmation_instructions(
           created_user,
           created_user.confirmation_token,
@@ -38,18 +38,18 @@ module UserAccount
         )
 
         assert_emails(1)
-        assert_equal [I18n.t("contact.email")], authentification_mailer.from
+        assert_equal [I18n.t('contact.email')], authentification_mailer.from
         assert_equal [created_user.email], authentification_mailer.to
-        assert_equal "Instructions de confirmation", authentification_mailer.subject
+        assert_equal 'Instructions de confirmation', authentification_mailer.subject
         assert_redirected_to user_account_dashboards_url
       end
 
-      test "should get edit" do
+      test 'should get edit' do
         get edit_user_registration_url, xhr: true
         assert_response :success
       end
 
-      test "should update user" do
+      test 'should update user' do
         patch user_registration_url, params: {
           user: {
             first_name: 'Matthieu2',
@@ -60,7 +60,7 @@ module UserAccount
         assert_redirected_to user_account_settings_url
       end
 
-      test "should destroy user" do
+      test 'should destroy user' do
         delete user_registration_url, xhr: true
         assert_response :success
       end

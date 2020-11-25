@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.venues @venues do |venue|
   json.id venue.id
   json.name venue.name
@@ -20,5 +22,5 @@ json.pagy do
   json.t_prev pagy_t('pagy.nav.prev')
   json.next @pagy.next
   json.t_next pagy_t('pagy.nav.next')
-  json.series @pagy.series { |item| json.item item }
+  json.series(@pagy.series { |item| json.item item })
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class HomeServiceTest < ActiveSupport::TestCase
@@ -5,7 +7,7 @@ class HomeServiceTest < ActiveSupport::TestCase
     @home_service = home_services(:home_service)
   end
 
-  test "valid home service" do
+  test 'valid home service' do
     assert @home_service.valid?
   end
 
@@ -17,23 +19,26 @@ class HomeServiceTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid home service with duplicate name on venue" do
-    home_service = build(:home_service, {
-      venue: @home_service.venue,
-      name: @home_service.name
-    })
+  test 'invalid home service with duplicate name on venue' do
+    home_service = build(
+      :home_service,
+      {
+        venue: @home_service.venue,
+        name: @home_service.name
+      }
+    )
 
     assert_not home_service.valid?
     assert_not_nil home_service.errors[:name]
   end
 
-  test "invalid home service with wrong email format" do
-    @home_service.email = "wrongemail"
+  test 'invalid home service with wrong email format' do
+    @home_service.email = 'wrongemail'
     assert_not @home_service.valid?
     assert_not_nil @home_service.errors[:email]
   end
 
-  test "destroy home services when venue destroyed" do
+  test 'destroy home services when venue destroyed' do
     venue = @home_service.venue
     assert venue.destroy
     assert_empty HomeService.where(venue_id: venue.id)

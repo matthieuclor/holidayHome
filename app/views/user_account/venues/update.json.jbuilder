@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 json.venue do
-  json.(@venue, :id)
+  json.call(@venue, :id)
 end
 
 if flash.present?

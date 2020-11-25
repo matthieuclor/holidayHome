@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.current_venue(@current_venue, :id, :name)
 
 if flash.present?

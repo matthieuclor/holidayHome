@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.pending_bookings(
   @pending_bookings,
   :id,

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class KeyTest < ActiveSupport::TestCase
@@ -5,7 +7,7 @@ class KeyTest < ActiveSupport::TestCase
     @key = keys(:key)
   end
 
-  test "valid key" do
+  test 'valid key' do
     assert @key.valid?
   end
 
@@ -17,13 +19,13 @@ class KeyTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid key with duplicate name on venue" do
+  test 'invalid key with duplicate name on venue' do
     key = build(:key, { venue: @key.venue, name:  @key.name })
     assert_not key.valid?
     assert_not_nil key.errors[:name]
   end
 
-  test "destroy keys when venue destroyed" do
+  test 'destroy keys when venue destroyed' do
     venue = @key.venue
     assert venue.destroy
     assert_empty Key.where(venue_id: venue.id)

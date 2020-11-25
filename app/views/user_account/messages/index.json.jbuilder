@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 json.messages @messages do |message|
-  json.(message, :id, :user_id)
+  json.call(message, :id, :user_id)
   json.content simple_format(message.content)
   json.created_at "Le #{l(message.created_at, format: :medium)}"
   json.user_name "#{message.user.first_name} #{message.user.last_name}"
@@ -15,5 +17,5 @@ json.messages @messages do |message|
 end
 
 json.message_pagy do
-  json.(@pagy, :next)
+  json.call(@pagy, :next)
 end

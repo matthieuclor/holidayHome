@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 json.venue do
-  json.(
+  json.call(
     @venue,
     :id,
     :name,
@@ -30,25 +32,25 @@ json.venue do
 
   json.current_user_is_the_creator true
 
-  json.errors @venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) }
+  json.errors(@venue.errors.messages.transform_keys { |k| k.to_s.camelize(:lower) })
 
   json.keys @venue.keys do |key|
-    json.(key, :id, :name, :owner_id, :_destroy)
+    json.call(key, :id, :name, :owner_id, :_destroy)
     json.errors key.errors.messages
   end
 
   json.networks @venue.networks do |network|
-    json.(network, :id, :name, :password, :_destroy)
+    json.call(network, :id, :name, :password, :_destroy)
     json.errors network.errors.messages
   end
 
   json.digital_codes @venue.digital_codes do |digital_code|
-    json.(digital_code, :id, :name, :password, :_destroy)
+    json.call(digital_code, :id, :name, :password, :_destroy)
     json.errors digital_code.errors.messages
   end
 
   json.home_services @venue.home_services do |home_service|
-    json.(
+    json.call(
       home_service,
       :id,
       :name,

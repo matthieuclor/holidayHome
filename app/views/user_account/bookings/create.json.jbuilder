@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.plan_error @plan_error if @plan_error
 
 if flash.present?

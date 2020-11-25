@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'test_helper'
 
 class TeamMemberTest < ActiveSupport::TestCase
@@ -5,11 +7,11 @@ class TeamMemberTest < ActiveSupport::TestCase
     @team_member = team_members(:pierre)
   end
 
-  test "valid team member" do
+  test 'valid team member' do
     assert @team_member.valid?
   end
 
-  test "default team member status must be offline" do
+  test 'default team member status must be offline' do
     assert @team_member.offline?
   end
 
@@ -21,7 +23,7 @@ class TeamMemberTest < ActiveSupport::TestCase
     end
   end
 
-  test "invalid online team member without photo" do
+  test 'invalid online team member without photo' do
     @team_member.status = :online
     assert_not @team_member.valid?
     assert_not_nil @team_member.errors[:photo]
@@ -29,9 +31,9 @@ class TeamMemberTest < ActiveSupport::TestCase
 
   %i(first_name last_name function).each do |attibute|
     test "capitalize #{attibute} before save" do
-      @team_member.send("#{attibute}=", "test")
+      @team_member.send("#{attibute}=", 'test')
       @team_member.save
-      assert_equal @team_member.send(attibute), "Test"
+      assert_equal @team_member.send(attibute), 'Test'
     end
   end
 end

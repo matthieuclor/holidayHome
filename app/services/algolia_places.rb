@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AlgoliaPlaces
   include Callable
   attr_accessor :hits_per_page, :language, :app_id, :app_url, :api_key, :query,
@@ -5,11 +7,11 @@ class AlgoliaPlaces
 
   def initialize(**args)
     @hits_per_page = args[:hits_per_page] || 5
-    @language = args[:language] || "fr"
+    @language = args[:language] || 'fr'
     @app_id = args[:app_id] || Rails.application.credentials.dig(:algolia, :places, :app_id)
     @app_url = args[:app_url] || Rails.application.credentials.dig(:algolia, :places, :app_url)
     @api_key = args[:api_key] || Rails.application.credentials.dig(:algolia, :places, :api_key)
-    @query = args[:query] || ""
+    @query = args[:query] || ''
   end
 
   def call
@@ -27,9 +29,9 @@ class AlgoliaPlaces
     response_body = JSON.parse(response.body)
 
     if response.success?
-      self.hits = response_body["hits"]
+      self.hits = response_body['hits']
     else
-      self.error = response_body["message"]
+      self.error = response_body['message']
     end
 
     self

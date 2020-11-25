@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 json.venues @venues do |venue|
-  json.(venue, :id, :name)
+  json.call(venue, :id, :name)
 
   if venue.photos.attached?
     json.photo_url url_for(

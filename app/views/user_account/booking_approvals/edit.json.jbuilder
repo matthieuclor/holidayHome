@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.booking_approval do
   json.errors @booking_approval.errors.messages
 end
