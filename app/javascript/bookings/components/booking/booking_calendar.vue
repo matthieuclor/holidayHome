@@ -138,7 +138,7 @@
   }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
   .vc-container {
     border: 0;
   }

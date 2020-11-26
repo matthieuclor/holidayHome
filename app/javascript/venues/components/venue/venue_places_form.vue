@@ -191,52 +191,52 @@
   }
 </script>
 
-<style>
+<style lang="scss">
   .autosuggest__results-container {
     margin-top: 3px;
     border-radius: 0.3125rem;
     box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.15);
-  }
 
-  .autosuggest__results > ul {
-    list-style: none;
-    padding: 0;
-  }
+    .autosuggest__results > ul {
+      list-style: none;
+      padding: 0;
 
-  .autosuggest__results-item {
-    cursor: pointer;
-    height: 46px;
-    line-height: 46px;
-    padding-left: 18px;
-  }
+      .autosuggest__results-item {
+        cursor: pointer;
+        height: 46px;
+        line-height: 46px;
+        padding-left: 18px;
 
-  .autosuggest__results-item:hover {
-    background-color: #F2F2F2;
-  }
+        &:hover {
+          background-color: #F2F2F2;
 
-  .autosuggest__results-item:hover .item-icon {
-    color: #38b2ac !important;
-  }
+          .item-icon {
+            color: #38b2ac !important;
+          }
+        }
 
-  .my-suggestion-item > .item-name em {
-    font-weight: bold;
-    font-style: normal;
-  }
+        .item-icon {
+          margin-right: 10px;
+          font-size: 18px;
+          width: 20px;
+          text-align: center;
+        }
 
-  .my-suggestion-item > .item-address em {
-    font-weight: bold;
-    font-style: normal;
-  }
+        .item-name em {
+          font-weight: bold;
+          font-style: normal;
+        }
 
-  .my-suggestion-item > .item-address {
-    font-size: smaller;
-    margin-left: 12px;
-  }
+        .item-address {
+          font-size: smaller;
+          margin-left: 12px;
 
-  .item-icon {
-    margin-right: 10px;
-    font-size: 18px;
-    width: 20px;
-    text-align: center;
+          em {
+            font-weight: bold;
+            font-style: normal;
+          }
+        }
+      }
+    }
   }
 </style>

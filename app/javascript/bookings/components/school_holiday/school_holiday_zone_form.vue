@@ -45,19 +45,21 @@
   }
 </script>
 
-<style scoped>
-  .custom-control-input:checked ~ .custom-control-label.blue-checkbox::before {
-    border-color: #3182ce;
-    background-color: #3182ce;
-  }
+<style lang="scss" scoped>
+  .custom-control-input:checked ~ .custom-control-label {
+    &.blue-checkbox::before {
+      border-color: #3182ce;
+      background-color: #3182ce;
+    }
 
-  .custom-control-input:checked ~ .custom-control-label.red-checkbox::before {
-    border-color: #e53e3e;
-    background-color: #e53e3e;
-  }
+    &.red-checkbox::before {
+      border-color: #e53e3e;
+      background-color: #e53e3e;
+    }
 
-  .custom-control-input:checked ~ .custom-control-label.yellow-checkbox::before {
-    border-color: #d69e2e;
-    background-color: #d69e2e;
+    &.yellow-checkbox::before {
+      border-color: #d69e2e;
+      background-color: #d69e2e;
+    }
   }
 </style>
