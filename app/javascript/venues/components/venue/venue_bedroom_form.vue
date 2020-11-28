@@ -15,15 +15,15 @@
 
       <div class="col-sm-3">
         <input :value="venueFormItem.bedroomsCount"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'bedroomsCount')"
-                required="required"
-                aria-required="true"
-                min="0"
-                type="number"
-                name="venue[bedrooms_count]"
-                id="venue_bedrooms_count"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'bedroomsCount')">
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'bedroomsCount')"
+               required="required"
+               aria-required="true"
+               min="0"
+               type="number"
+               name="venue[bedrooms_count]"
+               id="venue_bedrooms_count"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'bedroomsCount')">
 
         <div v-for="(bedroomsCountError, errorIndex) in venueFormItem.errors['bedroomsCount']"
              :key="errorIndex"
@@ -44,15 +44,15 @@
 
       <div class="col-sm-3">
         <input :value="venueFormItem.singleBedsCount"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'singleBedsCount')"
-                required="required"
-                aria-required="true"
-                min="0"
-                type="number"
-                name="venue[single_beds_count]"
-                id="venue_single_beds_count"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'singleBedsCount')">
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'singleBedsCount')"
+               required="required"
+               aria-required="true"
+               min="0"
+               type="number"
+               name="venue[single_beds_count]"
+               id="venue_single_beds_count"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'singleBedsCount')">
 
         <div v-for="(singleBedsCountError, errorIndex) in venueFormItem.errors['singleBedsCount']"
              :key="errorIndex"
@@ -74,15 +74,15 @@
 
       <div class="col-sm-3">
         <input :value="venueFormItem.doubleBedsCount"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'doubleBedsCount')"
-                required="required"
-                aria-required="true"
-                min="0"
-                type="number"
-                name="venue[double_beds_count]"
-                id="venue_double_beds_count"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'doubleBedsCount')">
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'doubleBedsCount')"
+               required="required"
+               aria-required="true"
+               min="0"
+               type="number"
+               name="venue[double_beds_count]"
+               id="venue_double_beds_count"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'doubleBedsCount')">
 
         <div v-for="(doubleBedsCountError, errorIndex) in venueFormItem.errors['doubleBedsCount']"
              :key="errorIndex"
@@ -104,15 +104,15 @@
 
       <div class="col-sm-3">
         <input :value="venueFormItem.babyBedsCount"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'babyBedsCount')"
-                required="required"
-                aria-required="true"
-                min="0"
-                type="number"
-                name="venue[baby_beds_count]"
-                id="venue_baby_beds_count"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'babyBedsCount')">
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'babyBedsCount')"
+               required="required"
+               aria-required="true"
+               min="0"
+               type="number"
+               name="venue[baby_beds_count]"
+               id="venue_baby_beds_count"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'babyBedsCount')">
 
         <div v-for="(babyBedsCountError, errorIndex) in venueFormItem.errors['babyBedsCount']"
              :key="errorIndex"
@@ -126,14 +126,14 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueBedroomForm',
-    mixins: [formMixin],
-    computed: {
-      ...mapGetters(['venueFormItem'])
-    }
-  }
+export default {
+  name: 'VenueBedroomForm',
+  mixins: [formMixin],
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+};
 </script>

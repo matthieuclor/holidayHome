@@ -30,27 +30,27 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'FlashMessage',
-    props: ['flash'],
-    computed: {
-      bgClass() {
-        return `bg-${this.flash.key == 'error' ? 'danger' : 'success' }`
-      },
-      iconClass() {
-        return `${this.flash.key == 'error' ? 'times' : 'check' }-circle`
-      }
+export default {
+  name: 'FlashMessage',
+  props: ['flash'],
+  computed: {
+    bgClass() {
+      return `bg-${this.flash.key === 'error' ? 'danger' : 'success'}`;
     },
-    methods: {
-      ...mapActions(['removeLastFlash'])
+    iconClass() {
+      return `${this.flash.key === 'error' ? 'times' : 'check'}-circle`;
     },
-    mounted() {
-      $(this.$refs.toast).toast("show")
-      $(this.$refs.toast).on('hidden.bs.toast', () => {
-        this.removeLastFlash()
-      })
-    }
-  }
+  },
+  methods: {
+    ...mapActions(['removeLastFlash']),
+  },
+  mounted() {
+    $(this.$refs.toast).toast('show');
+    $(this.$refs.toast).on('hidden.bs.toast', () => {
+      this.removeLastFlash();
+    });
+  },
+};
 </script>

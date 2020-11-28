@@ -51,7 +51,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'VenueSkeleton'
-  }
+export default {
+  name: 'VenueSkeleton',
+};
 </script>

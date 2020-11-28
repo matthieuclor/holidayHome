@@ -35,8 +35,8 @@
                                           :userId="bookingApproval.userId" />
 
                   <a v-if="bookingApproval.userName"
-                    :href="`/user_account/users/${bookingApproval.userId}`"
-                    data-remote="true">
+                     :href="`/user_account/users/${bookingApproval.userId}`"
+                     data-remote="true">
                     {{ bookingApproval.userName }}
                   </a>
 
@@ -55,23 +55,23 @@
 </template>
 
 <script>
-  import BookingCurrentUserIcon from '../booking/booking_current_user_icon'
-  import BookingApprovalStatusIcon from './booking_approval_status_icon'
+import BookingCurrentUserIcon from '../booking/booking_current_user_icon.vue';
+import BookingApprovalStatusIcon from './booking_approval_status_icon.vue';
 
-  export default {
-    name: 'BookingApprovalCard',
-    props: [
-      'bookingApprovals',
-      'bookingStatus'
-    ],
-    computed: {
-      bookingApprovalsCount() {
-        return this.bookingApprovals.length
-      }
+export default {
+  name: 'BookingApprovalCard',
+  props: [
+    'bookingApprovals',
+    'bookingStatus',
+  ],
+  computed: {
+    bookingApprovalsCount() {
+      return this.bookingApprovals.length;
     },
-    components: {
-      BookingCurrentUserIcon,
-      BookingApprovalStatusIcon
-    }
-  }
+  },
+  components: {
+    BookingCurrentUserIcon,
+    BookingApprovalStatusIcon,
+  },
+};
 </script>

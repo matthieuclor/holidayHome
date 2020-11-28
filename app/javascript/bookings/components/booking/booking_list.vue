@@ -19,8 +19,8 @@
 
             <div v-if="bookingPendingItems.length > 0" class="list-group shadow-none">
               <BookingListItem v-for="bookingPendingItem in bookingPendingItems"
-                              :key="bookingPendingItem.id"
-                              :bookingPendingItem="bookingPendingItem" />
+                               :key="bookingPendingItem.id"
+                               :bookingPendingItem="bookingPendingItem" />
             </div>
             <p v-else class="text-center text-muted m-0">
               Vous n'avez pas de demande pour le moment.
@@ -33,31 +33,31 @@
 </template>
 
 <script>
-  import BookingListItem from './booking_list_item'
-  import { mapGetters, mapActions } from 'vuex'
+import BookingListItem from './booking_list_item.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingList',
-    computed: {
-      ...mapGetters([
-        'bookingPendingItems',
-        'currentVenue',
-        'currentUser'
-      ])
+export default {
+  name: 'BookingList',
+  computed: {
+    ...mapGetters([
+      'bookingPendingItems',
+      'currentVenue',
+      'currentUser',
+    ]),
+  },
+  components: {
+    BookingListItem,
+  },
+  methods: {
+    ...mapActions(['getBookingPendingItems']),
+  },
+  watch: {
+    currentVenue: {
+      handler() {
+        this.getBookingPendingItems();
+      },
+      immediate: true,
     },
-    components: {
-      BookingListItem
-    },
-    methods: {
-      ...mapActions(['getBookingPendingItems'])
-    },
-    watch: {
-      currentVenue: {
-        handler() {
-          this.getBookingPendingItems()
-        },
-        immediate: true
-      }
-    }
-  }
+  },
+};
 </script>

@@ -1,3 +1,3 @@
 export default {
-  planError: state => state.planError
-}
+  planError: (state) => state.planError,
+};

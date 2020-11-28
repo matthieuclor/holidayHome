@@ -20,19 +20,19 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import KeyListItemForm from './key_list_item_form'
-  import { mapActions } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import KeyListItemForm from './key_list_item_form.vue';
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'KeyListForm',
-    props: ['keys'],
-    mixins: [formMixin],
-    components: {
-      KeyListItemForm
-    },
-    methods: {
-      ...mapActions(['addKey'])
-    }
-  }
+export default {
+  name: 'KeyListForm',
+  props: ['keys'],
+  mixins: [formMixin],
+  components: {
+    KeyListItemForm,
+  },
+  methods: {
+    ...mapActions(['addKey']),
+  },
+};
 </script>

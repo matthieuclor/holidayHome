@@ -11,12 +11,12 @@
               </label>
 
               <v-date-picker v-if="bookingFormItems"
-                            @update:fromPage="updatePage"
-                            @input="submitBookingForm"
-                            mode="range"
-                            v-model="dateRange"
-                            :disabled-dates="disabledDates"
-                            ref="formCalendar" />
+                             @update:fromPage="updatePage"
+                             @input="submitBookingForm"
+                             mode="range"
+                             v-model="dateRange"
+                             :disabled-dates="disabledDates"
+                             ref="formCalendar" />
             </div>
           </form>
         </div>
@@ -28,73 +28,73 @@
 </template>
 
 <script>
-  import BookingModalForm from './booking_modal_form'
-  import { mapGetters, mapActions } from 'vuex'
+import BookingModalForm from './booking_modal_form.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingForm',
-    data: () => ({ dateRange: null }),
-    computed: {
-      ...mapGetters([
-        'currentVenue',
-        'formCalendar',
-        'bookingFormItems',
-        'bookingDateRange',
-        'bookingModalForm'
-      ]),
-      disabledDates() {
-        return this.bookingFormItems.map(
-          item => ({ start: new Date(item.from), end: new Date(item.to) })
-        )
+export default {
+  name: 'BookingForm',
+  data: () => ({ dateRange: null }),
+  computed: {
+    ...mapGetters([
+      'currentVenue',
+      'formCalendar',
+      'bookingFormItems',
+      'bookingDateRange',
+      'bookingModalForm',
+    ]),
+    disabledDates() {
+      return this.bookingFormItems.map(
+        (item) => ({ start: new Date(item.from), end: new Date(item.to) }),
+      );
+    },
+  },
+  components: {
+    BookingModalForm,
+  },
+  methods: {
+    ...mapActions([
+      'getBookingFormItems',
+      'updateFormCalendar',
+      'updateBookingDateRange',
+      'updateBookingModalForm',
+    ]),
+    updatePage(event) {
+      const { formCalendar } = this.$refs;
+      if (!formCalendar) return;
+
+      this.updateFormCalendar({
+        month: event.month,
+        year: event.year,
+        monthCount: formCalendar.count,
+      });
+
+      this.getBookingFormItems(this.formCalendar);
+    },
+    submitBookingForm() {
+      if (this.dateRange) {
+        this.updateBookingDateRange(this.dateRange);
+        this.updateBookingModalForm(true);
       }
     },
-    components: {
-      BookingModalForm
-    },
-    methods: {
-      ...mapActions([
-        'getBookingFormItems',
-        'updateFormCalendar',
-        'updateBookingDateRange',
-        'updateBookingModalForm'
-      ]),
-      updatePage(event) {
-        const formCalendar = this.$refs.formCalendar
-        if (!formCalendar) return
+  },
+  watch: {
+    currentVenue: {
+      handler() {
+        const currentDate = new Date();
 
         this.updateFormCalendar({
-          month: event.month,
-          year: event.year,
-          monthCount: formCalendar.count
-        })
+          month: currentDate.getMonth() + 1,
+          year: currentDate.getFullYear(),
+          monthCount: 1,
+        });
 
-        this.getBookingFormItems(this.formCalendar)
+        this.getBookingFormItems(this.formCalendar);
       },
-      submitBookingForm() {
-        if (this.dateRange) {
-          this.updateBookingDateRange(this.dateRange)
-          this.updateBookingModalForm(true)
-        }
-      }
+      immediate: true,
     },
-    watch: {
-      currentVenue: {
-        handler() {
-          const currentDate = new Date()
-
-          this.updateFormCalendar({
-            month: currentDate.getMonth() + 1,
-            year: currentDate.getFullYear(),
-            monthCount: 1
-          })
-
-          this.getBookingFormItems(this.formCalendar)
-        },
-        immediate: true
-      },
-      bookingDateRange() {
-        this.dateRange = this.bookingDateRange
-      }
-    }
-  }
+    bookingDateRange() {
+      this.dateRange = this.bookingDateRange;
+    },
+  },
+};
 </script>

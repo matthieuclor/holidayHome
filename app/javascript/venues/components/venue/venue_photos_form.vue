@@ -55,34 +55,37 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters, mapActions } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'VenuePhotosForm',
-    props: ['venueForm', 'venueId'],
-    mixins: [formMixin],
-    methods: {
-      ...mapActions([
-        'sendVenuePhotosForm',
-        'removePhoto'
-      ]),
-      sendImages(e) {
-        if (!this.venueId) return
-        let formData = new FormData()
+export default {
+  name: 'VenuePhotosForm',
+  props: ['venueForm', 'venueId'],
+  mixins: [formMixin],
+  methods: {
+    ...mapActions([
+      'sendVenuePhotosForm',
+      'removePhoto',
+    ]),
+    sendImages(e) {
+      if (!this.venueId) return;
+      const formData = new FormData();
 
-        Array.from(e.target.files).forEach(
-          file => formData.append(`venue[photos][]`, file)
-        )
+      Array.from(e.target.files).forEach(
+        (file) => formData.append('venue[photos][]', file),
+      );
 
-        this.sendVenuePhotosForm({ id: this.venueId, formData: formData })
-        .then(response => e.target.value = '')
-      },
-      destroyVenuePhoto(index, id) {
-        if (confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
-          this.removePhoto({ index: index, venueId: this.venueId, id: id })
-        }
+      this.sendVenuePhotosForm({ id: this.venueId, formData })
+        .then(() => {
+          // eslint-disable-next-line no-param-reassign
+          e.target.value = '';
+        });
+    },
+    destroyVenuePhoto(index, id) {
+      if (window.confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')) {
+        this.removePhoto({ index, venueId: this.venueId, id });
       }
-    }
-  }
+    },
+  },
+};
 </script>

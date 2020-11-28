@@ -12,8 +12,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'NetworkListItem',
-    props: ['network']
-  }
+export default {
+  name: 'NetworkListItem',
+  props: ['network'],
+};
 </script>

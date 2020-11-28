@@ -17,7 +17,7 @@
           <template slot-scope="{suggestion}">
             <div class="my-suggestion-item text-nowrap text-truncate">
               <i :class="suggestion.item.iconClass"
-                class="text-muted item-icon">
+                 class="text-muted item-icon">
               </i>
 
               <span v-html="suggestion.item.name"
@@ -107,88 +107,87 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { VueAutosuggest } from 'vue-autosuggest';
-  import { mapGetters, mapActions } from 'vuex'
-  import { debounce } from 'lodash'
+import formMixin from 'shared/mixins/form_mixin';
+import { VueAutosuggest } from 'vue-autosuggest';
+import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'lodash';
 
-  export default {
-    name: 'VenuePlacesForm',
-    mixins: [formMixin],
-    data() {
-      return {
-        address: "",
-        suggestions: [],
-        inputProps: {
-          placeholder:'12 Rue de Bellecote',
-          name: "venue[address]",
-          id: "venue_address",
-          'aria-required': "true",
-          required: "required",
-          autocomplete: "off"
-        }
-      }
-    },
-    computed: {
-      ...mapGetters(['venueFormItem']),
-    },
-    components: {
-      VueAutosuggest
-    },
-    methods: {
-      ...mapActions(['getAlgoliaPlacesSuggestions']),
-      onInputChange: debounce(function() {
-        if (this.address.length > 0) {
-          this.getAlgoliaPlacesSuggestions(this.address)
-          .then(res => {
+export default {
+  name: 'VenuePlacesForm',
+  mixins: [formMixin],
+  data() {
+    return {
+      address: '',
+      suggestions: [],
+      inputProps: {
+        placeholder: '12 Rue de Bellecote',
+        name: 'venue[address]',
+        id: 'venue_address',
+        'aria-required': 'true',
+        required: 'required',
+        autocomplete: 'off',
+      },
+    };
+  },
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+  components: {
+    VueAutosuggest,
+  },
+  methods: {
+    ...mapActions(['getAlgoliaPlacesSuggestions']),
+    // eslint-disable-next-line func-names
+    onInputChange: debounce(function () {
+      if (this.address.length > 0) {
+        this.getAlgoliaPlacesSuggestions(this.address)
+          .then((res) => {
             this.suggestions = [
               {
-                data: res.data.hits.map(item => {
-                  return {
-                    name: item.name,
-                    address: item.address,
-                    iconClass: item.iconClass,
-                    fullAddress: item.fullAddress,
-                    city: item.city,
-                    postcode: item.postcode,
-                    country: item.country,
-                    countryCode: item.countryCode,
-                    administrative: item.administrative,
-                    county: item.county,
-                    lat: item.lat,
-                    lng: item.lng
-                  }
-                })
-              }
-            ]
-          })
-        } else {
-          this.suggestions = []
-        }
-      }, 500),
-      selectHandler(e) {
-        this.suggestions = []
-        this.address = e.item.fullAddress
-        this.venueFormItem.address = e.item.fullAddress
-        this.venueFormItem.city = e.item.city
-        this.venueFormItem.postcode = e.item.postcode
-        this.venueFormItem.country = e.item.country
-        this.venueFormItem.countryCode = e.item.countryCode
-        this.venueFormItem.administrative = e.item.administrative
-        this.venueFormItem.county = e.item.county
-        this.venueFormItem.lat = e.item.lat
-        this.venueFormItem.lng = e.item.lng
+                data: res.data.hits.map((item) => ({
+                  name: item.name,
+                  address: item.address,
+                  iconClass: item.iconClass,
+                  fullAddress: item.fullAddress,
+                  city: item.city,
+                  postcode: item.postcode,
+                  country: item.country,
+                  countryCode: item.countryCode,
+                  administrative: item.administrative,
+                  county: item.county,
+                  lat: item.lat,
+                  lng: item.lng,
+                })),
+              },
+            ];
+          });
+      } else {
+        this.suggestions = [];
       }
+    }, 500),
+    selectHandler(e) {
+      this.suggestions = [];
+      this.address = e.item.fullAddress;
+      this.venueFormItem.address = e.item.fullAddress;
+      this.venueFormItem.city = e.item.city;
+      this.venueFormItem.postcode = e.item.postcode;
+      this.venueFormItem.country = e.item.country;
+      this.venueFormItem.countryCode = e.item.countryCode;
+      this.venueFormItem.administrative = e.item.administrative;
+      this.venueFormItem.county = e.item.county;
+      this.venueFormItem.lat = e.item.lat;
+      this.venueFormItem.lng = e.item.lng;
     },
-    watch: {
-      venueFormItem: {
-        handler() {
-          this.address = this.venueFormItem.address
-        },
-        immediate: true
-      }
-    }
-  }
+  },
+  watch: {
+    venueFormItem: {
+      handler() {
+        this.address = this.venueFormItem.address;
+      },
+      immediate: true,
+    },
+  },
+};
 </script>
 
 <style lang="scss">

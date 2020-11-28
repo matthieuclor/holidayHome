@@ -89,18 +89,18 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'PlanInfoCard',
-    computed: {
-      ...mapGetters(['planError'])
+export default {
+  name: 'PlanInfoCard',
+  computed: {
+    ...mapGetters(['planError']),
+  },
+  methods: {
+    ...mapActions(['updatePlanError']),
+    removePlanError() {
+      this.updatePlanError(null);
     },
-    methods: {
-      ...mapActions(['updatePlanError']),
-      removePlanError() {
-        this.updatePlanError(null)
-      }
-    }
-  }
+  },
+};
 </script>

@@ -17,13 +17,13 @@
 </template>
 
 <script>
-  import KeyListItem from './key_list_item'
+import KeyListItem from './key_list_item.vue';
 
-  export default {
-    name: 'KeyList',
-    props: ['keys'],
-    components: {
-      KeyListItem
-    }
-  }
+export default {
+  name: 'KeyList',
+  props: ['keys'],
+  components: {
+    KeyListItem,
+  },
+};
 </script>

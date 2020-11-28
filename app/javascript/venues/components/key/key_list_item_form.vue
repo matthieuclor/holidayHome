@@ -3,7 +3,7 @@
     <div class="shadow p-3 rounded mb-3">
       <div class="d-flex justify-content-end">
         <i @click.prevent="removeKey(index)"
-            class="fas fa-trash text-danger p-2 cursor-pointer">
+           class="fas fa-trash text-danger p-2 cursor-pointer">
         </i>
       </div>
 
@@ -89,18 +89,18 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters, mapActions } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'KeyListItemForm',
-    props: ['keyItem', 'index'],
-    mixins: [formMixin],
-    computed: {
-      ...mapGetters(['venueOwnerFormItems'])
-    },
-    methods: {
-      ...mapActions(['removeKey'])
-    }
-  }
+export default {
+  name: 'KeyListItemForm',
+  props: ['keyItem', 'index'],
+  mixins: [formMixin],
+  computed: {
+    ...mapGetters(['venueOwnerFormItems']),
+  },
+  methods: {
+    ...mapActions(['removeKey']),
+  },
+};
 </script>

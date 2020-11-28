@@ -1,3 +1,3 @@
 export default {
-  currentUser: state => state.currentUser
-}
+  currentUser: (state) => state.currentUser,
+};

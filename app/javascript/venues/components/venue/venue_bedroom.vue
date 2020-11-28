@@ -22,14 +22,14 @@
 </template>
 
 <script>
-  import textMixin from 'shared/mixins/text_mixin'
-  import { mapGetters } from 'vuex'
+import textMixin from 'shared/mixins/text_mixin';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueBedroom',
-    mixins: [textMixin],
-    computed: {
-      ...mapGetters(['venueItem'])
-    }
-  }
+export default {
+  name: 'VenueBedroom',
+  mixins: [textMixin],
+  computed: {
+    ...mapGetters(['venueItem']),
+  },
+};
 </script>

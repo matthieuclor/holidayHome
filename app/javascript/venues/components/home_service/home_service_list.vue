@@ -17,13 +17,13 @@
 </template>
 
 <script>
-  import HomeServiceListItem from './home_service_list_item'
+import HomeServiceListItem from './home_service_list_item.vue';
 
-  export default {
-    name: 'HomeServiceList',
-    props: ['homeServices'],
-    components: {
-      HomeServiceListItem
-    }
-  }
+export default {
+  name: 'HomeServiceList',
+  props: ['homeServices'],
+  components: {
+    HomeServiceListItem,
+  },
+};
 </script>

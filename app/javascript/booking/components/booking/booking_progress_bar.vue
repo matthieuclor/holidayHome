@@ -12,11 +12,11 @@
 </template>
 
 <script>
-  export default {
-    name: 'BookingProgressBar',
-    props: ['percentage', 'title'],
-    mounted() {
-      $(this.$refs.progressBar).tooltip()
-    }
-  }
+export default {
+  name: 'BookingProgressBar',
+  props: ['percentage', 'title'],
+  mounted() {
+    $(this.$refs.progressBar).tooltip();
+  },
+};
 </script>

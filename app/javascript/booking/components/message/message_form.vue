@@ -35,51 +35,51 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'MessageForm',
-    data() {
-      return {
-        message: '',
-        showMessageFormError: false,
-        messageFormError: ''
+export default {
+  name: 'MessageForm',
+  data() {
+    return {
+      message: '',
+      showMessageFormError: false,
+      messageFormError: '',
+    };
+  },
+  computed: {
+    ...mapGetters(['bookingItem']),
+    charCount() {
+      return this.message.length;
+    },
+    contentMax() {
+      return document.getElementById('booking-container').getAttribute('data-content-max');
+    },
+    bookingId() {
+      return document.getElementById('booking-container').getAttribute('data-booking-id');
+    },
+  },
+  methods: {
+    ...mapActions(['createMessage']),
+    submitForm() {
+      if (this.charCount > 0) {
+        this.createMessage({ bookingId: this.bookingId, message: this.message })
+          .then(() => {
+            this.showMessageFormError = false;
+            this.messageFormError = '';
+            this.message = '';
+          }).catch((error) => {
+            this.messageFormError = error.response.data.error;
+            this.showMessageFormError = true;
+          });
       }
     },
-    computed: {
-      ...mapGetters(['bookingItem']),
-      charCount() {
-        return this.message.length
-      },
-      contentMax() {
-        return document.getElementById('booking-container').getAttribute('data-content-max')
-      },
-      bookingId() {
-        return document.getElementById('booking-container').getAttribute('data-booking-id')
+  },
+  watch: {
+    message() {
+      if (this.charCount > this.contentMax) {
+        this.message = this.message.substring(0, this.contentMax);
       }
     },
-    methods: {
-      ...mapActions(['createMessage']),
-      submitForm() {
-        if (this.charCount > 0) {
-          this.createMessage({ bookingId: this.bookingId, message: this.message })
-            .then(() => {
-              this.showMessageFormError = false
-              this.messageFormError = ''
-              this.message = ''
-            }).catch(error => {
-              this.messageFormError = error.response.data.error
-              this.showMessageFormError = true
-            })
-        }
-      }
-    },
-    watch: {
-      message() {
-        if (this.charCount > this.contentMax) {
-          this.message = this.message.substring(0, this.contentMax)
-        }
-      }
-    }
-  }
+  },
+};
 </script>

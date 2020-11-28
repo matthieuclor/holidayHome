@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'DigitalCodeListItem',
-    props: ['digitalCode']
-  }
+export default {
+  name: 'DigitalCodeListItem',
+  props: ['digitalCode'],
+};
 </script>

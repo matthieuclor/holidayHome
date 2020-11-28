@@ -1,17 +1,17 @@
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import mutations from './mutations';
+import actions from './actions';
+import getters from './getters';
 
 const state = {
   calendar: null,
-  formCalendar: null
-}
+  formCalendar: null,
+};
 
 const calendarModule = {
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};
 
-export default calendarModule
+export default calendarModule;

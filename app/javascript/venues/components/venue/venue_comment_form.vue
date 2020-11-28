@@ -17,14 +17,14 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueCommentForm',
-    mixins: [formMixin],
-    computed: {
-      ...mapGetters(['venueFormItem'])
-    }
-  }
+export default {
+  name: 'VenueCommentForm',
+  mixins: [formMixin],
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+};
 </script>

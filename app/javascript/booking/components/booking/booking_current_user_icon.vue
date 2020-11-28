@@ -7,34 +7,34 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'BookingCurrentUserIcon',
-    props: ['userId'],
-    computed: {
-      ...mapGetters(['bookingCurrentUsers']),
-      isConnected() {
-        return this.bookingCurrentUsers.includes(`${this.userId}`)
-      },
-      icon() {
-        return this.isConnected ? 'fas' : 'far'
-      },
-      color() {
-        return this.isConnected ? 'text-primary' : 'text-secondary'
-      },
-      statusTitle() {
-        return this.isConnected ? 'En ligne' : 'Hors ligne'
-      }
+export default {
+  name: 'BookingCurrentUserIcon',
+  props: ['userId'],
+  computed: {
+    ...mapGetters(['bookingCurrentUsers']),
+    isConnected() {
+      return this.bookingCurrentUsers.includes(`${this.userId}`);
     },
-    mounted() {
-      $(this.$refs.icon).tooltip()
+    icon() {
+      return this.isConnected ? 'fas' : 'far';
     },
-    beforeUpdate() {
-      $(this.$refs.icon).tooltip('dispose')
+    color() {
+      return this.isConnected ? 'text-primary' : 'text-secondary';
     },
-    updated() {
-      $(this.$refs.icon).tooltip()
-    }
-  }
+    statusTitle() {
+      return this.isConnected ? 'En ligne' : 'Hors ligne';
+    },
+  },
+  mounted() {
+    $(this.$refs.icon).tooltip();
+  },
+  beforeUpdate() {
+    $(this.$refs.icon).tooltip('dispose');
+  },
+  updated() {
+    $(this.$refs.icon).tooltip();
+  },
+};
 </script>

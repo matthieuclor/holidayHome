@@ -1,4 +1,4 @@
 export default {
-  calendar: state => state.calendar,
-  formCalendar: state => state.formCalendar
-}
+  calendar: (state) => state.calendar,
+  formCalendar: (state) => state.formCalendar,
+};

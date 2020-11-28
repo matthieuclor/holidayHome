@@ -1,17 +1,17 @@
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import mutations from './mutations';
+import actions from './actions';
+import getters from './getters';
 
 const state = {
   currentSchoolHolidayZones: null,
-  schoolHolidayItems: []
-}
+  schoolHolidayItems: [],
+};
 
 const schoolHolidayModule = {
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};
 
-export default schoolHolidayModule
+export default schoolHolidayModule;

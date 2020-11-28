@@ -1,20 +1,20 @@
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import mutations from './mutations';
+import actions from './actions';
+import getters from './getters';
 
 const state = {
   bookingPendingItems: [],
   bookingItems: null,
   bookingFormItems: null,
   bookingDateRange: null,
-  bookingModalForm: false
-}
+  bookingModalForm: false,
+};
 
 const bookingModule = {
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};
 
-export default bookingModule
+export default bookingModule;

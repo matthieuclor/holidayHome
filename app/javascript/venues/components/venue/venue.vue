@@ -6,7 +6,7 @@
 
         <div class="d-flex flex-row align-items-center">
           <router-link v-if="venueItem.isEditable"
-                      :to="{ name: 'editVenue', params: { id: venueItem.id } }">
+                       :to="{ name: 'editVenue', params: { id: venueItem.id } }">
 
             <button class="btn btn-primary">
               <i class="fas fa-pen mr-2"></i>
@@ -95,60 +95,60 @@
 </template>
 
 <script>
-  import VenuePhotos from 'venues/components/venue/venue_photos'
-  import VenueSkeleton from 'venues/components/skeleton/venue_skeleton'
-  import VenueBedroom from 'venues/components/venue/venue_bedroom'
-  import VenueBathroom from 'venues/components/venue/venue_bathroom'
-  import KeyList from 'venues/components/key/key_list'
-  import NetworkList from 'venues/components/network/network_list'
-  import DigitalCodeList from 'venues/components/digital_code/digital_code_list'
-  import HomeServiceList from 'venues/components/home_service/home_service_list'
-  import textMixin from 'shared/mixins/text_mixin'
-  import { mapGetters, mapActions } from 'vuex'
+import VenuePhotos from 'venues/components/venue/venue_photos';
+import VenueSkeleton from 'venues/components/skeleton/venue_skeleton';
+import VenueBedroom from 'venues/components/venue/venue_bedroom';
+import VenueBathroom from 'venues/components/venue/venue_bathroom';
+import KeyList from 'venues/components/key/key_list';
+import NetworkList from 'venues/components/network/network_list';
+import DigitalCodeList from 'venues/components/digital_code/digital_code_list';
+import HomeServiceList from 'venues/components/home_service/home_service_list';
+import textMixin from 'shared/mixins/text_mixin';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'Venue',
-    props: ['id'],
-    components: {
-      VenueSkeleton,
-      VenuePhotos,
-      VenueBedroom,
-      VenueBathroom,
-      KeyList,
-      NetworkList,
-      DigitalCodeList,
-      HomeServiceList
-    },
-    computed: {
-      ...mapGetters([
-        'venueItem',
-        'sidebar'
-      ])
-    },
-    mixins: [textMixin],
-    methods: {
-      ...mapActions([
-        'showSidebar',
-        'getVenueItem',
-        'destroyVenueItem',
-        'hideSidebar'
-      ]),
-      destroyVenue() {
-        if (confirm(`Êtes-vous sûr de vouloir supprimer ${this.venueItem.name} ?`)) {
-          this.destroyVenueItem(this.id)
-          .then(result => this.$router.push({ name: 'venues' }))
-          .catch(error => null)
-        }
+export default {
+  name: 'Venue',
+  props: ['id'],
+  components: {
+    VenueSkeleton,
+    VenuePhotos,
+    VenueBedroom,
+    VenueBathroom,
+    KeyList,
+    NetworkList,
+    DigitalCodeList,
+    HomeServiceList,
+  },
+  computed: {
+    ...mapGetters([
+      'venueItem',
+      'sidebar',
+    ]),
+  },
+  mixins: [textMixin],
+  methods: {
+    ...mapActions([
+      'showSidebar',
+      'getVenueItem',
+      'destroyVenueItem',
+      'hideSidebar',
+    ]),
+    destroyVenue() {
+      if (window.confirm(`Êtes-vous sûr de vouloir supprimer ${this.venueItem.name} ?`)) {
+        this.destroyVenueItem(this.id)
+          .then(() => this.$router.push({ name: 'venues' }))
+          .catch(() => null);
       }
     },
-    watch: {
-      id: {
-        handler() {
-          this.getVenueItem(this.id)
-          if (!this.sidebar) this.showSidebar()
-        },
-        immediate: true
-      }
-    }
-  }
+  },
+  watch: {
+    id: {
+      handler() {
+        this.getVenueItem(this.id);
+        if (!this.sidebar) this.showSidebar();
+      },
+      immediate: true,
+    },
+  },
+};
 </script>

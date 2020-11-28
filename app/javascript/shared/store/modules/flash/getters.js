@@ -1,3 +1,3 @@
 export default {
-  flashes: state => state.flashes
-}
+  flashes: (state) => state.flashes,
+};

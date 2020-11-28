@@ -9,10 +9,8 @@
 </template>
 
 <script>
-  import BookingListItem from './booking_list_item'
-
-  export default {
-    name: 'BookingListItem',
-    props: ['bookingPendingItem']
-  }
+export default {
+  name: 'BookingListItem',
+  props: ['bookingPendingItem'],
+};
 </script>

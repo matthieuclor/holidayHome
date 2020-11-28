@@ -14,7 +14,7 @@
              class="custom-control-input boolean">
 
       <label for="venue_editable_for_others"
-            class="custom-control-label boolean">
+             class="custom-control-label boolean">
         Editable par les autres membres
       </label>
     </div>
@@ -22,12 +22,12 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueEditableForOthersForm',
-    computed: {
-      ...mapGetters(['venueFormItem'])
-    }
-  }
+export default {
+  name: 'VenueEditableForOthersForm',
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+};
 </script>

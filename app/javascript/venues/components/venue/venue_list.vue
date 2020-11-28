@@ -29,27 +29,27 @@
 </template>
 
 <script>
-  import VenueListItem from 'venues/components/venue/venue_list_item'
-  import venuePagy from 'venues/components/venue/venue_pagy'
-  import { mapGetters, mapActions } from 'vuex'
+import VenueListItem from 'venues/components/venue/venue_list_item';
+import venuePagy from 'venues/components/venue/venue_pagy';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'VenueList',
-    components: {
-      VenueListItem,
-      venuePagy
-    },
-    computed: {
-      ...mapGetters(['venueItems']),
-    },
-    methods: {
-      ...mapActions([
-        'getVenueItems',
-        'showSidebar'
-      ])
-    },
-    created() {
-      this.getVenueItems()
-    }
-  }
+export default {
+  name: 'VenueList',
+  components: {
+    VenueListItem,
+    venuePagy,
+  },
+  computed: {
+    ...mapGetters(['venueItems']),
+  },
+  methods: {
+    ...mapActions([
+      'getVenueItems',
+      'showSidebar',
+    ]),
+  },
+  created() {
+    this.getVenueItems();
+  },
+};
 </script>

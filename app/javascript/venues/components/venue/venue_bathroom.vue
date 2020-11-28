@@ -12,12 +12,12 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueBathroom',
-    computed: {
-      ...mapGetters(['venueItem'])
-    }
-  }
+export default {
+  name: 'VenueBathroom',
+  computed: {
+    ...mapGetters(['venueItem']),
+  },
+};
 </script>

@@ -30,8 +30,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'HomeServiceListItem',
-    props: ['homeService'],
-  }
+export default {
+  name: 'HomeServiceListItem',
+  props: ['homeService'],
+};
 </script>

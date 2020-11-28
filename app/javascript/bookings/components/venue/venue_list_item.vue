@@ -17,23 +17,23 @@
 </template>
 
 <script>
-  import { mapActions } from 'vuex'
-  import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
+import { mapActions } from 'vuex';
+import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton.vue';
 
-  export default {
-    name: 'VenueListItem',
-    props: ['venueItem', 'currentVenue'],
-    data() {
-      return { mouseover: false }
+export default {
+  name: 'VenueListItem',
+  props: ['venueItem', 'currentVenue'],
+  data() {
+    return { mouseover: false };
+  },
+  components: {
+    VenuePhotoSkeleton,
+  },
+  methods: {
+    ...mapActions(['setCurrentVenue']),
+    callSetCurrentVenue() {
+      this.setCurrentVenue(this.venueItem.id);
     },
-    components: {
-      VenuePhotoSkeleton
-    },
-    methods: {
-      ...mapActions(['setCurrentVenue']),
-      callSetCurrentVenue() {
-        this.setCurrentVenue(this.venueItem.id)
-      }
-    }
-  }
+  },
+};
 </script>

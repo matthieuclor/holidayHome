@@ -53,71 +53,72 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters, mapActions} from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingApprovalForm',
-    props: [
-      'bookingId',
-      'approvalId',
-      'status'
-    ],
-    mixins: [formMixin],
-    data() {
-      return {
-        approvalFormIsSending: false,
-        message: {
-          content: null,
-          errors: []
-        }
-      }
-    },
-    computed: {
-      ...mapGetters(['approvalModalForm'])
-    },
-    methods: {
-      ...mapActions([
-        'updateApproval',
-        'updateApprovalModalForm'
-      ]),
-      submitApprovalForm() {
-        this.approvalFormIsSending = true
-
-        this.updateApproval(
-          {
-            bookingId: this.bookingId,
-            approvalId: this.approvalId,
-            status: this.status,
-            message: this.message.content
-          }
-        ).then(response => {
-          this.message.content = null
-        }).catch(error => {
-          this.message.errors = error.response.data.bookingApproval.errors
-        }).then(() => {
-            this.approvalFormIsSending = false
-        })
-      }
-    },
-    mounted() {
-      $("#approvalModal").on('hidden.bs.modal', () => {
-        this.updateApprovalModalForm(false)
-      })
-    },
-    watch: {
-      approvalModalForm() {
-        if (this.approvalModalForm) {
-          $("#approvalModal").modal('show')
-        } else {
-          $("#approvalModal").modal('hide')
-        }
+export default {
+  name: 'BookingApprovalForm',
+  props: [
+    'bookingId',
+    'approvalId',
+    'status',
+  ],
+  mixins: [formMixin],
+  data() {
+    return {
+      approvalFormIsSending: false,
+      message: {
+        content: null,
+        errors: [],
       },
-      'message.content': function() {
-        if (this.message.errors['message.content']) {
-          this.message.errors = []
-        }
+    };
+  },
+  computed: {
+    ...mapGetters(['approvalModalForm']),
+  },
+  methods: {
+    ...mapActions([
+      'updateApproval',
+      'updateApprovalModalForm',
+    ]),
+    submitApprovalForm() {
+      this.approvalFormIsSending = true;
+
+      this.updateApproval(
+        {
+          bookingId: this.bookingId,
+          approvalId: this.approvalId,
+          status: this.status,
+          message: this.message.content,
+        },
+      ).then(() => {
+        this.message.content = null;
+      }).catch((error) => {
+        this.message.errors = error.response.data.bookingApproval.errors;
+      }).then(() => {
+        this.approvalFormIsSending = false;
+      });
+    },
+  },
+  mounted() {
+    $('#approvalModal').on('hidden.bs.modal', () => {
+      this.updateApprovalModalForm(false);
+    });
+  },
+  watch: {
+    approvalModalForm() {
+      if (this.approvalModalForm) {
+        $('#approvalModal').modal('show');
+      } else {
+        $('#approvalModal').modal('hide');
       }
-    }
-  }
+    },
+    // eslint-disable-next-line func-names
+    'message.content': function () {
+      if (this.message.errors['message.content']) {
+        this.message.errors = [];
+      }
+    },
+  },
+};
 </script>

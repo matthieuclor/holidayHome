@@ -58,56 +58,58 @@
 </template>
 
 <script>
-  import BookingApprovalForm from '../booking_approval/booking_approval_form'
-  import { mapActions } from 'vuex'
+import BookingApprovalForm from '../booking_approval/booking_approval_form.vue';
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingAction',
-    props: [
-      'booking',
-      'bookingApprovals'
-    ],
-    data() {
-      return {
-        ApprovalStatus: null
+export default {
+  name: 'BookingAction',
+  props: [
+    'booking',
+    'bookingApprovals',
+  ],
+  data() {
+    return {
+      ApprovalStatus: null,
+    };
+  },
+  computed: {
+    currentUserId() {
+      return parseInt(
+        document.getElementById('booking-container').getAttribute('data-user-id'),
+        10,
+      );
+    },
+    bookingId() {
+      return document.getElementById('booking-container').getAttribute('data-booking-id');
+    },
+    currentApproval() {
+      const userId = this.currentUserId;
+      return this.bookingApprovals.find((approval) => approval.userId === userId);
+    },
+    statusTextClass() {
+      if (this.currentApproval.status === 'accepted') {
+        return 'text-success';
+      }
+      return 'text-danger';
+    },
+  },
+  components: {
+    BookingApprovalForm,
+  },
+  methods: {
+    ...mapActions([
+      'updateBookingStatus',
+      'updateApprovalModalForm',
+    ]),
+    cancelBooking() {
+      if (window.confirm('La réservation sera annulée définitivement, êtes vous sûr ?')) {
+        this.updateBookingStatus({ bookingId: this.bookingId, status: 'canceled' });
       }
     },
-    computed: {
-      currentUserId() {
-        return document.getElementById('booking-container').getAttribute('data-user-id')
-      },
-      bookingId() {
-        return document.getElementById('booking-container').getAttribute('data-booking-id')
-      },
-      currentApproval() {
-        const userId = this.currentUserId
-        return this.bookingApprovals.find(approval => approval.userId == userId)
-      },
-      statusTextClass() {
-        if (this.currentApproval.status == 'accepted') {
-          return 'text-success'
-        } else {
-          return 'text-danger'
-        }
-      }
+    showApprovalForm(status) {
+      this.ApprovalStatus = status;
+      this.updateApprovalModalForm(true);
     },
-    components: {
-      BookingApprovalForm
-    },
-    methods: {
-      ...mapActions([
-        'updateBookingStatus',
-        'updateApprovalModalForm'
-      ]),
-      cancelBooking() {
-        if (confirm('La réservation sera annulée définitivement, êtes vous sûr ?')) {
-          this.updateBookingStatus({ bookingId: this.bookingId, status: 'canceled' })
-        }
-      },
-      showApprovalForm(status) {
-        this.ApprovalStatus = status
-        this.updateApprovalModalForm(true)
-      }
-    }
-  }
+  },
+};
 </script>

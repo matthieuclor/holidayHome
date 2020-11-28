@@ -11,8 +11,8 @@
 </template>
 
 <script>
-  export default {
-    name: 'KeyListItem',
-    props: ['keyItem'],
-  }
+export default {
+  name: 'KeyListItem',
+  props: ['keyItem'],
+};
 </script>

@@ -17,13 +17,13 @@
 </template>
 
 <script>
-  import DigitalCodeListItem from './digital_code_list_item'
+import DigitalCodeListItem from './digital_code_list_item.vue';
 
-  export default {
-    name: 'DigitalCodeList',
-    props: ['digitalCodes'],
-    components: {
-      DigitalCodeListItem
-    }
-  }
+export default {
+  name: 'DigitalCodeList',
+  props: ['digitalCodes'],
+  components: {
+    DigitalCodeListItem,
+  },
+};
 </script>

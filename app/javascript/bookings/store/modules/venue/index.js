@@ -1,18 +1,18 @@
-import mutations from './mutations'
-import actions from './actions'
-import getters from './getters'
+import mutations from './mutations';
+import actions from './actions';
+import getters from './getters';
 
 const state = {
   venueItems: null,
   chunkedVenueItems: null,
-  currentVenue: null
-}
+  currentVenue: null,
+};
 
 const venueModule = {
   state,
   mutations,
   actions,
-  getters
-}
+  getters,
+};
 
-export default venueModule
+export default venueModule;

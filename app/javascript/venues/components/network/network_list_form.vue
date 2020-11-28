@@ -5,12 +5,12 @@
         <input :value="venueFormItem.withNetwork" name="venue[with_network]" type="hidden">
 
         <input :value="venueFormItem.withNetwork"
-                :checked="venueFormItem.withNetwork"
-                @click="venueFormItem.withNetwork = !venueFormItem.withNetwork"
-                type="checkbox"
-                name="venue[with_network]"
-                id="venue_with_network"
-                class="custom-control-input boolean">
+               :checked="venueFormItem.withNetwork"
+               @click="venueFormItem.withNetwork = !venueFormItem.withNetwork"
+               type="checkbox"
+               name="venue[with_network]"
+               id="venue_with_network"
+               class="custom-control-input boolean">
 
         <label for="venue_with_network" class="custom-control-label boolean">
           <h4 class="m-0">
@@ -38,26 +38,26 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import NetworkListItemForm from './network_list_item_form'
-  import { mapGetters, mapActions } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import NetworkListItemForm from './network_list_item_form.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'NetworkListForm',
-    props: ['networks'],
-    mixins: [formMixin],
-    components: {
-      NetworkListItemForm
-    },
-    computed: {
-      ...mapGetters([
-        'venueFormItem'
-      ])
-    },
-    methods: {
-      ...mapActions([
-        'addNetwork'
-      ])
-    }
-  }
+export default {
+  name: 'NetworkListForm',
+  props: ['networks'],
+  mixins: [formMixin],
+  components: {
+    NetworkListItemForm,
+  },
+  computed: {
+    ...mapGetters([
+      'venueFormItem',
+    ]),
+  },
+  methods: {
+    ...mapActions([
+      'addNetwork',
+    ]),
+  },
+};
 </script>

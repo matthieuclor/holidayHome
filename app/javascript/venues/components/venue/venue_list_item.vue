@@ -42,8 +42,8 @@
 
               <div v-if="venueItem.babyBedsCount > 0"
                    class="border rounded py-1 px-2 mr-2 mt-2">
-                  <i class="fas fa-baby mr-2"></i>
-                  {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
+                <i class="fas fa-baby mr-2"></i>
+                {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
               </div>
             </div>
           </div>
@@ -54,22 +54,22 @@
 </template>
 
 <script>
-  import textMixin from 'shared/mixins/text_mixin'
-  import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
-  import { mapActions } from 'vuex'
+import textMixin from 'shared/mixins/text_mixin';
+import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton';
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'VenueListItem',
-    props: ['venueItem'],
-    mixins: [textMixin],
-    components: {
-      VenuePhotoSkeleton
+export default {
+  name: 'VenueListItem',
+  props: ['venueItem'],
+  mixins: [textMixin],
+  components: {
+    VenuePhotoSkeleton,
+  },
+  methods: {
+    ...mapActions(['showSidebar']),
+    shadowType(id) {
+      return this.$route.params.id === id ? 'shadow' : 'shadow-sm';
     },
-    methods: {
-      ...mapActions(['showSidebar']),
-      shadowType(id) {
-        return this.$route.params.id == id ? 'shadow' : 'shadow-sm'
-      }
-    }
-  }
+  },
+};
 </script>

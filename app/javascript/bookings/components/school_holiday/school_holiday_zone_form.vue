@@ -14,7 +14,10 @@
              :id="`zone${key}`"
              :checked="value == 'true'">
 
-      <label class="custom-control-label" :class="checkbox_class(key)" :for="`zone${key}`">
+      <label class="custom-control-label"
+             :class="checkboxClasses[key]"
+             :for="`zone${key}`">
+
         Zone {{ key }}
       </label>
     </div>
@@ -22,27 +25,26 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'SchoolHolidayZoneForm',
-    computed: {
-      ...mapGetters(['currentSchoolHolidayZones'])
-    },
-    methods: {
-      ...mapActions(['update_current_school_holiday_zones']),
-      checkbox_class(zone) {
-        switch (zone) {
-          case 'A':
-            return 'blue-checkbox'
-          case 'B':
-            return 'red-checkbox'
-          case 'C':
-            return 'yellow-checkbox'
-        }
-      }
-    }
-  }
+export default {
+  name: 'SchoolHolidayZoneForm',
+  data() {
+    return {
+      checkboxClasses: {
+        A: 'blue-checkbox',
+        B: 'red-checkbox',
+        C: 'yellow-checkbox',
+      },
+    };
+  },
+  computed: {
+    ...mapGetters(['currentSchoolHolidayZones']),
+  },
+  methods: {
+    ...mapActions(['update_current_school_holiday_zones']),
+  },
+};
 </script>
 
 <style lang="scss" scoped>

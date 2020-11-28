@@ -1,4 +1,4 @@
 export default {
-  bookingApprovalItems: state => state.bookingApprovalItems,
-  approvalModalForm: state => state.approvalModalForm
-}
+  bookingApprovalItems: (state) => state.bookingApprovalItems,
+  approvalModalForm: (state) => state.approvalModalForm,
+};

@@ -3,7 +3,7 @@
     <div class="shadow p-3 rounded mb-3">
       <div class="d-flex justify-content-end">
         <i @click.prevent="removeHomeService(index)"
-            class="fas fa-trash text-danger p-2 cursor-pointer">
+           class="fas fa-trash text-danger p-2 cursor-pointer">
         </i>
       </div>
 
@@ -169,15 +169,15 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapActions } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapActions } from 'vuex';
 
-  export default {
-    name: 'HomeServiceListItemForm',
-    props: ['homeService', 'index'],
-    mixins: [formMixin],
-    methods: {
-      ...mapActions(['removeHomeService'])
-    }
-  }
+export default {
+  name: 'HomeServiceListItemForm',
+  props: ['homeService', 'index'],
+  mixins: [formMixin],
+  methods: {
+    ...mapActions(['removeHomeService']),
+  },
+};
 </script>

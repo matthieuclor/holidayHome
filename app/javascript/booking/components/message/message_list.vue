@@ -8,8 +8,8 @@
              infinite-scroll-distance="10">
 
           <MessageListItem v-for="messageItem in messageItems"
-                            :key="messageItem.id"
-                            :messageItem="messageItem" />
+                           :key="messageItem.id"
+                           :messageItem="messageItem" />
 
           <div v-if="loading" class="fa-2x text-center text-secondary">
             <i class="fas fa-spinner fa-pulse"></i>
@@ -21,46 +21,46 @@
 </template>
 
 <script>
-  import MessageListItem from './message_list_item'
-  import infiniteScroll from 'vue-infinite-scroll'
-  import { mapGetters, mapActions } from 'vuex'
+import MessageListItem from './message_list_item.vue';
+import infiniteScroll from 'vue-infinite-scroll';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'MessageList',
-    data() {
-      return {
-        scrollDisabled: false,
-        loading: false
-      }
+export default {
+  name: 'MessageList',
+  data() {
+    return {
+      scrollDisabled: false,
+      loading: false,
+    };
+  },
+  computed: {
+    ...mapGetters([
+      'messageItems',
+      'messagePagy',
+    ]),
+    bookingId() {
+      return document.getElementById('booking-container').getAttribute('data-booking-id');
     },
-    computed: {
-      ...mapGetters([
-        'messageItems',
-        'messagePagy'
-      ]),
-      bookingId() {
-        return document.getElementById('booking-container').getAttribute('data-booking-id')
-      }
-    },
-    methods: {
-      ...mapActions(['getMessageItems']),
-      loadMessages() {
-        this.scrollDisabled = true
-        this.loading = true
-        const page = this.messagePagy ? this.messagePagy.next : 1
+  },
+  methods: {
+    ...mapActions(['getMessageItems']),
+    loadMessages() {
+      this.scrollDisabled = true;
+      this.loading = true;
+      const page = this.messagePagy ? this.messagePagy.next : 1;
 
-        this.getMessageItems({ bookingId: this.bookingId, page: page })
-        .then(response => {
-          this.scrollDisabled = response.data.messagePagy.next ? false : true
-          this.loading = false
-        })
-      }
+      this.getMessageItems({ bookingId: this.bookingId, page })
+        .then((response) => {
+          this.scrollDisabled = !response.data.messagePagy.next;
+          this.loading = false;
+        });
     },
-    components: {
-      MessageListItem
-    },
-    directives: {
-      infiniteScroll
-    }
-  }
+  },
+  components: {
+    MessageListItem,
+  },
+  directives: {
+    infiniteScroll,
+  },
+};
 </script>

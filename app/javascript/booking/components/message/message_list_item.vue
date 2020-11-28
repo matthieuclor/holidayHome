@@ -27,32 +27,34 @@
 </template>
 
 <script>
-  export default {
-    name: 'MessageListItem',
-    props: ['messageItem'],
-    computed: {
-      userId() {
-        return document.getElementById('booking-container').getAttribute('data-user-id')
-      },
-      fromCurrentUser() {
-        return this.messageItem.userId == this.userId
-      },
-      justifyClass() {
-        return this.fromCurrentUser ? 'justify-content-start' : 'justify-content-end'
-      },
-      bgClass() {
-        return this.fromCurrentUser ? 'bg-primary' : 'bg-light'
-      },
-      textClass() {
-        return this.fromCurrentUser ? 'text-white' : 'text-dark'
-      },
-      bgStatusClass() {
-        if (this.messageItem.approvalStatus == 'accepted') {
-          return 'badge-success'
-        } else {
-          return 'badge-danger'
-        }
+export default {
+  name: 'MessageListItem',
+  props: ['messageItem'],
+  computed: {
+    userId() {
+      return parseInt(
+        document.getElementById('booking-container').getAttribute('data-user-id'),
+        10,
+      );
+    },
+    fromCurrentUser() {
+      return this.messageItem.userId === this.userId;
+    },
+    justifyClass() {
+      return this.fromCurrentUser ? 'justify-content-start' : 'justify-content-end';
+    },
+    bgClass() {
+      return this.fromCurrentUser ? 'bg-primary' : 'bg-light';
+    },
+    textClass() {
+      return this.fromCurrentUser ? 'text-white' : 'text-dark';
+    },
+    bgStatusClass() {
+      if (this.messageItem.approvalStatus === 'accepted') {
+        return 'badge-success';
       }
-    }
-  }
+      return 'badge-danger';
+    },
+  },
+};
 </script>

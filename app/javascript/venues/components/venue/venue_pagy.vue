@@ -4,9 +4,9 @@
       <ul class="pagination pagination-sm">
         <li class="page-item" :class="isDisabled(venuePagy.prev)">
           <a @click.prevent="pageLink(venuePagy.prev)"
-            href="#"
-            class="page-link"
-            aria-label="Previous">
+             href="#"
+             class="page-link"
+             aria-label="Previous">
 
             <span aria-hidden="true" v-html="venuePagy.tPrev"></span>
           </a>
@@ -17,8 +17,8 @@
             class="page-item"
             :class="isActive(serie)">
           <a @click.prevent="isActive(serie) ? null : pageLink(serie)"
-            href="#"
-            class="page-link">
+             href="#"
+             class="page-link">
 
             {{ serie }}
           </a>
@@ -26,9 +26,9 @@
 
         <li class="page-item next" :class="isDisabled(venuePagy.next)">
           <a @click.prevent="pageLink(venuePagy.next)"
-            href="#"
-            class="page-link"
-            aria-label="Next">
+             href="#"
+             class="page-link"
+             aria-label="Next">
 
             <span aria-hidden="true" v-html="venuePagy.tNext"></span>
           </a>
@@ -39,24 +39,24 @@
 </template>
 
 <script>
-  import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'venuePagy',
-    computed: {
-      ...mapGetters(['venuePagy']),
+export default {
+  name: 'venuePagy',
+  computed: {
+    ...mapGetters(['venuePagy']),
+  },
+  methods: {
+    ...mapActions(['getVenueItems']),
+    isActive(page) {
+      return typeof (page) === 'string' ? 'active' : '';
     },
-    methods: {
-      ...mapActions(['getVenueItems']),
-      isActive(page) {
-        return typeof(page) === 'string' ? 'active' : ''
-      },
-      isDisabled(page) {
-        return page ? '' : 'disabled'
-      },
-      pageLink(page) {
-        this.getVenueItems(page)
-      }
-    }
-  }
+    isDisabled(page) {
+      return page ? '' : 'disabled';
+    },
+    pageLink(page) {
+      this.getVenueItems(page);
+    },
+  },
+};
 </script>

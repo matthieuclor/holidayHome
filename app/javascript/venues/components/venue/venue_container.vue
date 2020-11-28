@@ -5,7 +5,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'VenueContainer'
-  }
+export default {
+  name: 'VenueContainer',
+};
 </script>

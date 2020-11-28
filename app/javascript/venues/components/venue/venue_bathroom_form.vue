@@ -15,15 +15,15 @@
 
       <div class="col-sm-3">
         <input :value="venueFormItem.bathroomsCount"
-                class="form-control string required"
-                :class="inputClass(venueFormItem, 'bathroomsCount')"
-                required="required"
-                aria-required="true"
-                min="0"
-                type="number"
-                name="venue[bathrooms_count]"
-                id="venue_bathrooms_count"
-                :aria-invalid="!attributeIsValid(venueFormItem, 'bathroomsCount')">
+               class="form-control string required"
+               :class="inputClass(venueFormItem, 'bathroomsCount')"
+               required="required"
+               aria-required="true"
+               min="0"
+               type="number"
+               name="venue[bathrooms_count]"
+               id="venue_bathrooms_count"
+               :aria-invalid="!attributeIsValid(venueFormItem, 'bathroomsCount')">
 
         <div v-for="(bathroomsCountError, errorIndex) in venueFormItem.errors['bathroomsCount']"
              :key="errorIndex"
@@ -37,14 +37,14 @@
 </template>
 
 <script>
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters } from 'vuex'
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueBathroomForm',
-    mixins: [formMixin],
-    computed: {
-      ...mapGetters(['venueFormItem'])
-    }
-  }
+export default {
+  name: 'VenueBathroomForm',
+  mixins: [formMixin],
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+};
 </script>

@@ -45,56 +45,56 @@
 </template>
 
 <script>
-  import moment from 'moment'
-  import { mapGetters, mapActions } from 'vuex'
+import moment from 'moment';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingModalForm',
-    data: () => ({ message: null }),
-    computed: {
-      ...mapGetters([
-        'calendar',
-        'currentVenue',
-        'bookingModalForm',
-        'bookingDateRange'
-      ]),
-      startDate() {
-        return moment(this.bookingDateRange.start).format('DD/MM/YYYY')
-      },
-      endDate() {
-        return moment(this.bookingDateRange.end).format('DD/MM/YYYY')
+export default {
+  name: 'BookingModalForm',
+  data: () => ({ message: null }),
+  computed: {
+    ...mapGetters([
+      'calendar',
+      'currentVenue',
+      'bookingModalForm',
+      'bookingDateRange',
+    ]),
+    startDate() {
+      return moment(this.bookingDateRange.start).format('DD/MM/YYYY');
+    },
+    endDate() {
+      return moment(this.bookingDateRange.end).format('DD/MM/YYYY');
+    },
+  },
+  methods: {
+    ...mapActions([
+      'createBooking',
+      'updateBookingModalForm',
+      'updateBookingDateRange',
+    ]),
+    submitBookingModalForm() {
+      this.createBooking({
+        ...this.bookingDateRange,
+        ...this.calendar,
+        message: this.message,
+      }).then(() => {
+        this.updateBookingDateRange(null);
+        this.message = null;
+      });
+    },
+  },
+  mounted() {
+    $('#bookingModal').on('hidden.bs.modal', () => {
+      this.updateBookingModalForm(false);
+    });
+  },
+  watch: {
+    bookingModalForm() {
+      if (this.bookingModalForm) {
+        $('#bookingModal').modal('show');
+      } else {
+        $('#bookingModal').modal('hide');
       }
     },
-    methods: {
-      ...mapActions([
-        'createBooking',
-        'updateBookingModalForm',
-        'updateBookingDateRange'
-      ]),
-      submitBookingModalForm() {
-        this.createBooking({
-          ...this.bookingDateRange,
-          ...this.calendar,
-          message: this.message
-        }).then(() => {
-          this.updateBookingDateRange(null)
-          this.message = null
-        })
-      }
-    },
-    mounted() {
-      $("#bookingModal").on('hidden.bs.modal', () => {
-        this.updateBookingModalForm(false)
-      })
-    },
-    watch: {
-      bookingModalForm() {
-        if (this.bookingModalForm) {
-          $("#bookingModal").modal('show')
-        } else {
-          $("#bookingModal").modal('hide')
-        }
-      }
-    }
-  }
+  },
+};
 </script>

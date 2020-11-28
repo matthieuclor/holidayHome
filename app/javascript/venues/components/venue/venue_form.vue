@@ -17,28 +17,28 @@
       <form @submit.prevent="submitVenueForm" class="mt-4">
         <div class="form-group hidden venue_id form-group-valid">
           <input type="hidden"
-                :value="venueFormItem.id"
-                name="venue[id]"
-                id="venue_id"
-                class="form-control is-valid hidden">
+                 :value="venueFormItem.id"
+                 name="venue[id]"
+                 id="venue_id"
+                 class="form-control is-valid hidden">
         </div>
 
         <VenueNameForm />
 
         <div class="form-group hidden venue_creator_id form-group-valid">
           <input type="hidden"
-                :value="venueFormItem.creatorId"
-                name="venue[creator_id]"
-                id="venue_creator_id"
-                class="form-control is-valid hidden">
+                 :value="venueFormItem.creatorId"
+                 name="venue[creator_id]"
+                 id="venue_creator_id"
+                 class="form-control is-valid hidden">
         </div>
 
         <div class="form-group hidden venue_family_id form-group-valid">
           <input type="hidden"
-                :value="venueFormItem.familyId"
-                name="venue[family_id]"
-                id="venue_family_id"
-                class="form-control is-valid hidden">
+                 :value="venueFormItem.familyId"
+                 name="venue[family_id]"
+                 id="venue_family_id"
+                 class="form-control is-valid hidden">
         </div>
 
         <VenuePlacesForm />
@@ -90,74 +90,74 @@
 </template>
 
 <script>
-  import VenueNameForm from 'venues/components/venue/venue_name_form'
-  import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton'
-  import VenuePlacesForm from 'venues/components/venue/venue_places_form'
-  import VenuePhotosForm from 'venues/components/venue/venue_photos_form'
-  import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form'
-  import VenueBathroomForm from 'venues/components/venue/venue_bathroom_form'
-  import KeyListForm from 'venues/components/key/key_list_form'
-  import NetworkListForm from 'venues/components/network/network_list_form'
-  import DigitalCodeListForm from 'venues/components/digital_code/digital_code_list_form'
-  import HomeServiceListForm from 'venues/components/home_service/home_service_list_form'
-  import VenueCommentForm from 'venues/components/venue/venue_comment_form'
-  import VenueEditableForOthersForm from 'venues/components/venue/venue_editable_for_others_form'
-  import formMixin from 'shared/mixins/form_mixin'
-  import { mapGetters, mapActions } from 'vuex'
+import VenueNameForm from 'venues/components/venue/venue_name_form';
+import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton';
+import VenuePlacesForm from 'venues/components/venue/venue_places_form';
+import VenuePhotosForm from 'venues/components/venue/venue_photos_form';
+import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form';
+import VenueBathroomForm from 'venues/components/venue/venue_bathroom_form';
+import KeyListForm from 'venues/components/key/key_list_form';
+import NetworkListForm from 'venues/components/network/network_list_form';
+import DigitalCodeListForm from 'venues/components/digital_code/digital_code_list_form';
+import HomeServiceListForm from 'venues/components/home_service/home_service_list_form';
+import VenueCommentForm from 'venues/components/venue/venue_comment_form';
+import VenueEditableForOthersForm from 'venues/components/venue/venue_editable_for_others_form';
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'VenueForm',
-    data() {
-      return { venueFormIsSending: false }
-    },
-    props: ['id'],
-    mixins: [formMixin],
-    components: {
-      VenueNameForm,
-      VenueFormSkeleton,
-      VenuePlacesForm,
-      VenuePhotosForm,
-      VenueBedroomForm,
-      VenueBathroomForm,
-      KeyListForm,
-      NetworkListForm,
-      DigitalCodeListForm,
-      HomeServiceListForm,
-      VenueCommentForm,
-      VenueEditableForOthersForm
-    },
-    computed: {
-      ...mapGetters(['venueFormItem'])
-    },
-    methods: {
-      ...mapActions([
-        'getFormData',
-        'sendVenueForm',
-        'hideSidebar',
-      ]),
-      submitVenueForm({ target }) {
-        this.venueFormIsSending = true
+export default {
+  name: 'VenueForm',
+  data() {
+    return { venueFormIsSending: false };
+  },
+  props: ['id'],
+  mixins: [formMixin],
+  components: {
+    VenueNameForm,
+    VenueFormSkeleton,
+    VenuePlacesForm,
+    VenuePhotosForm,
+    VenueBedroomForm,
+    VenueBathroomForm,
+    KeyListForm,
+    NetworkListForm,
+    DigitalCodeListForm,
+    HomeServiceListForm,
+    VenueCommentForm,
+    VenueEditableForOthersForm,
+  },
+  computed: {
+    ...mapGetters(['venueFormItem']),
+  },
+  methods: {
+    ...mapActions([
+      'getFormData',
+      'sendVenueForm',
+      'hideSidebar',
+    ]),
+    submitVenueForm({ target }) {
+      this.venueFormIsSending = true;
 
-        this.sendVenueForm(new FormData(target))
-        .then(response => {
+      this.sendVenueForm(new FormData(target))
+        .then((response) => {
           this.$router.push({
             name: 'venue',
-            params: { id: response.data.venue.id }
-          })
+            params: { id: response.data.venue.id },
+          });
         }).catch(
-          () => this.scrollToFirstError()
+          () => this.scrollToFirstError(),
         ).then(
-          () => this.venueFormIsSending = false
-        )
-      }
+          () => { this.venueFormIsSending = false; },
+        );
     },
-    watch: {
-      id: {
-        handler() {
-          this.getFormData(this.id)
-        },
-        immediate: true
-      }
-    }
-  }
+  },
+  watch: {
+    id: {
+      handler() {
+        this.getFormData(this.id);
+      },
+      immediate: true,
+    },
+  },
+};
 </script>

@@ -70,36 +70,36 @@
 </template>
 
 <script>
-  import VenuePhoto from '../venue/venue_photo'
-  import BookingStatusBadge from './booking_status_badge'
-  import BookingProgressBar from './booking_progress_bar'
-  import BookingAction from './booking_action'
-  import BookingApprovalCard from '../booking_approval/booking_approval_card'
-  import { mapGetters, mapActions } from 'vuex'
+import VenuePhoto from '../venue/venue_photo.vue';
+import BookingStatusBadge from './booking_status_badge.vue';
+import BookingProgressBar from './booking_progress_bar.vue';
+import BookingAction from './booking_action.vue';
+import BookingApprovalCard from '../booking_approval/booking_approval_card.vue';
+import { mapGetters, mapActions } from 'vuex';
 
-  export default {
-    name: 'BookingItem',
-    computed: {
-      ...mapGetters([
-        'bookingItem',
-        'bookingApprovalItems'
-      ]),
-      bookingId() {
-        return document.getElementById('booking-container').getAttribute('data-booking-id')
-      }
+export default {
+  name: 'BookingItem',
+  computed: {
+    ...mapGetters([
+      'bookingItem',
+      'bookingApprovalItems',
+    ]),
+    bookingId() {
+      return document.getElementById('booking-container').getAttribute('data-booking-id');
     },
-    methods: {
-      ...mapActions(['getBookingItem'])
-    },
-    components: {
-      VenuePhoto,
-      BookingStatusBadge,
-      BookingProgressBar,
-      BookingAction,
-      BookingApprovalCard
-    },
-    created() {
-      this.getBookingItem(this.bookingId)
-    }
-  }
+  },
+  methods: {
+    ...mapActions(['getBookingItem']),
+  },
+  components: {
+    VenuePhoto,
+    BookingStatusBadge,
+    BookingProgressBar,
+    BookingAction,
+    BookingApprovalCard,
+  },
+  created() {
+    this.getBookingItem(this.bookingId);
+  },
+};
 </script>

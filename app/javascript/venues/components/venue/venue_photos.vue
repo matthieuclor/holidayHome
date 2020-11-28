@@ -15,9 +15,9 @@
       </ol>
       <div class="carousel-inner">
         <div v-for="(photo, index) in venueItem.photos"
-            :key="index"
-            class="carousel-item"
-            :class="{ active: index == 0 }">
+             :key="index"
+             class="carousel-item"
+             :class="{ active: index == 0 }">
 
           <img :src="photo.url" class="d-block rounded w-100">
         </div>
@@ -37,16 +37,16 @@
 </template>
 
 <script>
-  import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton'
-  import { mapGetters } from 'vuex'
+import VenuePhotoSkeleton from 'venues/components/skeleton/venue_photo_skeleton';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenuePhotos',
-    computed: {
-      ...mapGetters(['venueItem'])
-    },
-    components: {
-      VenuePhotoSkeleton
-    }
-  }
+export default {
+  name: 'VenuePhotos',
+  computed: {
+    ...mapGetters(['venueItem']),
+  },
+  components: {
+    VenuePhotoSkeleton,
+  },
+};
 </script>

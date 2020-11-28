@@ -17,13 +17,13 @@
 </template>
 
 <script>
-  import NetworkListItem from './network_list_item'
+import NetworkListItem from './network_list_item.vue';
 
-  export default {
-    name: 'NetworkList',
-    props: ['networks'],
-    components: {
-      NetworkListItem
-    }
-  }
+export default {
+  name: 'NetworkList',
+  props: ['networks'],
+  components: {
+    NetworkListItem,
+  },
+};
 </script>

@@ -20,7 +20,7 @@
       &nbsp;
     </div>
 
-     <div class="bg-light rounded w-25 mt-3">
+    <div class="bg-light rounded w-25 mt-3">
       &nbsp;
     </div>
 
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-  export default {
-    name: 'VenueFormSkeleton'
-  }
+export default {
+  name: 'VenueFormSkeleton',
+};
 </script>

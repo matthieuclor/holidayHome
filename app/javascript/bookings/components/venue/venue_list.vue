@@ -16,19 +16,19 @@
 </template>
 
 <script>
-  import VenueListItem from 'bookings/components/venue/venue_list_item'
-  import { mapGetters } from 'vuex'
+import VenueListItem from 'bookings/components/venue/venue_list_item.vue';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'VenueList',
-    components: {
-      VenueListItem
-    },
-    computed: {
-      ...mapGetters([
-        'currentVenue',
-        'chunkedVenueItems'
-      ])
-    },
-  }
+export default {
+  name: 'VenueList',
+  components: {
+    VenueListItem,
+  },
+  computed: {
+    ...mapGetters([
+      'currentVenue',
+      'chunkedVenueItems',
+    ]),
+  },
+};
 </script>
