@@ -6,23 +6,23 @@ module UserAccount
       before_action :configure_sign_up_params, only: :create
       before_action :configure_account_update_params, only: :update
 
-      def new
+      def new # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def create
+      def create # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def edit
+      def edit # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def update
+      def update # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def destroy
+      def destroy # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
@@ -43,9 +43,8 @@ module UserAccount
       end
 
       def after_sign_up_path_for(resource)
-        if cookies[:hutoki_plan] == 'premium'
+        cookies[:hutoki_plan] == 'premium' &&
           resource.update(plan: :premium, plan_deadline: Date.current + 1.year)
-        end
 
         user_account_dashboards_path
       end

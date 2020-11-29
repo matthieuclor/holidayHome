@@ -3,7 +3,7 @@
 class SynchronizeSchoolHolidays
   include Interactor
 
-  def call
+  def call # rubocop:disable Metrics/PerceivedComplexity
     school_years = DataEducationGouv.call(
       rows: 0,
       q: { zones_start: 'Zone', population_eq: ['Élèves', nil] },

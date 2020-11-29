@@ -5,15 +5,15 @@ module AdminAccount
     class SessionsController < Devise::SessionsController
       respond_to :html, :js
 
-      def new
+      def new # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def create
+      def create # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def destroy
+      def destroy # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 

@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class InvitationTest < ActiveSupport::TestCase
+class InvitationTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLength
   include ActionMailer::TestHelper
 
   def setup
@@ -129,7 +129,7 @@ class InvitationTest < ActiveSupport::TestCase
     assert_nil invitation.receiver
   end
 
-  test 'send send_to_known_user mail and update last_send_at and send_count after create invitation with existing receiver email' do
+  test 'send send_to_known_user mail and update last_send_at and send_count after create invitation with existing receiver email' do # rubocop:disable Layout/LineLength
     user = users(:pierre)
     invitation = create(
       :invitation,
@@ -146,7 +146,7 @@ class InvitationTest < ActiveSupport::TestCase
     assert_equal 1, invitation.send_count
   end
 
-  test 'send send_to_unknown_user mail and update last_send_at and send_count after create invitation with inexisting receiver email' do
+  test 'send send_to_unknown_user mail and update last_send_at and send_count after create invitation with inexisting receiver email' do # rubocop:disable Layout/LineLength
     invitation = create(
       :invitation,
       { sender: @invitation.sender, family: @invitation.family }

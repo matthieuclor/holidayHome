@@ -2,16 +2,6 @@ require: rubocop-rails
 
 AllCops:
   Exclude:
-    - 'app/controllers/admin_account/authentification/sessions_controller.rb'
-    - 'app/controllers/user_account/authentification/*.rb'
-    - 'app/interactors/synchronize_school_holidays.rb'
-    - 'app/models/invitation.rb'
-    - 'app/models/notification.rb'
-    - 'app/models/venue.rb'
-    - 'app/services/data_education_gouv.rb'
-    - 'test/controllers/user_account/venues_controller_test.rb'
-    - 'test/models/booking_test.rb'
-    - 'test/models/invitation_test.rb'
     - 'bin/*'
     - 'config/**/*'
     - 'db/**/*'

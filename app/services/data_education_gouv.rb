@@ -5,7 +5,7 @@ class DataEducationGouv
   attr_accessor :url, :dataset, :rows, :start, :format, :lang, :timezone,
                 :q, :facet, :query, :records, :facet_groups, :parameters, :error
 
-  def initialize(**args)
+  def initialize(**args) # rubocop:disable Metrics/PerceivedComplexity
     @url = args[:url] || Rails.application.credentials.dig(:data_education, :url)
     @dataset = args[:dataset] || Rails.application.credentials.dig(:data_education, :dataset)
     @rows = args[:rows] || 50

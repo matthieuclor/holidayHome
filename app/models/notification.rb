@@ -27,7 +27,7 @@ class Notification < ApplicationRecord
 
   validates :status, inclusion: { in: statuses.keys }
   validates :notification_type, inclusion: { in: notification_types.keys }
-  validates :description, uniqueness: {
+  validates :description, uniqueness: { # rubocop:disable Rails/UniqueValidationWithoutIndex
     scope: :user,
     conditions: -> { where(status: :unread) }
   }

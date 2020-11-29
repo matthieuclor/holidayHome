@@ -17,7 +17,7 @@ class Invitation < ApplicationRecord
   validates :email, format: { with: Devise.email_regexp }, presence: true
   validates :status, inclusion: { in: statuses.keys }
   validate :uniqueness_of_receiver_family, on: :create
-  validates :email, uniqueness: {
+  validates :email, uniqueness: { # rubocop:disable Rails/UniqueValidationWithoutIndex
     scope: :family,
     conditions: -> { where(status: 'pending') }
   }

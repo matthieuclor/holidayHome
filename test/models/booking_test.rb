@@ -2,7 +2,7 @@
 
 require 'test_helper'
 
-class BookingTest < ActiveSupport::TestCase
+class BookingTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLength
   include ActionMailer::TestHelper
 
   def setup

@@ -74,7 +74,7 @@ class Venue < ApplicationRecord
 
   def attach_map
     map.attach(
-      io: open(
+      io: open( # rubocop:disable Security/Open
         GOOGLE_MAP_URL +
         "?center=#{lat},#{lng}" \
         "&zoom=#{GOOGLE_MAP_ZOOM}" \

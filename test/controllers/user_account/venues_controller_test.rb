@@ -3,7 +3,7 @@
 require 'test_helper'
 
 module UserAccount
-  class VenuesControllerTest < ActionDispatch::IntegrationTest
+  class VenuesControllerTest < ActionDispatch::IntegrationTest # rubocop:disable Metrics/ClassLength
     setup do
       @user = users(:matthieu)
       sign_in @user, scope: :user
