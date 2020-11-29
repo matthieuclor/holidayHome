@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddBedroomTypeToVenue < ActiveRecord::Migration[6.0]
   def change
     add_column :venues, :single_beds_count, :integer, default: 0
