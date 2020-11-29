@@ -346,7 +346,6 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.1)
   traceroute
   turbolinks (~> 5.2.1)
-  tzinfo-data
   web-console (>= 4.0.4)
   webdrivers
   webpacker (~> 5.1.1)

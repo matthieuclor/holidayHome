@@ -87,6 +87,3 @@ group :test do
   # This gem is a port of Perl's Data::Faker library that generates fake data.
   gem 'faker'
 end
-
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: %i(mingw mswin x64_mingw jruby)
