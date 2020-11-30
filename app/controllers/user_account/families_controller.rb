@@ -2,7 +2,10 @@
 
 module UserAccount
   class FamiliesController < UserAccount::ApplicationController
+    include SkipBullet
+
     before_action :set_family, :check_creator, only: %i(edit update destroy)
+    around_action :skip_bullet, only: :index
 
     def index
       @families = FamilyDecorator.wrap(current_user.families)

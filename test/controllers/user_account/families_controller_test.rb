@@ -42,7 +42,7 @@ module UserAccount
     test 'should create only one family with basic plan' do
       sign_out :user
       sign_in users(:bryan), scope: :user
-      post user_account_families_url, params: { family: { name: 'test', days_for_approval: 15 } }, xhr: true
+      post user_account_families_url, params: { family: { name: 'bryan_familu', days_for_approval: 15 } }, xhr: true
       assert_response :success
     end
 

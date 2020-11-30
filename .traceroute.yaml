@@ -5,6 +5,7 @@ ignore_unreachable_actions:
   - ^devise
   - set_current_family$
   - set_current_venue$
+  - skip_bullet$
 ignore_unused_routes:
   - ^rails\/conductor\/action_mailbox\/inbound_emails
   - ^\/sidekiq

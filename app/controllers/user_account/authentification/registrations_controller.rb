@@ -3,8 +3,11 @@
 module UserAccount
   module Authentification
     class RegistrationsController < Devise::RegistrationsController
+      include SkipBullet
+
       before_action :configure_sign_up_params, only: :create
       before_action :configure_account_update_params, only: :update
+      around_action :skip_bullet, only: :destroy
 
       def new # rubocop:disable Lint/UselessMethodDefinition
         super

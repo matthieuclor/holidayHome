@@ -77,6 +77,8 @@ group :development do
 end
 
 group :test do
+  # The Bullet gem is designed to increase your application's performance by reducing the number of queries.
+  gem 'bullet'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.33.0'
   gem 'selenium-webdriver'

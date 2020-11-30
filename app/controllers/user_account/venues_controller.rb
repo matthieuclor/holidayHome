@@ -5,7 +5,7 @@ module UserAccount
     include CurrentFamily
 
     before_action :set_current_family, only: %i(index new create edit update)
-    before_action :set_venue, only: %i(show edit update destroy)
+    before_action :set_venue, only: %i(show edit destroy)
     before_action :set_owners, only: %i(new edit)
 
     def index
@@ -51,6 +51,8 @@ module UserAccount
     end
 
     def update
+      @venue = Venue.find(params[:id])
+
       if @venue.update(venue_params)
         flash[:success] = 'Le lieu a bien été mise à jour'
         render :update, status: :ok
@@ -75,7 +77,7 @@ module UserAccount
     def set_venue
       @venue = Venue
         .with_attached_photos
-        .includes(:home_services, :networks, :digital_codes, keys: :owner)
+        .includes(:home_services, :networks, :digital_codes, :keys)
         .find(params[:id])
     end
 

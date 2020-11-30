@@ -3,7 +3,10 @@
 module UserAccount
   class ReceivedInvitationsController < UserAccount::ApplicationController
     def index
-      @pagy, @invitations = pagy(current_user.received_invitations.joins(:sender))
+      @pagy, @invitations = pagy(
+        current_user.received_invitations.includes(:sender, :family)
+      )
+
       @invitations = InvitationDecorator.wrap(@invitations)
     end
 

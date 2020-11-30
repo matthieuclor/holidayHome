@@ -96,7 +96,7 @@ class User < ApplicationRecord
 
   def set_families_plan
     if basic?
-      families.premium.each do |family|
+      families.premium.includes(:premium_users).find_each do |family|
         if family.premium_users.present?
           family.update(plan_deadline: family.premium_users.maximum(:plan_deadline))
         else
@@ -104,7 +104,7 @@ class User < ApplicationRecord
         end
       end
     else
-      families.each do |family|
+      families.includes(:creator).find_each do |family|
         family.update(
           plan: plan,
           plan_deadline: family.premium_users.maximum(:plan_deadline)

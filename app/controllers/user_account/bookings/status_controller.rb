@@ -6,7 +6,7 @@ module UserAccount
       respond_to :json
 
       def update
-        @booking = Booking.find(params[:id])
+        @booking = Booking.includes(booking_approvals: [:user]).find(params[:id])
 
         if @booking.update(booking_params)
           flash[:success] = 'La réservation a bien été mise à jour'
