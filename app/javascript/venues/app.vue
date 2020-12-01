@@ -1,6 +1,5 @@
 <template>
-  <div class="d-flex container-with-sidebar"
-       :class="{ active: sidebar }">
+  <div class="d-flex container-with-sidebar" :class="{ active: sidebar }">
 
     <VenueList />
 
@@ -19,7 +18,7 @@ import VenueList from 'venues/components/venue/venue_list';
 import VenueContainer from 'venues/components/venue/venue_container';
 import FlashMessage from 'shared/components/flash/flash_message';
 import PlanInfoCard from 'shared/components/plan_error/plan_info_card';
-import { mapGetters } from 'vuex';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
   name: 'App',
@@ -34,6 +33,12 @@ export default {
     VenueContainer,
     PlanInfoCard,
     FlashMessage,
+  },
+  methods: {
+    ...mapActions(['hideSidebar']),
+  },
+  destroyed() {
+    this.hideSidebar();
   },
 };
 </script>

@@ -6,7 +6,10 @@ class CreateDigitalCodes < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :password
       t.references :venue, index: true
+
       t.timestamps
+
+      t.index %i(name venue_id), unique: true
     end
   end
 end

@@ -7,6 +7,7 @@ class CreateTeamMembers < ActiveRecord::Migration[6.0]
       t.string :last_name
       t.string :function
       t.integer :status, default: 0
+
       t.timestamps
     end
   end

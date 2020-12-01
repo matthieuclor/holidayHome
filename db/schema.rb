@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_24_234907) do
+ActiveRecord::Schema.define(version: 2020_11_06_005524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -70,10 +70,10 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
   create_table "booking_approvals", force: :cascade do |t|
     t.bigint "booking_id"
     t.bigint "user_id"
+    t.bigint "message_id"
     t.integer "status", default: 0
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.bigint "message_id"
     t.index ["booking_id"], name: "index_booking_approvals_on_booking_id"
     t.index ["message_id"], name: "index_booking_approvals_on_message_id"
     t.index ["user_id", "booking_id"], name: "index_booking_approvals_on_user_id_and_booking_id", unique: true
@@ -87,9 +87,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
     t.bigint "user_id"
     t.bigint "venue_id"
     t.datetime "deadline"
+    t.string "current_users", default: [], array: true
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "current_users", default: [], array: true
     t.index ["user_id"], name: "index_bookings_on_user_id"
     t.index ["venue_id"], name: "index_bookings_on_venue_id"
   end
@@ -106,19 +106,21 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
 
   create_table "families", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.integer "venues_count", default: 0
     t.integer "days_for_approval"
-    t.bigint "creator_id"
     t.integer "plan", default: 0
     t.date "plan_deadline"
+    t.bigint "creator_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["creator_id"], name: "index_families_on_creator_id"
   end
 
   create_table "family_links", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "family_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["family_id", "user_id"], name: "index_family_links_on_family_id_and_user_id", unique: true
     t.index ["family_id"], name: "index_family_links_on_family_id"
     t.index ["user_id"], name: "index_family_links_on_user_id"
@@ -235,6 +237,11 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
+    t.integer "sign_in_count", default: 0, null: false
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.inet "current_sign_in_ip"
+    t.inet "last_sign_in_ip"
     t.string "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
@@ -242,21 +249,16 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
     t.integer "failed_attempts", default: 0, null: false
     t.string "unlock_token"
     t.datetime "locked_at"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
     t.bigint "current_family_id"
     t.string "phone"
     t.string "address"
-    t.hstore "current_venue_id", default: {}
     t.integer "status", default: 0
-    t.integer "sign_in_count", default: 0, null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet "current_sign_in_ip"
-    t.inet "last_sign_in_ip"
+    t.hstore "current_venue_id", default: {}
+    t.hstore "current_school_holiday_zones", default: {"A"=>"false", "B"=>"false", "C"=>"false"}
     t.integer "plan", default: 0
     t.date "plan_deadline"
-    t.hstore "current_school_holiday_zones", default: {"A"=>"false", "B"=>"false", "C"=>"false"}
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["current_venue_id"], name: "index_users_on_current_venue_id", using: :gin
     t.index ["email"], name: "index_users_on_email", unique: true
@@ -277,6 +279,9 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
     t.float "lng"
     t.integer "bedrooms_count", default: 0
     t.integer "bathrooms_count", default: 0
+    t.integer "single_beds_count", default: 0
+    t.integer "double_beds_count", default: 0
+    t.integer "baby_beds_count", default: 0
     t.boolean "with_network", default: false
     t.boolean "with_digital_code", default: false
     t.boolean "with_home_service", default: false
@@ -286,9 +291,6 @@ ActiveRecord::Schema.define(version: 2020_11_24_234907) do
     t.bigint "family_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "single_beds_count", default: 0
-    t.integer "double_beds_count", default: 0
-    t.integer "baby_beds_count", default: 0
     t.index ["creator_id"], name: "index_venues_on_creator_id"
     t.index ["family_id"], name: "index_venues_on_family_id"
     t.index ["name", "family_id"], name: "index_venues_on_name_and_family_id", unique: true

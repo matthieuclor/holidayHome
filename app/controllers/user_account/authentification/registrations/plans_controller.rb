@@ -3,7 +3,7 @@
 module UserAccount
   module Authentification
     module Registrations
-      class PlansController < ApplicationController
+      class PlansController < ::ApplicationController
         def create
           cookies[:hutoki_plan] = {
             value: plan_params[:plan],

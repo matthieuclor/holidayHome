@@ -6,7 +6,10 @@ class CreateQuestionAndAnswers < ActiveRecord::Migration[6.0]
       t.string :question
       t.string :answer
       t.integer :status, default: 0
+
       t.timestamps
+
+      t.index :question, unique: true
     end
   end
 end

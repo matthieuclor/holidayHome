@@ -6,7 +6,7 @@ class CreateMessages < ActiveRecord::Migration[6.0]
       t.references :user, index: true
       t.references :booking, index: true
       t.text :content
-      t.integer :status, default: 0
+
       t.timestamps
     end
   end

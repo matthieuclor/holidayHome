@@ -9,6 +9,8 @@ class CreateBookings < ActiveRecord::Migration[6.0]
       t.references :user, index: true
       t.references :venue, index: true
       t.datetime :deadline
+      t.string :current_users, array: true, default: []
+
       t.timestamps
     end
   end

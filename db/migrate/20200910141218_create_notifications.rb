@@ -9,6 +9,7 @@ class CreateNotifications < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0
       t.references :user, index: true
       t.references :family, index: true
+
       t.timestamps
     end
   end

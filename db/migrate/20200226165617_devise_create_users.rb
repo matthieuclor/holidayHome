@@ -2,6 +2,8 @@
 
 class DeviseCreateUsers < ActiveRecord::Migration[6.0]
   def change
+    enable_extension 'hstore'
+
     create_table :users do |t|
       ## Database authenticatable
       t.string :first_name,         null: false, default: ''
@@ -17,11 +19,11 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.datetime :remember_created_at
 
       ## Trackable
-      # t.integer  :sign_in_count, default: 0, null: false
-      # t.datetime :current_sign_in_at
-      # t.datetime :last_sign_in_at
-      # t.inet     :current_sign_in_ip
-      # t.inet     :last_sign_in_ip
+      t.integer  :sign_in_count, default: 0, null: false
+      t.datetime :current_sign_in_at
+      t.datetime :last_sign_in_at
+      t.inet     :current_sign_in_ip
+      t.inet     :last_sign_in_ip
 
       ## Confirmable
       t.string   :confirmation_token
@@ -34,6 +36,16 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string   :unlock_token # Only if unlock strategy is :email or :both
       t.datetime :locked_at
 
+      ## Custom
+      t.bigint :current_family_id
+      t.string :phone
+      t.string :address
+      t.integer :status, default: 0
+      t.hstore :current_venue_id, default: {}
+      t.hstore :current_school_holiday_zones, default: { 'A': false, 'B': false, 'C': false }
+      t.integer :plan, default: 0
+      t.date :plan_deadline
+
       t.timestamps null: false
     end
 
@@ -41,5 +53,6 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
     add_index :users, :reset_password_token, unique: true
     add_index :users, :confirmation_token,   unique: true
     add_index :users, :unlock_token,         unique: true
+    add_index :users, :current_venue_id,     using: :gin
   end
 end

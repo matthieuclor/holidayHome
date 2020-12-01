@@ -11,6 +11,7 @@ class CreateInvitations < ActiveRecord::Migration[6.0]
       t.integer :status, default: 0
       t.datetime :last_send_at
       t.integer :send_count, default: 0
+
       t.timestamps
     end
   end

@@ -9,7 +9,10 @@ class CreateSchoolHolidays < ActiveRecord::Migration[6.0]
       t.string :school_year
       t.date :from
       t.date :to
+
       t.timestamps
+
+      t.index %i(description zone school_year), unique: true
     end
   end
 end
