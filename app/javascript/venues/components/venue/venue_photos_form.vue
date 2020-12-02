@@ -26,12 +26,15 @@
                :class="inputClass(venueForm, 'photos')"
                multiple="multiple"
                type="file"
+               lang="fr"
                accept="image/png|image/jpg|image/jpeg"
                :name="venueId ? '' : 'venue[photos][]'"
                :id="venueId ? '' : 'venue_photos'"
                :aria-invalid="!attributeIsValid(venueForm, 'photos')">
 
-        <label class="custom-file-label file optional" :for="venueId ? '' : 'venue_photos'">
+        <label class="custom-file-label file optional"
+               :for="venueId ? '' : 'venue_photos'"
+               ref="CustomFileLabel">
           Choisir des photos
         </label>
       </div>
@@ -55,6 +58,7 @@
 </template>
 
 <script>
+import bsCustomFileInput from 'bs-custom-file-input';
 import formMixin from 'shared/mixins/form_mixin';
 import { mapActions } from 'vuex';
 
@@ -79,6 +83,7 @@ export default {
         .then(() => {
           // eslint-disable-next-line no-param-reassign
           e.target.value = '';
+          this.$refs.CustomFileLabel.innerHTML = 'Choisir des photos';
         });
     },
     destroyVenuePhoto(index, id) {
@@ -86,6 +91,9 @@ export default {
         this.removePhoto({ index, venueId: this.venueId, id });
       }
     },
+  },
+  mounted() {
+    bsCustomFileInput.init();
   },
 };
 </script>

@@ -1,5 +1,9 @@
 if ($("#edit-account").length > 0) {
   $("#edit-account").html("<%= j render "edit" %>")
+
+  $('input[type="file"]').change((e) => {
+    $('.custom-file-label').html(e.target.files[0].name);
+  });
 }
 
 if ($("#edit-password").length > 0) {
