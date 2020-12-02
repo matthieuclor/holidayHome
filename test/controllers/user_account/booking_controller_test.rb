@@ -27,23 +27,31 @@ module UserAccount
       assert_response :success
     end
 
-    test 'should render booking with html' do
+    test 'should render booking with html and update notification' do
+      notification = notifications(:notification_new_booking_from_olivia)
+      notification.unread!
+
       get user_account_booking_url(bookings(:la_tania_booking))
 
       booking = @controller.view_assigns['booking']
 
       assert_instance_of Booking, booking
       assert_equal booking.user, @user
+      assert notification.reload.readed?
       assert_response :success
     end
 
-    test 'should render booking with json' do
+    test 'should render booking with json and update notification' do
+      notification = notifications(:notification_new_booking_from_olivia)
+      notification.unread!
+
       get user_account_booking_url(bookings(:la_tania_booking)), as: :json
 
       booking = @controller.view_assigns['booking']
 
       assert_instance_of BookingDecorator, booking
       assert_equal booking.user, @user
+      assert notification.reload.readed?
       assert_response :success
     end
 

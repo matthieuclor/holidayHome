@@ -2,8 +2,8 @@
 
 module UserAccount
   class SendedInvitationsController < UserAccount::ApplicationController
-    include CurrentFamily
-
+    include CurrentFamily, CheckNotification
+    before_action :check_notification, only: :index
     before_action :set_current_family, only: %i(index new create)
 
     def index

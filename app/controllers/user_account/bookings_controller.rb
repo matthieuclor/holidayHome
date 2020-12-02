@@ -2,7 +2,8 @@
 
 module UserAccount
   class BookingsController < UserAccount::ApplicationController
-    include CurrentVenue, CurrentFamily
+    include CurrentVenue, CurrentFamily, CheckNotification
+    before_action :check_notification, only: :show
     before_action :set_current_family, only: :index
 
     def index

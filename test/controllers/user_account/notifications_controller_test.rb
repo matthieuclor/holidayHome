@@ -26,18 +26,5 @@ module UserAccount
       assert_equal notifications.first.user, @user
       assert_response :success
     end
-
-    test 'should render notification' do
-      family_link = family_links('matthieu_delcroix').family_id
-      @user.update(current_family_id: family_link)
-      notification = notifications(:notification_new_message_from_la_tania_booking)
-
-      get user_account_notification_url(notification)
-
-      assert notification.reload.readed?
-      assert_not_equal notification.family_id, family_link
-      assert_equal @user.current_family_id, notification.family_id
-      assert_redirected_to notification.url
-    end
   end
 end

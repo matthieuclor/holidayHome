@@ -12,7 +12,7 @@
     <tbody>
       <% if @notifications.present? %>
         <% @notifications.each do |notification| %>
-          <tr data-table-link="<%= user_account_notification_path(notification) %>">
+          <tr data-table-link="<%= notification.url %>">
             <td class="font-weight-bolder text-nowrap">
               <%= fa_icon(
                 Notification.human_attribute_name(

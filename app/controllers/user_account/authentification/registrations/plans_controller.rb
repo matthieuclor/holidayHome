@@ -5,11 +5,7 @@ module UserAccount
     module Registrations
       class PlansController < ::ApplicationController
         def create
-          cookies[:hutoki_plan] = {
-            value: plan_params[:plan],
-            expires: 1.day.from_now
-          }
-
+          session[:hutoki_plan] = plan_params[:plan]
           redirect_to new_user_registration_path
         end
 

@@ -2,7 +2,7 @@
   <div class="col-md-8 col-lg-6">
     <h1 class="my-4">
       Je crée mon compte
-      <%= cookies[:hutoki_plan] %>
+      <%= session[:hutoki_plan] %>
     </h1>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>

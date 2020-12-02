@@ -14,7 +14,10 @@ module UserAccount
       assert_redirected_to new_user_session_url
     end
 
-    test 'should get index' do
+    test 'should get index and update notification' do
+      notification = notifications(:notification_new_invitation_from_matthieu)
+      notification.unread!
+
       get user_account_received_invitations_url
 
       invitations = @controller.view_assigns['invitations']
@@ -22,6 +25,7 @@ module UserAccount
 
       assert_instance_of InvitationDecorator, invitations.first
       assert_instance_of Pagy, pagy
+      assert notification.reload.readed?
       assert_response :success
     end
 

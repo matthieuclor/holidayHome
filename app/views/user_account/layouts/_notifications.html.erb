@@ -19,27 +19,30 @@
        aria-labelledby="dropdownUserButton">
 
     <% if notifications.present? %>
-      <% notifications.each do |notifiaction| %>
-        <%= link_to user_account_notification_path(notifiaction), class: "dropdown-item" do %>
+      <% notifications.each do |notification| %>
+        <%= link_to notification.url,
+                    class: "dropdown-item",
+                    data: { turbolinks: false } do %>
+
           <div class="d-flex justify-content-between align-items-center">
             <div class="font-weight-bolder text-primary">
               <%= fa_icon(
                 Notification.human_attribute_name(
-                  "icon.#{notifiaction.notification_type}"
+                  "icon.#{notification.notification_type}"
                 ),
                 Notification.human_attribute_name(
-                  "notification_type.#{notifiaction.notification_type}"
+                  "notification_type.#{notification.notification_type}"
                 ),
                 { class: "mr-2", prefix: "far" }
               ) %>
             </div>
             <span class="badge badge-warning">
-              <%= notifiaction.family.name %>
+              <%= notification.family.name %>
             </span>
           </div>
 
           <p class="font-weight-light">
-            <%= notifiaction.description.html_safe %>
+            <%= notification.description.html_safe %>
           </p>
         <% end %>
       <% end %>

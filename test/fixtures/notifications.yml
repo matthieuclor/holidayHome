@@ -6,3 +6,30 @@ notification_new_message_from_la_tania_booking:
   status: 1
   user_id: 1
   family_id: 1
+
+notification_new_invitation_from_matthieu:
+  id: 2
+  notification_type: 1
+  description: "Vous venez de recevoir une invitation de Matthieu Clor"
+  url: "/user_account/received_invitations"
+  status: 1
+  user_id: 3
+  family_id: 1
+
+notification_accepted_invitation_from_matthieu:
+  id: 3
+  notification_type: 2
+  description: "Olivia Clor vient d'accepter votre invitation"
+  url: "/user_account/sended_invitations"
+  status: 1
+  user_id: 1
+  family_id: 1
+
+notification_new_booking_from_olivia:
+  id: 4
+  notification_type: 4
+  description: "Vous venez de recevoir une réservation de Olivia Clor pour La Tania</br>Du 8 au 14 février 2021"
+  url: "/user_account/bookings/1"
+  status: 1
+  user_id: 1
+  family_id: 1

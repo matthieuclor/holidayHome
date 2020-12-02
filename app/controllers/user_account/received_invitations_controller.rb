@@ -2,6 +2,9 @@
 
 module UserAccount
   class ReceivedInvitationsController < UserAccount::ApplicationController
+    include CheckNotification
+    before_action :check_notification, only: :index
+
     def index
       @pagy, @invitations = pagy(
         current_user.received_invitations.includes(:sender, :family)
