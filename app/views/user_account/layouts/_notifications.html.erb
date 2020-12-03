@@ -20,7 +20,7 @@
 
     <% if notifications.present? %>
       <% notifications.each do |notification| %>
-        <%= link_to notification.url,
+        <%= link_to user_account_notification_path(notification),
                     class: "dropdown-item",
                     data: { turbolinks: false } do %>
 
