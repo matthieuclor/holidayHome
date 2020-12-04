@@ -78,8 +78,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
+# production:
+#   <<: *default
   # url: <%= ENV['DATABASE_URL'] %>
   # database: hutoki_production
   # username: hutoki
