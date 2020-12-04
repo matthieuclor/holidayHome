@@ -69,13 +69,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
 
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['SENDGRID_USERNAME'],
-    :password => ENV['SENDGRID_PASSWORD'],
-    :domain => 'herokuapp.com',
-    :address => 'smtp.sendgrid.net',
-    :port => 587,
-    :authentication => :plain,
-    :enable_starttls_auto => true
+    :user_name => ENV['OVH_USERNAME'],
+    :password => ENV['OVH_PASSWORD'],
+    :domain => 'hutoki.com',
+    :address => 'ssl0.ovh.net',
+    :port => 587
   }
 
   Rails.application.routes.default_url_options[:host] = config.action_mailer.default_url_options[:host]
