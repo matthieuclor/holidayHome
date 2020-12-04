@@ -12,7 +12,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :recoverable, :rememberable,
          :validatable, :timeoutable, :confirmable, :lockable, :trackable
 
-  has_one_attached :avatar, dependent: :destroy
+  has_one_attached :avatar
 
   belongs_to :current_family, class_name: 'Family', optional: true
 

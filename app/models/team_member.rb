@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class TeamMember < ApplicationRecord
-  has_one_attached :photo, dependent: :destroy
+  has_one_attached :photo
 
   enum status: %i(offline online)
 

@@ -9,8 +9,8 @@ class Venue < ApplicationRecord
   GOOGLE_MAP_TYPE = 'roadmap'
   GOOGLE_MAP_FORMAT = 'png'
 
-  has_many_attached :photos, dependent: :destroy
-  has_one_attached :map, dependent: :destroy
+  has_many_attached :photos
+  has_one_attached :map
 
   belongs_to :creator, class_name: 'User'
   belongs_to :family, counter_cache: true
