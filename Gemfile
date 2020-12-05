@@ -47,6 +47,8 @@ gem 'pagy'
 gem 'interactor'
 # Beautiful JavaScript charts with one line of Ruby
 gem 'chartkick'
+# Sentry is a realtime event logging and aggregation platform.
+gem 'sentry-raven'
 # SitemapGenerator is the easiest way to generate Sitemaps in Ruby
 gem 'sitemap_generator'
 # Faraday is an HTTP client library that provides a common interface over many adapters
