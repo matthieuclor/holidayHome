@@ -7,7 +7,6 @@
     "@rails/activestorage": "^6.0.0",
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.2.1",
-    "@sentry/browser": "^5.28.0",
     "@sentry/tracing": "^5.28.0",
     "@sentry/vue": "^5.28.0",
     "axios": "^0.19.2",
