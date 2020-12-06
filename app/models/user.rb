@@ -3,7 +3,7 @@
 class User < ApplicationRecord
   PLAN_BASIC_LIMIT = {
     families: 1,
-    families_users: 3,
+    families_users: 4,
     families_venues: 1,
     venues_photos: 1
   }.freeze
