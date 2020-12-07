@@ -1,6 +1,6 @@
 <% if current_user.avatar.attached? %>
   <div class="d-flex align-items-center mb-4">
-    <%= image_tag(current_user.avatar.variant(resize_to_limit: [80, 80]), class: "rounded-circle") %>
+    <%= image_tag(current_user.avatar.variant(resize_to_fill: [80, 80]), class: "rounded-circle") %>
 
     <%= button_to user_account_avatars_path,
                   method: :delete,

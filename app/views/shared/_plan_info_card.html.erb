@@ -35,7 +35,7 @@
           </li>
           <li>
             <i class="fas fa-check-circle text-warning"></i>
-            <span class="text-muted">Et vous ne pouvez mettre qu'une seule photo sur ce lieu</span>
+            <span class="text-muted">Vous ne pouvez mettre qu'une seule photo sur ce lieu</span>
           </li>
         </ul>
 
@@ -80,9 +80,11 @@
           </span>
           <span class="text-nowrap">(Offre pour le lancement)</span>
         </div>
-        <button type="button" class="btn btn-block btn-outline-primary">
-          Plan premium
-        </button>
+        <%= button_to "Plan premium",
+                      edit_user_account_plans_path,
+                      remote: true,
+                      method: :get,
+                      class: "btn btn-block btn-outline-primary" %>
       </div>
     </div>
   </div>

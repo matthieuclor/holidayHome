@@ -34,7 +34,7 @@
             </li>
             <li>
               <i class="fas fa-check-circle text-warning"></i>
-              <span class="text-muted">Et vous ne pouvez mettre qu'une seule photo sur ce lieu</span>
+              <span class="text-muted">Vous ne pouvez mettre qu'une seule photo sur ce lieu</span>
             </li>
           </ul>
 
@@ -79,9 +79,11 @@
             </span>
             <span class="text-nowrap">(Offre pour le lancement)</span>
           </div>
-          <button type="button" class="btn btn-block btn-outline-primary">
-            Plan premium
-          </button>
+          <a href="/user_account/plans/edit" data-remote="true">
+            <button type="button" class="btn btn-block btn-outline-primary">
+              Plan premium
+            </button>
+          </a>
         </div>
       </div>
     </div>

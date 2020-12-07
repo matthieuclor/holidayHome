@@ -80,7 +80,7 @@
         <input type="submit"
                :disabled="venueFormIsSending"
                name="commit"
-               value="Envoyer"
+               value="Enregistrer"
                class="btn btn-block btn-success">
       </form>
     </div>

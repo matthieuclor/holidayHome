@@ -4,7 +4,7 @@ module UsersHelper
   def user_avatar(user, format: [30, 30], avatar_class: 'rounded-circle')
     if user.avatar.attached?
       image_tag(
-        user.avatar.variant(resize_to_limit: format),
+        user.avatar.variant(resize_to_fill: format),
         class: avatar_class
       )
     else
