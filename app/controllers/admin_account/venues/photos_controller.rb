@@ -1,18 +1,18 @@
 # frozen_string_literal: true
 
-module UserAccount
+module AdminAccount
   module Venues
-    class PhotosController < UserAccount::ApplicationController
+    class PhotosController < AdminAccount::ApplicationController
       before_action :set_venue
 
       def create
         if @venue.photos.attach(photos_params[:photos])
           flash[:success] = 'Les photos ont bien été enregistrés'
-          render status: :ok
         else
           flash[:error] = "Un problem est survenu lors de l'enregistrement des photos"
-          render status: :unprocessable_entity
         end
+
+        redirect_to admin_account_venue_path(params[:venue_id])
       end
 
       def destroy
@@ -21,11 +21,11 @@ module UserAccount
         if photo.present?
           photo.purge
           flash[:success] = 'La photo a bien été supprimée'
-          render status: :ok
         else
           flash[:error] = 'Un problem est survenu lors de la suppression de la photo'
-          render status: :unprocessable_entity
         end
+
+        redirect_to admin_account_venue_path(params[:venue_id])
       end
 
       private

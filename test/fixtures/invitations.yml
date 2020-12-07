@@ -15,6 +15,14 @@ matthieu_invite_user:
   token: ame4gdumQ5ykYKfsYBN2
   status: 0
 
+matthieu_invite_user2:
+  id: 6
+  sender_id: 1
+  family_id: 1
+  email: invitee2@mail.com
+  token: ame4gdumQ5ykYKfsYBN6
+  status: 0
+
 matthieu_reinvite_user:
   id: 3
   sender_id: 1

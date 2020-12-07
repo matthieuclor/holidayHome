@@ -27,3 +27,40 @@ fr:
         first_name: Prénom
         last_name: Nom
         function: Fonction
+      key:
+        name: Nom
+        owner_id: Propriétaire
+      network:
+        name: Nom
+        password: Mot de passe
+      digital_code:
+        name: Nom
+        password: Mot de passe
+      home_service:
+        name: Nom
+        person_in_charge: Personne en charge
+        address: Adresse
+        phone: Téléphone
+        email: Email
+      venue:
+        creator_id: Créateur
+        name: Nom
+        address: Adresse
+        city: Ville
+        postcode: Code postal
+        country: Pays
+        country_code: Code du pays
+        administrative: Région
+        county: Département
+        lat: Latitude
+        lng: longitude
+        bedrooms_count: Nombre de chambres
+        bathrooms_count: Nombre de salles de bains
+        single_beds_count: Nombre de lits simples
+        double_beds_count: Nombre de lits doubles
+        baby_beds_count: Nombre de lits bébés
+        with_network: Réseaux
+        with_digital_code: Digicodes
+        with_home_service: Services à domicile
+        comment: Commentaire
+        editable_for_others: Editable par les autres membres

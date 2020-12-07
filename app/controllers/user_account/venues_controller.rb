@@ -87,7 +87,6 @@ module UserAccount
 
     def venue_params
       params.require(:venue).permit(
-        :id,
         :name,
         :address,
         :city,

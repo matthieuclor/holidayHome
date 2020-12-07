@@ -1,0 +1,38 @@
+<div class="modal" id="home-service-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un service à domicile
+          <% else %>
+            Editer un service à domicile
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @home_service.venue, @home_service], remote: true do |f| %>
+          <%= f.input :name, input_html: { placeholder: "Jardinier" } %>
+
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :person_in_charge, input_html: { placeholder: "Jean Dujardin" } %>
+            </div>
+            <div class="col-6">
+              <%= f.input :phone, input_html: { placeholder: "06 65 78 98 73" } %>
+            </div>
+          </div>
+
+          <%= f.input :address, input_html: { placeholder: "12 Rue du test" } %>
+
+          <%= f.input :email, input_html: { placeholder: "jean@mail.com" } %>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

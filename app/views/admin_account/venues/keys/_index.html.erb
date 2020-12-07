@@ -1,0 +1,36 @@
+
+<div class="card my-3">
+  <div class="card-body">
+    <h2 class="d-flex align-items-center">
+      Clés :
+      <span class="badge badge-secondary ml-2">
+        <%= @venue.keys.size %>
+      </span>
+    </h2>
+
+    <div class="list-group shadow-none">
+      <% @venue.keys.each do |key| %>
+        <%= link_to edit_admin_account_venue_key_path(@venue, key),
+                    class: 'list-group-item list-group-item-action p-1',
+                    remote: true do %>
+
+          <span class="font-weight-bolder">
+            Nom :
+          </span>
+          <span class="text-muted">
+            <%= key.name %>,
+          </span>
+          <span class="font-weight-bolder">
+            De
+          </span>
+          <span class="text-muted">
+            <%= key.owner.first_name %>
+            <%= key.owner.last_name %>
+          </span>
+
+          <%= fa_icon('pen', nil, class: 'ml-3') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

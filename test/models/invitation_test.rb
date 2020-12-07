@@ -21,7 +21,7 @@ class InvitationTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLe
     end
   end
 
-  test 'valid invitation when they is less than 3 invitations on family' do
+  test 'valid invitation when they is less than 4 invitations on family' do
     invitation = build(
       :invitation,
       { sender: @invitation.sender, family: @invitation.family, email: 'test@mail.com' }
@@ -31,7 +31,7 @@ class InvitationTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLe
     assert_not invitation.errors[:base].present?
   end
 
-  test 'invalid invitation when they is 3 invitations on family' do
+  test 'invalid invitation when they is 4 invitations on family' do
     create(
       :invitation,
       { sender: @invitation.sender, family: @invitation.family }

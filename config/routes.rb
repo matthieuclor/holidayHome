@@ -134,9 +134,18 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :venues, only: %i(show edit update) do
+      scope module: :venues do
+        resources :photos, only: %i(create destroy)
+        resources :keys, only: %i(edit update)
+        resources :networks, only: %i(edit update)
+        resources :digital_codes, only: %i(edit update)
+        resources :home_services, only: %i(edit update)
+      end
+    end
+
     resources :admins, only: :index
     resources :school_holidays, only: %i(index create)
-    resources :venues, only: :show
     resources :bookings, only: :show
   end
 

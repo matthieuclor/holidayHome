@@ -1,0 +1,34 @@
+
+<div class="card my-3">
+  <div class="card-body">
+    <h2 class="d-flex align-items-center">
+      Réseaux :
+      <span class="badge badge-secondary ml-2">
+        <%= @venue.networks.size %>
+      </span>
+    </h2>
+
+    <div class="list-group shadow-none">
+      <% @venue.networks.each do |network| %>
+        <%= link_to edit_admin_account_venue_network_path(@venue, network),
+                    class: 'list-group-item list-group-item-action p-1',
+                    remote: true do %>
+          <span class="font-weight-bolder">
+            Nom :
+          </span>
+          <span class="text-muted">
+            <%= network.name %>,
+          </span>
+          <span class="font-weight-bolder">
+            Mot de passe :
+          </span>
+          <span class="text-muted">
+            <%= network.password %>
+          </span>
+
+          <%= fa_icon('pen', nil, class: 'ml-3') %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

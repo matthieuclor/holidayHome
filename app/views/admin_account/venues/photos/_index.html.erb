@@ -1,0 +1,46 @@
+<div class="card my-3">
+  <div class="card-body">
+    <h2 class="d-flex align-items-center">
+      Photos :
+      <span class="badge badge-secondary ml-2">
+        <%= @venue.photos.size %>
+      </span>
+    </h2>
+
+    <div class="d-flex flex-nowrap mt-3">
+      <% @venue.photos.each do |photo| %>
+        <div class="mr-4 mb-3">
+          <%= image_tag(photo.variant(resize_to_limit: [250, 250]),
+                        class: 'img-fluid rounded') %>
+
+          <%= button_to admin_account_venue_photo_path(@venue, photo),
+                        method: :delete,
+                        form_class: 'd-inline position-absolute mt-n2 ml-n3',
+                        class: 'btn btn-sm btn-danger',
+                        data: { confirm: "Etes vous sûrs ?" } do %>
+            <%= fa_icon('trash') %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="row col-md-6">
+      <%= simple_form_for(@venue,
+                          url: admin_account_venue_photos_path(@venue),
+                          data: { autosubmit: true },
+                          html: { class: 'w-100' },
+                          method: :post) do |f| %>
+
+        <%= f.input :photos,
+                    label: 'Choisir des photos',
+                    wrapper_html: { class: "mb-0" },
+                    input_html: {
+                      multiple: 'multiple',
+                      accept: 'image/png|image/jpg|image/jpeg',
+                      lang: 'fr'
+                    },
+                    hint: 'Les formats acceptés: png, jpg, jpeg et la taille est limitée à 2mo.' %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="modal" id="key-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer une clé
+          <% else %>
+            Editer une clé
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @key.venue, @key], remote: true do |f| %>
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :name, input_html: { placeholder: "Clé principale" } %>
+            </div>
+            <div class="col-6">
+              <%= f.input :owner_id,
+                          collection: @key.venue.family.users.map { |u|
+                            ["#{u.first_name} #{u.last_name}", u.id]
+                          }, include_blank: false %>
+            </div>
+          </div>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,3 +1,225 @@
-<h1>
-  <%= @venue.name %>
-</h1>
+<div class="row">
+  <div class="col-12">
+    <div class="card my-3">
+      <div class="card-body">
+        <div class="d-flex">
+          <div>
+            <h1 class="m-0"><%= @venue.name %></h1>
+            <span class="text-muted">
+              <%= "Créé le #{l(@venue.created_at, format: :medium)}" %>
+            </span>
+
+            <br>
+
+            <span class="text-muted">
+              Par
+              <%= link_to "#{@venue.creator.first_name} #{@venue.creator.last_name}",
+                          admin_account_user_path(@venue.creator) %>
+            </span>
+
+            <br>
+
+            <span class="text-muted">
+              Places total :
+            </span>
+
+            <span class="text-muted">
+              <%= @venue.beddings_count %>
+            </span>
+          </div>
+
+          <%= button_to edit_admin_account_venue_path(@venue),
+                        method: :get,
+                        form_class: "ml-auto",
+                        class: "btn btn-sm btn-outline-warning",
+                        remote: true do %>
+
+            <%= fa_icon("pen") %>
+          <% end %>
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-4">
+            <ul class="list-group shadow-none">
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Adresse :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.address %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Ville :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.city %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Code postal :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.postcode %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Pays, code :
+                </span>
+                <span class="text-muted">
+                  <%= "#{@venue.country}, #{@venue.country_code}" %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Région :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.administrative %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Département :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.county %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Latitude, longitude :
+                </span>
+                <span class="text-muted">
+                  <%= "#{@venue.lat}, #{@venue.lng}" %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <ul class="list-group shadow-none">
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de chambres :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.bedrooms_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de alles de bains :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.bathrooms_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de lits simples :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.single_beds_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de lits doubles :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.double_beds_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de lits bébés :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.baby_beds_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Réseaux :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_network) %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Digicodes :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_digital_code) %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Services à domicile :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_home_service) %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-4">
+            <div class="d-flex justify-content-center">
+              <%= image_tag(@venue.map.variant(resize_to_fill: [300, 200]),
+                            class: "img-fluid rounded") %>
+            </div>
+          </div>
+        </div>
+
+        <div class="row col-md-12">
+          <ul class="list-group shadow-none">
+            <li class="list-group-item px-0 py-1">
+              <span class="font-weight-bolder">
+                Commentaire :
+              </span>
+              <span class="text-muted">
+                <%= @venue.comment %>
+              </span>
+            </li>
+            <li class="list-group-item px-0 py-1">
+              <span class="font-weight-bolder">
+                Editable par les autres membres :
+              </span>
+              <span class="text-muted">
+                <%= t(@venue.editable_for_others) %>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <%= render 'admin_account/venues/photos/index' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'admin_account/venues/keys/index' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'admin_account/venues/networks/index' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= render 'admin_account/venues/digital_codes/index' %>
+  </div>
+  <div class="col-md-6">
+    <%= render 'admin_account/venues/home_services/index' %>
+  </div>
+</div>

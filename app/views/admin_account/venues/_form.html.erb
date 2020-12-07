@@ -1,0 +1,105 @@
+<div class="modal" id="venue-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un lieu
+          <% else %>
+            Editer un lieu
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @venue], remote: true do |f| %>
+          <%= f.input :creator_id,
+                      collection: @venue.family.users.map { |u|
+                        ["#{u.first_name} #{u.last_name}", u.id]
+                      }, include_blank: false %>
+
+          <%= f.input :name, input_html: { placeholder: "Mon super chalet" } %>
+
+          <%= f.input :address, input_html: { placeholder: "12 Rue du chalet" } %>
+
+          <div class="row">
+            <div class="col-8">
+              <%= f.input :city, input_html: { placeholder: "Courchevel" } %>
+            </div>
+            <div class="col-4">
+              <%= f.input :postcode, input_html: { placeholder: "73120" } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-8">
+              <%= f.input :country, as: :string, input_html: { placeholder: "France" } %>
+            </div>
+            <div class="col-4">
+              <%= f.input :country_code, as: :string, input_html: { placeholder: "fr" } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-7">
+              <%= f.input :administrative, input_html: { placeholder: "Auvergne-Rhône-Alpes" } %>
+            </div>
+            <div class="col-5">
+              <%= f.input :county, input_html: { placeholder: "Savoie" } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :lat, input_html: { placeholder: "45.4312" } %>
+            </div>
+            <div class="col-6">
+              <%= f.input :lng, input_html: { placeholder: "6.59527" } %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-6">
+              <%= f.input :bedrooms_count %>
+            </div>
+            <div class="col-6">
+              <%= f.input :bathrooms_count %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <%= f.input :single_beds_count %>
+            </div>
+            <div class="col-4">
+              <%= f.input :double_beds_count %>
+            </div>
+            <div class="col-4">
+              <%= f.input :baby_beds_count %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-4">
+              <%= f.input :with_network %>
+            </div>
+            <div class="col-4">
+              <%= f.input :with_digital_code %>
+            </div>
+            <div class="col-4">
+              <%= f.input :with_home_service %>
+            </div>
+          </div>
+
+          <%= f.input :comment, input_html: { placeholder: "Mon super commentaire" } %>
+
+          <%= f.input :editable_for_others %>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

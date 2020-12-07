@@ -1,0 +1,68 @@
+
+<div class="card my-3">
+  <div class="card-body">
+    <h2 class="d-flex align-items-center">
+      Services à domicile :
+      <span class="badge badge-secondary ml-2">
+        <%= @venue.home_services.size %>
+      </span>
+    </h2>
+
+    <% @venue.home_services.each do |home_service| %>
+      <div class="border rounded p-2 mb-2">
+        <div class="d-flex">
+          <ul class="list-group shadow-none">
+            <li class="list-group-item p-1">
+              <span class="font-weight-bolder">
+                Nom :
+              </span>
+              <span class="text-muted">
+                <%= home_service.name %>
+              </span>
+            </li>
+            <li class="list-group-item p-1">
+              <span class="font-weight-bolder">
+                Personne en charge :
+              </span>
+              <span class="text-muted">
+                <%= home_service.person_in_charge %>
+              </span>
+            </li>
+            <li class="list-group-item p-1">
+              <span class="font-weight-bolder">
+                Adresse :
+              </span>
+              <span class="text-muted">
+                <%= home_service.address %>
+              </span>
+            </li>
+            <li class="list-group-item p-1">
+              <span class="font-weight-bolder">
+                Téléphone :
+              </span>
+              <span class="text-muted">
+                <%= home_service.phone %>
+              </span>
+            </li>
+            <li class="list-group-item p-1">
+              <span class="font-weight-bolder">
+                Email :
+              </span>
+              <span class="text-muted">
+                <%= home_service.email %>
+              </span>
+            </li>
+          </ul>
+          <%= button_to edit_admin_account_venue_home_service_path(@venue, home_service),
+                        method: :get,
+                        form_class: "ml-auto",
+                        class: "btn btn-sm btn-outline-warning",
+                        remote: true do %>
+
+            <%= fa_icon("pen") %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
