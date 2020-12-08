@@ -64,19 +64,19 @@ Rails.application.configure do
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
-  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.raise_delivery_errors = false
 
   config.action_mailer.default_url_options = { host: ENV['HOST_URL'] }
 
   config.action_mailer.asset_host = ENV['HOST_URL']
 
   ActionMailer::Base.smtp_settings = {
-    user_name: ENV['OVH_USERNAME'],
-    password: ENV['OVH_PASSWORD'],
+    user_name: 'apikey',
+    password: ENV['SENGRID_API_KEY'],
     domain: 'hutoki.com',
-    address: 'ssl0.ovh.net',
+    address: 'smtp.sendgrid.net',
     port: 587,
-    authentication: :login,
+    authentication: :plain,
     enable_starttls_auto: true
   }
 

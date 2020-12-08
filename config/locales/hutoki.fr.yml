@@ -1,4 +1,6 @@
 fr:
+  delivery:
+    email: delivery@hutoki.com
   contact:
     email: hello@hutoki.com
   support:
