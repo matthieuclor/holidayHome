@@ -71,11 +71,13 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV['HOST_URL']
 
   ActionMailer::Base.smtp_settings = {
-    :user_name => ENV['OVH_USERNAME'],
-    :password => ENV['OVH_PASSWORD'],
-    :domain => 'hutoki.com',
-    :address => 'ssl0.ovh.net',
-    :port => 587
+    user_name: ENV['OVH_USERNAME'],
+    password: ENV['OVH_PASSWORD'],
+    domain: 'hutoki.com',
+    address: 'ssl0.ovh.net',
+    port: 587,
+    authentication: :login,
+    enable_starttls_auto: true
   }
 
   Rails.application.routes.default_url_options[:host] = config.action_mailer.default_url_options[:host]
