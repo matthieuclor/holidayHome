@@ -1,0 +1,7 @@
+<%= "Bonjour #{@user.first_name}" %>,
+
+Votre demande de réservation du <%= l(@booking.from, format: :medium) %> au <%= l(@booking.to, format: :medium) %> vient d'être <%= @status.downcase %>.
+
+Pour de plus amples imformations, nous vous invitons à vous rendre sur le lien ci-dessous :
+
+<%= user_account_booking_url(@booking) %>

@@ -1,0 +1,9 @@
+<%= "Bonjour #{@user.first_name}" %>,
+
+<%= @sender.full_name %> vous envoie une demande de réservation pour <%= @booking.venue.name %>
+
+Du <%= l(@booking.from, format: :medium) %> au <%= l(@booking.to, format: :medium) %>
+
+Nous vous invitons à répondre à cette réservation à travers sur le lien ci-dessous :
+
+<%= user_account_booking_url(@booking) %>

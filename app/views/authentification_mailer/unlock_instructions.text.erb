@@ -1,0 +1,8 @@
+Bonjour <%= @resource.first_name %> !
+
+Votre compte a été verrouillé en raison d'un nombre excessif de tentatives de connexion infructueuses.
+
+Passez par le lien ci-dessous pour déverrouiller votre compte :
+
+<%= unlock_url(@resource, unlock_token: @token) %>
+
