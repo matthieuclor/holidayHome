@@ -18,7 +18,7 @@
 
   <body class="padding-for-fixed-navbar">
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-white shadow-sm">
-      <%= link_to root_path, class:"navbar-brand pt-1" do %>
+      <%= link_to root_path, class:"navbar-brand pt-1", data: { turbolinks: false } do %>
         <%= image_tag("icons/hutoki.min.png", size: "35", class: "img-fluid pb-1") %>
         <span class="pl-1">Hutoki</span>
       <% end %>
@@ -63,11 +63,11 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex align-items-center ml-auto">
           <ul class="navbar-nav align-items-lg-center">
-            <% if current_user.current_family_id %>
-              <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
-                <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
-              </li>
+            <li class="nav-item <%= 'active' if controller_name == 'dashboards' %>">
+              <%= link_to "Tableau de bord", user_account_dashboards_path, class: "nav-link" %>
+            </li>
 
+            <% if current_user.current_family_id %>
               <li class="nav-item <%= 'active' if controller_name == 'sended_invitations' %>">
                 <%= link_to "Invitations", user_account_sended_invitations_path, class: "nav-link" %>
               </li>
