@@ -38,7 +38,7 @@ module UserAccount
         )
 
         assert_emails(1)
-        assert_equal [I18n.t('contact.email')], authentification_mailer.from
+        assert_equal [I18n.t('delivery.email')], authentification_mailer.from
         assert_equal [created_user.email], authentification_mailer.to
         assert_equal 'Instructions de confirmation', authentification_mailer.subject
         assert_redirected_to user_account_dashboards_url

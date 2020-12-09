@@ -45,7 +45,7 @@ class BookingTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLengt
     booking_mailer = BookingMailer.send_status(@booking2)
     notification = Notification.unread.last
 
-    assert_equal [I18n.t('contact.email')], booking_mailer.from
+    assert_equal [I18n.t('delivery.email')], booking_mailer.from
     assert_equal [@booking2.user.email], booking_mailer.to
     assert_equal 'Réservation acceptée pour La Galère', booking_mailer.subject
     assert_equal notification.notification_type, 'accepted_booking'
@@ -98,7 +98,7 @@ class BookingTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLengt
     booking_mailer = BookingMailer.send_status(@booking)
     notification = Notification.unread.last
 
-    assert_equal [I18n.t('contact.email')], booking_mailer.from
+    assert_equal [I18n.t('delivery.email')], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal 'Réservation acceptée pour La Tania', booking_mailer.subject
     assert_equal notification.notification_type, 'accepted_booking'
@@ -120,7 +120,7 @@ class BookingTest < ActiveSupport::TestCase # rubocop:disable Metrics/ClassLengt
     booking_mailer = BookingMailer.send_status(@booking)
     notification = Notification.unread.last
 
-    assert_equal [I18n.t('contact.email')], booking_mailer.from
+    assert_equal [I18n.t('delivery.email')], booking_mailer.from
     assert_equal [@booking.user.email], booking_mailer.to
     assert_equal 'Réservation refusée pour La Tania', booking_mailer.subject
     assert_equal notification.notification_type, 'refused_booking'

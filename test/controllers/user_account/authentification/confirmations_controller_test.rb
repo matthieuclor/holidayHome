@@ -22,7 +22,7 @@ module UserAccount
           {}
         )
 
-        assert_equal [I18n.t('contact.email')], authentification_mailer.from
+        assert_equal [I18n.t('delivery.email')], authentification_mailer.from
         assert_equal [users(:matthieu).email], authentification_mailer.to
         assert_equal 'Instructions de confirmation', authentification_mailer.subject
         assert_response :success
