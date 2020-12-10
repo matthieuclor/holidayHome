@@ -6,7 +6,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.0.3.2'
+gem 'rails', '~> 6.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.2.3'
 # Use Puma as the app server
@@ -80,7 +80,7 @@ end
 
 group :test do
   # The Bullet gem is designed to increase your application's performance by reducing the number of queries.
-  gem 'bullet'
+  # gem 'bullet'
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.33.0'
   gem 'selenium-webdriver'
