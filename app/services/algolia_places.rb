@@ -2,12 +2,13 @@
 
 class AlgoliaPlaces
   include Callable
-  attr_accessor :hits_per_page, :language, :app_id, :app_url, :api_key, :query,
-                :hits, :error
+  attr_accessor :hits_per_page, :language, :countries, :app_id, :app_url, :api_key,
+                :query, :hits, :error
 
   def initialize(**args)
     @hits_per_page = args[:hits_per_page] || 5
     @language = args[:language] || 'fr'
+    @countries = args[:countries] || 'fr'
     @app_id = args[:app_id] || Rails.application.credentials.dig(:algolia, :places, :app_id)
     @app_url = args[:app_url] || Rails.application.credentials.dig(:algolia, :places, :app_url)
     @api_key = args[:api_key] || Rails.application.credentials.dig(:algolia, :places, :api_key)
@@ -22,6 +23,7 @@ class AlgoliaPlaces
       req.body = {
         hitsPerPage: hits_per_page,
         language: language,
+        countries: countries,
         query: query
       }.to_json
     end
