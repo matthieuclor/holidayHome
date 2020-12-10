@@ -14,7 +14,7 @@ class UpdateBookingApprovalJob < ApplicationJob
 
   def render_booking_approval(booking_approval)
     UserAccount::BookingApprovalsController.render(
-      file: 'user_account/booking_approvals/show.json',
+      template: 'user_account/booking_approvals/show.json',
       locals: { booking_approval: booking_approval }
     )
   end

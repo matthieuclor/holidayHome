@@ -14,7 +14,7 @@ class NewMessageJob < ApplicationJob
 
   def render_message(message)
     UserAccount::MessagesController.render(
-      file: 'user_account/messages/show.json',
+      template: 'user_account/messages/show.json',
       locals: { message: message }
     )
   end
