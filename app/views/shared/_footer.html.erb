@@ -30,18 +30,17 @@
             <%= link_to "Blog", articles_path, class: "text-muted" %>
           </li>
           <li class="list-group-item p-1 bg-light">
-            <%= link_to '#', class: "text-muted" do %>
+            <%= link_to t('social.facebook.url'), class: "text-muted" do %>
               <%= fa_icon("facebook-square", nil, { class: "fa-1-25x mr-2", prefix: "fab" }) %>
             <% end %>
 
-            <%= link_to '#', class: "text-muted" do %>
+            <%= link_to t('social.instagram.url'), class: "text-muted" do %>
               <%= fa_icon("instagram", nil, { class: "fa-1-25x mr-2", prefix: "fab" }) %>
             <% end %>
 
-            <%= link_to '#', class: "text-muted" do %>
+            <%= link_to t('social.twitter.url'), class: "text-muted" do %>
               <%= fa_icon("twitter-square", nil, { class: "fa-1-25x mr-2", prefix: "fab" }) %>
             <% end %>
-
 
             <%= link_to '#', class: "text-muted" do %>
               <%= fa_icon("linkedin", nil, { class: "fa-1-25x", prefix: "fab" }) %>

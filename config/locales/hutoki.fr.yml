@@ -5,3 +5,10 @@ fr:
     email: hello@hutoki.com
   support:
     email: support@hutoki.com
+  social:
+    facebook:
+      url: https://www.facebook.com/HutokiFr
+    twitter:
+      url: https://twitter.com/hutoki_fr
+    instagram:
+      url: https://www.instagram.com/hutokifr
