@@ -17,8 +17,12 @@
 /storage/*
 !/storage/.keep
 
+# Ignore asset files.
 /public/assets
 .byebug_history
+
+# Ignore sitemap files.
+/public/sitemaps
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
