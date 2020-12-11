@@ -6,5 +6,6 @@ fr:
     meta_image: cover.png
     meta_image_type: image/png
     meta_image_width: 1200
-    meta_image_width: 382
+    meta_image_height: 382
+    meta_image_alt: Hutoki - Gestion de maison de vacances familiale
     twitter_account: '@hutoki_fr'

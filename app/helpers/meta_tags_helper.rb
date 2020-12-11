@@ -24,4 +24,8 @@ module MetaTagsHelper
   def meta_image_height
     content_for(:meta_image_height) || t('default_meta.meta_image_height')
   end
+
+  def meta_image_alt
+    content_for(:meta_image_alt) || t('default_meta.meta_image_alt')
+  end
 end
