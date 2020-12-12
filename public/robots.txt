@@ -6,7 +6,6 @@ Disallow: /user_account/*
 Disallow: /admin_account/*
 
 Disallow: /*?page=*
-Disallow: /*?q*
 
 User-agent: MJ12bot
 Disallow: /
