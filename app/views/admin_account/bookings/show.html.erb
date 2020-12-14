@@ -1,3 +1,67 @@
-<h1>
-  <%= @booking.id %>
-</h1>
+<div class="row">
+  <div class="col-12">
+    <div class="card my-3">
+      <div class="card-body">
+        <div class="d-flex">
+          <div>
+            <h1 class="m-0">
+              <%= "Demande de réservation pour #{@booking.venue.name}" %>
+            </h1>
+            <span class="text-muted">
+              <%= @booking.human_date_range %>
+            </span>
+
+            <br>
+
+            <span class="text-muted">
+              Par
+              <%= link_to "#{@booking.user.first_name} #{@booking.user.last_name}",
+                          admin_account_user_path(@booking.user) %>
+            </span>
+
+            <br>
+
+            <span class="text-muted">
+              Status :
+            </span>
+
+            <%= booking_status_badge(@booking.status) %>
+
+            <br>
+
+            <span class="text-muted">
+              Deadline :
+            </span>
+
+            <span class="text-muted">
+              <%= l(@booking.deadline, format: :medium) %>
+            </span>
+
+            <%= booking_progress_deadline(@booking) %>
+
+            <br>
+
+            <span class="text-muted">
+              <%= "Créé le #{l(@booking.created_at, format: :medium)}" %>
+            </span>
+          </div>
+
+          <%= button_to edit_admin_account_booking_path(@booking),
+                        method: :get,
+                        form_class: "ml-auto",
+                        class: "btn btn-sm btn-outline-warning",
+                        remote: true do %>
+
+            <%= fa_icon("pen") %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <%= render 'admin_account/bookings/booking_approvals/index' %>
+  </div>
+</div>

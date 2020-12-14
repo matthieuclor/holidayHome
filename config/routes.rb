@@ -144,9 +144,14 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :bookings, only: %i(show edit update) do
+      scope module: :bookings do
+        resources :booking_approvals, only: %i(edit update)
+      end
+    end
+
     resources :admins, only: :index
     resources :school_holidays, only: %i(index create)
-    resources :bookings, only: :show
   end
 
   authenticate :admin do
