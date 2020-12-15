@@ -34,7 +34,7 @@ class Booking < ApplicationRecord
   end
 
   def set_booking_approvals
-    if family.days_for_approval.zero? || deadline == Date.current
+    if family.days_for_approval.zero? || deadline.to_date == Date.current
       accepted!
     else
       family.users.each do |user|

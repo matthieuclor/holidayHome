@@ -21,8 +21,16 @@ module UserAccount
         super
       end
 
-      def update # rubocop:disable Lint/UselessMethodDefinition
-        super
+      def update
+        if update_resource(current_user, account_update_params)
+          set_flash_message_for_update(resource, current_user.unconfirmed_email)
+          bypass_sign_in(current_user, scope: :user) if sign_in_after_change_password?
+        else
+          flash[:error] = resource.errors.full_messages.first
+          clean_up_passwords(current_user)
+        end
+
+        redirect_to user_account_settings_path
       end
 
       def destroy # rubocop:disable Lint/UselessMethodDefinition
@@ -50,10 +58,6 @@ module UserAccount
           resource.update(plan: :premium, plan_deadline: Date.current + 1.year)
 
         user_account_dashboards_path
-      end
-
-      def after_update_path_for(_resource)
-        user_account_settings_path
       end
 
       def after_inactive_sign_up_path_for(_resource)
