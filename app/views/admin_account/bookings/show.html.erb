@@ -61,7 +61,20 @@
 </div>
 
 <div class="row">
+  <div class="card">
+    <div class="card-body">
+      <div id="bookings-messages-container">
+        <%= render "shared/spinner" %>
+      </div>
+    </div>
+  </div>
   <div class="col-6">
     <%= render 'admin_account/bookings/booking_approvals/index' %>
   </div>
 </div>
+
+<script>
+  document.addEventListener('turbolinks:load', function() {
+    $.ajax({ url: "<%= admin_account_booking_messages_path(@booking) %>" })
+  })
+</script>

@@ -3,6 +3,7 @@
 module AdminAccount
   module Bookings
     class BookingApprovalsController < AdminAccount::ApplicationController
+      respond_to :js
       before_action :set_booking_approval
 
       def edit

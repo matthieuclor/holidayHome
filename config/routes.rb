@@ -147,6 +147,7 @@ Rails.application.routes.draw do
     resources :bookings, only: %i(show edit update) do
       scope module: :bookings do
         resources :booking_approvals, only: %i(edit update)
+        resources :messages, only: :index
       end
     end
 
