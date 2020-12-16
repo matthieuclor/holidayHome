@@ -6,7 +6,10 @@ module AdminAccount
       respond_to :js
 
       def index
-        @messages = Message.where(booking_id: params[:booking_id])
+        @pagy, @messages = pagy(
+          Message.includes(:user).where(booking_id: params[:booking_id]),
+          items: 10
+        )
       end
     end
   end

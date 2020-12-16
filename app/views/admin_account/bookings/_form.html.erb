@@ -1,0 +1,59 @@
+<div class="modal" id="booking-modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-xl" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <% if action_name == "new" %>
+            Créer un booking
+          <% else %>
+            Editer un booking
+          <% end %>
+        </h3>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= simple_form_for [:admin_account, @booking], remote: true do |f| %>
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :user_id,
+                          collection: @booking.family.users.map { |user|
+                            ["#{user.first_name} #{user.last_name}", user.id]
+                          }, include_blank: false %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :venue_id,
+                          collection: @booking.family.venues.map { |venue|
+                            [venue.name, venue.id]
+                          }, include_blank: false %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :from, as: :date, html5: true %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :to, as: :date, html5: true %>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <%= f.input :deadline, as: :date, html5: true %>
+            </div>
+            <div class="col-md-6">
+              <%= f.input :status,
+                          collection: Booking.statuses.keys.map { |status|
+                            [Booking.human_attribute_name("status.#{status}"), status]
+                          }, include_blank: false %>
+            </div>
+          </div>
+
+          <%= f.submit "Envoyer", class: "btn btn-block btn-success" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

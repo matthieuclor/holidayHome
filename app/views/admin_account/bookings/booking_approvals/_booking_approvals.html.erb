@@ -1,0 +1,36 @@
+<h2 class="d-flex align-items-center">
+  List d'approbation :
+  <span class="badge badge-secondary ml-2">
+    <%= @pagy.count %>
+  </span>
+</h2>
+
+<div class="list-group shadow-none">
+  <% @booking_approvals.each do |approval| %>
+    <%= link_to edit_admin_account_booking_booking_approval_path(approval.booking, approval),
+                class: 'list-group-item list-group-item-action p-1',
+                remote: true do %>
+
+      <span class="font-weight-bolder">
+        Utilisateur :
+      </span>
+      <span class="text-muted">
+        <%= "#{approval.user.first_name} #{approval.user.last_name}," %>
+      </span>
+      <span class="font-weight-bolder">
+        Statut :
+      </span>
+      <span class="text-muted">
+        <%= BookingApproval.human_attribute_name("status.#{approval.status}") %>
+      </span>
+
+      <%= fa_icon('pen', nil, class: 'ml-3') %>
+    <% end %>
+  <% end %>
+</div>
+
+<% if @pagy.pages > 1 %>
+  <div class="d-flex justify-content-center mt-2">
+    <%== render "shared/bootstrap_pagy" %>
+  </div>
+<% end %>

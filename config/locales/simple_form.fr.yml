@@ -17,6 +17,13 @@ fr:
         name: Nom
         days_for_approval: Jours laissés pour une demande de réservation
         plan_deadline: Date de fin de plan
+      booking:
+        from: Du
+        to: Au
+        status: Statut
+        user_id: Utilisateur
+        venue_id: Lieu
+        deadline: Deadline
       article:
         title: Titre
         status: Statut

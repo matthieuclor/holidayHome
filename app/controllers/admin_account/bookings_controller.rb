@@ -7,7 +7,7 @@ module AdminAccount
 
     def show
       @booking = BookingDecorator.new(
-        Booking.includes(:user, :venue, booking_approvals: :user).find(params[:id])
+        Booking.includes(:user, :venue).find(params[:id])
       )
     end
 
@@ -31,7 +31,14 @@ module AdminAccount
     end
 
     def booking_params
-      params.require(:booking).permit(:user_id)
+      params.require(:booking).permit(
+        :from,
+        :to,
+        :deadline,
+        :status,
+        :user_id,
+        :venue_id
+      )
     end
   end
 end
