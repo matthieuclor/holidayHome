@@ -45,6 +45,13 @@
             <li class="nav-item <%= 'active' if controller_name == 'pricing' %>">
               <%= link_to "Nos offres", pricing_path, class: "nav-link" %>
             </li>
+            <% if current_user %>
+              <li class="nav-item">
+                <%= link_to "Mon espace",
+                            user_account_dashboards_path,
+                            class: "nav-link" %>
+              </li>
+            <% end %>
           </ul>
         </div>
       </div>
