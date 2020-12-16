@@ -3,6 +3,7 @@ Sitemap: https://www.hutoki.com/sitemaps/sitemap.xml.gz
 User-agent: *
 Disallow: /admins/*
 Disallow: /user_account/*
+Disallow: /users/*
 Disallow: /admin_account/*
 
 Disallow: /*?page=*
