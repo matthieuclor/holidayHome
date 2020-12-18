@@ -73,10 +73,10 @@ Rails.application.configure do
   config.action_mailer.asset_host = ENV['HOST_URL']
 
   ActionMailer::Base.smtp_settings = {
-    user_name: 'apikey',
-    password: ENV['SENGRID_API_KEY'],
+    user_name: ENV['AWS_SES_USERNAME'],
+    password: ENV['AWS_SES_PASSWORD'],
     domain: 'hutoki.com',
-    address: 'smtp.sendgrid.net',
+    address: 'email-smtp.us-east-2.amazonaws.com',
     port: 587,
     authentication: :plain,
     enable_starttls_auto: true
