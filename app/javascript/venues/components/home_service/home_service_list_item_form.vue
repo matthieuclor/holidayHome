@@ -103,8 +103,8 @@
         </div>
       </div>
 
-      <div class="form-row d-flex align-items-center">
-        <div class="col-4">
+      <div class="form-row">
+        <div class="col-12">
           <div class="form-group string venue_home_services_phone"
                :class="formGroupClass(homeService, 'phone')">
 
@@ -112,14 +112,7 @@
               Téléphone
             </label>
 
-            <input :value="homeService.phone"
-                   class="form-control string"
-                   :class="inputClass(homeService, 'phone')"
-                   type="text"
-                   :name="`venue[home_services_attributes][${index}][phone]`"
-                   :id="`venue_home_services_attributes_${index}_phone`"
-                   placeholder="06 66 76 45 45"
-                   :aria-invalid="!attributeIsValid(homeService, 'phone')">
+            <VueTelInput v-model="homeServicePhone" v-bind="phoneProps(index)" />
 
             <div v-for="(phoneError, errorIndex) in homeService.errors['phone']"
                  :key="errorIndex"
@@ -129,8 +122,10 @@
             </div>
           </div>
         </div>
+      </div>
 
-        <div class="col-8">
+      <div class="form-row">
+        <div class="col-12">
           <div class="form-group string venue_home_services_email"
                :class="formGroupClass(homeService, 'email')">
 
@@ -169,15 +164,42 @@
 </template>
 
 <script>
+import { VueTelInput } from 'vue-tel-input';
 import formMixin from 'shared/mixins/form_mixin';
 import { mapActions } from 'vuex';
 
 export default {
   name: 'HomeServiceListItemForm',
   props: ['homeService', 'index'],
+  data() {
+    return {
+      homeServicePhone: this.homeService.phone,
+    };
+  },
   mixins: [formMixin],
+  components: {
+    VueTelInput,
+  },
   methods: {
     ...mapActions(['removeHomeService']),
+    phoneProps(index) {
+      return {
+        mode: 'international',
+        defaultCountry: 'FR',
+        placeholder: '06 66 76 45 45',
+        name: `venue[home_services_attributes][${index}][phone]`,
+        inputId: `venue_home_services_attributes_${index}_phone`,
+        inputClasses: `form-control string ${this.inputClass(this.homeService, 'phone')}`,
+      };
+    },
   },
 };
 </script>
+
+<style lang="scss" scoped>
+  .vue-tel-input {
+    border-radius: .3125rem;
+    border: 0px solid #E6E6E6;
+    background-color: #F2F2F2;
+  }
+</style>

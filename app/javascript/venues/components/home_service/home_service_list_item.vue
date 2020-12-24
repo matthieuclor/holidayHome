@@ -14,11 +14,15 @@
       <ul class="list-group list-group-flush shadow-none">
         <li v-if="homeService.phone" class="list-group-item text-muted p-1">
           <i class="fas fa-phone mr-1"></i>
-          {{ homeService.phone }}
+          <a class="text-muted" :href="`tel:${homeService.phone.replace(/ /g, '')}`">
+            {{ homeService.phone }}
+          </a>
         </li>
         <li v-if="homeService.email" class="list-group-item text-muted p-1">
           <i class="fas fa-envelope mr-1"></i>
-          {{ homeService.email }}
+          <a class="text-muted" :href="`mailto:${homeService.email}`">
+            {{ homeService.email }}
+          </a>
         </li>
         <li v-if="homeService.address" class="list-group-item text-muted p-1">
           <i class="fas fa-map-marked mr-1"></i>
