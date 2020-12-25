@@ -1,15 +1,5 @@
 if ($("#edit-account").length > 0) {
   $("#edit-account").html("<%= j render "edit" %>")
-
-  $('input[type="file"]').change((e) => {
-    const file = e.target.files[0]
-
-    if (file) {
-      $('.custom-file-label').html(file.name);
-    } else {
-      $('.custom-file-label').html("Choisir mon avatar");
-    }
-  });
 }
 
 if ($("#edit-password").length > 0) {
@@ -19,3 +9,5 @@ if ($("#edit-password").length > 0) {
 if ($("#deactivate-account").length > 0) {
   $("#deactivate-account").html("<%= j render "deactivate_account" %>")
 }
+
+Turbolinks.dispatch("turbolinks:load")
