@@ -3,6 +3,7 @@
 require 'open-uri'
 
 class Venue < ApplicationRecord
+  GOOGLE_MAP_SEARCH_URL = 'https://www.google.com/maps/search/'
   GOOGLE_MAP_URL = 'https://maps.googleapis.com/maps/api/staticmap'
   GOOGLE_MAP_ZOOM = '11'
   GOOGLE_MAP_SIZE = '400x400'

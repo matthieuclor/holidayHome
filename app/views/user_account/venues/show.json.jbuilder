@@ -12,7 +12,8 @@ json.call(
   :single_beds_count,
   :double_beds_count,
   :baby_beds_count,
-  :comment
+  :comment,
+  :map_link
 )
 
 json.is_editable(

@@ -50,7 +50,9 @@
       <div v-if="venueItem.mapUrl">
         <hr class="my-4">
         <h4>Emplacement :</h4>
-        <img :src="venueItem.mapUrl" class="rounded">
+        <a :href="venueItem.mapLink" target="_blank">
+          <img :src="venueItem.mapUrl" class="rounded">
+        </a>
       </div>
 
       <VenueBedroom />

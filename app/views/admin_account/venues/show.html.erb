@@ -169,8 +169,10 @@
           </div>
           <div class="col-md-4">
             <div class="d-flex justify-content-center">
-              <%= image_tag(@venue.map.variant(resize_to_fill: [300, 200]),
-                            class: "img-fluid rounded") %>
+              <%= link_to @venue.map_link, target: '_blank' do %>
+                <%= image_tag(@venue.map.variant(resize_to_fill: [300, 200]),
+                              class: "img-fluid rounded") %>
+              <% end %>
             </div>
           </div>
         </div>
