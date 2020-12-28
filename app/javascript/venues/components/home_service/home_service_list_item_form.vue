@@ -195,11 +195,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss" scoped>
-  .vue-tel-input {
-    border-radius: .3125rem;
-    border: 0px solid #E6E6E6;
-    background-color: #F2F2F2;
-  }
-</style>

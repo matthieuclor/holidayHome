@@ -45,21 +45,15 @@
               },
               hint: "En cas de mise à jour de l'email, un mail vous sera envoyé pour confirmer celui-ci." %>
 
-  <div class="form-row">
-    <%= f.input :phone,
-                input_html: {
-                  placeholder: "06 67 89 76 54",
-                  autocomplete: "tel"
-                },
-                wrapper_html: { class: "col-4" } %>
-
-    <%= f.input :address,
-                input_html: {
-                  placeholder: "23 Rue de rivoli",
-                  autocomplete: "street-address"
-                },
-                wrapper_html: { class: "col-8" } %>
+  <div id="registration-container" data-user-phone="<%= f.object.phone %>">
+    <div id="registration-vue"></div>
   </div>
+
+  <%= f.input :address,
+              input_html: {
+                placeholder: "23 Rue de rivoli",
+                autocomplete: "street-address"
+              } %>
 
   <%= f.input :current_password,
               label: "Mot de passe",

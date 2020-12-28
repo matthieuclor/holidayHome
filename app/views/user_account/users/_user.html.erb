@@ -23,18 +23,18 @@
                   <span class="text-dark">
                     <%= fa_icon("phone", nil, class: "mr-2") %>
                   </span>
-                  <span class="text-muted">
+                  <a href="tel:<%= @user.phone.gsub(/ /, '') %>" class="text-muted">
                     <%= @user.phone %>
-                  </span>
+                  </a>
                 </li>
               <% end %>
               <li>
                 <span class="text-dark">
                   <%= fa_icon("envelope", nil, class: "mr-2") %>
                 </span>
-                <span class="text-muted">
+                <a href="mailto:<%= @user.email %>" class="text-muted">
                   <%= @user.email %>
-                </span>
+                </a>
               </li>
               <% if @user.address.present? %>
                 <li>

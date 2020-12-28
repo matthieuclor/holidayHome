@@ -1,5 +1,6 @@
 if ($("#edit-account").length > 0) {
   $("#edit-account").html("<%= j render "edit" %>")
+  Turbolinks.dispatch("turbolinks:load")
 }
 
 if ($("#edit-password").length > 0) {
@@ -9,5 +10,3 @@ if ($("#edit-password").length > 0) {
 if ($("#deactivate-account").length > 0) {
   $("#deactivate-account").html("<%= j render "deactivate_account" %>")
 }
-
-Turbolinks.dispatch("turbolinks:load")
