@@ -51,6 +51,8 @@ class Venue < ApplicationRecord
             :single_beds_count,
             :double_beds_count,
             :baby_beds_count,
+            :single_sofa_beds_count,
+            :double_sofa_beds_count,
             presence: true
 
   validates :bedrooms_count,
@@ -58,10 +60,15 @@ class Venue < ApplicationRecord
             :single_beds_count,
             :double_beds_count,
             :baby_beds_count,
+            :single_sofa_beds_count,
+            :double_sofa_beds_count,
             numericality: { greater_than_or_equal_to: 0 }
 
   validates :with_network,
             :with_digital_code,
+            :with_washing_machine,
+            :with_tumble_dryer,
+            :with_dishwasher,
             :editable_for_others,
             :with_home_service,
             inclusion: { in: [true, false] }

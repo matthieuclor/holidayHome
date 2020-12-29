@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_10_130552) do
+ActiveRecord::Schema.define(version: 2020_12_29_180521) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -298,6 +298,11 @@ ActiveRecord::Schema.define(version: 2020_12_10_130552) do
     t.bigint "family_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "single_sofa_beds_count", default: 0
+    t.integer "double_sofa_beds_count", default: 0
+    t.boolean "with_washing_machine", default: false
+    t.boolean "with_tumble_dryer", default: false
+    t.boolean "with_dishwasher", default: false
     t.index ["creator_id"], name: "index_venues_on_creator_id"
     t.index ["family_id"], name: "index_venues_on_family_id"
     t.index ["name", "family_id"], name: "index_venues_on_name_and_family_id", unique: true

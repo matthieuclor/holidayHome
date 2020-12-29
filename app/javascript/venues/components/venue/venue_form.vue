@@ -57,6 +57,14 @@
 
         <hr class="my-4">
 
+        <VenueSofaBedsForm />
+
+        <hr class="my-4">
+
+        <VenueAccessoriesForm />
+
+        <hr class="my-4">
+
         <KeyListForm :keys="venueFormItem.keys" />
 
         <hr class="my-4">
@@ -95,6 +103,8 @@ import VenueFormSkeleton from 'venues/components/skeleton/venue_form_skeleton';
 import VenuePlacesForm from 'venues/components/venue/venue_places_form';
 import VenuePhotosForm from 'venues/components/venue/venue_photos_form';
 import VenueBedroomForm from 'venues/components/venue/venue_bedroom_form';
+import VenueSofaBedsForm from 'venues/components/venue/venue_sofa_beds_form';
+import VenueAccessoriesForm from 'venues/components/venue/venue_accessories_form';
 import VenueBathroomForm from 'venues/components/venue/venue_bathroom_form';
 import KeyListForm from 'venues/components/key/key_list_form';
 import NetworkListForm from 'venues/components/network/network_list_form';
@@ -119,6 +129,8 @@ export default {
     VenuePhotosForm,
     VenueBedroomForm,
     VenueBathroomForm,
+    VenueSofaBedsForm,
+    VenueAccessoriesForm,
     KeyListForm,
     NetworkListForm,
     DigitalCodeListForm,

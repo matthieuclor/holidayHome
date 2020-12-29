@@ -34,16 +34,34 @@
                 {{ pluralize(venueItem.bathroomsCount, 'Salle') + " de bain" }}
               </div>
 
+              <div v-if="venueItem.babyBedsCount > 0"
+                   class="border rounded py-1 px-2 mr-2 mt-2">
+                <i class="fas fa-baby mr-2"></i>
+                {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
+              </div>
+
               <div v-if="venueItem.withNetwork"
                    class="border rounded py-1 px-2 mr-2 mt-2">
                 <i class="fas fa-wifi mr-2"></i>
                 Internet
               </div>
 
-              <div v-if="venueItem.babyBedsCount > 0"
+              <div v-if="venueItem.withWashingMachine"
                    class="border rounded py-1 px-2 mr-2 mt-2">
-                <i class="fas fa-baby mr-2"></i>
-                {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
+                <i class="fas fa-tshirt"></i>
+                Lave-linge
+              </div>
+
+              <div v-if="venueItem.withTumbleDryer"
+                   class="border rounded py-1 px-2 mr-2 mt-2">
+                <i class="far fa-tshirt"></i>
+                Sèche-linge
+              </div>
+
+              <div v-if="venueItem.withDishwasher"
+                   class="border rounded py-1 px-2 mr-2 mt-2">
+                <i class="fas fa-utensils mr-2"></i>
+                Lave-vaisselle
               </div>
             </div>
           </div>

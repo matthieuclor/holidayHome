@@ -2,7 +2,11 @@
 
 class VenueDecorator < ApplicationDecorator
   def beddings_count
-    @beddings_count ||= single_beds_count + (double_beds_count * 2)
+    @beddings_count ||=
+      single_beds_count +
+      (double_beds_count * 2) +
+      single_sofa_beds_count +
+      (double_sofa_beds_count * 2)
   end
 
   def map_link

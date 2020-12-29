@@ -24,6 +24,11 @@ json.venue do
     :single_beds_count,
     :double_beds_count,
     :baby_beds_count,
+    :single_sofa_beds_count,
+    :double_sofa_beds_count,
+    :with_washing_machine,
+    :with_tumble_dryer,
+    :with_dishwasher,
     :creator_id,
     :family_id
   )

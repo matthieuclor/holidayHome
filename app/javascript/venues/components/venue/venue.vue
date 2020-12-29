@@ -29,21 +29,23 @@
         {{ venueItem.address }}
       </p>
 
-      <p class="font-weight-bold">
+      <p class="font-weight-bold mb-0">
         {{ pluralize(venueItem.beddingsCount, "Place") }}
         <span>&bull;</span>
         {{ pluralize(venueItem.bedroomsCount, "Chambre") }}
         <span>&bull;</span>
         {{ pluralize(venueItem.bathroomsCount, "Salle") + " de bain" }}
 
-        <span v-if="venueItem.withNetwork">
-          <span>&bull;</span>
-          Internet
-        </span>
-
         <span v-if="venueItem.babyBedsCount > 0">
           <span>&bull;</span>
           {{ pluralize(venueItem.babyBedsCount, 'Lit bébé') }}
+        </span>
+      </p>
+
+      <p class="text-muted">
+        <span v-for="(accessory, index) in Accessories" :key="index">
+          <span v-if="index !== 0">&bull;</span>
+          {{ accessory }}
         </span>
       </p>
 
@@ -56,6 +58,8 @@
       </div>
 
       <VenueBedroom />
+
+      <VenueSofaBeds />
 
       <VenueBathroom />
 
@@ -100,6 +104,7 @@
 import VenuePhotos from 'venues/components/venue/venue_photos';
 import VenueSkeleton from 'venues/components/skeleton/venue_skeleton';
 import VenueBedroom from 'venues/components/venue/venue_bedroom';
+import VenueSofaBeds from 'venues/components/venue/venue_sofa_beds';
 import VenueBathroom from 'venues/components/venue/venue_bathroom';
 import KeyList from 'venues/components/key/key_list';
 import NetworkList from 'venues/components/network/network_list';
@@ -115,6 +120,7 @@ export default {
     VenueSkeleton,
     VenuePhotos,
     VenueBedroom,
+    VenueSofaBeds,
     VenueBathroom,
     KeyList,
     NetworkList,
@@ -126,6 +132,15 @@ export default {
       'venueItem',
       'sidebar',
     ]),
+    Accessories() {
+      const accessories = [];
+      if (this.venueItem.withWashingMachine) accessories.push('Lave-linge');
+      if (this.venueItem.withTumbleDryer) accessories.push('Sèche-linge');
+      if (this.venueItem.withDishwasher) accessories.push('Lave-vaisselle');
+      if (this.venueItem.withNetwork) accessories.push('Internet');
+
+      return accessories;
+    },
   },
   mixins: [textMixin],
   methods: {

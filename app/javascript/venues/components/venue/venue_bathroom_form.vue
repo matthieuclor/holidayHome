@@ -1,16 +1,16 @@
 <template>
   <div>
     <h4 class="d-flex align-items-center mb-3">
-      Salle de bain :
+      Salles de bains :
     </h4>
 
     <div class="form-group row string required venue_bathrooms_count"
          :class="formGroupClass(venueFormItem, 'bathroomsCount')">
 
-      <label class="string required col-sm-5 col-form-label text-nowrap"
+      <label class="string required col-sm-6 col-form-label text-nowrap"
              for="venue_bathrooms_count">
 
-        Nombre de salles de bains <abbr title="obligatoire">*</abbr>
+        Nombre de salle de bain <abbr title="obligatoire">*</abbr>
       </label>
 
       <div class="col-sm-3">

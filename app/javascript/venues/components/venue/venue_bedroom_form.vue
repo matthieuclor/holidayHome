@@ -7,10 +7,10 @@
     <div class="form-group row string required venue_bedrooms_count"
          :class="formGroupClass(venueFormItem, 'bedroomsCount')">
 
-      <label class="string required col-sm-5 col-form-label text-nowrap"
+      <label class="string required col-sm-6 col-form-label text-nowrap"
              for="venue_bedrooms_count">
 
-        Nombre de chambres <abbr title="obligatoire">*</abbr>
+        Nombre de chambre <abbr title="obligatoire">*</abbr>
       </label>
 
       <div class="col-sm-3">
@@ -36,10 +36,10 @@
 
     <div class="form-group row string required venue_single_beds_count"
          :class="formGroupClass(venueFormItem, 'singleBedsCount')">
-      <label class="string required col-sm-5 col-form-label text-nowrap"
+      <label class="string required col-sm-6 col-form-label text-nowrap"
              for="venue_single_beds_count">
 
-        Nombre de lits simples <abbr title="obligatoire">*</abbr>
+        Nombre de lit simple <abbr title="obligatoire">*</abbr>
       </label>
 
       <div class="col-sm-3">
@@ -66,10 +66,10 @@
     <div class="form-group row string required venue_double_beds_count"
          :class="formGroupClass(venueFormItem, 'doubleBedsCount')">
 
-      <label class="string required col-sm-5 col-form-label text-nowrap"
+      <label class="string required col-sm-6 col-form-label text-nowrap"
              for="venue_double_beds_count">
 
-        Nombre de lits doubles <abbr title="obligatoire">*</abbr>
+        Nombre de lit double <abbr title="obligatoire">*</abbr>
       </label>
 
       <div class="col-sm-3">
@@ -96,10 +96,10 @@
     <div class="form-group row string required venue_baby_beds_count"
          :class="formGroupClass(venueFormItem, 'babyBedsCount')">
 
-      <label class="string required col-sm-5 col-form-label text-nowrap"
+      <label class="string required col-sm-6 col-form-label text-nowrap"
              for="venue_baby_beds_count">
 
-        Nombre de lits bébés <abbr title="obligatoire">*</abbr>
+        Nombre de lit bébé <abbr title="obligatoire">*</abbr>
       </label>
 
       <div class="col-sm-3">
