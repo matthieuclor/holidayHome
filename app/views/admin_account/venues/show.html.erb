@@ -39,7 +39,7 @@
         </div>
 
         <div class="row mt-3">
-          <div class="col-md-4">
+          <div class="col-md-6">
             <ul class="list-group shadow-none">
               <li class="list-group-item px-0 py-1">
                 <span class="font-weight-bolder">
@@ -99,7 +99,7 @@
               </li>
             </ul>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-3">
             <ul class="list-group shadow-none">
               <li class="list-group-item px-0 py-1">
                 <span class="font-weight-bolder">
@@ -143,6 +143,26 @@
               </li>
               <li class="list-group-item px-0 py-1">
                 <span class="font-weight-bolder">
+                  Nombre de convertible simple :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.single_sofa_beds_count %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Nombre de convertible double :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.double_sofa_beds_count %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
+            <ul class="list-group shadow-none">
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
                   Réseaux :
                 </span>
                 <span class="text-muted">
@@ -165,9 +185,56 @@
                   <%= t(@venue.with_home_service) %>
                 </span>
               </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Lave-linge :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_washing_machine) %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Sèche-linge :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_tumble_dryer) %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Lave-vaisselle :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.with_dishwasher) %>
+                </span>
+              </li>
             </ul>
           </div>
-          <div class="col-md-4">
+        </div>
+
+        <div class="row mt-3">
+          <div class="col-md-9">
+            <ul class="list-group shadow-none">
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Commentaire :
+                </span>
+                <span class="text-muted">
+                  <%= @venue.comment %>
+                </span>
+              </li>
+              <li class="list-group-item px-0 py-1">
+                <span class="font-weight-bolder">
+                  Editable par les autres membres :
+                </span>
+                <span class="text-muted">
+                  <%= t(@venue.editable_for_others) %>
+                </span>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-3">
             <div class="d-flex justify-content-center">
               <%= link_to @venue.map_link, target: '_blank' do %>
                 <%= image_tag(@venue.map.variant(resize_to_fill: [300, 200]),
@@ -175,27 +242,6 @@
               <% end %>
             </div>
           </div>
-        </div>
-
-        <div class="row col-md-12">
-          <ul class="list-group shadow-none">
-            <li class="list-group-item px-0 py-1">
-              <span class="font-weight-bolder">
-                Commentaire :
-              </span>
-              <span class="text-muted">
-                <%= @venue.comment %>
-              </span>
-            </li>
-            <li class="list-group-item px-0 py-1">
-              <span class="font-weight-bolder">
-                Editable par les autres membres :
-              </span>
-              <span class="text-muted">
-                <%= t(@venue.editable_for_others) %>
-              </span>
-            </li>
-          </ul>
         </div>
       </div>
     </div>

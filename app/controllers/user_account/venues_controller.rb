@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UserAccount
-  class VenuesController < UserAccount::ApplicationController
+  class VenuesController < UserAccount::ApplicationController # rubocop:disable Metrics/ClassLength
     include CurrentFamily
 
     before_action :set_current_family, only: %i(index new create edit update)

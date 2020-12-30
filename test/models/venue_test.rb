@@ -26,7 +26,8 @@ class VenueTest < ActiveSupport::TestCase
     assert_equal @venue.family.venues_count, 2
   end
 
-  %i(name address creator family bathrooms_count single_beds_count double_beds_count baby_beds_count).each do |attibute|
+  %i(name address creator family bathrooms_count single_beds_count double_beds_count
+     baby_beds_count single_sofa_beds_count double_sofa_beds_count).each do |attibute|
     test "invalid venue without #{attibute}" do
       @venue.send("#{attibute}=", nil)
       assert_not @venue.valid?
@@ -34,7 +35,8 @@ class VenueTest < ActiveSupport::TestCase
     end
   end
 
-  %i(with_network with_digital_code editable_for_others with_home_service).each do |attibute|
+  %i(with_network with_digital_code editable_for_others with_home_service
+     with_washing_machine with_tumble_dryer with_dishwasher).each do |attibute|
     test "invalid venue with wrong value on #{attibute}" do
       @venue.send("#{attibute}=", nil)
       assert_not @venue.valid?

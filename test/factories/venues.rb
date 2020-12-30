@@ -14,5 +14,10 @@ FactoryBot.define do
     single_beds_count { Faker::Number.non_zero_digit }
     double_beds_count { Faker::Number.non_zero_digit }
     baby_beds_count { Faker::Number.non_zero_digit }
+    single_sofa_beds_count { Faker::Number.non_zero_digit }
+    double_sofa_beds_count { Faker::Number.non_zero_digit }
+    with_washing_machine { [true, false].sample }
+    with_tumble_dryer { [true, false].sample }
+    with_dishwasher { [true, false].sample }
   end
 end

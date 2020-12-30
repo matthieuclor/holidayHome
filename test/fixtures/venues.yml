@@ -12,6 +12,11 @@ la_tania:
   single_beds_count: 4
   double_beds_count: 2
   baby_beds_count: 1
+  single_sofa_beds_count: 0
+  double_sofa_beds_count: 1
+  with_washing_machine: 1
+  with_tumble_dryer: 0
+  with_dishwasher: 1
   creator_id: 1
   family_id: 1
 
@@ -29,6 +34,11 @@ plg:
   single_beds_count: 4
   double_beds_count: 2
   baby_beds_count: 0
+  single_sofa_beds_count: 0
+  double_sofa_beds_count: 1
+  with_washing_machine: 1
+  with_tumble_dryer: 0
+  with_dishwasher: 1
   creator_id: 1
   family_id: 1
 
@@ -46,5 +56,10 @@ praz_loup:
   single_beds_count: 5
   double_beds_count: 2
   baby_beds_count: 1
+  single_sofa_beds_count: 0
+  double_sofa_beds_count: 2
+  with_washing_machine: 1
+  with_tumble_dryer: 1
+  with_dishwasher: 1
   creator_id: 1
   family_id: 2

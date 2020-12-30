@@ -66,8 +66,13 @@ fr:
         single_beds_count: Nombre de lits simples
         double_beds_count: Nombre de lits doubles
         baby_beds_count: Nombre de lits bébés
+        single_sofa_beds_count: Nombre de convertible simple
+        double_sofa_beds_count: Nombre de convertible double
         with_network: Réseaux
         with_digital_code: Digicodes
         with_home_service: Services à domicile
+        with_washing_machine: Lave-linge
+        with_tumble_dryer: Sèche-linge
+        with_dishwasher: Lave-vaisselle
         comment: Commentaire
         editable_for_others: Editable par les autres membres

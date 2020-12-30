@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class AddSofaBedToVenues < ActiveRecord::Migration[6.1]
   def change
     change_table :venues, bulk: true do |t|
