@@ -11,18 +11,20 @@ export default {
 
       if (!this.attributeIsValid(object, attribute)) {
         validClass = 'is-invalid';
+      } else if (object[attribute]) {
+        validClass = 'is-valid';
       }
-      if (object[attribute]) validClass = 'is-valid';
 
       return validClass;
     },
     formGroupClass(object, attribute) {
       let formGroupClass = '';
 
-      if (!this.attributeIsValid(object, attribute)) {
+      if (this.attributeIsValid(object, attribute)) {
         formGroupClass = 'form-group-invalid';
+      } else if (object[attribute]) {
+        formGroupClass = 'form-group-valid';
       }
-      if (object[attribute]) formGroupClass = 'form-group-valid';
 
       return formGroupClass;
     },

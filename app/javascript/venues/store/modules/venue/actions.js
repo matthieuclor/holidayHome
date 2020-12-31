@@ -134,7 +134,7 @@ export default {
           commit('UPDATE_SIDEBAR', false);
           commit('UPDATE_PLAN_ERROR', error.response.data.planError);
         } else {
-          commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue);
+          commit('UPDATE_VENUE_FORM_ITEM', error.response.data.venue);
         }
         reject(error);
       });
@@ -155,11 +155,11 @@ export default {
           },
         },
       ).then((response) => {
-        commit('UPDATE_FORM_VENUE_ITEM', response.data.venue);
+        commit('UPDATE_VENUE_FORM_ITEM', response.data.venue);
         commit('UPDATE_FLASHES', response.data.flashes);
         resolve(response);
       }).catch((error) => {
-        commit('UPDATE_FORM_VENUE_ITEM', error.response.data.venue);
+        commit('UPDATE_VENUE_FORM_ITEM', error.response.data.venue);
         commit('UPDATE_FLASHES', error.response.data.flashes);
         reject(error);
       });

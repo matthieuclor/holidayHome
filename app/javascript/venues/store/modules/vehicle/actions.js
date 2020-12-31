@@ -40,4 +40,21 @@ export default {
       });
     });
   },
+  destroyVehicleItem({ commit, dispatch }, { venueId, id }) {
+    const csrfToken = document.querySelector('[name=csrf-token]').content;
+
+    return new Promise((resolve, reject) => {
+      axios.delete(
+        `venues/${venueId}/vehicles/${id}.json`,
+        { headers: { 'X-CSRF-TOKEN': csrfToken } },
+      ).then((response) => {
+        dispatch('getVehicleItems', venueId);
+        commit('UPDATE_FLASHES', response.data.flashes);
+        resolve(response);
+      }).catch((error) => {
+        commit('UPDATE_FLASHES', error.response.data.flashes);
+        reject(error);
+      });
+    });
+  },
 };

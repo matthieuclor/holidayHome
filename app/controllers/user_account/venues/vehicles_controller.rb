@@ -22,7 +22,7 @@ module UserAccount
           flash[:success] = 'Le véhicule a bien été créé'
           render :create, status: :created
         else
-          flash[:error] = 'Un problem est survenu lors de la création du lieu'
+          flash[:error] = 'Un problem est survenu lors de la création du véhicule'
           render :new, status: :unprocessable_entity
         end
       end
@@ -31,9 +31,23 @@ module UserAccount
       end
 
       def update
+        if @vehicle.update(vehicles_params)
+          flash[:success] = 'Le véhicule a bien été mise à jour'
+          render :update, status: :ok
+        else
+          flash[:error] = 'Un problem est survenu lors de la mise à jour du véhicule'
+          render :edit, status: :unprocessable_entity
+        end
       end
 
       def destroy
+        if @vehicle.destroy
+          flash[:success] = 'Le véhicule a bien été supprimé'
+          render status: :ok
+        else
+          flash[:error] = 'Un problem est survenu lors de la suppression du véhicule'
+          render status: :unprocessable_entity
+        end
       end
 
       private

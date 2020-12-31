@@ -6,12 +6,11 @@
           {{ (id ? "Editer" : "Créer") + ` un vehicule pour ${vehicleFormItem.venueName}` }}
         </h3>
 
-        <button @click="hideSidebar"
-                type="button"
-                class="btn btn-link text-muted ml-2">
-
-          <i class="far fa-times fa-2x"></i>
-        </button>
+        <router-link :to="{ name: 'vehicles', params: { venueId: vehicleFormItem.venueId } }">
+          <button type="button" class="btn btn-link text-muted ml-2">
+            <i class="fas fa-arrow-alt-left fa-2x"></i>
+          </button>
+        </router-link>
       </div>
 
       <form @submit.prevent="submitVehicleForm" class="mt-4">
@@ -207,7 +206,6 @@ export default {
     ...mapActions([
       'getVehicleFormItem',
       'sendVehicleForm',
-      'hideSidebar',
     ]),
     submitVehicleForm({ target }) {
       this.vehicleFormIsSending = true;

@@ -6,7 +6,14 @@
           {{ (id ? "Editer" : "Créer") + " un lieu" }}
         </h1>
 
-        <button @click="hideSidebar"
+        <router-link v-if="id" :to="{ name: 'venue', params: { id: id } }">
+          <button type="button" class="btn btn-link text-muted ml-2">
+            <i class="fas fa-arrow-alt-left fa-2x"></i>
+          </button>
+        </router-link>
+
+        <button v-else
+                @click="hideSidebar"
                 type="button"
                 class="btn btn-link text-muted ml-2">
 

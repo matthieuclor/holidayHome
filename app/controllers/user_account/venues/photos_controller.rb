@@ -8,7 +8,7 @@ module UserAccount
       def create
         if @venue.photos.attach(photos_params[:photos])
           flash[:success] = 'Les photos ont bien été enregistrés'
-          render status: :ok
+          render status: :created
         else
           flash[:error] = "Un problem est survenu lors de l'enregistrement des photos"
           render status: :unprocessable_entity

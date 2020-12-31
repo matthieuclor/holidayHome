@@ -21,6 +21,14 @@
           </button>
         </router-link>
       </div>
+
+      <p v-if="vehicleItems.length === 0" class="text-muted text-center mt-3">
+        Vous n'avez pas de véhicule
+      </p>
+      <VehicleListItem v-else
+                       v-for="vehicleItem in vehicleItems"
+                       :key="vehicleItem.id"
+                       :vehicleItem="vehicleItem" />
     </div>
     <div v-else >
       <VenueVehiclesSkeleton />
@@ -29,6 +37,7 @@
 </template>
 
 <script>
+import VehicleListItem from 'venues/components/vehicle/vehicle_list_item';
 import VenueVehiclesSkeleton from 'venues/components/skeleton/venue_vehicles_skeleton';
 import { mapGetters, mapActions } from 'vuex';
 
@@ -36,12 +45,14 @@ export default {
   name: 'Vehicles',
   props: ['venueId'],
   components: {
+    VehicleListItem,
     VenueVehiclesSkeleton,
   },
   computed: {
     ...mapGetters([
       'sidebar',
       'vehicleVenueItem',
+      'vehicleItems',
     ]),
   },
   methods: {

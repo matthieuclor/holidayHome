@@ -6,6 +6,7 @@ json.vehicles @vehicles do |vehicle|
   json.call(
     vehicle,
     :id,
+    :venue_id,
     :vehicle_type,
     :name,
     :size,
