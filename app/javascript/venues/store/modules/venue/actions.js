@@ -21,12 +21,12 @@ export default {
       resolve(true);
     });
   },
-  getFormData({ commit }, id) {
+  getVenueFormItem({ commit }, id) {
     const url = `venues/${id ? `${id}/edit.json` : 'new.json'}`;
 
     axios.get(url).then((response) => {
-      commit('UPDATE_FORM_VENUE_ITEM', response.data.venue);
-      commit('UPDATE_FORM_VENUE_OWNER_ITEMS', response.data.owners);
+      commit('UPDATE_VENUE_FORM_ITEM', response.data.venue);
+      commit('UPDATE_VENUE_OWNER_FORM_ITEMS', response.data.owners);
     });
   },
   removePhoto({ commit }, { index, venueId, id }) {
@@ -109,7 +109,7 @@ export default {
       });
     });
   },
-  sendVenueForm({ commit, dispatch }, formData) {
+  sendVenueForm({ commit }, formData) {
     const csrfToken = document.querySelector('[name=csrf-token]').content;
     const venueId = formData.get('venue[id]');
     const method = venueId ? 'patch' : 'post';
@@ -124,7 +124,6 @@ export default {
           headers: { 'X-CSRF-TOKEN': csrfToken },
         },
       ).then((response) => {
-        dispatch('getVenueItems');
         commit('UPDATE_FLASHES', response.data.flashes);
         commit('UPDATE_PLAN_ERROR', null);
         resolve(response);

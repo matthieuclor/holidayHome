@@ -1,0 +1,237 @@
+<template>
+  <div>
+    <div v-if="vehicleFormItem">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h3 class="m-0">
+          {{ (id ? "Editer" : "Créer") + ` un vehicule pour ${vehicleFormItem.venueName}` }}
+        </h3>
+
+        <button @click="hideSidebar"
+                type="button"
+                class="btn btn-link text-muted ml-2">
+
+          <i class="far fa-times fa-2x"></i>
+        </button>
+      </div>
+
+      <form @submit.prevent="submitVehicleForm" class="mt-4">
+        <div class="form-group hidden vehicle_id form-group-valid">
+          <input type="hidden"
+                 :value="vehicleFormItem.id"
+                 name="vehicle[id]"
+                 id="vehicle_id"
+                 class="form-control is-valid hidden">
+        </div>
+
+        <div class="form-group hidden vehicle_venue_id form-group-valid">
+          <input type="hidden"
+                 :value="vehicleFormItem.venueId"
+                 name="vehicle[venue_id]"
+                 id="vehicle_venue_id"
+                 class="form-control is-valid hidden">
+        </div>
+
+        <div class="form-row">
+          <div class="col-5">
+            <div class="form-group string required vehicle_vehicle_type"
+                 :class="formGroupClass(vehicleFormItem, 'vehicleType')">
+
+              <label class="string required" for="vehicle_vehicle_type">
+                Type <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input :value="vehicleFormItem.vehicleType"
+                     class="form-control string required"
+                     :class="inputClass(vehicleFormItem, 'vehicleType')"
+                     required="required"
+                     aria-required="true"
+                     type="text"
+                     name="vehicle[vehicle_type]"
+                     id="vehicle_vehicle_type"
+                     placeholder="Vélo"
+                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'vehicleType')">
+
+              <div v-for="(vehiclesVehicleTypeError, errorIndex) in vehicleFormItem.errors['vehicleType']"
+                   :key="errorIndex"
+                   class="invalid-feedback">
+
+                {{ vehiclesVehicleTypeError }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="form-group string required vehicle_name"
+                 :class="formGroupClass(vehicleFormItem, 'name')">
+
+              <label class="string required" for="vehicle_name">
+                Nom <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input :value="vehicleFormItem.name"
+                     class="form-control string required"
+                     :class="inputClass(vehicleFormItem, 'name')"
+                     required="required"
+                     aria-required="true"
+                     type="text"
+                     name="vehicle[name]"
+                     id="vehicle_name"
+                     placeholder="Vélo bleu"
+                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'name')">
+
+              <div v-for="(vehiclesNameError, errorIndex) in vehicleFormItem.errors['name']"
+                   :key="errorIndex"
+                   class="invalid-feedback">
+
+                {{ vehiclesNameError }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="col-5">
+            <div class="form-group string required vehicle_size"
+                 :class="formGroupClass(vehicleFormItem, 'size')">
+
+              <label class="string required" for="vehicle_size">
+                Taille <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input :value="vehicleFormItem.size"
+                     class="form-control string required"
+                     :class="inputClass(vehicleFormItem, 'size')"
+                     required="required"
+                     aria-required="true"
+                     type="text"
+                     name="vehicle[size]"
+                     id="vehicle_size"
+                     placeholder="Vélo"
+                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'size')">
+
+              <div v-for="(vehiclesSizeError, errorIndex) in vehicleFormItem.errors['size']"
+                   :key="errorIndex"
+                   class="invalid-feedback">
+
+                {{ vehiclesSizeError }}
+              </div>
+            </div>
+          </div>
+
+          <div class="col-7">
+            <div class="form-group string required vehicle_condition"
+                 :class="formGroupClass(vehicleFormItem, 'condition')">
+
+              <label class="string required" for="vehicle_condition">
+                Etat <abbr title="obligatoire">*</abbr>
+              </label>
+
+              <input :value="vehicleFormItem.condition"
+                     class="form-control string required"
+                     :class="inputClass(vehicleFormItem, 'condition')"
+                     required="required"
+                     aria-required="true"
+                     type="text"
+                     name="vehicle[condition]"
+                     id="vehicle_condition"
+                     placeholder="Vélo bleu"
+                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'condition')">
+
+              <div v-for="(vehiclesConditionError, errorIndex) in vehicleFormItem.errors['condition']"
+                   :key="errorIndex"
+                   class="invalid-feedback">
+
+                {{ vehiclesConditionError }}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group text optional vehicle_comment"
+             :class="formGroupClass(vehicleFormItem, 'comment')">
+
+          <label for="vehicle_comment" class="text optional">
+            Commentaire
+          </label>
+          <textarea placeholder="Choses à savoir, précision sur le vehicule..."
+                    :value="vehicleFormItem.comment"
+                    class="form-control text optional"
+                    rows="5"
+                    :class="inputClass(vehicleFormItem, 'comment')"
+                    name="vehicle[comment]"
+                    id="vehicle_comment"
+                    :aria-invalid="!attributeIsValid(vehicleFormItem, 'comment')">
+          </textarea>
+
+          <div v-for="(vehiclesCommentError, errorIndex) in vehicleFormItem.errors['comment']"
+               :key="errorIndex"
+               class="invalid-feedback">
+
+            {{ vehiclesCommentError }}
+          </div>
+        </div>
+
+        <input type="submit"
+               :disabled="vehicleFormIsSending"
+               name="commit"
+               value="Enregistrer"
+               class="btn btn-block btn-success">
+      </form>
+    </div>
+    <VehicleFormSkeleton v-else />
+  </div>
+</template>
+
+<script>
+import VehicleFormSkeleton from 'venues/components/skeleton/vehicle_form_skeleton';
+import formMixin from 'shared/mixins/form_mixin';
+import { mapGetters, mapActions } from 'vuex';
+
+export default {
+  name: 'VenueForm',
+  data() {
+    return { vehicleFormIsSending: false };
+  },
+  props: [
+    'venueId',
+    'id',
+  ],
+  mixins: [formMixin],
+  components: {
+    VehicleFormSkeleton,
+  },
+  computed: {
+    ...mapGetters(['vehicleFormItem']),
+  },
+  methods: {
+    ...mapActions([
+      'getVehicleFormItem',
+      'sendVehicleForm',
+      'hideSidebar',
+    ]),
+    submitVehicleForm({ target }) {
+      this.vehicleFormIsSending = true;
+
+      this.sendVehicleForm(new FormData(target))
+        .then((response) => {
+          this.$router.push({
+            name: 'vehicles',
+            params: { venueId: response.data.vehicle.venueId },
+          });
+        }).catch(
+          () => this.scrollToFirstError(),
+        ).then(
+          () => { this.vehicleFormIsSending = false; },
+        );
+    },
+  },
+  watch: {
+    id: {
+      handler() {
+        this.getVehicleFormItem({ venueId: this.venueId, id: this.id });
+      },
+      immediate: true,
+    },
+  },
+};
+</script>

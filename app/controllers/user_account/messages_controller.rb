@@ -2,7 +2,7 @@
 
 module UserAccount
   class MessagesController < UserAccount::ApplicationController
-    respond_to(:json)
+    respond_to :json
     before_action :set_booking
 
     def index

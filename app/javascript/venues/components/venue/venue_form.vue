@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="venueFormItem">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1 class="m-0">
           {{ (id ? "Editer" : "Créer") + " un lieu" }}
         </h1>
 
@@ -143,7 +143,7 @@ export default {
   },
   methods: {
     ...mapActions([
-      'getFormData',
+      'getVenueFormItem',
       'sendVenueForm',
       'hideSidebar',
     ]),
@@ -166,7 +166,7 @@ export default {
   watch: {
     id: {
       handler() {
-        this.getFormData(this.id);
+        this.getVenueFormItem(this.id);
       },
       immediate: true,
     },

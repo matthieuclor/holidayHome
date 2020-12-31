@@ -8,10 +8,10 @@ export default {
   UPDATE_VENUE_ITEM(state, payload) {
     state.venueItem = payload;
   },
-  UPDATE_FORM_VENUE_ITEM(state, payload) {
+  UPDATE_VENUE_FORM_ITEM(state, payload) {
     state.venueFormItem = { ...state.venueFormItem, ...payload };
   },
-  UPDATE_FORM_VENUE_OWNER_ITEMS(state, payload) {
+  UPDATE_VENUE_OWNER_FORM_ITEMS(state, payload) {
     state.venueOwnerFormItems = payload;
   },
   ADD_TO_VENUE_ITEMS(state, payload) {

@@ -13,6 +13,13 @@
               id="venue_comment"
               :aria-invalid="!attributeIsValid(venueFormItem, 'comment')">
     </textarea>
+
+    <div v-for="(VenueCommentError, errorIndex) in venueFormItem.errors['comment']"
+         :key="errorIndex"
+         class="invalid-feedback">
+
+      {{ VenueCommentError }}
+    </div>
   </div>
 </template>
 

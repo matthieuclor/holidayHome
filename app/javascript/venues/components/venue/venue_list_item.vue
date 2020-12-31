@@ -48,13 +48,13 @@
 
               <div v-if="venueItem.withWashingMachine"
                    class="border rounded py-1 px-2 mr-2 mt-2">
-                <i class="fas fa-tshirt"></i>
+                <i class="fas fa-tshirt mr-2"></i>
                 Lave-linge
               </div>
 
               <div v-if="venueItem.withTumbleDryer"
                    class="border rounded py-1 px-2 mr-2 mt-2">
-                <i class="far fa-tshirt"></i>
+                <i class="far fa-tshirt mr-2"></i>
                 Sèche-linge
               </div>
 
@@ -63,6 +63,13 @@
                 <i class="fas fa-utensils mr-2"></i>
                 Lave-vaisselle
               </div>
+            </div>
+            <div class="d-flex flex-wrap mt-2">
+              <router-link :to="{ name: 'vehicles', params: { venueId: venueItem.id } }">
+                <button @click="showSidebar" class="btn btn-outline-primary py-1 px-2">
+                  Véhicules
+                </button>
+              </router-link>
             </div>
           </div>
         </div>

@@ -55,6 +55,7 @@ Rails.application.routes.draw do
     resources :venues do
       scope module: :venues do
         resources :photos, only: %i(create destroy)
+        resources :vehicles, only: %i(index new create edit update destroy)
       end
     end
 

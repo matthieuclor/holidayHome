@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-if="venueItem">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1>{{ venueItem.name }}</h1>
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <h1 class="m-0">{{ venueItem.name }}</h1>
 
         <div class="d-flex flex-row align-items-center">
           <router-link v-if="venueItem.isEditable"
