@@ -90,23 +90,26 @@
 
         <div class="form-row">
           <div class="col-5">
-            <div class="form-group string required vehicle_size"
+            <div class="form-group select required vehicle_size"
                  :class="formGroupClass(vehicleFormItem, 'size')">
 
-              <label class="string required" for="vehicle_size">
+              <label class="select required" for="vehicle_size">
                 Taille <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input :value="vehicleFormItem.size"
-                     class="form-control string required"
-                     :class="inputClass(vehicleFormItem, 'size')"
-                     required="required"
-                     aria-required="true"
-                     type="text"
-                     name="vehicle[size]"
-                     id="vehicle_size"
-                     placeholder="Vélo"
-                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'size')">
+              <select class="form-control select required"
+                      :class="inputClass(vehicleFormItem, 'size')"
+                      name="vehicle[size]"
+                      id="vehicle_size"
+                      :aria-invalid="!attributeIsValid(vehicleFormItem, 'size')">
+
+                <option v-for="(size, sizeIndex) in vehicleFormItem.sizesCollection"
+                        :key="sizeIndex"
+                        :value="size[1]"
+                        :selected="size[1] == vehicleFormItem.size">
+                  {{ size[0] }}
+                </option>
+              </select>
 
               <div v-for="(vehiclesSizeError, errorIndex) in vehicleFormItem.errors['size']"
                    :key="errorIndex"
@@ -118,23 +121,26 @@
           </div>
 
           <div class="col-7">
-            <div class="form-group string required vehicle_condition"
+            <div class="form-group select required vehicle_condition"
                  :class="formGroupClass(vehicleFormItem, 'condition')">
 
-              <label class="string required" for="vehicle_condition">
+              <label class="select required" for="vehicle_condition">
                 Etat <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input :value="vehicleFormItem.condition"
-                     class="form-control string required"
-                     :class="inputClass(vehicleFormItem, 'condition')"
-                     required="required"
-                     aria-required="true"
-                     type="text"
-                     name="vehicle[condition]"
-                     id="vehicle_condition"
-                     placeholder="Vélo bleu"
-                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'condition')">
+              <select class="form-control select required"
+                      :class="inputClass(vehicleFormItem, 'condition')"
+                      name="vehicle[condition]"
+                      id="vehicle_condition"
+                      :aria-invalid="!attributeIsValid(vehicleFormItem, 'condition')">
+
+                <option v-for="(condition, conditionIndex) in vehicleFormItem.conditionsCollection"
+                        :key="conditionIndex"
+                        :value="condition[1]"
+                        :selected="condition[1] == vehicleFormItem.condition">
+                  {{ condition[0] }}
+                </option>
+              </select>
 
               <div v-for="(vehiclesConditionError, errorIndex) in vehicleFormItem.errors['condition']"
                    :key="errorIndex"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_182827) do
+ActiveRecord::Schema.define(version: 2021_01_01_184649) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -316,6 +316,7 @@ ActiveRecord::Schema.define(version: 2020_12_30_182827) do
     t.boolean "with_washing_machine", default: false
     t.boolean "with_tumble_dryer", default: false
     t.boolean "with_dishwasher", default: false
+    t.integer "vehicles_count", default: 0
     t.index ["creator_id"], name: "index_venues_on_creator_id"
     t.index ["family_id"], name: "index_venues_on_family_id"
     t.index ["name", "family_id"], name: "index_venues_on_name_and_family_id", unique: true

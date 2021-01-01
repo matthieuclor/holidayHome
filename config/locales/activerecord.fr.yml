@@ -71,6 +71,21 @@ fr:
       question_and_answer/status:
         online: En ligne
         offline: Hors ligne
+      vehicle/size:
+        standard: Standard
+        small: Petit
+        medium: Moyen
+        large: Grand
+      vehicle/condition:
+        good: Neuf
+        normal: Bon état
+        bad: Mauvaise état
+        broken: Cassé
+      vehicle/condition_badge_class:
+        good: badge-success
+        normal: badge-primary
+        bad: badge-warning
+        broken: badge-danger
       message:
         content: Le contenu
     errors:

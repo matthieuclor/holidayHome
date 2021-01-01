@@ -63,13 +63,15 @@
                 <i class="fas fa-utensils mr-2"></i>
                 Lave-vaisselle
               </div>
-            </div>
-            <div class="d-flex flex-wrap mt-2">
-              <router-link :to="{ name: 'vehicles', params: { venueId: venueItem.id } }">
-                <button @click="showSidebar" class="btn btn-outline-primary py-1 px-2">
-                  Véhicules
-                </button>
-              </router-link>
+
+              <div>
+                <router-link :to="{ name: 'vehicles', params: { venueId: venueItem.id } }">
+                  <button @click="showSidebar" class="btn btn-outline-secondary py-1 px-2 mt-2">
+                    <i class="fas fa-bicycle mr-2"></i>
+                    {{ pluralize(venueItem.vehiclesCount, 'Véhicule') }}
+                  </button>
+                </router-link>
+              </div>
             </div>
           </div>
         </div>

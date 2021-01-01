@@ -17,6 +17,7 @@ la_tania:
   with_washing_machine: 1
   with_tumble_dryer: 0
   with_dishwasher: 1
+  vehicles_count: 1
   creator_id: 1
   family_id: 1
 
@@ -39,6 +40,7 @@ plg:
   with_washing_machine: 1
   with_tumble_dryer: 0
   with_dishwasher: 1
+  vehicles_count: 0
   creator_id: 1
   family_id: 1
 
@@ -61,5 +63,6 @@ praz_loup:
   with_washing_machine: 1
   with_tumble_dryer: 1
   with_dishwasher: 1
+  vehicles_count: 0
   creator_id: 1
   family_id: 2

@@ -25,22 +25,22 @@
     <div class="row">
       <div class="col-md-6">
         <span class="font-weight-bolder">Etat :</span>
-        <span>
-          {{ vehicleItem.condition }}
+        <span class="badge" :class="vehicleItem.conditionBadgeClass">
+          {{ vehicleItem.conditionFr }}
         </span>
       </div>
       <div class="col-md-6">
         <span class="font-weight-bolder">Taille :</span>
-        <span>
-          {{ vehicleItem.size }}
+        <span class="badge badge-secondary">
+          {{ vehicleItem.sizeFr }}
         </span>
       </div>
     </div>
 
     <div class="mt-2">
       <span class="font-weight-bolder">Commentaire :</span>
-      <p class="m-0">
-        {{ vehicleItem.comment }}
+      <p class="m-0" :class="{'text-muted': vehicleItem.comment.length === 0}">
+        {{ vehicleComment }}
       </p>
     </div>
   </div>
@@ -52,6 +52,19 @@ import { mapActions } from 'vuex';
 export default {
   name: 'VehicleListItem',
   props: ['vehicleItem'],
+  computed: {
+    vehicleComment() {
+      let vehicleComment = '';
+
+      if (this.vehicleItem.comment.length === 0) {
+        vehicleComment = 'Aucun commentaire';
+      } else {
+        vehicleComment = this.vehicleItem.comment;
+      }
+
+      return vehicleComment;
+    },
+  },
   methods: {
     ...mapActions(['destroyVehicleItem']),
     destroyVehicle() {

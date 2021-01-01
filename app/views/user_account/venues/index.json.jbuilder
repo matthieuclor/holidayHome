@@ -13,7 +13,8 @@ json.venues @venues do |venue|
     :with_tumble_dryer,
     :with_dishwasher,
     :with_network,
-    :baby_beds_count
+    :baby_beds_count,
+    :vehicles_count
   )
 
   if venue.photos.attached?

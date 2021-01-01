@@ -1,0 +1,8 @@
+la_tania_bicycle:
+  id: 1
+  vehicle_type: Vélo
+  name: Vélo bleu
+  size: 0
+  condition: 0
+  comment: Ceci est un commentaire, il commente quoi...
+  venue_id: 1
