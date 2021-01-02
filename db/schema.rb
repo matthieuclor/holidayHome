@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_01_184649) do
+ActiveRecord::Schema.define(version: 2021_01_02_191116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "hstore"
@@ -271,6 +271,14 @@ ActiveRecord::Schema.define(version: 2021_01_01_184649) do
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
+  end
+
+  create_table "vehicle_types", force: :cascade do |t|
+    t.string "name"
+    t.integer "icon_prefix", default: 0
+    t.string "icon_class"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "vehicles", force: :cascade do |t|

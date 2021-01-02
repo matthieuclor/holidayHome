@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-if="vehicleFormItem">
-      <div class="d-flex justify-content-between align-items-center mb-2">
+      <div class="d-flex justify-content-between align-items-center">
         <h3 class="m-0">
           {{ (id ? "Editer" : "Créer") + ` un vehicule pour ${vehicleFormItem.venueName}` }}
         </h3>
@@ -183,12 +183,12 @@
                class="btn btn-block btn-success">
       </form>
     </div>
-    <VehicleFormSkeleton v-else />
+    <VenueVehicleFormSkeleton v-else />
   </div>
 </template>
 
 <script>
-import VehicleFormSkeleton from 'venues/components/skeleton/vehicle_form_skeleton';
+import VenueVehicleFormSkeleton from 'venues/components/skeleton/venue_vehicle_form_skeleton';
 import formMixin from 'shared/mixins/form_mixin';
 import { mapGetters, mapActions } from 'vuex';
 
@@ -203,7 +203,7 @@ export default {
   ],
   mixins: [formMixin],
   components: {
-    VehicleFormSkeleton,
+    VenueVehicleFormSkeleton,
   },
   computed: {
     ...mapGetters(['vehicleFormItem']),

@@ -1,0 +1,5 @@
+bicycle:
+  id: 1
+  name: Vélo
+  icon_prefix: 0
+  icon_class: 'fa-bicycle'

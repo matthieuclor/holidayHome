@@ -1,0 +1,12 @@
+if ($("#vehicle-type-modal").length > 0) {
+  $("#vehicle-type-modal").modal("hide")
+}
+
+$("#modal-container").html("<%= j render "form" %>")
+
+<% if flash.present? %>
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
+  <% flash.clear %>
+<% end %>
+
+$("#vehicle-type-modal").modal("show")

@@ -154,6 +154,7 @@ Rails.application.routes.draw do
 
     resources :admins, only: :index
     resources :school_holidays, only: %i(index create)
+    resources :vehicle_types, only: %i(index new create edit update destroy)
   end
 
   authenticate :admin do

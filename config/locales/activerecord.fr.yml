@@ -79,7 +79,7 @@ fr:
       vehicle/condition:
         good: Neuf
         normal: Bon état
-        bad: Mauvaise état
+        bad: Mauvais état
         broken: Cassé
       vehicle/condition_badge_class:
         good: badge-success

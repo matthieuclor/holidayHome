@@ -24,6 +24,10 @@
                 admin_account_school_holidays_path,
                 class: "dropdown-item #{'active' if controller_name == 'school_holidays'}" %>
 
+    <%= link_to "Types de véhicules",
+                admin_account_vehicle_types_path,
+                class: "dropdown-item #{'active' if controller_name == 'vehicle_types'}" %>
+
     <%= link_to "Membres",
                 admin_account_team_members_path,
                 class: "dropdown-item #{'active' if controller_name == 'team_members'}" %>

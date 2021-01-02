@@ -1,45 +1,47 @@
 <table class="table table-rounded table-borderless table-hover">
   <thead class="table-info">
     <tr>
-      <th scope="col"></th>
+      <th scope="col">Icone</th>
       <th scope="col">Nom</th>
-      <th scope="col">Fonction</th>
+      <th scope="col">Préfixe</th>
+      <th scope="col">Classe</th>
       <th scope="col" class="text-center">Date de création</th>
-      <th scope="col" class="text-center">Statut</th>
-      <th scope="col"></th>
+      <th colspan="2" scope="col"></th>
     </tr>
   </thead>
   <tbody>
-    <% if @team_members.present? %>
-      <% @team_members.each do |team_member| %>
+    <% if @vehicle_types.present? %>
+      <% @vehicle_types.each do |vehicle_type| %>
         <tr>
           <td>
-            <% if team_member.photo.attached? %>
-              <%= image_tag(team_member.photo.variant(resize_to_limit: [100, 100]), class: "rounded") %>
+            <% if vehicle_type.icon_class.present? %>
+              <%= fa_icon(vehicle_type.icon_class.delete_prefix('fa-'),
+                          nil,
+                          prefix: vehicle_type.icon_prefix) %>
             <% end %>
           </td>
-          <td class="font-weight-bolder">
-            <%= team_member.full_name %>
+          <td>
+            <%= vehicle_type.name %>
           </td>
           <td>
-            <%= team_member.function %>
+            <%= vehicle_type.icon_prefix %>
+          </td>
+          <td>
+            <%= vehicle_type.icon_class %>
           </td>
           <td class="text-center">
-            <%= l(team_member.created_at, format: :medium) %>
-          </td>
-          <td class="text-center">
-            <%= network_status_badge(team_member) %>
+            <%= l(vehicle_type.created_at, format: :medium) %>
           </td>
           <td>
             <div class="d-flex justify-content-end">
-              <%= button_to edit_admin_account_team_member_path(team_member),
+              <%= button_to edit_admin_account_vehicle_type_path(vehicle_type),
                             method: :get,
                             remote: true,
                             class: "btn btn-sm btn-outline-info mr-1" do %>
                 <%= fa_icon('pen', 'editer', class: 'mr-1') %>
               <% end %>
 
-              <%= button_to admin_account_team_member_path(team_member),
+              <%= button_to admin_account_vehicle_type_path(vehicle_type),
                             method: :delete,
                             data: { confirm: "Etes-vous sûr ?" },
                             class: "btn btn-sm btn-outline-danger ml-1" do %>
@@ -51,8 +53,8 @@
       <% end %>
     <% else %>
       <tr>
-        <td colspan="6" class="text-center text-muted">
-          aucun membre n'a été trouvé
+        <td colspan="7" class="text-center text-muted">
+          aucun type de vehicule n'a été trouvé
         </td>
       </tr>
     <% end %>

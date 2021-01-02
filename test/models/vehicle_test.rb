@@ -48,6 +48,20 @@ class VehicleTest < ActiveSupport::TestCase
     assert vehicle.errors[:name].present?
   end
 
+  test 'should capitalize vehicle type and name before save' do
+    vehicle = create(
+      :vehicle,
+      {
+        venue: venues(:la_tania),
+        name: 'vélo test',
+        vehicle_type: 'vélo'
+      }
+    )
+
+    assert_equal vehicle.name, 'Vélo test'
+    assert_equal vehicle.vehicle_type, 'Vélo'
+  end
+
   test 'should destroy vehicle when when the depend venue is destroyed' do
     @venue = venues(:la_tania)
     assert_equal Vehicle.where(venue: @venue).count, 1

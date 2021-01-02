@@ -1,0 +1,10 @@
+$("#vehicle-types-container").html("<%= j render 'vehicle_types' %>")
+
+<% if @vehicle_type_ransack_params.present? %>
+  $("#reset-filter").removeClass("d-none")
+<% end %>
+
+<% if flash.present? %>
+  $("#toast-container").prepend("<%= j render "shared/flash_messages" %>")
+  <% flash.clear %>
+<% end %>
