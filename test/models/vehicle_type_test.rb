@@ -1,4 +1,6 @@
-require "test_helper"
+# frozen_string_literal: true
+
+require 'test_helper'
 
 class VehicleTypeTest < ActiveSupport::TestCase
   def setup
@@ -34,8 +36,14 @@ class VehicleTypeTest < ActiveSupport::TestCase
     assert vehicle_type.valid?
   end
 
+  test 'invalid vehicle with duplicate name' do
+    vehicle_type = build(:vehicle_type, { name: 'Vélo' })
+    assert_not vehicle_type.valid?
+    assert vehicle_type.errors[:name].present?
+  end
+
   test 'should capitalize name before save' do
-    vehicle_type = create(:vehicle_type, { name: 'vélo' })
-    assert_equal vehicle_type.name, 'Vélo'
+    vehicle_type = create(:vehicle_type, { name: 'camion' })
+    assert_equal vehicle_type.name, 'Camion'
   end
 end

@@ -86,6 +86,12 @@ fr:
         normal: badge-primary
         bad: badge-warning
         broken: badge-danger
+      vehicle_type/icon_prefix:
+        fas: Solid
+        far: Regular
+        fal: Light
+        fab: Brands
+        fad: Duotone
       message:
         content: Le contenu
     errors:
