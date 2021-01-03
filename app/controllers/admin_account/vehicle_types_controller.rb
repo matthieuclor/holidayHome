@@ -56,7 +56,7 @@ module AdminAccount
     end
 
     def vehicle_type_ransack_params
-      @vehicle_type_ransack_params ||= params[:q]&.permit(:name_cont)
+      @vehicle_type_ransack_params ||= params[:q]&.permit(:name_i_cont)
     end
 
     def vehicle_type_params

@@ -14,6 +14,16 @@ export default {
       commit('UPDATE_VEHICLE_FORM_ITEM', response.data.vehicle);
     });
   },
+  getVehicleTypeSuggestions(_, query) {
+    return new Promise((resolve, reject) => {
+      axios.get(`/user_account/vehicle_types.json?q[name_i_cont]=${query}`)
+        .then((response) => {
+          resolve(response);
+        }).catch((error) => {
+          reject(error);
+        });
+    });
+  },
   sendVehicleForm({ commit }, formData) {
     const csrfToken = document.querySelector('[name=csrf-token]').content;
     const vehicleId = formData.get('vehicle[id]');

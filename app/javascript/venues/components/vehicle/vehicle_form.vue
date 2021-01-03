@@ -39,16 +39,24 @@
                 Type <abbr title="obligatoire">*</abbr>
               </label>
 
-              <input :value="vehicleFormItem.vehicleType"
-                     class="form-control string required"
-                     :class="inputClass(vehicleFormItem, 'vehicleType')"
-                     required="required"
-                     aria-required="true"
-                     type="text"
-                     name="vehicle[vehicle_type]"
-                     id="vehicle_vehicle_type"
-                     placeholder="Vélo"
-                     :aria-invalid="!attributeIsValid(vehicleFormItem, 'vehicleType')">
+              <VueAutosuggest :suggestions="suggestions"
+                              :input-props="{...inputProps, class: `form-control string required ${inputClass(vehicleFormItem, 'vehicleType')}`}"
+                              @input="onInputChange"
+                              v-model="vehicleType"
+                              @selected="selectHandler">
+
+                <template slot-scope="{suggestion}">
+                  <div class="my-suggestion-item text-nowrap text-truncate">
+                    <i :class="suggestion.item.iconClass"
+                       class="text-muted item-icon">
+                    </i>
+
+                    <span v-html="suggestion.item.name"
+                          class="item-name">
+                    </span>
+                  </div>
+                </template>
+              </VueAutosuggest>
 
               <div v-for="(vehiclesVehicleTypeError, errorIndex) in vehicleFormItem.errors['vehicleType']"
                    :key="errorIndex"
@@ -190,12 +198,27 @@
 <script>
 import VenueVehicleFormSkeleton from 'venues/components/skeleton/venue_vehicle_form_skeleton';
 import formMixin from 'shared/mixins/form_mixin';
+import { VueAutosuggest } from 'vue-autosuggest';
 import { mapGetters, mapActions } from 'vuex';
+import { debounce } from 'lodash';
 
 export default {
   name: 'VenueForm',
   data() {
-    return { vehicleFormIsSending: false };
+    return {
+      vehicleFormIsSending: false,
+      vehicleType: '',
+      suggestions: [],
+      inputProps: {
+        placeholder: 'Vélo',
+        name: 'vehicle[vehicle_type]',
+        id: 'vehicle_vehicle_type',
+        'aria-required': 'true',
+        'aria-invalid': 'false',
+        required: 'required',
+        autocomplete: 'off',
+      },
+    };
   },
   props: [
     'venueId',
@@ -204,6 +227,7 @@ export default {
   mixins: [formMixin],
   components: {
     VenueVehicleFormSkeleton,
+    VueAutosuggest,
   },
   computed: {
     ...mapGetters(['vehicleFormItem']),
@@ -211,8 +235,31 @@ export default {
   methods: {
     ...mapActions([
       'getVehicleFormItem',
+      'getVehicleTypeSuggestions',
       'sendVehicleForm',
     ]),
+    // eslint-disable-next-line func-names
+    onInputChange: debounce(function () {
+      if (this.vehicleType.length > 0) {
+        this.getVehicleTypeSuggestions(this.vehicleType)
+          .then((res) => {
+            this.suggestions = [
+              {
+                data: res.data.vehicleTypes.map((item) => ({
+                  name: item.name,
+                  iconClass: item.iconClass,
+                })),
+              },
+            ];
+          });
+      } else {
+        this.suggestions = [];
+      }
+    }, 500),
+    selectHandler(e) {
+      this.suggestions = [];
+      this.vehicleType = e.item.name;
+    },
     submitVehicleForm({ target }) {
       this.vehicleFormIsSending = true;
 
@@ -233,6 +280,12 @@ export default {
     id: {
       handler() {
         this.getVehicleFormItem({ venueId: this.venueId, id: this.id });
+      },
+      immediate: true,
+    },
+    vehicleFormItem: {
+      handler() {
+        this.vehicleType = this.vehicleFormItem?.vehicleType;
       },
       immediate: true,
     },

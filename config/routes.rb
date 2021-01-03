@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :received_invitations, only: %i(index update)
     resource :plans, only: %i(show edit update)
     resource :algolia_places, only: :create
+    resources :vehicle_types, only: :index
 
     resources :venues do
       scope module: :venues do
