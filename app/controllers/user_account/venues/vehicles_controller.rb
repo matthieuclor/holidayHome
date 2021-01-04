@@ -9,6 +9,7 @@ module UserAccount
 
       def index
         @vehicles = Vehicle.where(venue_id: @venue.id)
+                           .order(:vehicle_type, :condition, :created_at)
       end
 
       def new

@@ -1,11 +1,14 @@
 <template>
   <div class="shadow p-3 rounded mb-3">
-    <div class="d-flex justify-content-between align-items-center mb-2">
+    <div class="d-flex justify-content-between align-items-center mb-4">
       <div>
-        <h4 class="m-0">{{ vehicleItem.name }}</h4>
-        <p class="font-weight-lighter mb-0">
-          {{ vehicleItem.vehicleType }}
-        </p>
+        <div class="d-flex align-items-center">
+          <div class="border border-dark rounded py-1 px-2 mr-2">
+            {{ vehicleItem.vehicleType }}
+          </div>
+
+          <h4 class="m-0">{{ vehicleItem.name }}</h4>
+        </div>
       </div>
       <div>
         <router-link :to="{
@@ -23,7 +26,7 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6">
+      <div class="col-md-6 mb-2 mb-md-0">
         <span class="font-weight-bolder">Etat :</span>
         <span class="badge" :class="vehicleItem.conditionBadgeClass">
           {{ vehicleItem.conditionFr }}

@@ -12,6 +12,7 @@ json.call(
   :single_beds_count,
   :double_beds_count,
   :baby_beds_count,
+  :vehicles_count,
   :single_sofa_beds_count,
   :double_sofa_beds_count,
   :with_washing_machine,

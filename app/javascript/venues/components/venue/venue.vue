@@ -49,6 +49,13 @@
         </span>
       </p>
 
+      <router-link :to="{ name: 'vehicles', params: { venueId: venueItem.id } }">
+        <button class="btn btn-outline-secondary py-1 px-2">
+          <i class="fas fa-bicycle mr-2"></i>
+          {{ pluralize(venueItem.vehiclesCount, 'Véhicule') }}
+        </button>
+      </router-link>
+
       <div v-if="venueItem.mapUrl">
         <hr class="my-4">
         <h4>Emplacement :</h4>
