@@ -53,6 +53,8 @@ gem 'sentry-raven'
 gem 'sitemap_generator'
 # Faraday is an HTTP client library that provides a common interface over many adapters
 gem 'faraday'
+# A simple wrapper to send notifications to Slack webhooks.
+gem 'slack-notifier'
 
 group :staging do
   gem 'rest-client'

@@ -68,3 +68,5 @@ Rails.application.configure do
     Bullet.raise = true
   end
 end
+
+Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'

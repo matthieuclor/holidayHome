@@ -63,6 +63,8 @@ class User < ApplicationRecord
 
   after_save :set_families_plan, if: :plan_previously_changed?
 
+  after_create_commit :send_slack_notification
+
   def active_for_authentication?
     activated! if deactivated?
     super && activated?
@@ -77,6 +79,10 @@ class User < ApplicationRecord
   end
 
   private
+
+  def send_slack_notification
+    NewUserSlackNotificationJob.perform_later(id) if Rails.env.production?
+  end
 
   def current_school_holiday_zones_presence_and_inclusion
     if current_school_holiday_zones.nil?
