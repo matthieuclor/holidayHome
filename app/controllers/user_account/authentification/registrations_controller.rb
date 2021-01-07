@@ -57,6 +57,8 @@ module UserAccount
         session[:hutoki_plan] == 'premium' &&
           resource.update(plan: :premium, plan_deadline: Date.current + 1.year)
 
+        NewUserSlackNotificationJob.perform_later(resource.id) if Rails.env.production?
+
         user_account_dashboards_path
       end
 

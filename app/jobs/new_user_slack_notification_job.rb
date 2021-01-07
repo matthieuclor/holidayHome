@@ -13,6 +13,7 @@ class NewUserSlackNotificationJob < ApplicationJob
         color: '#68d391',
         author_name: user.full_name,
         author_link: Rails.application.routes.url_helpers.admin_account_user_url(user.id),
+        title: "Plan: #{User.human_attribute_name("plan.#{user.plan}")}",
         text: user.email
       }
     )
