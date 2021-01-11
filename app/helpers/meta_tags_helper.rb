@@ -16,4 +16,12 @@ module MetaTagsHelper
   def meta_image_alt
     content_for(:meta_image_alt) || t('default_meta.meta_image_alt')
   end
+
+  def meta_product_name
+    content_for(:meta_product_name) || t('default_meta.meta_product_name')
+  end
+
+  def meta_fb_app_id
+    content_for(:meta_fb_app_id) || t('default_meta.fb_app_id')
+  end
 end
