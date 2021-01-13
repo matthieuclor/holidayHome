@@ -143,6 +143,7 @@ Rails.application.routes.draw do
         resources :networks, only: %i(edit update)
         resources :digital_codes, only: %i(edit update)
         resources :home_services, only: %i(edit update)
+        resources :vehicles, only: %i(edit update)
       end
     end
 

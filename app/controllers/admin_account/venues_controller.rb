@@ -13,6 +13,7 @@ module AdminAccount
                :networks,
                :digital_codes,
                :home_services,
+               :vehicles,
                keys: [:owner]
              ).find(params[:id])
       )

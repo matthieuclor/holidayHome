@@ -49,6 +49,12 @@ fr:
         address: Adresse
         phone: Téléphone
         email: Email
+      vehicle:
+        vehicle_type: Type
+        name: Nom
+        size: Taille
+        condition: Etat
+        comment: Commentaire
       vehicle_type:
         name: Nom
         icon_prefix: Préfixe

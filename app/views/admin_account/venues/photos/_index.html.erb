@@ -7,7 +7,7 @@
       </span>
     </h2>
 
-    <div class="d-flex flex-nowrap mt-3">
+    <div class="d-flex flex-wrap mt-3">
       <% @venue.photos.each do |photo| %>
         <div class="mr-4 mb-3">
           <%= image_tag(photo.variant(resize_to_limit: [250, 250]),
