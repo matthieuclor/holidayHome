@@ -20,7 +20,7 @@ module AdminAccount
       protected
 
       def after_sign_in_path_for(_resource)
-        admin_account_dashboards_path
+        session[:admin_previous_url] || admin_account_dashboards_path
       end
     end
   end
