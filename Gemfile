@@ -6,21 +6,21 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.7.2'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 6.1.0'
+gem 'rails', '~> 6.1'
 # Use postgresql as the database for Active Record
-gem 'pg', '~> 1.2.3'
+gem 'pg', '~> 1.2'
 # Use Puma as the app server
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 5.1'
 # Use SCSS for stylesheets
 gem 'sass-rails', '>= 6'
 # Transpile app-like JavaScript. Read more: https://github.com/rails/webpacker
-gem 'webpacker', '~> 5.0'
+gem 'webpacker', '~> 5.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5.2.1'
+gem 'turbolinks', '~> 5.2'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.10.0'
+gem 'jbuilder', '~> 2.1'
 # Use Redis adapter to run Action Cable in production
-gem 'redis', '~> 4.2.1'
+gem 'redis', '~> 4.2'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -32,13 +32,13 @@ gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
 
 # Background jobs
-gem 'sidekiq', '~> 6.1.1'
+gem 'sidekiq', '~> 6.1'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 # Simple Form aims to be as flexible as possible while helping you with powerful components to create your forms.
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
-gem 'bootsnap', '~> 1.4.7', require: false
+gem 'bootsnap', '~> 1.5', require: false
 # Ransack enables the creation of both simple and advanced search forms for your Ruby on Rails application
 gem 'ransack'
 # Pagy is the ultimate pagination gem that outperforms the others in each and every benchmark and comparison.
@@ -66,14 +66,14 @@ group :development, :test do
 end
 
 group :development do
-  gem 'listen', '~> 3.2.1'
+  gem 'listen', '~> 3.4'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 4.0.4'
+  gem 'web-console', '>= 4.1'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.1'
+  gem 'spring-watcher-listen', '~> 2.0'
   # Preview email in the default browser instead of sending it.
-  gem 'letter_opener', '~> 1.7.0'
+  gem 'letter_opener', '~> 1.7'
   # A Rake task that helps you find dead routes and unused actions
   gem 'traceroute'
   # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
@@ -84,7 +84,7 @@ group :test do
   # The Bullet gem is designed to increase your application's performance by reducing the number of queries.
   gem 'bullet'
   # Adds support for Capybara system testing and selenium driver
-  gem 'capybara', '>= 3.33.0'
+  gem 'capybara', '>= 3.3'
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
