@@ -19,8 +19,8 @@ class SynchronizeSchoolHolidays
 
       facet_group['facets'].each do |facet|
         school_holidays_count = SchoolHoliday.where(school_year: facet['name'])
-                                             .where('school_holidays.from IS NOT NULL')
-                                             .where('school_holidays.to IS NOT NULL')
+                                             .where.not(from: nil)
+                                             .where.not(to: nil)
                                              .inject(0) { |sum, x| sum + x.locations.size }
 
         next if school_holidays_count >= facet['count']

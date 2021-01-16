@@ -19,8 +19,8 @@ module UserAccount
 
         @school_holidays = SchoolHoliday
           .where(from: from..to, zone: current_zones)
-          .where('school_holidays.from IS NOT NULL')
-          .where('school_holidays.to IS NOT NULL')
+          .where.not(from: nil)
+          .where.not(to: nil)
       end
     end
   end

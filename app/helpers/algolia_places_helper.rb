@@ -11,7 +11,7 @@ module AlgoliaPlacesHelper
     when ->(tag) { tag.match(/city/) } then 'fas fa-city'
     when ->(tag) { tag.match(/country/) } then 'fas fa-globe-americas'
     else
-      'fas fa-map-marker-alt'
+      'fas fa-map-marker'
     end
   end
 end
