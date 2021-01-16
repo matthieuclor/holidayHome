@@ -42,7 +42,7 @@
     "settings": {
         "import/resolver": {
             "node": {
-                "paths": ["./app/javascript"],
+                "paths": ["./app/javascript", "./app/javascript/src"],
                 "extensions": [".js", ".vue"]
             }
         }

@@ -17,7 +17,7 @@ import BookingItem from './components/booking/booking_item.vue';
 import MessageForm from './components/message/message_form.vue';
 import MessageList from './components/message/message_list.vue';
 import FlashMessage from 'shared/components/flash/flash_message';
-import consumer from '../channels/consumer';
+import consumer from 'channels/consumer';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
