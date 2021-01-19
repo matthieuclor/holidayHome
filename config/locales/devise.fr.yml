@@ -29,8 +29,14 @@ fr:
         unconfirmed_email: Email non confirmé
         unlock_token: Clé de déverrouillage
         updated_at: Date de mise à jour
+      admin:
+        first_name: Prénom
+        last_name: Nom
+        email: Email
+        password: Mot de passe
     models:
       user: Utilisateur
+      admin: Administrateur
   devise:
     confirmations:
       confirmed: Votre compte a bien été confirmé.

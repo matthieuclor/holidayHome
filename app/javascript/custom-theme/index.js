@@ -1,2 +1,2 @@
-const components = require.context('.', true, /_component\.js$/);
+const components = require.context('./components/', true, /\.js$/);
 components.keys().forEach(components);
