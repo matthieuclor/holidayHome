@@ -84,6 +84,12 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api, defaults: { format: :json } do
+    scope module: :authentification do
+      resources :sessions, only: :create
+    end
+  end
+
   devise_for :admins, controllers: {
     sessions: 'admin_account/authentification/sessions'
   }

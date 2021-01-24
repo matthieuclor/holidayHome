@@ -35,6 +35,8 @@ gem 'active_storage_validations'
 gem 'sidekiq', '~> 6.1'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
+# A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
+gem 'jwt'
 # Simple Form aims to be as flexible as possible while helping you with powerful components to create your forms.
 gem 'simple_form'
 # Reduces boot times through caching; required in config/boot.rb
