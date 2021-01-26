@@ -27,7 +27,7 @@ module Api
       begin
         jwt_payload =
           JWT.decode(
-            request.headers['Authorization'].split[1].remove('"'),
+            request.headers['Authorization'],
             Rails.application.secrets.secret_key_base
           ).first
 

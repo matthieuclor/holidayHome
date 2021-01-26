@@ -88,6 +88,8 @@ Rails.application.routes.draw do
     scope module: :authentification do
       resources :sessions, only: :create
     end
+
+    resources :families, only: :index
   end
 
   devise_for :admins, controllers: {
