@@ -29,7 +29,6 @@ json.venues @venues do |venue|
     :vehicles_count
   )
 
-  if venue.photos.attached?
-    json.photo_url venue.photos.first.variant(resize_to_fill: [100, 100]).url
-  end
+  venue.photos.attached? &&
+    json.photo_url(venue.photos.first.variant(resize_to_fill: [100, 100]).url)
 end
