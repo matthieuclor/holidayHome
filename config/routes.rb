@@ -89,7 +89,9 @@ Rails.application.routes.draw do
       resources :sessions, only: :create
     end
 
+    resource :current_families, only: :update
     resources :families, only: :index
+    resources :venues, only: :index
   end
 
   devise_for :admins, controllers: {
