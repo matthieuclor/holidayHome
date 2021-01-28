@@ -42,7 +42,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :address
       t.integer :status, default: 0
       t.hstore :current_venue_id, default: {}
-      t.hstore :current_school_holiday_zones, default: { 'A': false, 'B': false, 'C': false }
+      t.hstore :current_school_holiday_zones, default: { A: false, B: false, C: false }
       t.integer :plan, default: 0
       t.date :plan_deadline
 

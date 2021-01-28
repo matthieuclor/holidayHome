@@ -30,7 +30,7 @@ class DataEducationGouv
         lang: lang,
         timezone: timezone
       },
-      { 'Accept': 'application/json' }
+      { Accept: 'application/json' }
     )
 
     response_body = JSON.parse(response.body)

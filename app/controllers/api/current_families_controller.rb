@@ -3,7 +3,11 @@
 module Api
   class CurrentFamiliesController < Api::ApplicationController
     def update
-      current_user.update(current_family_id: current_family_params[:id])
+      if current_user.update(current_family_id: current_family_params[:id])
+        render status: :ok
+      else
+        head :unprocessable_entity
+      end
     end
 
     private

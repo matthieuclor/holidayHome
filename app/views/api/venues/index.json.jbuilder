@@ -30,5 +30,7 @@ json.venues @venues do |venue|
   )
 
   venue.photos.attached? &&
-    json.photo_url(venue.photos.first.variant(resize_to_fill: [100, 100]).url)
+    json.photo_url(
+      polymorphic_url(venue.photos.first.variant(resize_to_fill: [100, 100]))
+    )
 end

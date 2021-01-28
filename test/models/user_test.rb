@@ -42,13 +42,13 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test 'invalid user with the wrong zones keys' do
-    @user.current_school_holiday_zones =  { 'A': 'false', 'B': 'false', 'D': 'true' }
+    @user.current_school_holiday_zones =  { A: 'false', B: 'false', D: 'true' }
     assert_not @user.valid?
     assert_not_nil @user.errors[:current_school_holiday_zones]
   end
 
   test 'invalid user with the wrong zones values' do
-    @user.current_school_holiday_zones =  { 'A': 'false', 'B': 'test', 'C': 'true' }
+    @user.current_school_holiday_zones =  { A: 'false', B: 'test', C: 'true' }
     assert_not @user.valid?
     assert_not_nil @user.errors[:current_school_holiday_zones]
   end

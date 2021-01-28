@@ -90,6 +90,7 @@ Rails.application.routes.draw do
     end
 
     resource :current_families, only: :update
+    resource :current_venues, only: :update
     resources :families, only: :index
     resources :venues, only: :index
   end
