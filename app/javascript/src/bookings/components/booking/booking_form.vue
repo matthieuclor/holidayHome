@@ -4,7 +4,7 @@
       <div class="card-body">
         <div class="d-flex justify-content-center align-items-center">
           <form @submit.prevent="submitBookingForm" class="form-inline mr-2">
-            <div class="form-group">
+            <div class="form-group mb-0">
               <label class="mr-2">
                 Créer une réservation pour&nbsp;
                 <span class="font-weight-bold">{{ currentVenue.name }}</span>
@@ -16,7 +16,15 @@
                              mode="range"
                              v-model="dateRange"
                              :disabled-dates="disabledDates"
-                             ref="formCalendar" />
+                             ref="formCalendar">
+                <template v-slot="{inputValue, inputEvents}">
+                  <input class="form-control string"
+                         placeholder="Selectionnez des dates"
+                         :value="inputValue"
+                         v-on="inputEvents"
+                  />
+                </template>
+              </v-date-picker>
             </div>
           </form>
         </div>

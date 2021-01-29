@@ -5,6 +5,7 @@ Disallow: /admins/*
 Disallow: /user_account/*
 Disallow: /users/*
 Disallow: /admin_account/*
+Disallow: /api/*
 
 Disallow: /*?page=*
 
