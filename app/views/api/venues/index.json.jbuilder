@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.venues @venues do |venue|
+json.venues(@venues) do |venue|
   json.call(
     venue,
     :id,
