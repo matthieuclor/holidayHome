@@ -8,7 +8,8 @@ json.bookings do
         startingDay: date == booking.from.to_date,
         endingDay: date == booking.to.to_date,
         color: booking.accepted? ? '#c6f6d5' : '#feebc8',
-        textColor: booking.accepted? ? '#22543d' : '#7b341e'
+        textColor: booking.accepted? ? '#22543d' : '#7b341e',
+        bookingId: booking.id
       )
     end
   end
