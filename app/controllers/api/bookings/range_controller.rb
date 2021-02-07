@@ -7,7 +7,8 @@ module Api
       before_action :set_current_venue
 
       def index
-        head :unprocessable_entity unless params['year'].present?
+        return head :unprocessable_entity unless params['year'].present?
+
         from = DateTime.new(params['year'].to_i).beginning_of_year
         to = DateTime.new(params['year'].to_i).end_of_year
 
@@ -24,7 +25,7 @@ module Api
                 .where(status: %i(pending accepted))
                 .where(to: from..to)
             )
-          )
+        )
 
         render status: :ok
       end
