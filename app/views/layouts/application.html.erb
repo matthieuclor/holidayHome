@@ -49,10 +49,10 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <div class="d-flex align-items-center">
           <ul class="navbar-nav align-items-lg-center">
-            <li class="nav-item <%= 'active' if controller_name == 'about' %>">
+            <li class="nav-item <%= 'active' if action_name == 'about' %>">
               <%= link_to "À propos", about_path, class: "nav-link" %>
             </li>
-            <li class="nav-item <%= 'active' if controller_name == 'pricing' %>">
+            <li class="nav-item <%= 'active' if action_name == 'pricing' %>">
               <%= link_to "Nos offres", pricing_path, class: "nav-link" %>
             </li>
             <% if current_user %>
