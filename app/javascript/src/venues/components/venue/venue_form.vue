@@ -97,6 +97,8 @@
                name="commit"
                value="Enregistrer"
                class="btn btn-block btn-success">
+
+        <hr class="my-5">
       </form>
     </div>
 

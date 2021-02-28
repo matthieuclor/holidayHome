@@ -100,6 +100,8 @@
           Supprimer {{ venueItem.name }}
         </button>
       </div>
+
+      <hr class="my-5">
     </div>
     <div v-else >
       <VenueSkeleton />
