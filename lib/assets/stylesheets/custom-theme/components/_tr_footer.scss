@@ -2,4 +2,8 @@
   height: 100px;
   width: 100%;
   background: transparent;
+
+  @include media-breakpoint-between(lg, xl) {
+    height: 0px;
+  }
 }
