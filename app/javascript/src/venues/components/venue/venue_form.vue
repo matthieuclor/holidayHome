@@ -97,6 +97,8 @@
                name="commit"
                value="Enregistrer"
                class="btn btn-block btn-success">
+
+        <div class='tr-footer'></div>
       </form>
     </div>
 

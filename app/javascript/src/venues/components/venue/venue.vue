@@ -2,13 +2,13 @@
   <div>
     <div v-if="venueItem">
       <div class="d-flex justify-content-between align-items-center mb-2">
-        <h1 class="m-0">{{ venueItem.name }}</h1>
+        <h1 class="m-0 text-truncate">{{ venueItem.name }}</h1>
 
         <div class="d-flex flex-row align-items-center">
           <router-link v-if="venueItem.isEditable"
                        :to="{ name: 'editVenue', params: { id: venueItem.id } }">
 
-            <button class="btn btn-primary">
+            <button class="btn btn-primary text-nowrap">
               <i class="fas fa-pen mr-2"></i>
               Editer
             </button>
@@ -100,6 +100,8 @@
           Supprimer {{ venueItem.name }}
         </button>
       </div>
+
+      <div class='tr-footer'></div>
     </div>
     <div v-else >
       <VenueSkeleton />

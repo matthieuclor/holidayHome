@@ -19,7 +19,7 @@ export default {
       axios(
         {
           method: 'post',
-          url: `${bookingId}/messages.json`,
+          url: `/user_account/bookings/${bookingId}/messages.json`,
           data: qs.stringify({ message: { content: message } }),
           headers: { 'X-CSRF-TOKEN': csrfToken },
         },

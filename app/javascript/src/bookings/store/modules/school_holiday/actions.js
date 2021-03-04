@@ -3,7 +3,7 @@ import qs from 'qs';
 
 export default {
   getSchoolHolidayItems({ commit }, calendar) {
-    axios.get('school_holidays/range.json', { params: { ...calendar } })
+    axios.get('/user_account/school_holidays/range.json', { params: { ...calendar } })
       .then((response) => commit('UPDATE_SCHOOL_HOLIDAY_ITEMS', response.data.schoolHolidays));
   },
   update_current_school_holiday_zones({ commit }, { key, value }) {

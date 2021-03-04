@@ -2,13 +2,13 @@ import axios from 'axios';
 
 export default {
   getVehicleItems({ commit }, venueId) {
-    axios.get(`venues/${venueId}/vehicles.json`).then((response) => {
+    axios.get(`/user_account/venues/${venueId}/vehicles.json`).then((response) => {
       commit('UPDATE_VEHICLE_ITEMS', response.data.vehicles);
       commit('UPDATE_VEHICLE_VENUE_ITEM', response.data.venue);
     });
   },
   getVehicleFormItem({ commit }, { venueId, id }) {
-    const url = `venues/${venueId}/vehicles/${id ? `${id}/edit.json` : 'new.json'}`;
+    const url = `/user_account/venues/${venueId}/vehicles/${id ? `${id}/edit.json` : 'new.json'}`;
 
     axios.get(url).then((response) => {
       commit('UPDATE_VEHICLE_FORM_ITEM', response.data.vehicle);
@@ -55,7 +55,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       axios.delete(
-        `venues/${venueId}/vehicles/${id}.json`,
+        `/user_account/venues/${venueId}/vehicles/${id}.json`,
         { headers: { 'X-CSRF-TOKEN': csrfToken } },
       ).then((response) => {
         dispatch('getVehicleItems', venueId);

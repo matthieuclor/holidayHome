@@ -4,15 +4,15 @@ import qs from 'qs';
 
 export default {
   getBookingPendingItems({ commit }) {
-    axios.get('bookings/pending.json')
+    axios.get('/user_account/bookings/pending.json')
       .then((response) => commit('UPDATE_BOOKING_PENDING_ITEMS', response.data.pendingBookings));
   },
   getBookingItems({ commit }, calendar) {
-    axios.get('bookings/range.json', { params: { ...calendar } })
+    axios.get('/user_account/bookings/range.json', { params: { ...calendar } })
       .then((response) => commit('UPDATE_BOOKING_ITEMS', response.data.bookings));
   },
   getBookingFormItems({ commit }, calendar) {
-    axios.get('bookings/range.json', { params: { ...calendar } })
+    axios.get('/user_account/bookings/range.json', { params: { ...calendar } })
       .then((response) => commit('UPDATE_BOOKING_FORM_ITEMS', response.data.bookings));
   },
   updateBookingDateRange({ commit }, dateRange) {
@@ -32,7 +32,7 @@ export default {
       axios(
         {
           method: 'post',
-          url: 'bookings.json',
+          url: '/user_account/bookings.json',
           data: qs.stringify({
             booking: {
               from,

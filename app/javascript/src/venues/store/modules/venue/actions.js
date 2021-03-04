@@ -3,14 +3,14 @@ import qs from 'qs';
 
 export default {
   getVenueItems({ commit }, page = 1) {
-    axios.get(`venues.json?page=${page}`).then((response) => {
+    axios.get(`/user_account/venues.json?page=${page}`).then((response) => {
       commit('UPDATE_VENUE_ITEMS', response.data.venues);
       commit('UPDATE_VENUE_PAGY', response.data.pagy);
     });
   },
   getVenueItem({ dispatch, commit }, id) {
     dispatch('removeVenueItem').then(() => {
-      axios.get(`venues/${id}.json`).then((response) => {
+      axios.get(`/user_account/venues/${id}.json`).then((response) => {
         commit('UPDATE_VENUE_ITEM', response.data);
       });
     });
@@ -22,7 +22,7 @@ export default {
     });
   },
   getVenueFormItem({ commit }, id) {
-    const url = `venues/${id ? `${id}/edit.json` : 'new.json'}`;
+    const url = `/user_account/venues/${id ? `${id}/edit.json` : 'new.json'}`;
 
     axios.get(url).then((response) => {
       commit('UPDATE_VENUE_FORM_ITEM', response.data.venue);
@@ -33,7 +33,7 @@ export default {
     const csrfToken = document.querySelector('[name=csrf-token]').content;
 
     axios.delete(
-      `venues/${venueId}/photos/${id}.json`,
+      `/user_account/venues/${venueId}/photos/${id}.json`,
       { headers: { 'X-CSRF-TOKEN': csrfToken } },
     ).then((response) => {
       commit('REMOVE_PHOTO', index);
@@ -170,7 +170,7 @@ export default {
 
     return new Promise((resolve, reject) => {
       axios.delete(
-        `venues/${id}.json`,
+        `/user_account/venues/${id}.json`,
         { headers: { 'X-CSRF-TOKEN': csrfToken } },
       ).then((response) => {
         commit('UPDATE_VENUE_ITEM', null);
