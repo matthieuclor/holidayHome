@@ -369,7 +369,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   sentry-raven
-  sidekiq (~> 6.1)
+  sidekiq (~> 6.2)
   simple_form
   sitemap_generator
   slack-notifier
