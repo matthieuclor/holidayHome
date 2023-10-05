@@ -32,7 +32,7 @@ gem 'aws-sdk-s3', require: false
 gem 'active_storage_validations'
 
 # Background jobs
-gem 'sidekiq', '~> 6.2'
+gem 'sidekiq', '~> 6.5'
 # Devise is a flexible authentication solution for Rails based on Warden.
 gem 'devise'
 # A ruby implementation of the RFC 7519 OAuth JSON Web Token (JWT) standard.
