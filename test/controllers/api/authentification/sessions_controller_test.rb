@@ -19,7 +19,7 @@ module Api
 
         user = @controller.view_assigns['user']
         jwt_token = @controller.view_assigns['jwt_token']
-        jwt_payload = JWT.decode(jwt_token, Rails.application.secrets.secret_key_base).first
+        jwt_payload = JWT.decode(jwt_token, Rails.application.secret_key_base).first
 
         assert_instance_of User, user
         assert_equal user.id, @user.id

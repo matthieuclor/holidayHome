@@ -18,7 +18,7 @@ module Api
     test 'should render unauthorized with expired token' do
       @expired_jwt_token = JWT.encode(
         { id: @user.id, exp: 1.day.ago.to_i },
-        Rails.application.secrets.secret_key_base
+        Rails.application.secret_key_base
       )
 
       get api_venues_url, headers: { Authorization: @expired_jwt_token }, as: :json

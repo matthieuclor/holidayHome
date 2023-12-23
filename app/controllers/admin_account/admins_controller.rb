@@ -2,6 +2,8 @@
 
 module AdminAccount
   class AdminsController < AdminAccount::ApplicationController
+    include Pagy::Backend
+
     respond_to :js, :html
 
     def index

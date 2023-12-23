@@ -2,6 +2,8 @@
 
 module Api
   class ApplicationController < ActionController::Base
+    include Pagy::Backend
+
     layout false
     respond_to :json
     skip_before_action :verify_authenticity_token
@@ -28,7 +30,7 @@ module Api
         jwt_payload =
           JWT.decode(
             request.headers['Authorization'],
-            Rails.application.secrets.secret_key_base
+            Rails.application.secret_key_base
           ).first
 
         @current_user_id = jwt_payload['id']

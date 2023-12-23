@@ -2,6 +2,8 @@
 
 module UserAccount
   class ApplicationController < ActionController::Base
+    include Pagy::Backend
+
     layout 'user_account/layouts/application'
 
     before_action :store_previous_url, :authenticate_user!, :set_notifications

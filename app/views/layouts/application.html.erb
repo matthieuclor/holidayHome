@@ -85,10 +85,10 @@
 
     <div id="modal-container"></div>
     <div id="toast-container">
-      <%= render "./shared/flash_messages" %>
+      <%= render "shared/flash_messages" %>
     </div>
   </body>
 
-  <%= render "./shared/cookies_info_card" unless cookies[:hutoki_rgpd] %>
-  <%= render "./shared/footer" unless @skip_footer %>
+  <%= render "shared/cookies_info_card" unless cookies[:hutoki_rgpd] %>
+  <%= render "shared/footer" unless @skip_footer %>
 </html>
