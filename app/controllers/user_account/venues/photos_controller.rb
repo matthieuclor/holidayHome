@@ -16,7 +16,7 @@ module UserAccount
       end
 
       def destroy
-        photo = @venue.photos.where(id: params[:id])
+        photo = @venue.photos.find_by(id: params[:id])
 
         if photo.present?
           photo.purge
