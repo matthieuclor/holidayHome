@@ -28,12 +28,12 @@ json.is_editable(
 
 if @venue.photos.attached?
   json.photos @venue.photos do |photo|
-    json.url url_for(photo.variant(resize_to_limit: [550, 300]))
+    json.url photo.variant(resize_to_limit: [550, 300].processed.service_url)
   end
 end
 
 @venue.map.attached? &&
-  json.map_url(url_for(@venue.map.variant(resize_to_limit: [300, 300])))
+  json.map_url(@venue.map.variant(resize_to_limit: [300, 300]).processed.service_url)
 
 json.keys @venue.keys do |key|
   json.call(key, :id, :name)
