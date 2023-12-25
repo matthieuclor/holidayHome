@@ -1,0 +1,12 @@
+fr:
+  admin_account:
+    articles:
+      Statuses:
+        update:
+          success: L'article a bien été mis à jour
+          error: Un problem est survenu lors de la mise à jour de l'article
+  user_account:
+    families:
+      create:
+        success: La famille a bien été créé
+        error: Un problem est survenu lors de la creation de la famille

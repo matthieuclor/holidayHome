@@ -9,10 +9,10 @@ module AdminAccount
         @article = Article.find(params[:article_id])
 
         if @article.update(article_params)
-          flash[:success] = "L'article a bien été mis à jour"
+          flash[:success] = t('.success')
           render js: 'location.reload()'
         else
-          flash[:error] = "Un problem est survenu lors de la mise à jour de l'article"
+          flash[:error] = t('.error')
           render :update, status: :unprocessable_entity
         end
       end

@@ -21,6 +21,9 @@ module UserAccount
       @family = current_user.families.build
     end
 
+    def edit
+    end
+
     def create
       @family = current_user.families.build(
         family_params.merge(creator: current_user)
@@ -28,16 +31,13 @@ module UserAccount
 
       if check_name_validity && @family.save
         add_family_to_current_user
-        flash[:success] = 'La famille a bien été créé'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
         @plan_error = @family.errors[:base].first
-        flash[:error] = @plan_error || 'Un problem est survenu lors de la creation de la famille'
+        flash[:error] = @plan_error || t('.error')
         render :new, status: :unprocessable_entity
       end
-    end
-
-    def edit
     end
 
     def update
