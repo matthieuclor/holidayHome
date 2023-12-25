@@ -147,6 +147,7 @@ GEM
       ruby2_keywords (>= 0.0.4)
     faraday-net_http (3.0.2)
     ffi (1.16.3)
+    foreman (0.87.2)
     globalid (1.2.1)
       activesupport (>= 6.1)
     http-accept (1.7.0)
@@ -326,8 +327,8 @@ GEM
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
     semantic_range (3.0.0)
-    sentry-raven (3.1.2)
-      faraday (>= 1.0)
+    sentry-ruby (5.15.2)
+      concurrent-ruby (~> 1.0, >= 1.0.2)
     sidekiq (7.2.0)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
@@ -404,6 +405,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   faraday
+  foreman
   image_processing
   interactor
   jbuilder
@@ -420,7 +422,7 @@ DEPENDENCIES
   rubocop-rails
   sass-rails
   selenium-webdriver
-  sentry-raven
+  sentry-ruby
   sidekiq
   simple_form
   sitemap_generator
@@ -435,7 +437,7 @@ DEPENDENCIES
   webpacker
 
 RUBY VERSION
-   ruby 3.2.2p53
+   ruby 3.3.0p0
 
 BUNDLED WITH
    2.5.3

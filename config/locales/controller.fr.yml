@@ -10,3 +10,9 @@ fr:
       create:
         success: La famille a bien été créé
         error: Un problem est survenu lors de la creation de la famille
+      update:
+        success: La famille a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour de la famille
+      destroy:
+        success: La famille a bien été supprimée
+        error: Un problem est survenu lors de la suppression de la famille

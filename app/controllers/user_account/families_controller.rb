@@ -42,10 +42,10 @@ module UserAccount
 
     def update
       if @family.update(family_params)
-        flash[:success] = 'La famille a bien été mise à jour'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de la famille'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end
@@ -53,9 +53,9 @@ module UserAccount
     def destroy
       if @family.destroy
         remove_family_from_current_user
-        flash[:success] = 'La famille a bien été supprimée'
+        flash[:success] = t('.success')
       else
-        flash[:error] = 'Un problem est survenu lors de la suppression de la famille'
+        flash[:error] = t('.error')
       end
 
       redirect_to user_account_families_path

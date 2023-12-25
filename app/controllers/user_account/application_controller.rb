@@ -23,8 +23,10 @@ module UserAccount
     end
 
     def raven_context(user)
-      Raven.user_context(id: user.id)
-      Raven.extra_context(params: params.to_unsafe_h, url: request.url)
+      Sentry.with_scope do |scope|
+        scope.set_user(id: user.id)
+        scope.set_extras(params: params.to_unsafe_h, url: request.url)
+      end
     end
   end
 end

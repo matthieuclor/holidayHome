@@ -1,5 +1,4 @@
-Raven.configure do |config|
+Sentry.init do |config|
   config.dsn = ENV['SENTRY_DSN']
-  config.environments  = %w(production)
-  config.async = lambda { |event| SentryJob.perform_later(event) }
+  config.enabled_environments  = %w(production)
 end
