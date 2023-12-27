@@ -2,7 +2,7 @@
 
 module AdminAccount
   class UsersController < AdminAccount::ApplicationController
-    before_action :set_user, only: %i(edit update)
+    before_action :user, only: %i(edit update)
     respond_to :js, :html
 
     def index
@@ -24,18 +24,18 @@ module AdminAccount
 
     def update
       if @user.update(user_params)
-        flash[:success] = "L'utilisateur a bien été mise a jours"
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de l'utilisateur"
+        flash[:error] = t('.error')
         render :edit
       end
     end
 
     private
 
-    def set_user
-      @user = User.find(params[:id])
+    def user
+      @user ||= User.find(params[:id])
     end
 
     def user_params

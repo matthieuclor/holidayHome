@@ -4,7 +4,7 @@ module AdminAccount
   module Bookings
     class BookingApprovalsController < AdminAccount::ApplicationController
       respond_to :js
-      before_action :set_booking_approval, only: %i(edit update)
+      before_action :booking_approval, only: %i(edit update)
 
       def index
         @pagy, @booking_approvals = pagy(
@@ -17,18 +17,18 @@ module AdminAccount
 
       def update
         if @booking_approval.update(booking_approval_params)
-          flash[:success] = "L'approbation a bien été mise à jour"
+          flash[:success] = t('.success')
           render js: 'location.reload()'
         else
-          flash[:error] = "Un problem est survenu lors de la mise à jour de l'approbation"
+          flash[:error] = t('.error')
           render :edit
         end
       end
 
       private
 
-      def set_booking_approval
-        @booking_approval = BookingApproval.find_by(
+      def booking_approval
+        @booking_approval ||= BookingApproval.find_by(
           booking_id: params[:booking_id],
           id: params[:id]
         )

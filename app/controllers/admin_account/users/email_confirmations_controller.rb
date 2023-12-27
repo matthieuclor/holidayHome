@@ -7,9 +7,9 @@ module AdminAccount
         user = User.find(params[:user_id])
 
         if user.confirm
-          flash[:success] = "L'email de #{user.first_name} a bien été confirmé"
+          flash[:success] = t('.success', { first_name: user.first_name })
         else
-          flash[:error] = "Un problem est survenu lors de la confirmation de l'email"
+          flash[:error] = t('.error')
         end
 
         redirect_back fallback_location: admin_account_users_path

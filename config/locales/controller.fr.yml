@@ -1,5 +1,47 @@
 fr:
   admin_account:
+    venues:
+      update:
+        success: Le lieu a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du lieu
+      digital_codes:
+        success: Le digicode a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du digicode
+      home_services:
+        success: Le service à domicile a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du service à domicile
+      keys:
+        success: La clé a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour de la clé
+      networks:
+        success: Le réseau a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du réseau
+      photos:
+        create:
+          success: Les photos ont bien été enregistrés
+          error: Un problem est survenu lors de l'enregistrement des photos
+        destroy:
+          success: La photo a bien été supprimée
+          error: Un problem est survenu lors de la suppression de la photo
+      vehicles:
+        update:
+          success: Le véhicule a bien été mise à jour
+          error: Un problem est survenu lors de la mise à jour du véhicule
+    users:
+      email_confirmations:
+        update:
+          success: L'email de {{ first_name }} a bien été confirmé
+          error: Un problem est survenu lors de la confirmation de l'email
+    question_and_answers:
+      statuses:
+        update:
+          success: La faq a bien été mis à jour
+          error: Un problem est survenu lors de la mise à jour de la faq
+    bookings:
+      booking_approvals:
+        update:
+          success: L'approbation a bien été mise à jour
+          error: Un problem est survenu lors de la mise à jour de l'approbation
     articles:
       create:
         success: L'article a bien été créé
@@ -14,7 +56,51 @@ fr:
         update:
           success: L'article a bien été mis à jour
           error: Un problem est survenu lors de la mise à jour de l'article
-        
+    bookings:
+      update:
+        success: La demande a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour de la demande
+    families:
+      update:
+        success: La famille a bien été mise a jours
+        error: Un problem est survenu lors de la mise à jour de la famille
+    question_and_answers:
+      create:
+        success: La faq a bien été créé
+        error: Un problem est survenu lors de la création de la faq
+      update:
+        success: La faq a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour de la faq
+      destroy:
+        success: La faq a bien été supprimée
+        error: Un problem est survenu lors de la suppression de la faq
+    school_holidays:
+      create:
+        success: La synchronisation a bien fonctionnée
+    team_members:
+      create:
+        success: Le membre a bien été créé
+        error: Un problem est survenu lors de la création du membre
+      update:
+        success: Le membre a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du membre
+      destroy:
+        success: Le membre a bien été supprimée
+        error: Un problem est survenu lors de la suppression du membre
+    users:
+      update:
+        success: L'utilisateur a bien été mise a jours
+        error: Un problem est survenu lors de la mise à jour de l'utilisateur
+    vehicle_types:
+      create:
+        success: Le type de véhicule a bien été créé
+        error: Un problem est survenu lors de la création du type de véhicule
+      update:
+        success: Le type de véhicule a bien été mise à jour
+        error: Un problem est survenu lors de la mise à jour du type de véhicule
+      destroy:
+        success: Le type de véhicule a bien été supprimé
+        error: Un problem est survenu lors de la suppression du type de véhicule
   user_account:
     families:
       create:

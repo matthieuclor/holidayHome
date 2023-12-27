@@ -6,10 +6,11 @@ module AdminAccount
       respond_to :js
 
       def index
-        @query = Booking.joins(:user).where(venues: { family_id: params[:family_id] }).ransack(booking_ransack_params)
-        @pagy, @bookings = pagy(
-          @query.result.includes(:venue, :user)
-        )
+        @query = Booking.joins(:user)
+                        .where(venues: { family_id: params[:family_id] })
+                        .ransack(booking_ransack_params)
+
+        @pagy, @bookings = pagy(@query.result.includes(:venue, :user))
         @bookings = BookingDecorator.wrap(@bookings)
       end
 

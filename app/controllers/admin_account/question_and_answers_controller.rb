@@ -3,7 +3,7 @@
 module AdminAccount
   class QuestionAndAnswersController < AdminAccount::ApplicationController
     respond_to :js, :html
-    before_action :set_question_and_answer, only: %i(show edit update destroy)
+    before_action :question_and_answer, only: %i(show edit update destroy)
 
     def index
       @query = QuestionAndAnswer.ransack(question_and_answer_ransack_params)
@@ -17,45 +17,45 @@ module AdminAccount
       @question_and_answer = QuestionAndAnswer.new
     end
 
+    def edit
+    end
+
     def create
       @question_and_answer = QuestionAndAnswer.new(question_and_answer_params)
 
       if @question_and_answer.save
-        flash[:success] = 'La faq a bien été créé'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la création de la faq'
+        flash[:error] = t('.error')
         render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-    end
-
     def update
       if @question_and_answer.update(question_and_answer_params)
-        flash[:success] = 'La faq a bien été mise à jour'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de la faq'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @question_and_answer.destroy
-        flash[:success] = 'La faq a bien été supprimée'
+        flash[:success] = t('.success')
         redirect_to admin_account_question_and_answers_path
       else
-        flash[:error] = 'Un problem est survenu lors de la suppression de la faq'
+        flash[:error] = t('.error')
         render :show
       end
     end
 
     private
 
-    def set_question_and_answer
-      @question_and_answer = QuestionAndAnswer.find(params[:id])
+    def question_and_answer
+      @question_and_answer ||= QuestionAndAnswer.find(params[:id])
     end
 
     def question_and_answer_params

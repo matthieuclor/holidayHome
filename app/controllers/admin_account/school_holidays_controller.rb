@@ -13,7 +13,7 @@ module AdminAccount
       context = SynchronizeSchoolHolidays.call
 
       if context.success?
-        flash[:success] = 'La synchronisation a bien fonctionnée'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
         flash[:error] = context.error

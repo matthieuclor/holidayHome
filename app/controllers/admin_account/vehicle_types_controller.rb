@@ -3,7 +3,7 @@
 module AdminAccount
   class VehicleTypesController < AdminAccount::ApplicationController
     respond_to :js, :html
-    before_action :set_vehicle_type, only: %i(edit update destroy)
+    before_action :vehicle_type, only: %i(edit update destroy)
 
     def index
       @query = VehicleType.ransack(vehicle_type_ransack_params)
@@ -14,36 +14,36 @@ module AdminAccount
       @vehicle_type = VehicleType.new
     end
 
+    def edit
+    end
+
     def create
       @vehicle_type = VehicleType.new(vehicle_type_params)
 
       if @vehicle_type.save
-        flash[:success] = 'Le type de véhicule a bien été créé'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la création du type de véhicule'
+        flash[:error] = t('.error')
         render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-    end
-
     def update
       if @vehicle_type.update(vehicle_type_params)
-        flash[:success] = 'Le type de véhicule a bien été mise à jour'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour du type de véhicule'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @vehicle_type.destroy
-        flash[:success] = 'Le type de véhicule a bien été supprimé'
+        flash[:success] = t('.success')
       else
-        flash[:error] = 'Un problem est survenu lors de la suppression du type de véhicule'
+        flash[:error] = t('.error')
       end
 
       redirect_to admin_account_vehicle_types_path
@@ -51,8 +51,8 @@ module AdminAccount
 
     private
 
-    def set_vehicle_type
-      @vehicle_type = VehicleType.find(params[:id])
+    def vehicle_type
+      @vehicle_type ||= VehicleType.find(params[:id])
     end
 
     def vehicle_type_ransack_params

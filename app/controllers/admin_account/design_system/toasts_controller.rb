@@ -6,7 +6,7 @@ module AdminAccount
       respond_to :js
 
       def create
-        flash[toast_params[:type].to_sym] = "Voice un toast de type #{toast_params[:type]} !"
+        flash[toast_params[:type].to_sym] = "Voici un toast de type #{toast_params[:type]} !"
       end
 
       private

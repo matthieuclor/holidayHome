@@ -3,25 +3,25 @@
 module AdminAccount
   module Venues
     class KeysController < AdminAccount::ApplicationController
-      before_action :set_key
+      before_action :key
 
       def edit
       end
 
       def update
         if @key.update(key_params)
-          flash[:success] = 'La clé a bien été mise à jour'
+          flash[:success] = t('.success')
           render js: 'location.reload()'
         else
-          flash[:error] = 'Un problem est survenu lors de la mise à jour de la clé'
+          flash[:error] = t('.error')
           render :edit
         end
       end
 
       private
 
-      def set_key
-        @key = Key.find_by(venue_id: params[:venue_id], id: params[:id])
+      def key
+        @key ||= Key.find_by(venue_id: params[:venue_id], id: params[:id])
       end
 
       def key_params

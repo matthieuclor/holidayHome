@@ -3,25 +3,25 @@
 module AdminAccount
   module Venues
     class VehiclesController < AdminAccount::ApplicationController
-      before_action :set_vehicle
+      before_action :vehicle
 
       def edit
       end
 
       def update
         if @vehicle.update(vehicle_params)
-          flash[:success] = 'Le véhicule a bien été mise à jour'
+          flash[:success] = t('.success')
           render js: 'location.reload()'
         else
-          flash[:error] = 'Un problem est survenu lors de la mise à jour du véhicule'
+          flash[:error] = t('.error')
           render :edit
         end
       end
 
       private
 
-      def set_vehicle
-        @vehicle = Vehicle.find_by(venue_id: params[:venue_id], id: params[:id])
+      def vehicle
+        @vehicle ||= Vehicle.find_by(venue_id: params[:venue_id], id: params[:id])
       end
 
       def vehicle_params

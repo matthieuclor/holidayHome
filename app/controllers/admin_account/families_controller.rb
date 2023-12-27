@@ -2,7 +2,7 @@
 
 module AdminAccount
   class FamiliesController < AdminAccount::ApplicationController
-    before_action :set_family, only: %i(edit update)
+    before_action :family, only: %i(edit update)
     respond_to :js, :html
 
     def index
@@ -22,18 +22,18 @@ module AdminAccount
 
     def update
       if @family.update(family_params)
-        flash[:success] = 'La famille a bien été mise a jours'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de la famille'
+        flash[:error] = t('.error')
         render :edit
       end
     end
 
     private
 
-    def set_family
-      @family = Family.find(params[:id])
+    def family
+      @family ||= Family.find(params[:id])
     end
 
     def family_params

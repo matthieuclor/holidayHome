@@ -3,25 +3,25 @@
 module AdminAccount
   module Venues
     class NetworksController < AdminAccount::ApplicationController
-      before_action :set_network
+      before_action :network
 
       def edit
       end
 
       def update
         if @network.update(network_params)
-          flash[:success] = 'Le réseau a bien été mise à jour'
+          flash[:success] = t('.success')
           render js: 'location.reload()'
         else
-          flash[:error] = 'Un problem est survenu lors de la mise à jour du réseau'
+          flash[:error] = t('.error')
           render :edit
         end
       end
 
       private
 
-      def set_network
-        @network = Network.find_by(venue_id: params[:venue_id], id: params[:id])
+      def network
+        @network ||= Network.find_by(venue_id: params[:venue_id], id: params[:id])
       end
 
       def network_params

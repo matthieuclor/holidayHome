@@ -3,7 +3,7 @@
 module AdminAccount
   class BookingsController < AdminAccount::ApplicationController
     respond_to :js, :html
-    before_action :set_booking, only: %i(edit update)
+    before_action :booking, only: %i(edit update)
 
     def show
       @booking = BookingDecorator.new(
@@ -16,18 +16,18 @@ module AdminAccount
 
     def update
       if @booking.update(booking_params)
-        flash[:success] = 'La demande a bien été mise à jour'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de la demande'
+        flash[:error] = t('.error')
         render :edit
       end
     end
 
     private
 
-    def set_booking
-      @booking = Booking.find(params[:id])
+    def booking
+      @booking ||= Booking.find(params[:id])
     end
 
     def booking_params
