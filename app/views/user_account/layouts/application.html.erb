@@ -11,12 +11,12 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'venues_vue', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'bookings_vue', 'data-turbolinks-track': 'reload' %>
-    <%= stylesheet_pack_tag 'bookings_vue', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'booking_vue', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'registration_vue', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application',
+                            'venues_vue',
+                            'bookings_vue',
+                            'booking_vue',
+                            'registration_vue',
+                            'data-turbolinks-track': 'reload' %>
   </head>
 
   <body class="padding-for-fixed-navbar">

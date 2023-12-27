@@ -29,6 +29,8 @@
   </div>
 
   <script>
-    $("#toast_<%= key %>_<%= value.object_id %>").toast("show");
+    window.addEventListener('load', function () {
+      $("#toast_<%= key %>_<%= value.object_id %>").toast("show");
+    })
   </script>
 <% end %>
