@@ -17,37 +17,37 @@ module AdminAccount
       @article = Article.new
     end
 
+    def edit
+    end
+
     def create
       @article = Article.new(article_params)
 
       if @article.save
-        flash[:success] = "L'article a bien été créé"
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la création de l'article"
+        flash[:error] = t('.error')
         render :new, status: :unprocessable_entity
       end
     end
 
-    def edit
-    end
-
     def update
       if @article.update(article_params)
-        flash[:success] = "L'article a bien été mis à jour"
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = "Un problem est survenu lors de la mise à jour de l'article"
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @article.destroy
-        flash[:success] = "L'article a bien été supprimé"
+        flash[:success] = t('.success')
         redirect_to admin_account_articles_path
       else
-        flash[:error] = "Un problem est survenu lors de la suppression de l'article"
+        flash[:error] = t('.error')
         render :show
       end
     end

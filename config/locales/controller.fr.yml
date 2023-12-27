@@ -1,10 +1,20 @@
 fr:
   admin_account:
     articles:
-      Statuses:
+      create:
+        success: L'article a bien été créé
+        error: Un problem est survenu lors de la création de l'article
+      update:
+        success: L'article a bien été mis à jour
+        error: Un problem est survenu lors de la mise à jour de l'article
+      destroy:
+        success: L'article a bien été supprimé
+        error: Un problem est survenu lors de la suppression de l'article
+      statuses:
         update:
           success: L'article a bien été mis à jour
           error: Un problem est survenu lors de la mise à jour de l'article
+        
   user_account:
     families:
       create:
