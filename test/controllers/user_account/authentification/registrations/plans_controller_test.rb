@@ -8,7 +8,7 @@ module UserAccount
       class PlansControllerTest < ActionDispatch::IntegrationTest
         User.plans.each_key do |plan|
           test "should set #{plan} hutoki_plan into session without sign in" do
-            post user_account_plans_url, params: { user: { plan: plan } }
+            post user_account_plans_url, params: { user: { plan: } }
 
             assert_equal session[:hutoki_plan], plan
             assert_redirected_to new_user_registration_url
@@ -16,7 +16,7 @@ module UserAccount
 
           test "should set #{plan} hutoki_plan into session with sign in" do
             sign_in users(:matthieu), scope: :user
-            post user_account_plans_url, params: { user: { plan: plan } }
+            post user_account_plans_url, params: { user: { plan: } }
 
             assert_equal session[:hutoki_plan], plan
             assert_redirected_to new_user_registration_url

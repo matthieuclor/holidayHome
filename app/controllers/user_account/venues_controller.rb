@@ -34,6 +34,9 @@ module UserAccount
       end
     end
 
+    def edit
+    end
+
     def create
       @venue = Venue.new(venue_params)
 
@@ -45,9 +48,6 @@ module UserAccount
         flash[:error] = @plan_error || 'Un problem est survenu lors de la création du lieu'
         render :new, status: :unprocessable_entity
       end
-    end
-
-    def edit
     end
 
     def update

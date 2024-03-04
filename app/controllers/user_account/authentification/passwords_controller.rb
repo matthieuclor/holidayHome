@@ -7,11 +7,11 @@ module UserAccount
         super
       end
 
-      def create # rubocop:disable Lint/UselessMethodDefinition
+      def edit # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
-      def edit # rubocop:disable Lint/UselessMethodDefinition
+      def create # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 

@@ -13,11 +13,11 @@ class Invitation < ApplicationRecord
   enum status: %i(pending accepted refused)
 
   validates_with InvitationValidFromPlan, on: :create
-  validates :sender, :family, :status, presence: true
+  validates :status, presence: true
   validates :email, format: { with: Devise.email_regexp }, presence: true
   validates :status, inclusion: { in: statuses.keys }
   validate :uniqueness_of_receiver_family, on: :create
-  validates :email, uniqueness: { # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :email, uniqueness: {
     scope: :family,
     conditions: -> { where(status: 'pending') }
   }
@@ -33,7 +33,7 @@ class Invitation < ApplicationRecord
   end
 
   def set_receiver
-    self.receiver = User.find_by(email: email)
+    self.receiver = User.find_by(email:)
   end
 
   def uniqueness_of_receiver_family

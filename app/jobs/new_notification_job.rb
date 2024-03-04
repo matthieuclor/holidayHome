@@ -21,7 +21,7 @@ class NewNotificationJob < ApplicationJob
   def render_notifications(notifications)
     UserAccount::NotificationsController.render(
       partial: 'user_account/layouts/notifications',
-      locals: { notifications: notifications },
+      locals: { notifications: },
       layout: false
     )
   end

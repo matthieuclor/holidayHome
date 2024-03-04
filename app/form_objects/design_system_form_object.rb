@@ -20,8 +20,8 @@ class DesignSystemFormObject < ApplicationFormObject
 
     %i(input select textarea checkbox radio_button switch).each do |attr|
       instance_variable_set("@#{attr}", args[attr])
-      instance_variable_set("@#{attr}_disabled", args["#{attr}_disabled".to_sym])
-      instance_variable_set("@#{attr}_required", args["#{attr}_required".to_sym])
+      instance_variable_set("@#{attr}_disabled", args[:"#{attr}_disabled"])
+      instance_variable_set("@#{attr}_required", args[:"#{attr}_required"])
     end
   end
 end

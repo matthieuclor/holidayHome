@@ -16,7 +16,7 @@ class Booking < ApplicationRecord
   default_scope { order(:from) }
 
   validates_with BookingValidFromPlan, on: :create
-  validates :from, :to, :user_id, :venue_id, presence: true
+  validates :from, :to, presence: true
   validates :status, inclusion: { in: statuses.keys }
 
   before_create :set_deadline
@@ -30,7 +30,7 @@ class Booking < ApplicationRecord
 
   def set_deadline
     new_deadline = DateTime.now + family.days_for_approval.days
-    self.deadline = from < new_deadline ? from : new_deadline
+    self.deadline = [from, new_deadline].min
   end
 
   def set_booking_approvals
@@ -40,7 +40,7 @@ class Booking < ApplicationRecord
       family.users.each do |user|
         next if user_id == user.id
 
-        BookingApproval.create(booking: self, user: user)
+        BookingApproval.create(booking: self, user:)
       end
     end
   end
@@ -51,9 +51,9 @@ class Booking < ApplicationRecord
     BookingMailer.send_status(self).deliver_later
     Notification.create(
       url: Rails.application.routes.url_helpers.user_account_booking_path(self),
-      user: user,
-      family: family,
-      notification_type: "#{status}_booking".to_sym,
+      user:,
+      family:,
+      notification_type: :"#{status}_booking",
       description: Notification.human_attribute_name(
         "description.#{status}_booking",
         {

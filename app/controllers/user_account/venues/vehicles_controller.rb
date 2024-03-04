@@ -16,6 +16,9 @@ module UserAccount
         @vehicle = @venue.vehicles.build
       end
 
+      def edit
+      end
+
       def create
         @vehicle = Vehicle.new(vehicles_params)
 
@@ -26,9 +29,6 @@ module UserAccount
           flash[:error] = 'Un problem est survenu lors de la création du véhicule'
           render :new, status: :unprocessable_entity
         end
-      end
-
-      def edit
       end
 
       def update

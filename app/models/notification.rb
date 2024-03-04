@@ -17,9 +17,7 @@ class Notification < ApplicationRecord
     refused_booking
   )
 
-  validates :user,
-            :family,
-            :notification_type,
+  validates :notification_type,
             :description,
             :url,
             :status,
@@ -27,7 +25,7 @@ class Notification < ApplicationRecord
 
   validates :status, inclusion: { in: statuses.keys }
   validates :notification_type, inclusion: { in: notification_types.keys }
-  validates :description, uniqueness: { # rubocop:disable Rails/UniqueValidationWithoutIndex
+  validates :description, uniqueness: {
     scope: :user,
     conditions: -> { where(status: :unread) }
   }

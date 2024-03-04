@@ -3,15 +3,15 @@
 module UserAccount
   module Authentification
     class UnlocksController < Devise::UnlocksController
+      def show # rubocop:disable Lint/UselessMethodDefinition
+        super
+      end
+
       def new # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 
       def create # rubocop:disable Lint/UselessMethodDefinition
-        super
-      end
-
-      def show # rubocop:disable Lint/UselessMethodDefinition
         super
       end
 

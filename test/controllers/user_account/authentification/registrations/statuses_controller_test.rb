@@ -16,7 +16,7 @@ module UserAccount
 
           assert @user.deactivated?
           @user.bookings.each { |booking| assert_not booking.pending? }
-          @user.bookings.where('bookings.from >= ?', Date.current).each do |booking|
+          @user.bookings.where('bookings.from >= ?', Date.current).find_each do |booking|
             assert booking.canceled?
           end
 

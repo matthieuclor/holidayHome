@@ -22,9 +22,9 @@ class AlgoliaPlaces
       req.headers['Content-Type'] = 'application/json'
       req.body = {
         hitsPerPage: hits_per_page,
-        language: language,
-        countries: countries,
-        query: query
+        language:,
+        countries:,
+        query:
       }.to_json
     end
 

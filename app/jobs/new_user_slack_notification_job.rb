@@ -5,7 +5,7 @@ class NewUserSlackNotificationJob < ApplicationJob
 
   def perform(id)
     user = UserDecorator.new(User.find(id))
-    notifier = Slack::Notifier.new(ENV['SLACK_WEBHOOK_URL'])
+    notifier = Slack::Notifier.new(ENV.fetch('SLACK_WEBHOOK_URL', nil))
     notifier.post(
       text: 'Vous avez un nouvel utilisateur monsieur.',
       attachments: {

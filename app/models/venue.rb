@@ -45,8 +45,6 @@ class Venue < ApplicationRecord
 
   validates :name,
             :address,
-            :creator,
-            :family,
             :bedrooms_count,
             :bathrooms_count,
             :single_beds_count,

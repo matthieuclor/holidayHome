@@ -10,6 +10,6 @@ class Message < ApplicationRecord
 
   default_scope { order(:created_at).reverse_order }
 
-  validates :user, :booking, :content, presence: true
+  validates :content, presence: true
   validates :content, length: { minimum: 2, maximum: CONTENT_MAX }
 end

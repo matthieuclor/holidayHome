@@ -3,6 +3,6 @@
 class Network < ApplicationRecord
   belongs_to :venue
 
-  validates :name, :venue, presence: true
+  validates :name, presence: true
   validates :name, uniqueness: { scope: :venue }
 end

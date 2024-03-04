@@ -21,7 +21,7 @@ module ApplicationHelper
         %w(circle text-secondary far)
       end
 
-    fa_icon(icon, text, class: "mr-2 #{color}", prefix: prefix)
+    fa_icon(icon, text, class: "mr-2 #{color}", prefix:)
   end
 
   def plan_badge(record)

@@ -21,14 +21,14 @@ class DataEducationGouv
     response = Faraday.get(
       url,
       {
-        dataset: dataset,
+        dataset:,
         q: query || build_query,
-        facet: facet,
-        rows: rows,
-        start: start,
-        format: format,
-        lang: lang,
-        timezone: timezone
+        facet:,
+        rows:,
+        start:,
+        format:,
+        lang:,
+        timezone:
       },
       { Accept: 'application/json' }
     )

@@ -78,7 +78,7 @@ class User < ApplicationRecord
 
   def generate_jwt
     JWT.encode(
-      { id: id, exp: 24.hours.from_now.to_i },
+      { id:, exp: 24.hours.from_now.to_i },
       Rails.application.secret_key_base
     )
   end
@@ -107,13 +107,13 @@ class User < ApplicationRecord
         if family.premium_users.present?
           family.update(plan_deadline: family.premium_users.maximum(:plan_deadline))
         else
-          family.update(plan: plan, plan_deadline: plan_deadline)
+          family.update(plan:, plan_deadline:)
         end
       end
     else
       families.includes(:creator).find_each do |family|
         family.update(
-          plan: plan,
+          plan:,
           plan_deadline: family.premium_users.maximum(:plan_deadline)
         )
       end
