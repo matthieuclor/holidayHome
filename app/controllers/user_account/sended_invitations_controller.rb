@@ -23,11 +23,11 @@ module UserAccount
 
       if @invitation.save
         create_notification if @invitation.receiver
-        flash[:success] = "L'invitation a bien été envoyé"
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
         @plan_error = @invitation.errors[:base].first
-        flash[:error] = @plan_error || "Un problem est survenu lors de l'envoi de l'invitation"
+        flash[:error] = @plan_error || t('.error')
         render :new, status: :unprocessable_entity
       end
     end
@@ -36,9 +36,9 @@ module UserAccount
       @invitation = Invitation.find(params[:id])
 
       if @invitation.destroy
-        flash[:success] = "L'invitation a bien été supprimée"
+        flash[:success] = t('.success')
       else
-        flash[:error] = "Un problem est survenu lors de la suppression de l'invitation"
+        flash[:error] = t('.error')
       end
 
       redirect_to user_account_sended_invitations_path

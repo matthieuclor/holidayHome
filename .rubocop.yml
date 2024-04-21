@@ -10,6 +10,7 @@ AllCops:
     - 'config/**/*'
     - 'db/**/*'
     - 'node_modules/**/*'
+    - 'Gemfile'
 
 Style/Documentation:
   Enabled: false

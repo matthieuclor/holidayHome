@@ -16,7 +16,7 @@ module Public
             create_notification(:refused_invitation)
           end
 
-          flash[:success] = 'La réponse a bien été prise en compte'
+          flash[:success] = t('.success')
           redirect_to user_account_received_invitations_path
         else
           redirect_to root_path
@@ -27,17 +27,17 @@ module Public
 
       def invitation_valid?
         unless @invitation.present?
-          flash[:error] = 'Votre invitation a été éffacée entre temps'
+          flash[:error] = t('.invitations.error.not_found')
           return false
         end
 
         unless %w(yes no).include?(params[:response])
-          flash[:error] = "Votre invitation n'a pas le bon format"
+          flash[:error] = t('.invitations.error.format')
           return false
         end
 
         if @invitation.accepted? || @invitation.refused?
-          flash[:error] = 'Vous avez déja répondu a cette invitation'
+          flash[:error] = t('.invitations.error.responded')
           return false
         end
 

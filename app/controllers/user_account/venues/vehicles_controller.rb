@@ -23,30 +23,30 @@ module UserAccount
         @vehicle = Vehicle.new(vehicles_params)
 
         if @vehicle.save
-          flash[:success] = 'Le véhicule a bien été créé'
+          flash[:success] = t('.success')
           render :create, status: :created
         else
-          flash[:error] = 'Un problem est survenu lors de la création du véhicule'
+          flash[:error] = t('.error')
           render :new, status: :unprocessable_entity
         end
       end
 
       def update
         if @vehicle.update(vehicles_params)
-          flash[:success] = 'Le véhicule a bien été mise à jour'
+          flash[:success] = t('.success')
           render :update, status: :ok
         else
-          flash[:error] = 'Un problem est survenu lors de la mise à jour du véhicule'
+          flash[:error] = t('.error')
           render :edit, status: :unprocessable_entity
         end
       end
 
       def destroy
         if @vehicle.destroy
-          flash[:success] = 'Le véhicule a bien été supprimé'
+          flash[:success] = t('.success')
           render status: :ok
         else
-          flash[:error] = 'Un problem est survenu lors de la suppression du véhicule'
+          flash[:error] = t('.error')
           render status: :unprocessable_entity
         end
       end

@@ -17,10 +17,10 @@ module UserAccount
 
         @booking.current_users.include?(@booking.user_id.to_s) || create_notification
 
-        flash[:success] = 'La réservation a bien été mise à jour'
+        flash[:success] = t('.success')
         render :update, status: :ok
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de la réservation'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end

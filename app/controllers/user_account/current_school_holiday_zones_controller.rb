@@ -8,7 +8,7 @@ module UserAccount
       if current_user.save
         render status: :ok
       else
-        flash[:error] = 'Un problem est survenu lors de la sélection de la zone'
+        flash[:error] = t('.error')
         render status: :unprocessable_entity
       end
     end

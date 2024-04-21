@@ -13,10 +13,10 @@ module UserAccount
 
     def update
       if current_user.update(plan: :premium, plan_deadline: Date.current + 1.year)
-        flash[:success] = 'Le plan a bien été mise à jour'
+        flash[:success] = t('.success')
         render js: 'location.reload()'
       else
-        flash[:error] = 'Un problem est survenu lors de la mise a jour du plan'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end

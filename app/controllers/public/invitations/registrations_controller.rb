@@ -26,10 +26,10 @@ module Public
           @invitee.received_invitations.last.accepted!
           sign_in(@invitee)
           create_notification(@invitee.received_invitations.last)
-          flash[:success] = 'Le compte a bien été créé'
+          flash[:success] = t('.success')
           redirect_to user_account_dashboards_path
         else
-          flash[:error] = 'Un problem est survenu lors de la creation de votre compte'
+          flash[:error] = t('.error')
           render :new
         end
       end
@@ -38,12 +38,12 @@ module Public
 
       def invitation_valid?
         unless @invitation.present?
-          flash[:error] = 'Votre invitation a été éffacée entre temps'
+          flash[:error] = t('.invitations.error.not_found')
           return false
         end
 
         if @invitation.receiver_id.present?
-          flash[:error] = 'Vous avez déja créé votre compte avec cette invitation'
+          flash[:error] = t('.invitations.error.created')
           return false
         end
 

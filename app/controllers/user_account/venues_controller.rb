@@ -41,11 +41,11 @@ module UserAccount
       @venue = Venue.new(venue_params)
 
       if @venue.save
-        flash[:success] = 'Le lieu a bien été créé'
+        flash[:success] = t('.success')
         render :create, status: :created
       else
         @plan_error = @venue.errors[:base].first
-        flash[:error] = @plan_error || 'Un problem est survenu lors de la création du lieu'
+        flash[:error] = @plan_error || t('.error')
         render :new, status: :unprocessable_entity
       end
     end
@@ -54,20 +54,20 @@ module UserAccount
       @venue = Venue.find(params[:id])
 
       if @venue.update(venue_params)
-        flash[:success] = 'Le lieu a bien été mise à jour'
+        flash[:success] = t('.success')
         render :update, status: :ok
       else
-        flash[:error] = 'Un problem est survenu lors de la mise à jour de du lieu'
+        flash[:error] = t('.error')
         render :edit, status: :unprocessable_entity
       end
     end
 
     def destroy
       if @venue.destroy
-        flash[:success] = 'Le lieu a bien été supprimé'
+        flash[:success] = t('.success')
         render status: :ok
       else
-        flash[:error] = 'Un problem est survenu lors de la suppression du lieu'
+        flash[:error] = t('.error')
         render status: :unprocessable_entity
       end
     end
