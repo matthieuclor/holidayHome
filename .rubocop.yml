@@ -8,7 +8,7 @@ AllCops:
   Exclude:
     - 'bin/*'
     - 'config/**/*'
-    - 'db/schema.rb'
+    - 'db/**/*'
     - 'node_modules/**/*'
 
 Style/Documentation:
