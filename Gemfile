@@ -80,6 +80,10 @@ group :development do
   gem 'traceroute', '~> 0.8.0'
   # A RuboCop extension focused on enforcing Rails best practices and coding conventions.
   gem 'rubocop-rails', '~> 2.24.0'
+  # Capybara-specific analysis for your projects, as an extension to RuboCop.
+  gem 'rubocop-capybara', '~> 2.20.0'
+  # gem factory_bot-specific analysis for your projects, as an extension to RuboCop.
+  gem 'rubocop-factory_bot', '~> 2.25.0'
   # Squasher compresses old ActiveRecord migrations
   gem 'squasher', '~> 0.8.0'
   # Manage Procfile-based applications
@@ -92,8 +96,10 @@ group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 3.40.0'
   gem 'selenium-webdriver', '~> 4.19.0'
+
   # Easy installation and use of web drivers to run system tests with browsers
   # gem 'webdrivers', '~> 5.3.0'
+
   # factory_bot is a fixtures replacement with a straightforward definition syntax
   gem 'factory_bot_rails', '~> 6.4.0'
   # This gem is a port of Perl's Data::Faker library that generates fake data.
