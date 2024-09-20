@@ -10,7 +10,7 @@ gem 'rails', '~> 7.1.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.5.0'
 # Use Puma as the app server
-gem 'puma', '~> 6.4.0'
+gem 'puma', '~> 6.4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0.0'
 # Shakapacker makes it easy to use the JavaScript pre-processor and bundler Webpack v5+ to manage frontend JavaScript in Rails
