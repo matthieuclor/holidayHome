@@ -40,7 +40,7 @@
     "trix": "^2.1.4",
     "turbolinks": "^5.2.0",
     "v-calendar": "1.0.0-beta.16",
-    "vue": "^2.6.11",
+    "vue": "^3.0.0",
     "vue-autosuggest": "^2.2.0",
     "vue-infinite-scroll": "^2.0.2",
     "vue-loader": "^15.9.0",
