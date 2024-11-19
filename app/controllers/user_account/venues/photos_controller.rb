@@ -7,10 +7,10 @@ module UserAccount
 
       def create
         if @venue.photos.attach(photos_params[:photos])
-          flash[:success] = 'Les photos ont bien été enregistrés'
+          flash[:success] = t('.success')
           render status: :created
         else
-          flash[:error] = "Un problem est survenu lors de l'enregistrement des photos"
+          flash[:error] = t('.error')
           render status: :unprocessable_entity
         end
       end
@@ -20,10 +20,10 @@ module UserAccount
 
         if photo.present?
           photo.purge
-          flash[:success] = 'La photo a bien été supprimée'
+          flash[:success] = t('.success')
           render status: :ok
         else
-          flash[:error] = 'Un problem est survenu lors de la suppression de la photo'
+          flash[:error] = t('.error')
           render status: :unprocessable_entity
         end
       end

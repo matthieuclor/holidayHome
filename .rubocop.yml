@@ -1,12 +1,16 @@
-require: rubocop-rails
+require:
+  - rubocop-rails
+  - rubocop-capybara
+  - rubocop-factory_bot
 
 AllCops:
   NewCops: enable
   Exclude:
     - 'bin/*'
     - 'config/**/*'
-    - 'db/schema.rb'
+    - 'db/**/*'
     - 'node_modules/**/*'
+    - 'Gemfile'
 
 Style/Documentation:
   Enabled: false

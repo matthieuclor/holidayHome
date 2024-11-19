@@ -40,11 +40,11 @@ module UserAccount
       new_booking.messages.first.user = current_user
 
       if new_booking.save
-        flash[:success] = 'La réservation a bien été créé'
+        flash[:success] = t('.success')
         render :create, status: :created
       else
         @plan_error = new_booking.errors[:base].first
-        flash[:error] = @plan_error || 'Un problem est survenu lors de la creation de la réservation'
+        flash[:error] = @plan_error || t('.error')
         render :create, status: :unprocessable_entity
       end
     end

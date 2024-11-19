@@ -15,7 +15,7 @@ module UserAccount
       if user_is_part_of_family?
         @user = UserDecorator.new(User.with_attached_avatar.find(params[:id]))
       else
-        flash[:error] = "Vous n'êtes pas censé voir cet utilisateur"
+        flash[:error] = t('.error')
         render js: 'location.reload()', status: :unauthorized
       end
     end

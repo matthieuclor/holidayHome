@@ -27,7 +27,7 @@ module UserAccount
           current_user.families << @invitation.family
         end
 
-        flash[:success] = 'La réponse a bien été prise en compte'
+        flash[:success] = t('.success')
       end
 
       redirect_to user_account_received_invitations_path
@@ -37,7 +37,7 @@ module UserAccount
 
     def invitation_valid?
       unless %w(yes no).include?(params[:response])
-        flash[:error] = "Votre invitation n'a pas le bon format"
+        flash[:error] = t('.invitations.error')
         return false
       end
 

@@ -96,6 +96,10 @@ fr:
         content: Le contenu
     errors:
       models:
+        vehicle_type:
+          attributes:
+            icon_class:
+              invalid: "Doit commencer par 'fa-'"
         venue:
           attributes:
             base:

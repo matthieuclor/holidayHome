@@ -28,20 +28,13 @@ fr:
           success: Le véhicule a bien été mise à jour
           error: Un problem est survenu lors de la mise à jour du véhicule
     users:
+      update:
+        success: L'utilisateur a bien été mise a jours
+        error: Un problem est survenu lors de la mise à jour de l'utilisateur
       email_confirmations:
         update:
           success: L'email de {{ first_name }} a bien été confirmé
           error: Un problem est survenu lors de la confirmation de l'email
-    question_and_answers:
-      statuses:
-        update:
-          success: La faq a bien été mis à jour
-          error: Un problem est survenu lors de la mise à jour de la faq
-    bookings:
-      booking_approvals:
-        update:
-          success: L'approbation a bien été mise à jour
-          error: Un problem est survenu lors de la mise à jour de l'approbation
     articles:
       create:
         success: L'article a bien été créé
@@ -60,6 +53,10 @@ fr:
       update:
         success: La demande a bien été mise à jour
         error: Un problem est survenu lors de la mise à jour de la demande
+      booking_approvals:
+        update:
+          success: L'approbation a bien été mise à jour
+          error: Un problem est survenu lors de la mise à jour de l'approbation
     families:
       update:
         success: La famille a bien été mise a jours
@@ -68,6 +65,10 @@ fr:
       create:
         success: La faq a bien été créé
         error: Un problem est survenu lors de la création de la faq
+      statuses:
+        update:
+          success: La faq a bien été mis à jour
+          error: Un problem est survenu lors de la mise à jour de la faq
       update:
         success: La faq a bien été mise à jour
         error: Un problem est survenu lors de la mise à jour de la faq
@@ -87,10 +88,6 @@ fr:
       destroy:
         success: Le membre a bien été supprimée
         error: Un problem est survenu lors de la suppression du membre
-    users:
-      update:
-        success: L'utilisateur a bien été mise a jours
-        error: Un problem est survenu lors de la mise à jour de l'utilisateur
     vehicle_types:
       create:
         success: Le type de véhicule a bien été créé
@@ -102,13 +99,112 @@ fr:
         success: Le type de véhicule a bien été supprimé
         error: Un problem est survenu lors de la suppression du type de véhicule
   user_account:
+    venues:
+      create:
+        success: 'Le lieu a bien été créé'
+        error: 'Un problem est survenu lors de la création du lieu'
+      update:
+        success: 'Le lieu a bien été mise à jour'
+        error: 'Un problem est survenu lors de la mise à jour de du lieu'
+      destroy:
+        success: 'Le lieu a bien été supprimé'
+        error: 'Un problem est survenu lors de la suppression du lieu'
+      vehicles:
+        create:
+          success: 'Le véhicule a bien été créé'
+          error: 'Un problem est survenu lors de la création du véhicule'
+        update:
+          success: 'Le véhicule a bien été mise à jour'
+          error: 'Un problem est survenu lors de la mise à jour du véhicule'
+        destroy:
+          success: 'Le véhicule a bien été supprimé'
+          error: 'Un problem est survenu lors de la suppression du véhicule'
+      photos:
+        create:
+          success: 'Les photos ont bien été enregistrés'
+          error: "Un problem est survenu lors de l'enregistrement des photos"
+        destroy:
+          success: 'La photo a bien été supprimée'
+          error: 'Un problem est survenu lors de la suppression de la photo'
+    users:
+      show:
+        error: "Vous n'êtes pas censé voir cet utilisateur"
+    sended_invitations:
+      create:
+        success: "L'invitation a bien été envoyé"
+        error: "Un problem est survenu lors de l'envoi de l'invitation"
+      destroy:
+        success: "L'invitation a bien été supprimée"
+        error: "Un problem est survenu lors de la suppression de l'invitation"
+      resends:
+        update:
+          success: "L'invitation a bien été envoyée."
+    received_invitations:
+      update:
+        success: 'La réponse a bien été prise en compte'
+        invitations:
+          error: "Votre invitation n'a pas le bon format"
+    plans:
+      update:
+        success: 'Le plan a bien été mise à jour'
+        error: 'Un problem est survenu lors de la mise a jour du plan'
+    current_venues:
+      update:
+        error: 'Un problem est survenu lors de la sélection du lieu'
+    current_school_holiday_zones:
+      update:
+        error: 'Un problem est survenu lors de la sélection de la zone'
+    bookings:
+      create:
+        success: 'La réservation a bien été créé'
+        error: 'Un problem est survenu lors de la creation de la réservation'
+      status:
+        update:
+          success: 'La réservation a bien été mise à jour'
+          error: 'Un problem est survenu lors de la mise à jour de la réservation'
+    booking_approvals:
+      update:
+        success: 'La réservation a bien été mise à jour'
+        error: 'Un problem est survenu lors de la mise à jour de la réservation'
+    family_links:
+      destroy:
+        success: 'Vous êtes désolidarisé de la famille'
+        error: 'Un problem est survenu lors de la désolidarisation de la famille'
+        check_user:
+          error: "Vous n'avez pas les droits de vous désolidariser de cette famille"
     families:
       create:
         success: La famille a bien été créé
         error: Un problem est survenu lors de la creation de la famille
+      edit:
+        check_creator:
+          error: "Vous n'avez pas les droits pour modifier cette famille."
       update:
         success: La famille a bien été mise à jour
         error: Un problem est survenu lors de la mise à jour de la famille
+        check_creator:
+          error: "Vous n'avez pas les droits pour modifier cette famille."
       destroy:
         success: La famille a bien été supprimée
         error: Un problem est survenu lors de la suppression de la famille
+        check_creator:
+          error: "Vous n'avez pas les droits pour modifier cette famille."
+  public:
+    invitations:
+      responses:
+        new:
+          success: 'La réponse a bien été prise en compte'
+          invitations:
+            error:
+              not_found: 'Votre invitation a été éffacée entre temps'
+              format: "Votre invitation n'a pas le bon format"
+              responded: 'Vous avez déja répondu a cette invitation'
+      registrations:
+        new:
+          invitations:
+            error:
+              not_found: 'Votre invitation a été éffacée entre temps'
+              created: 'Vous avez déja créé votre compte avec cette invitation'
+        create:
+          success: 'Le compte a bien été créé'
+          error: 'Un problem est survenu lors de la creation de votre compte'

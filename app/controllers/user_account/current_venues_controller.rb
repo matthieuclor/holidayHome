@@ -12,7 +12,7 @@ module UserAccount
         set_current_venue
         render status: :ok
       else
-        flash[:error] = 'Un problem est survenu lors de la sélection du lieu'
+        flash[:error] = t('.error')
         render status: :unprocessable_entity
       end
     end

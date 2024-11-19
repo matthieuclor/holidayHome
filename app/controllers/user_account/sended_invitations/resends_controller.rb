@@ -8,7 +8,7 @@ module UserAccount
         context = SendInvitationEmail.call(invitation: @invitation)
 
         if context.success?
-          flash[:success] = "L'invitation a bien été envoyée."
+          flash[:success] = t('.success')
           render status: :ok
         else
           flash[:error] = context.error

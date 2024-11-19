@@ -6,10 +6,7 @@ class VehicleType < ApplicationRecord
   validates :name, :icon_prefix, presence: true
   validates :icon_prefix, inclusion: { in: icon_prefixes.keys }
   validates :name, uniqueness: true
-  validates :icon_class, format: {
-    with: /\A(fa-)+[a-z|-]*\z/,
-    message: "Doit commencer par 'fa-'"
-  }, allow_blank: true
+  validates :icon_class, format: { with: /\A(fa-)+[a-z|-]*\z/ }, allow_blank: true
 
   before_save -> { name.capitalize! }, if: :name_changed?
 end

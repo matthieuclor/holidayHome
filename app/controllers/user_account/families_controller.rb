@@ -74,7 +74,7 @@ module UserAccount
     def check_creator
       return if @family.creator == current_user
 
-      flash[:error] = "Vous n'avez pas les droits pour modifier cette famille."
+      flash[:error] = t('.check_creator.error')
 
       respond_to do |format|
         format.html { redirect_to user_account_families_path }
