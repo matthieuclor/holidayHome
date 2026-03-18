@@ -54,7 +54,7 @@ gem 'sentry-ruby', '~> 5.17.0'
 # SitemapGenerator is the easiest way to generate Sitemaps in Ruby
 gem 'sitemap_generator', '~> 6.3.0'
 # Faraday is an HTTP client library that provides a common interface over many adapters
-gem 'faraday', '~> 2.9.0'
+gem 'faraday', '~> 2.14.1'
 # A simple wrapper to send notifications to Slack webhooks.
 gem 'slack-notifier', '~> 2.4.0'
 

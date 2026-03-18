@@ -146,10 +146,12 @@ GEM
       railties (>= 5.0.0)
     faker (3.3.1)
       i18n (>= 1.8.11, < 2)
-    faraday (2.9.0)
-      faraday-net_http (>= 2.0, < 3.2)
-    faraday-net_http (3.1.0)
-      net-http
+    faraday (2.14.1)
+      faraday-net_http (>= 2.0, < 3.5)
+      json
+      logger
+    faraday-net_http (3.4.2)
+      net-http (~> 0.5)
     ffi (1.16.3)
     foreman (0.88.1)
     globalid (1.2.1)
@@ -205,8 +207,8 @@ GEM
       prism (~> 1.5)
     msgpack (1.7.2)
     mutex_m (0.3.0)
-    net-http (0.4.1)
-      uri
+    net-http (0.9.1)
+      uri (>= 0.11.1)
     net-imap (0.4.20)
       date
       net-protocol
@@ -218,12 +220,12 @@ GEM
       net-protocol
     netrc (0.11.0)
     nio4r (2.7.3)
-    nokogiri (1.19.0)
+    nokogiri (1.19.1)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    nokogiri (1.19.0-aarch64-linux-gnu)
+    nokogiri (1.19.1-aarch64-linux-gnu)
       racc (~> 1.4)
-    nokogiri (1.19.0-x86_64-linux-gnu)
+    nokogiri (1.19.1-x86_64-linux-gnu)
       racc (~> 1.4)
     orm_adapter (0.5.0)
     package_json (0.2.0)
@@ -244,7 +246,7 @@ GEM
     puma (6.4.3)
       nio4r (~> 2.0)
     racc (1.8.1)
-    rack (3.2.4)
+    rack (3.2.5)
     rack-proxy (0.7.7)
       rack
     rack-session (2.1.1)
@@ -401,7 +403,7 @@ GEM
       concurrent-ruby (~> 1.0)
     unicode-display_width (2.5.0)
     uniform_notifier (1.16.0)
-    uri (0.13.2)
+    uri (1.1.1)
     warden (1.2.9)
       rack (>= 2.0.9)
     web-console (4.2.1)
@@ -433,7 +435,7 @@ DEPENDENCIES
   devise (~> 4.9.0)
   factory_bot_rails (~> 6.4.0)
   faker (~> 3.3.0)
-  faraday (~> 2.9.0)
+  faraday (~> 2.14.1)
   foreman (~> 0.88.0)
   image_processing (~> 1.12.0)
   interactor (~> 3.1.0)
