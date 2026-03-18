@@ -35,7 +35,7 @@
     "qs": "^6.14.2",
     "sass": "^1.69.5",
     "sass-loader": "^13.3.3",
-    "shakapacker": "^7.1.0",
+    "shakapacker": "^9.5.0",
     "terser-webpack-plugin": "^5.3.9",
     "trix": "^2.1.17",
     "turbolinks": "^5.2.0",
