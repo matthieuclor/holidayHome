@@ -27,7 +27,7 @@ gem 'redis', '~> 5.2.0'
 # Use Active Storage variant
 gem 'image_processing', '~> 1.12.0'
 # The official AWS SDK for Ruby
-gem 'aws-sdk-s3', '~> 1.147.0', require: false
+gem 'aws-sdk-s3', '~> 1.208.0', require: false
 # Active Storage Validations
 gem 'active_storage_validations', '~> 1.1.0'
 
