@@ -14,7 +14,7 @@ gem 'puma', '~> 6.4.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 6.0.0'
 # Shakapacker makes it easy to use the JavaScript pre-processor and bundler Webpack v5+ to manage frontend JavaScript in Rails
-gem 'shakapacker', '~> 7.2.0'
+gem 'shakapacker', '~> 9.5.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5.2.0'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -54,7 +54,7 @@ gem 'sentry-ruby', '~> 5.17.0'
 # SitemapGenerator is the easiest way to generate Sitemaps in Ruby
 gem 'sitemap_generator', '~> 6.3.0'
 # Faraday is an HTTP client library that provides a common interface over many adapters
-gem 'faraday', '~> 2.9.0'
+gem 'faraday', '~> 2.14.1'
 # A simple wrapper to send notifications to Slack webhooks.
 gem 'slack-notifier', '~> 2.4.0'
 
